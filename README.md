@@ -2,6 +2,8 @@
 
 桌面優先的機甲戰鬥遊戲原型，目前版本 **v31**。
 
+[立即試玩](https://86-the-missing-sector.pages.dev/) · [戰線突破](https://86-the-missing-sector.pages.dev/?gameMode=frontline) · [四向無限](https://86-the-missing-sector.pages.dev/?gameMode=endless)
+
 ## 執行
 
 ```sh
@@ -32,9 +34,11 @@ v31：176項遊戲／部署測試通過；無限結算不顯示戰線下一場�
 
 ## 自動部署（Cloudflare Pages 免費靜態方案）
 
+2026-09-08 已接通正式站，production branch 為 `main`；[首次成功部署](https://github.com/allen880612/86-the-missing-sector/actions/runs/34210658834)後，Chrome從公開HTTPS啟動兩模式均無JavaScript錯誤或資源404。
+
 GitHub PR 執行遊戲測試與發布打包；合併 `main` 檢查通過後才部署。Actions 也支援手動重跑。部署只包含已追蹤的執行檔／素材，排除測試、私人研究及 QA。
 
-首次設定：在 Cloudflare 建立 Direct Upload Pages 專案 `86-the-missing-sector`，production branch 設為 `main`；在此 GitHub repo 的 Actions Secrets 設定 `CLOUDFLARE_ACCOUNT_ID` 與僅具有 Pages Write 權限的 `CLOUDFLARE_API_TOKEN`。不要提交 Token、OAuth refresh token 或 `.env`。授權到期時更新 Secret；缺少憑證會明確停止部署。
+首次設定：在 Cloudflare 建立 Direct Upload Pages 專案 `86-the-missing-sector`，production branch 設為 `main`；在此 GitHub repo 的 Actions Secrets 設定 `CLOUDFLARE_ACCOUNT_ID` 與僅具有 Pages Write 權限的 `CLOUDFLARE_API_TOKEN`。不要提交 Token、OAuth refresh token 或 `.env`。目前部署Token到期日為2026-12-08。授權到期時重新建立相同Pages Write範圍的Token、更新GitHub Secret，再於Actions重跑失敗的deploy工作；缺少憑證會明確停止部署。
 
 僅部署 `dist/` 靜態檔案，不使用 Functions、Workers、R2、D1 或付費升級。建置拒絕 Functions／Worker 入口、符號連結、單檔達25MiB或總數達20,000的輸出。PR 不建立預覽部署；main 併發部署會取消過時工作。Cloudflare 免費方案每月500次建置，限制到達時停止發布，不升級方案；帳戶內其他專案也可能使用額度。靜態資源請求免費且不限次數。
 
