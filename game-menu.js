@@ -116,9 +116,9 @@
     if (!endless) return;
     const firstBoss = document.getElementById('arenaBoss').value;
     const bosses = {
-      dinosauria: { name: 'Dinosauria', role: '重戰車型', attack: '重砲交叉射界', advice: '首敵是重戰車。先離開直線砲口與曲射落點，最後一輪落地後有 2 秒散熱窗口。' },
-      phoenix: { name: 'Phönix', role: '高機動型', attack: '潛伏獵殺／二段鏈刃', advice: '首敵是 Phönix。迷彩時保持移動；顯形鎖定後側躍，再避開鏈刃追斬。命中或 EMP 可破除迷彩，收刃後反擊。' },
-      morpho: { name: 'Morpho', role: '電磁加速砲型', attack: '電磁直射／交錯落點', advice: '首敵是電磁砲。先移出預鎖射線，再避開交錯落點；最後一發後有 2 秒反擊窗口。' }
+      dinosauria: { name: 'Dinosauria', role: '重戰車型', attack: '重砲交叉射界', advice: '初期重戰車交替使用曲射與直射。先躲開這次預警，散熱時有 2 秒反擊窗口；後續才加入交叉火力。' },
+      phoenix: { name: 'Phönix', role: '高機動型', attack: '潛伏獵殺／二段鏈刃', advice: '首次 Phönix 先使用單段突進。顯形鎖定後側躍，收刃時反擊；後續威脅升階才加入鏈刃追斬。' },
+      morpho: { name: 'Morpho', role: '電磁加速砲型', attack: '電磁直射／交錯落點', advice: '初期電磁砲交替使用射線與落點。移出預警區，散熱後反擊；後續才加入交錯連發。' }
     };
     const boss = bosses[firstBoss] || bosses.dinosauria;
     for (const image of document.querySelectorAll('[data-boss-preview]')) {
@@ -134,8 +134,8 @@
     else preview.removeAttribute('src');
     preview.alt = boss.name + ' · ' + boss.role;
     document.getElementById('enemySecond').hidden = true;
-    document.getElementById('enemyStats').innerHTML = `<div><span>攻擊特色</span><strong>${boss.attack}</strong></div><div><span>反擊窗口</span><strong>${firstBoss==='phoenix'?'收刃 1.8 秒':'散熱 2 秒'}</strong></div>`;
-    document.getElementById('encounterBrief').innerHTML = '<span class="skill-name">每三波升階</span><strong>30 秒一波；第 5 波全菁英增援，第 10 波 Boss 強襲，交替循環。</strong><small>一般波保證菁英增援；第 4／7／13／19 波，重型上限 2／3／4／5。</small>';
+    document.getElementById('enemyStats').innerHTML = `<div><span>攻擊特色</span><strong>${boss.attack}</strong></div><div><span>反擊窗口</span><strong>${firstBoss==='phoenix'?'首次收刃 2.2 秒':'散熱 2 秒'}</strong></div>`;
+    document.getElementById('encounterBrief').innerHTML = `<span class="skill-name">有限增援 · 清場推進</span><strong>清除主力後整補 4 秒，再迎接下一波。</strong><small>前兩波無 Boss；第 5 波 ${window.GameArenaCore.wavePlan(5).elites} 架菁英、第 10 波 ${window.GameArenaCore.wavePlan(10).bosses} 架 Boss，後續循環升級。</small>`;
     document.getElementById('ammoBrief').innerHTML = {standard:'<strong>環向應變</strong><span>穩定處理各方向目標</span>',ap:'<strong>直線穿透</strong><span>對準同方向密集目標</span>',he:'<strong>爆風清場</strong><span>處理近身包圍</span>'}[document.getElementById('ammo').value];
     document.getElementById('tacticBrief').innerHTML = '<strong>區域支援 · 初始 2 次／30 秒回充</strong><span>清路壓制 · 干擾區內無法呼叫</span>';
   }

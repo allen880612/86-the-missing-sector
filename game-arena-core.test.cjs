@@ -12,6 +12,8 @@ function quiet(s) {
   return s;
 }
 
+function setWave(s,wave){const plan=C.wavePlan(wave);Object.assign(s,{wave,waveKind:plan.kind,wavePhase:'engaging',waveElapsed:0,waveSpawned:0,waveTotal:plan.total,waveBossSpawned:0,waveEliteSpawned:0,regroupRemaining:0,threatStage:1+Math.floor((wave-1)/3),bossCap:1+(wave>=4)+(wave>=7)+(wave>=13)+(wave>=19)});return s;}
+
 test('setup creates the arena state at the world centre', () => {
   const s = state();
   assert.equal(s.mode, 'endless');
@@ -320,7 +322,7 @@ test('Morpho exposed state multiplies incoming damage and elite dimensions are d
 });
 
 test('both bosses become exposed only after their final scheduled attack lands', () => {
-  for (const [model, wait] of [['dinosauria', 1.3], ['morpho', 2.15]]) {
+  for (const [model, wait] of [['dinosauria', 1.15], ['morpho', 1.5]]) {
     const s = quiet(state()); s.count = 1; s.x = 500; s.y = 850;
     const boss = C.spawnSpecial(s, model, 500, 150);
     boss.intro = 0; boss.cooldown = 0; boss.speed = 0;
@@ -387,9 +389,9 @@ test('legal explicit spawns stay in place and a fully blocked boss spawn retries
   const blocked = quiet(state());
   blocked.obstacles = [{ id: 'all', x: 500, y: 500, w: 1000, h: 1000, hp: 1, max: 1, dead: false }];
   assert.equal(C.spawnSpecial(blocked, 'dinosauria'), null);
-  blocked.boss = 0;
+  setWave(blocked,3);blocked.spawn=0;
   assert.doesNotThrow(() => C.step(blocked, .05, { firing: false }));
-  assert.equal(blocked.boss, 1);
+  assert.equal(blocked.waveSpawned, 0);
   assert.equal(blocked.enemies.length, 0);
 });
 
@@ -697,28 +699,27 @@ test('boss death continues endless play and player death yields a retryable resu
 });
 
 test('boss selection accepts Phoenix and the endless rotation includes all three models', () => {
-  const s=quiet(state(()=>.5,{bossModel:'phoenix'}));s.count=1;s.boss=0;
+  const s=setWave(quiet(state(()=>.5,{bossModel:'phoenix'})),10);s.count=1;s.spawn=0;
   C.step(s,.05,{firing:false});
   let boss=s.enemies.find(e=>e.type==='boss');
-  assert.equal(boss.model,'phoenix');assert.deepEqual([boss.max,boss.r,boss.speed],[2800,48,240]);
-  C.damageEnemy(s,boss,boss.hp);s.boss=0;C.step(s,.05,{firing:false});
+  assert.equal(boss.model,'phoenix');assert.deepEqual([boss.max,boss.r,boss.speed],[5140,48,240]);
+  C.damageEnemy(s,boss,boss.hp);s.spawn=0;C.step(s,.05,{firing:false});
   boss=s.enemies.find(e=>e.type==='boss'&&!e.dead);assert.equal(boss.model,'morpho');
-  C.damageEnemy(s,boss,boss.hp);s.boss=0;C.step(s,.05,{firing:false});
+  C.damageEnemy(s,boss,boss.hp);s.spawn=0;C.step(s,.05,{firing:false});
   boss=s.enemies.find(e=>e.type==='boss'&&!e.dead);assert.equal(boss.model,'dinosauria');
 });
 
-test('Phoenix stalks, warns, dashes continuously, then exposes after its follow-up slash', () => {
-  const s=quiet(state(()=>.5,{bossModel:'phoenix'}));s.count=1;s.x=800;s.y=500;s.obstacles=[];
+test('Phoenix stalks, warns, dashes continuously, then recovers when the ram connects', () => {
+  const s=quiet(state(()=>.5,{bossModel:'phoenix'}));s.wave=7;s.count=1;s.x=800;s.y=500;s.obstacles=[];
   const boss=C.spawnSpecial(s,'phoenix',300,500);boss.intro=0;boss.cooldown=0;
   C.step(s,.05,{firing:false});
   assert.equal(boss.phase,'stalk');assert.ok(s.events.some(e=>e.type==='phoenixStalk'&&e.duration===1.8));
   const before={x:boss.x,y:boss.y};for(let i=0;i<35;i++)C.step(s,.05,{firing:false});assert.ok(Math.hypot(boss.x-before.x,boss.y-before.y)>50);
-  C.step(s,.05,{firing:false});assert.equal(boss.phase,'windup');assert.ok(s.events.some(e=>e.type==='phoenixCue'&&e.delay===.8));assert.equal(s.stats.bossShots,1);
-  for(let i=0;i<16;i++)C.step(s,.05,{firing:false});
+  C.step(s,.05,{firing:false});assert.equal(boss.phase,'windup');assert.ok(s.events.some(e=>e.type==='phoenixCue'&&e.delay===1));assert.equal(s.stats.bossShots,1);
+  for(let i=0;i<20;i++)C.step(s,.05,{firing:false});
   assert.equal(boss.phase,'dash');const beforeDash=Math.hypot(boss.lockedX-boss.x,boss.lockedY-boss.y);
   C.step(s,.05,{firing:false});const afterDash=Math.hypot(boss.lockedX-boss.x,boss.lockedY-boss.y);assert.ok(afterDash<beforeDash&&afterDash>0,'dash advances without teleporting');
-  for(let i=0;i<30&&boss.phase==='dash';i++)C.step(s,.05,{firing:false});assert.equal(boss.phase,'slashWindup');
-  for(let i=0;i<30&&boss.phase!=='recover';i++)C.step(s,.05,{firing:false});assert.equal(boss.phase,'recover');assert.ok(boss.exposed>1.7);assert.ok(s.events.some(e=>e.type==='phoenixRecover'));
+  for(let i=0;i<30&&boss.phase==='dash';i++)C.step(s,.05,{firing:false});assert.equal(boss.phase,'recover');assert.equal(s.hazards.some(h=>h.source===boss.id&&h.geometry==='sector'),false);assert.ok(boss.exposed>1.7);assert.ok(s.events.some(e=>e.type==='phoenixRecover'));
   boss.revealed=0;C.damageEnemy(s,boss,10);assert.ok(boss.revealed>=1.5);
 
   const interrupted=quiet(state());interrupted.count=1;interrupted.obstacles=[];
@@ -729,8 +730,8 @@ test('Phoenix stalks, warns, dashes continuously, then exposes after its follow-
 });
 
 test('Phoenix follow-up slash locks its warned angle before recovery', () => {
-  const combo=quiet(state());combo.count=1;combo.obstacles=[];combo.x=800;const phase2=C.spawnSpecial(combo,'phoenix',400,500);phase2.bossStage=2;phase2.phase='dash';phase2.lockedX=405;phase2.lockedY=500;phase2.dashLeft=5;
-  C.step(combo,.05,{firing:false});const follow=combo.hazards.find(h=>h.geometry==='sector');assert.equal(phase2.phase,'slashWindup');assert.deepEqual([follow.r,follow.halfAngle,follow.maxDelay],[165,Math.PI/3,.75]);const locked=follow.angle;combo.x=850;combo.y=700;for(let i=0;i<15;i++)C.step(combo,.05,{firing:false});assert.equal(follow.angle,locked);assert.ok(follow.fired);assert.equal(phase2.phase,'slash');for(let i=0;i<6&&phase2.phase!=='recover';i++)C.step(combo,.05,{firing:false});assert.equal(phase2.phase,'recover');assert.ok(phase2.exposed>1.7);
+  const combo=quiet(state());combo.wave=7;combo.count=1;combo.obstacles=[];combo.x=800;const phase2=C.spawnSpecial(combo,'phoenix',400,500);phase2.bossStage=2;phase2.phase='dash';phase2.lockedX=405;phase2.lockedY=500;phase2.dashLeft=5;
+  C.step(combo,.05,{firing:false});const follow=combo.hazards.find(h=>h.geometry==='sector');assert.equal(phase2.phase,'slashWindup');assert.deepEqual([follow.r,follow.halfAngle,follow.maxDelay],[165,Math.PI/3,1.1]);const locked=follow.angle;combo.x=850;combo.y=700;for(let i=0;i<22;i++)C.step(combo,.05,{firing:false});assert.equal(follow.angle,locked);assert.ok(follow.fired);assert.equal(phase2.phase,'slash');for(let i=0;i<6&&phase2.phase!=='recover';i++)C.step(combo,.05,{firing:false});assert.equal(phase2.phase,'recover');assert.ok(phase2.exposed>1.7);
 });
 
 test('sector hazards share exact player and wing geometry while player dash avoids blades', () => {
@@ -775,12 +776,10 @@ test('Gunner replaces normal spawns after twelve seconds and fires dodgeable ene
   assert.equal(covered.hp,covered.maxHp);assert.ok(covered.obstacles[1].hp<covered.obstacles[1].max);
 });
 
-test('waves advance every thirty seconds and every three waves raises the threat tier', () => {
+test('cleared waves advance after regroup and every three waves raises the threat tier', () => {
   const s=quiet(state());
-  for(const [time,wave,stage,cap] of [[89.95,4,2,2],[179.95,7,3,3],[359.95,13,5,4]]){
-    s.time=time;C.step(s,.05,{firing:false});assert.deepEqual([s.wave,s.threatStage,s.bossCap],[wave,stage,cap]);
-    assert.ok(s.events.some(e=>e.type==='waveStart'&&e.wave===wave));
-  }
+  for(let wave=2;wave<=4;wave++){s.wavePhase='cleanup';s.waveSpawned=s.waveTotal;s.enemies=[];C.step(s,.05,{firing:false});for(let i=0;i<80;i++)C.step(s,.05,{firing:false});assert.equal(s.wave,wave);assert.ok(s.events.some(e=>e.type==='waveStart'&&e.wave===wave));}
+  assert.deepEqual([s.wave,s.threatStage,s.bossCap],[4,2,2]);
   s.bossCap=3;
   assert.ok(C.spawnSpecial(s,'dinosauria',150,150));assert.ok(C.spawnSpecial(s,'phoenix',850,150));assert.ok(C.spawnSpecial(s,'morpho',850,850));
   assert.equal(C.spawnSpecial(s,'phoenix',150,850),null);
@@ -788,7 +787,7 @@ test('waves advance every thirty seconds and every three waves raises the threat
 });
 
 test('bosses enter phase two below half health and gain a real extra attack', () => {
-  const s=quiet(state());s.count=1;s.obstacles=[];
+  const s=quiet(state());s.wave=7;s.count=1;s.obstacles=[];
   const boss=C.spawnSpecial(s,'dinosauria',500,150);boss.intro=0;boss.cooldown=0;boss.hp=boss.max*.5;
   C.step(s,.05,{firing:false});
   assert.equal(boss.bossStage,2);assert.ok(s.events.some(e=>e.type==='bossPhase'&&e.sourceId===boss.id&&e.phase===2));
@@ -798,9 +797,9 @@ test('bosses enter phase two below half health and gain a real extra attack', ()
 });
 
 test('heavy attackers keep warned damage and boss health scales linearly by wave', () => {
-  const dino=quiet(state());dino.count=1;dino.obstacles=[];const boss=C.spawnSpecial(dino,'dinosauria',500,150);boss.intro=0;boss.cooldown=0;
+  const dino=quiet(state());dino.wave=7;dino.count=1;dino.obstacles=[];const boss=C.spawnSpecial(dino,'dinosauria',500,150);boss.damageScale=.75;boss.intro=0;boss.cooldown=0;
   C.step(dino,.05,{firing:false});assert.deepEqual(dino.hazards.filter(h=>h.source===boss.id).map(h=>h.damage).sort((a,b)=>a-b),[30,36,36,36]);
-  const morpho=quiet(state());morpho.count=1;morpho.obstacles=[];const rail=C.spawnSpecial(morpho,'morpho',500,150);rail.intro=0;rail.cooldown=0;
+  const morpho=quiet(state());morpho.wave=7;morpho.count=1;morpho.obstacles=[];const rail=C.spawnSpecial(morpho,'morpho',500,150);rail.damageScale=.75;rail.intro=0;rail.cooldown=0;
   C.step(morpho,.05,{firing:false});assert.equal(morpho.hazards.find(h=>h.source===rail.id&&h.geometry==='beam').damage,45);
   const late=quiet(state());late.time=360;late.wave=9;late.threatStage=3;late.bossCap=3;const scaled=C.spawnSpecial(late,'phoenix');assert.equal(scaled.max,4880);
   const stier=C.spawnEnemy(late,'stier',200,500);stier.cooldown=0;stier.speed=0;C.step(late,.05,{firing:false});
@@ -811,7 +810,11 @@ test('enemy damage ramps linearly with early-wave relief', () => {
   const scales=[];for(const wave of [1,5,9]){const s=quiet(state());s.time=(wave-1)*20;s.wave=wave;s.threatStage=1+Math.floor((wave-1)/3);const e=C.spawnEnemy(s,'stier',200,500);scales.push(e.damageScale);}
   assert.deepEqual(scales,[.75,.9*1.08,1.16]);
   const phoenix=quiet(state());phoenix.count=1;phoenix.obstacles=[];phoenix.shield=0;const boss=C.spawnSpecial(phoenix,'phoenix');boss.x=430;boss.y=500;boss.phase='dash';boss.lockedX=650;boss.lockedY=500;boss.dashLeft=220;
-  C.step(phoenix,.01,{firing:false});assert.equal(phoenix.hp,phoenix.maxHp-30*.75);
+  C.step(phoenix,.01,{firing:false});assert.equal(phoenix.hp,phoenix.maxHp-24*.75);
+});
+
+test('v41 first-six-wave heavy bosses alternate one warned attack and cannot enter phase two', () => {
+  for(const model of ['dinosauria','morpho']){const s=quiet(state());s.wave=6;s.count=1;s.obstacles=[];const boss=C.spawnSpecial(s,model,500,150);boss.hp=boss.max*.4;boss.intro=0;boss.cooldown=0;C.step(s,.05,{firing:false});assert.equal(boss.bossStage,1);assert.equal(s.events.some(e=>e.type==='bossPhase'&&e.sourceId===boss.id),false);assert.equal(s.hazards.filter(h=>h.source===boss.id).length,1);assert.equal(boss.cooldown,4.8);s.hazards=[];boss.cooldown=0;C.step(s,.05,{firing:false});const second=s.hazards.filter(h=>h.source===boss.id);assert.equal(second.length,model==='dinosauria'?3:1);assert.notEqual(second[0].geometry,model==='dinosauria'?'circle':'beam');}
 });
 
 test('weapon levels grow forever and milestones add a bounded secondary shell', () => {
@@ -841,7 +844,7 @@ test('late Stier gains a warned second fan and Phoenix dashes through lesser ene
   C.step(fan,.05,{firing:false});assert.equal(stier.eliteStage,2);assert.equal(fan.hazards.filter(h=>h.source===stier.id).length,6);
   assert.ok(fan.events.some(e=>e.type==='warning'&&e.kind==='stierFollow'&&e.delay===1.3));
 
-  const charge=quiet(state());charge.count=1;charge.x=900;charge.y=500;charge.obstacles=[];
+  const charge=quiet(state());charge.wave=7;charge.count=1;charge.x=900;charge.y=500;charge.obstacles=[];
   const phoenix=C.spawnSpecial(charge,'phoenix',300,500),blocker=C.spawnEnemy(charge,'normal',400,500);blocker.speed=0;
   phoenix.phase='dash';phoenix.lockedX=700;phoenix.lockedY=500;phoenix.dashLeft=400;
   for(let i=0;i<4;i++)C.step(charge,.05,{firing:false});assert.ok(phoenix.x>blocker.x&&phoenix.phase==='dash');
@@ -931,9 +934,8 @@ test('large-map spawns stay just outside the local view and expose their approac
   s.bossCap=2;const boss=C.spawnSpecial(s,'dinosauria');const enter=s.events.find(e=>e.type==='bossEnter');assert.deepEqual([enter.spawnSide,enter.sourceX,enter.sourceY],[boss.side,boss.x,boss.y]);
 });
 
-test('boss warning reserves the same offscreen entry point used five seconds later', () => {
-  const s=quiet(state(()=>.5,{map:'ruins'}));s.count=1;s.x=s.y=200;s.boss=5.01;s.bossWarned=false;C.step(s,.05,{firing:false});const warning=s.events.find(e=>e.type==='warning'&&e.kind==='boss');assert.ok(warning.spawnSide);assert.ok(Math.hypot(warning.sourceX-s.x,warning.sourceY-s.y)>=540);
-  s.boss=0;C.step(s,.05,{firing:false});const boss=s.enemies.find(e=>e.type==='boss');assert.deepEqual([boss.side,boss.x,boss.y],[warning.spawnSide,warning.sourceX,warning.sourceY]);
+test('planned bosses enter from a legal offscreen point', () => {
+  const s=setWave(quiet(state(()=>.5,{map:'ruins'})),3);s.count=1;s.x=s.y=200;s.spawn=0;C.step(s,.05,{firing:false});const boss=s.enemies.find(e=>e.type==='boss');assert.ok(boss);assert.ok(['top','right','bottom','left'].includes(boss.side));assert.ok(Math.hypot(boss.x-s.x,boss.y-s.y)>=540);
 });
 
 test('permanent walls block shots and the full dash path while low cover remains destructible and dashable', () => {
@@ -975,11 +977,11 @@ test('heavy cannon spends one round and penetrates four aligned enemies before a
   for(let i=0;i<25;i++)C.step(s,.05,{aimX:1400,aimY:800,firing:false});assert.ok(targets.slice(0,4).every(e=>e.hp<300));assert.equal(targets[4].hp,300);assert.equal(s.obstacles[0].dead,false);
 });
 
-test('v40 waves use thirty-second linear scaling and staged boss capacity', () => {
+test('v40 enemy scaling and staged boss capacity remain wave based', () => {
   const s=quiet(state());s.obstacles=[];const samples=[];
   for(const wave of [1,10,28]){s.wave=wave;s.threatStage=1+Math.floor((wave-1)/3);const normal=C.spawnEnemy(s,'normal',100+wave*20,100);const stier=C.spawnEnemy(s,'stier',100+wave*20,300);samples.push([normal.max,stier.max,normal.damageScale]);normal.dead=stier.dead=true;}
   assert.deepEqual(samples,[[32,750,.75],[59,1380,1.18],[113,2640,1.54]]);
-  for(const [time,wave,tier,cap] of [[89.95,4,2,2],[179.95,7,3,3],[359.95,13,5,4],[539.95,19,7,5]]){const pace=quiet(state());pace.time=time;C.step(pace,.05,{firing:false});assert.deepEqual([pace.wave,pace.threatStage,pace.bossCap],[wave,tier,cap]);}
+  for(const [wave,tier,cap] of [[4,2,2],[7,3,3],[13,5,4],[19,7,5]]){const pace=setWave(quiet(state()),wave);assert.deepEqual([pace.wave,pace.threatStage,pace.bossCap],[wave,tier,cap]);}
 });
 
 test('v39 player growth is bounded and milestone shell fires every third main shot', () => {
@@ -998,7 +1000,7 @@ test('v39 ordinary drops sustain while elite and boss drops include premium rewa
 });
 
 test('v39 swarm members have independent health and share a flock id', () => {
-  const rolls=[0],s=quiet(state(()=>rolls.length?rolls.shift():.5));s.obstacles=[];s.time=150;s.wave=6;s.waveKind='normal';s.threatStage=2;s.eliteQueue=[];s.spawn=0;s.specialIndex=3;
+  const rolls=[0],s=setWave(quiet(state(()=>rolls.length?rolls.shift():.5)),6),plan=C.wavePlan(6);s.obstacles=[];s.waveBossSpawned=plan.bosses;s.waveEliteSpawned=plan.elites;s.waveSpawned=plan.bosses+plan.elites;s.spawn=0;s.specialIndex=3;
   C.step(s,.01,{firing:false});const flock=s.enemies.filter(e=>e.type==='swarm');assert.equal(flock.length,6);assert.equal(new Set(flock.map(e=>e.flockId)).size,1);assert.equal(flock.filter(e=>e.flockLeader).length,1);
   assert.ok(flock.every((a,i)=>flock.slice(i+1).every(b=>Math.hypot(a.x-b.x,a.y-b.y)<=160)));
   C.damageEnemy(s,flock[0],flock[0].hp);assert.equal(flock.filter(e=>!e.dead).length,5);
@@ -1041,40 +1043,35 @@ test('v40 cloaked Phoenix rejects wing lock but blind fire and countermeasures r
   boss.revealed=0;C.useTactic(s,{x:boss.x,y:boss.y});for(let i=0;i<13;i++)C.step(s,.05,{firing:false});assert.ok(boss.revealed>=3.49);
 });
 
-test('v40 Phoenix stalks without contact then performs two independently warned attacks before recovery', () => {
-  const s=quiet(state());s.count=1;s.obstacles=[];s.x=700;s.y=500;s.shield=0;const boss=C.spawnSpecial(s,'phoenix',520,500);boss.intro=0;boss.cooldown=0;const hp=s.hp;
+test('v40 Phoenix stalks without contact damage and a ram hit ends the chain before recovery', () => {
+  const s=quiet(state());s.wave=7;s.count=1;s.obstacles=[];s.x=700;s.y=500;s.shield=0;const boss=C.spawnSpecial(s,'phoenix',520,500);boss.intro=0;boss.cooldown=0;const hp=s.hp;
   C.step(s,.05,{firing:false});assert.equal(boss.phase,'stalk');assert.ok(s.events.some(e=>e.type==='phoenixStalk'&&e.duration===1.8));
   for(let i=0;i<35;i++)C.step(s,.05,{firing:false});assert.equal(s.hp,hp);assert.equal(boss.phase,'stalk');
   C.step(s,.05,{firing:false});assert.equal(boss.phase,'windup');assert.ok(s.hazards.some(h=>h.source===boss.id&&h.kind==='charge'&&h.maxDelay>=.8));
-  for(let i=0;i<80&&boss.phase!=='slashWindup';i++)C.step(s,.05,{firing:false});const slash=s.hazards.find(h=>h.source===boss.id&&h.geometry==='sector');assert.equal(boss.phase,'slashWindup');assert.ok(slash.maxDelay>=.75);
-  for(let i=0;i<60&&boss.phase!=='recover';i++)C.step(s,.05,{firing:false});assert.equal(boss.phase,'recover');assert.ok(boss.exposed>1.7);
+  for(let i=0;i<80&&boss.phase!=='recover';i++)C.step(s,.05,{firing:false});assert.equal(boss.phase,'recover');assert.equal(s.hazards.some(h=>h.source===boss.id&&h.geometry==='sector'),false);assert.ok(boss.exposed>1.7);
 });
 
-test('v40 an unrevealed stalking Phoenix does not form an invisible collision wall', () => {
+test('v40 a stalking Phoenix never forms a collision wall while revealed or cloaked', () => {
   const s=quiet(state());s.count=1;s.obstacles=[];s.x=300;s.y=500;const boss=C.spawnSpecial(s,'phoenix',500,500);boss.phase='stalk';boss.stalkTime=9;boss.revealed=0;boss.stagger=999;
   for(let i=0;i<20;i++)C.step(s,.05,{moveX:1,firing:false});assert.ok(s.x>500);
-  s.x=300;boss.revealed=1;for(let i=0;i<20;i++)C.step(s,.05,{moveX:1,firing:false});assert.ok(s.x<=430);
+  s.x=300;boss.revealed=1;for(let i=0;i<20;i++)C.step(s,.05,{moveX:1,firing:false});assert.ok(s.x>500);
 });
 
-test('v40 every wave queues one true elite before composition spawns', () => {
-  const s=quiet(state(()=>.99));s.pickupTimer=s.boss=999;s.spawn=0;const elite=new Set(['charger','artillery','shield','stier']);
-  C.step(s,.05,{firing:false});assert.equal(s.enemies.filter(e=>elite.has(e.type)).length,1);const first=s.enemies.find(e=>elite.has(e.type)).type;s.enemies=[];
-  s.time=29.95;s.spawn=0;C.step(s,.05,{firing:false});const second=s.enemies.find(e=>elite.has(e.type));assert.ok(second);assert.notEqual(second.type,first);assert.equal(s.eliteQueue.length,0);
+test('v40 every normal wave plans at least one true elite', () => {
+  for(const wave of [1,2,3,4,6,7,13,19])assert.ok(C.wavePlan(wave).elites>=1);
 });
 
-test('v40 normal composition uses one roll for 25 percent light and 20 to 50 percent true elites', () => {
-  const spawn=(wave,roll)=>{const s=quiet(state(()=>roll));s.obstacles=[];s.wave=wave;s.waveKind='normal';s.threatStage=1+Math.floor((wave-1)/3);s.time=(wave-1)*30;s.eliteQueue=[];s.spawn=0;C.step(s,.01,{firing:false});return s.enemies[0]?.type;};
-  assert.equal(spawn(1,.24),'scout');assert.equal(spawn(1,.44),'charger');assert.equal(spawn(1,.46),'normal');assert.equal(spawn(19,.74),'charger');assert.equal(spawn(19,.76),'normal');
+test('v40 normal plans raise their true-elite share without exceeding half the nonboss quota', () => {
+  assert.deepEqual([C.wavePlan(1).elites,C.wavePlan(4).elites,C.wavePlan(19).elites],[1,4,14]);
 });
 
-test('v40 fifth waves spawn only elites and tenth waves suppress every non-boss reinforcement', () => {
-  const elite=new Set(['charger','artillery','shield','stier']),fifth=quiet(state(()=>.99));fifth.time=119.95;fifth.spawn=0;C.step(fifth,.05,{firing:false});assert.deepEqual([fifth.wave,fifth.waveKind],[5,'elite']);assert.ok(fifth.enemies.length&&fifth.enemies.every(e=>elite.has(e.type)));
-  const tenth=quiet(state(()=>.99));tenth.time=269.95;tenth.spawn=0;tenth.boss=5;C.step(tenth,.05,{firing:false});assert.deepEqual([tenth.wave,tenth.waveKind,tenth.bossCap],[10,'boss',3]);assert.equal(tenth.enemies.some(e=>e.type!=='boss'),false);
+test('v40 fifth waves spawn only elites and tenth waves spawn only bosses', () => {
+  const elite=new Set(['charger','artillery','shield','stier']),fifth=setWave(quiet(state(()=>.99)),5);fifth.obstacles=[];for(let i=0;i<6;i++){fifth.spawn=0;C.step(fifth,.05,{firing:false});}assert.equal(fifth.waveSpawned,6);assert.ok(fifth.enemies.every(e=>elite.has(e.type)));
+  const tenth=setWave(quiet(state(()=>.99)),10);tenth.obstacles=[];for(let i=0;i<3;i++){tenth.spawn=0;C.step(tenth,.05,{firing:false});}assert.equal(tenth.waveSpawned,3);assert.ok(tenth.enemies.every(e=>e.type==='boss'));
 });
 
-test('v40 elite and boss reinforcement waves retain living enemies without leaking queued elites', () => {
-  const elite=new Set(['charger','artillery','shield','stier']),s=quiet(state(()=>.99));s.obstacles=[];const survivor=C.spawnEnemy(s,'normal',200,200);s.eliteQueue=[2,3];s.time=419.95;s.spawn=s.boss=0;C.step(s,.05,{firing:false});assert.deepEqual([s.wave,s.waveKind],[15,'elite']);assert.ok(s.enemies.includes(survivor));assert.ok(s.enemies.filter(e=>e!==survivor).every(e=>elite.has(e.type)));assert.equal(s.enemies.some(e=>e.type==='boss'),false);assert.equal(s.boss,0);
-  const bossWave=quiet(state(()=>.99));bossWave.obstacles=[];const old=C.spawnEnemy(bossWave,'normal',200,200);bossWave.wave=19;bossWave.waveKind='normal';bossWave.time=569.95;bossWave.spawn=bossWave.boss=0;bossWave.eliteQueue=[17,19];const queued=bossWave.eliteQueue.slice();C.step(bossWave,.05,{firing:false});assert.deepEqual([bossWave.wave,bossWave.waveKind,bossWave.bossCap],[20,'boss',5]);assert.ok(bossWave.enemies.includes(old));assert.equal(bossWave.enemies.some(e=>e!==old&&e.type!=='boss'),false);assert.deepEqual(bossWave.eliteQueue,queued);
+test('v40 special-wave spawns do not erase an existing living enemy', () => {
+  const s=setWave(quiet(state(()=>.99)),15);s.obstacles=[];const survivor=C.spawnEnemy(s,'normal',200,200);s.spawn=0;C.step(s,.05,{firing:false});assert.ok(s.enemies.includes(survivor));assert.ok(s.enemies.some(e=>['charger','artillery','shield','stier'].includes(e.type)));
 });
 
 test('v40 jammer state follows the main machine and blocks only tactics without spending a charge', () => {
@@ -1086,4 +1083,42 @@ test('v40 jammer state follows the main machine and blocks only tactics without 
 
 test('v40 thin elites survive long enough to schedule an attack against basic fire', () => {
   for(const [type,x] of [['charger',430],['artillery',760]]){const s=quiet(state());s.count=1;s.obstacles=[];s.x=500;s.y=500;s.aimX=x;s.aimY=500;const e=C.spawnEnemy(s,type,x,500);e.cooldown=0;let warned=false;for(let i=0;i<60&&!e.dead&&!warned;i++){C.step(s,.05,{aimX:e.x,aimY:e.y,firing:true});warned=s.hazards.some(h=>h.source===e.id)||s.events.some(event=>event.sourceId===e.id&&event.type==='warning');}assert.ok(warned,`${type} died before telegraph`);}
+});
+
+test('v41 wave plans expose finite early normal and special-wave quotas', () => {
+  assert.deepEqual(C.wavePlan(1),{kind:'normal',total:8,bosses:0,elites:1});assert.deepEqual(C.wavePlan(3),{kind:'normal',total:13,bosses:1,elites:2});assert.deepEqual(C.wavePlan(5),{kind:'elite',total:6,bosses:0,elites:6});assert.deepEqual(C.wavePlan(10),{kind:'boss',total:3,bosses:3,elites:0});assert.deepEqual(C.wavePlan(20),{kind:'boss',total:4,bosses:4,elites:0});assert.deepEqual(C.wavePlan(25),{kind:'elite',total:10,bosses:0,elites:10});assert.deepEqual(C.wavePlan(30),{kind:'boss',total:5,bosses:5,elites:0});
+});
+
+test('v41 a wave spends its finite quota only on successful individual spawns and waits in cleanup', () => {
+  const s=state(()=>.9);s.obstacles=[];s.pickupTimer=999;for(let i=0;i<500&&s.wavePhase==='engaging';i++)C.step(s,.05,{firing:false});assert.deepEqual([s.wave,s.waveSpawned,s.waveTotal,s.wavePhase],[1,8,8,'cleanup']);assert.equal(s.enemies.some(e=>e.type==='boss'),false);
+  for(let i=0;i<200;i++)C.step(s,.05,{firing:false});assert.equal(s.wave,1);
+  const flock=state(()=>0);flock.obstacles=[];flock.pickupTimer=999;flock.specialIndex=3;flock.waveSpawned=2;flock.waveTotal=8;flock.waveEliteSpawned=1;flock.spawn=0;C.step(flock,.05,{firing:false});assert.equal(flock.waveSpawned,8);assert.equal(flock.enemies.filter(e=>e.type==='swarm').length,6);
+});
+
+test('v41 cleanup retreats at most two minor enemies and regroup heals exactly once before advancing', () => {
+  const s=state();s.obstacles=[];s.wavePhase='cleanup';s.waveSpawned=s.waveTotal;s.hp=50;s.shield=0;s.count=2;C.formation(s);s.wings[0].hp=30;s.enemies=[{id:90,type:'normal',x:200,y:200,r:18,hp:10,max:10,speed:82,dead:false,walk:0,contactCooldown:0},{id:91,type:'swarm',x:800,y:800,r:12,hp:10,max:10,speed:135,dead:false,walk:0,contactCooldown:0,flying:true,jamRadius:170}];s.bullets=[{enemy:true,life:1}];s.hazards=[{source:90,fired:false,life:1}];
+  C.step(s,.05,{firing:false});assert.equal(s.wavePhase,'regroup');assert.ok(s.enemies.every(e=>e.retreating));assert.deepEqual([s.hp,s.shield,s.wings[0].hp],[58,10,38]);assert.equal(s.bullets.some(b=>b.enemy),false);assert.equal(s.hazards.length,0);assert.ok(s.events.some(e=>e.type==='waveCleared'&&e.duration===4));
+  const kills=s.kills,crates=s.crates.length;C.damageEnemy(s,s.enemies[0],99);assert.deepEqual([s.kills,s.crates.length],[kills,crates]);
+  const healed=[s.hp,s.shield,s.wings[0].hp];for(let i=0;i<79;i++)C.step(s,.05,{firing:false});assert.deepEqual([s.hp,s.shield,s.wings[0].hp],healed);C.step(s,.05,{firing:false});assert.equal(s.wave,2);assert.equal(s.wavePhase,'engaging');assert.ok(s.events.some(e=>e.type==='waveStart'&&e.kind==='normal'));
+});
+
+test('v41 lethal damage in the cleanup step cannot trigger regroup recovery', () => {
+  const s=state();s.count=1;s.obstacles=[];s.wavePhase='cleanup';s.waveSpawned=s.waveTotal;s.enemies=[];s.hp=1;s.shield=0;s.hazards=[{geometry:'circle',x:s.x,y:s.y,r:50,delay:0,fired:true,life:1,source:99,model:'dinosauria',kind:'mortar',damage:20}];C.step(s,.05,{firing:false});assert.equal(s.over,true);assert.equal(s.hp,0);assert.equal(s.wavePhase,'cleanup');assert.equal(s.events.some(e=>e.type==='waveCleared'),false);
+});
+
+test('v41 early Phoenix uses one slower strike while later Phoenix keeps the double strike', () => {
+  const early=quiet(state());early.wave=3;early.count=1;early.obstacles=[];early.x=700;early.y=500;early.shield=0;const first=C.spawnSpecial(early,'phoenix',400,500);first.intro=0;first.cooldown=0;C.step(early,.05,{firing:false});for(let i=0;i<37;i++)C.step(early,.05,{firing:false});assert.equal(first.phase,'windup');assert.ok(first.windup>=.95);assert.equal(early.hazards.find(h=>h.source===first.id&&h.kind==='charge').maxDelay,1);for(let i=0;i<80&&first.phase!=='recover';i++)C.step(early,.05,{firing:false});assert.equal(first.phase,'recover');assert.ok(first.exposed>2.1);assert.equal(early.hazards.some(h=>h.source===first.id&&h.geometry==='sector'),false);
+  const late=quiet(state());late.wave=7;late.count=1;late.obstacles=[];const second=C.spawnSpecial(late,'phoenix',300,500);second.phase='dash';second.lockedX=305;second.lockedY=500;second.dashLeft=5;C.step(late,.05,{firing:false});assert.equal(second.phase,'slashWindup');assert.ok(late.hazards.some(h=>h.source===second.id&&h.geometry==='sector'));
+  const mid=quiet(state());mid.wave=4;mid.count=1;mid.obstacles=[];const phaseTwo=C.spawnSpecial(mid,'phoenix',300,500);phaseTwo.hp=phaseTwo.max*.5;phaseTwo.phase='dash';phaseTwo.lockedX=305;phaseTwo.lockedY=500;phaseTwo.dashLeft=5;C.step(mid,.05,{firing:false});assert.equal(phaseTwo.phase,'slashWindup');
+});
+
+test('v41 rail leaves a driveable outer loop while its walls still block crossing', () => {
+  const s=quiet(state(()=>.5,{map:'rail'}));s.count=1;s.wings=[];s.x=s.y=150;for(const [tx,ty] of [[1450,150],[1450,1450],[150,1450],[150,150]]){for(let i=0;i<1000&&Math.hypot(tx-s.x,ty-s.y)>12;i++){const dx=tx-s.x,dy=ty-s.y,d=Math.hypot(dx,dy);C.step(s,.05,{moveX:dx/d,moveY:dy/d,firing:false});}assert.ok(Math.hypot(tx-s.x,ty-s.y)<=12,`rail outer loop could not reach ${tx},${ty}`);}
+  s.x=800;s.y=650;for(let i=0;i<20;i++)C.step(s,.05,{moveY:-1,firing:false});assert.ok(s.y>=572);
+});
+
+test('v41 Phoenix attack-chain body never traps the player and its two locked hits cannot stack', () => {
+  const reveal=quiet(state());reveal.count=1;reveal.obstacles=[];reveal.x=500;reveal.y=500;const stalker=C.spawnSpecial(reveal,'phoenix',300,500);stalker.x=500;stalker.y=500;stalker.phase='stalk';stalker.stalkTime=.05;stalker.intro=0;C.step(reveal,.05,{firing:false});assert.equal(stalker.phase,'windup');const before=reveal.x;C.step(reveal,.05,{moveX:1,firing:false});assert.ok(reveal.x>before,'visible windup body trapped the player');
+  const hit=quiet(state());hit.wave=7;hit.count=1;hit.obstacles=[];hit.x=500;hit.y=500;hit.shield=0;const rammer=C.spawnSpecial(hit,'phoenix',300,500);rammer.x=465;rammer.y=500;rammer.phase='dash';rammer.lockedX=650;rammer.lockedY=500;rammer.dashLeft=185;C.step(hit,.05,{firing:false});assert.equal(rammer.phase,'recover');assert.equal(hit.hazards.some(h=>h.source===rammer.id&&h.geometry==='sector'),false);
+  const combo=quiet(state());combo.wave=7;combo.count=1;combo.obstacles=[];combo.x=500;combo.y=500;combo.shield=0;const attacker=C.spawnSpecial(combo,'phoenix',300,500);attacker.x=330;attacker.y=500;attacker.phase='dash';attacker.lockedX=400;attacker.lockedY=500;attacker.dashLeft=70;C.step(combo,.05,{firing:false});for(let i=0;i<3&&attacker.phase==='dash';i++)C.step(combo,.05,{firing:false});assert.equal(attacker.phase,'slashWindup');const hpBeforeSlash=combo.hp,slash=combo.hazards.find(h=>h.source===attacker.id&&h.geometry==='sector'),locked=slash.angle,x=combo.x;assert.equal(slash.maxDelay,1.1);for(let i=0;i<20;i++)C.step(combo,.05,{moveY:1,firing:false});assert.equal(combo.x,x,'Phoenix pushed the player during its cut-in');assert.equal(slash.angle,locked);assert.equal(combo.hp,hpBeforeSlash,'locked sweep hit after the player escaped during its warning');
 });

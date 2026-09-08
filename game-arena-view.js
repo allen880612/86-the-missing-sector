@@ -80,7 +80,7 @@ function processArenaEvents(){
   else if(e.type==='hurt'&&e.amount>0){burst(e.x??s.x,e.y??s.y,'#b7d7e0',14);beep('hurt');if(motion){shake=4;flash=.14;}if(s.hp>0&&s.hp<s.maxHp*.35)battleRadio('arena-low-hp','耐久下降。先脫離包圍，回收修復補給。','warning','shin',{priority:4,valid:()=>s.hp>0&&s.hp<s.maxHp*.35});}
   else if(e.type==='bossEnter'){const model=e.model||s.enemies.find(v=>v.id===e.sourceId)?.model;eventNotice('HEAVY CONTACT',model==='phoenix'?'高機動型接敵':model==='morpho'?'電磁砲接敵':'重戰車接敵','保持移動 · 射界鎖定後離開',2);beep('bossEnter');}
   else if(e.type==='phoenixStalk'){battleRadio('phoenix-stalk','訊號消失了。保持移動，留意側翼。','warning','shin',{priority:4,duration:1.6,valid:()=>s.enemies.some(enemy=>enemy.id===e.sourceId&&!enemy.dead&&enemy.phase==='stalk'&&!(enemy.revealed>0))});}
-  else if(e.type==='phoenixCue'){beep('chargerReady');battleRadio('phoenix-lock','顯形了！避開突進，還有回身追斬。','warning','shin',{priority:5,duration:2.8});}
+  else if(e.type==='phoenixCue'){beep('chargerReady');battleRadio('phoenix-lock','顯形了！離開鎖定路徑。','warning','shin',{priority:5,duration:2.8});}
   else if(e.type==='phoenixDash'){beep('chargerDash');}
   else if(e.type==='phoenixSlashCue'){beep('chargerReady');battleRadio('phoenix-slash','鏈刃展開，離開正面！','warning','shin',{priority:5,duration:1.8,valid:()=>s.enemies.some(enemy=>enemy.id===e.sourceId&&!enemy.dead&&enemy.phase==='slashWindup')});}
   else if(e.type==='phoenixSlash'){beep('blade',{intensity:.9});}
@@ -103,6 +103,7 @@ function processArenaEvents(){
     }else{ring(s.x,s.y,'#efd7ab');beep('upgrade');battleRadio('arena-overclock','重砲超頻。三秒內集中重砲！','tactic','shin',{priority:3,duration:1.8});}
    }else if(e.kind==='dash')beep('chargerDash');
   }
+  else if(e.type==='waveCleared'){eventNotice('SECTOR SECURED','區域清空 · 整補',`耐久 +${e.hpRecovered} · 裝甲 +${e.shieldRecovered} · 僚機整修`,3);beep('braceReady');battleRadio('arena-regroup-'+e.wave,'這一帶暫時安全。整補後再前進。','status','shin',{priority:4,duration:3,valid:()=>s.wavePhase==='regroup'});}
   else if(e.type==='waveStart'){if(e.kind==='elite'||e.kind==='boss'){eventNotice('REINFORCEMENTS',e.kind==='boss'?'Boss 強襲':'全菁英增援',`第 ${e.wave} 波 · 保留火力，避免合圍`,2.4);beep('warning');}else toast(`第 ${e.wave} 波 · 火控 LV.${s.level}`);}
   else if(e.type==='item'||e.type==='collect'){rewardFeedback(e);const kind=e.kind||e.item;floating(arenaItemName(kind),e.x??s.x,e.y??s.y,'#bcece6');ring(e.x??s.x,e.y??s.y,'#bcece6');beep('upgrade');}
   else if(e.type==='upgrade'){toast(`火控升級 · LV.${s.level}`);beep('upgrade');}
@@ -261,7 +262,7 @@ function drawArenaEnemyState(e,size){
  }
  ctx.globalCompositeOperation='source-over';
  if(open){
-  const duration=e.type==='stier'?2.4:e.model==='phoenix'?1.8:2,release=clamp(e.exposed/duration,0,1),opening=motion?clamp((duration-e.exposed)/.12,0,1):1,travel=motion?(1-release)*size*.12:0;ctx.globalAlpha=.75*opening;
+  const duration=e.type==='stier'?2.4:e.model==='phoenix'?(e.recoverDuration||(s.wave<=3?2.2:1.8)):2,release=clamp(e.exposed/duration,0,1),opening=motion?clamp((duration-e.exposed)/.12,0,1):1,travel=motion?(1-release)*size*.12:0;ctx.globalAlpha=.75*opening;
   for(const side of [-1,1])for(let i=0;i<3;i++){const x=size*(-.12+i*.07),y=side*size*.10;line({x,y},{x:x-size*.045,y:y+side*size*.05},'#142125',5);line({x,y},{x:x-size*.045,y:y+side*size*.05},e.model==='phoenix'?'#e9a17a':'#edcb99',2);}
   const steam=smokeArt.whitePuff03;if(steam?.naturalWidth){ctx.globalAlpha=.24*release*opening;for(const side of [-1,1])ctx.drawImage(steam,-size*.2-travel,side*size*.16-size*.09,size*.3+travel,size*.18);}
  }
@@ -279,9 +280,11 @@ function drawArenaEnemyState(e,size){
  else if(e.phase==='stagger')label('重新定位',p.x,p.y-size*.5-10,10,'#b0b9b8',600);
 }
 
-function drawArenaBladeSector(hazard){
+function drawArenaBladeSector(hazard,outlineOnly=false){
  const p=point(hazard.x,hazard.y),rx=hazard.r*W*.00086,ry=hazard.r*H*.00084,start=hazard.angle-hazard.halfAngle,end=hazard.angle+hazard.halfAngle,pending=!hazard.fired,progress=pending?clamp(1-hazard.delay/hazard.maxDelay,0,1):clamp(1-hazard.life/(hazard.maxLife||.25),0,1),color='#d5b393';
- ctx.save();ctx.beginPath();ctx.moveTo(p.x,p.y);ctx.ellipse(p.x,p.y,rx,ry,0,start,end);ctx.closePath();ctx.fillStyle=pending?'#d5b39312':'#d5b39324';ctx.fill();ctx.strokeStyle=color;ctx.lineWidth=1.4;ctx.stroke();ctx.clip();
+ ctx.save();ctx.beginPath();ctx.moveTo(p.x,p.y);ctx.ellipse(p.x,p.y,rx,ry,0,start,end);ctx.closePath();
+ if(outlineOnly){ctx.strokeStyle='#07131fcc';ctx.lineWidth=5;ctx.stroke();ctx.strokeStyle=pending?'#efc09b':'#f4e5cf';ctx.lineWidth=2;ctx.stroke();ctx.restore();return;}
+ ctx.fillStyle=pending?'#d5b39325':'#d5b39324';ctx.fill();ctx.strokeStyle=color;ctx.lineWidth=1.4;ctx.stroke();ctx.clip();
  if(pending){
   ctx.globalAlpha=.3+progress*.3;
   for(const side of [-1,1]){const angle=hazard.angle+side*hazard.halfAngle*(1-progress),tip={x:p.x+Math.cos(angle)*rx*.83,y:p.y+Math.sin(angle)*ry*.83};line({x:p.x+Math.cos(hazard.angle)*rx*.15,y:p.y+Math.sin(hazard.angle)*ry*.15},tip,color,1.3);}
@@ -345,6 +348,7 @@ function drawArenaScene(){
  drawArenaDash();
  drawArenaSkillSweeps();
  for(const unit of (s.hp>0?C.formation(s):[{x:s.x,y:s.y,main:true,life:Math.max(0,phaseTime),duration:phaseDuration}])){let near=null,nearDistance=s.enemies.some(e=>!e.dead&&e.jamRadius&&Math.hypot(e.x-unit.x,e.y-unit.y)<=e.jamRadius)?110*110:280*280;if(!unit.main)for(const enemy of s.enemies){if(enemy.dead)continue;const distance=(enemy.x-unit.x)**2+(enemy.y-unit.y)**2;if(distance<nearDistance){near=enemy;nearDistance=distance;}}const unitAngle=unit.hijacked>0?Math.atan2(s.y-unit.y,s.x-unit.x):near?Math.atan2(near.y-unit.y,near.x-unit.x):unit.angle??s.angle;const machineIndex=s.machine==='m4a3'?6:s.machine==='xm2'?7:0;drawArenaUnit({...unit,angle:unitAngle,moveAngle:unit.main?s.moveAngle:unitAngle,walk:s.walk,moving:s.moving,recoil:unit.main?muzzle/.14:0},machineIndex,base*(unit.main?1:.67),true,s.hp<=0);drawArenaWingStatus(unit,base*.67);}
+ for(const hazard of s.hazards)if(!hazard.cancelled&&hazard.geometry==='sector')drawArenaBladeSector(hazard,true);
  for(const bullet of s.bullets){const p=point(bullet.x,bullet.y),tail=point(bullet.x-bullet.vx*.024,bullet.y-bullet.vy*.024);line(tail,p,bullet.enemy?'#e9a980':bullet.shell?'#f3e0b5':'#b8dce2',bullet.shell?2.6:1.2);}
  if(s.hp>0){const p=point(s.x,s.y);ctx.save();ctx.strokeStyle='#c0eeee';ctx.lineWidth=1.5;ctx.beginPath();ctx.arc(p.x,p.y,5,0,Math.PI*2);ctx.stroke();ctx.restore();rounded(p.x-26,p.y+base*.57,52,3,1,'#15242c');rounded(p.x-26,p.y+base*.57,52*clamp(s.hp/s.maxHp,0,1),3,1,s.hp<s.maxHp*.35?'#e8a38c':'#b6ddd1');if(s.shield>0)rounded(p.x-26,p.y+base*.57+5,52*clamp(s.shield/s.maxHp,0,1),2,1,'#9acced');}
 }
