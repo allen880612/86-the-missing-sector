@@ -903,3 +903,72 @@ test('dash reserves the takeoff point from movement and spawns for safe fallback
   C.step(s,.05,{firing:false});
   assert.ok(Math.hypot(enemy.x-300,enemy.y-500)>=enemy.r+s.r-1e-6);
 });
+
+test('three discoverable maps create distinct 1600 worlds with legal starts and obstacle kinds', () => {
+  assert.deepEqual(Object.keys(C.maps), ['ruins','depot','rail']);
+  const signatures=[];
+  for(const map of Object.keys(C.maps)){
+    const s=state(()=>.5,{map});assert.equal(s.mapId,map);assert.deepEqual(s.worldBounds,{left:0,right:1600,top:0,bottom:1600});assert.deepEqual([s.x,s.y],[800,800]);
+    assert.ok(s.obstacles.some(o=>o.kind==='wall'&&o.height==='high'));assert.ok(s.obstacles.some(o=>o.kind==='cover'&&o.height==='low'));assert.ok(s.obstacles.every(o=>!o.dead));
+    assert.ok(s.obstacles.every(o=>{const nx=Math.max(o.x-o.w/2,Math.min(o.x+o.w/2,s.x)),ny=Math.max(o.y-o.h/2,Math.min(o.y+o.h/2,s.y));return Math.hypot(s.x-nx,s.y-ny)>=s.r;}));
+    signatures.push(s.obstacles.map(o=>[o.x,o.y,o.w,o.h]).join('|'));
+  }
+  assert.equal(new Set(signatures).size,3);
+});
+
+test('large worlds retain entities beyond 1000 and spawn every enemy size legally at 1600 edges', () => {
+  const s=quiet(state(()=>.5,{map:'ruins'}));s.obstacles=[];s.count=1;
+  s.bullets.push({x:1100,y:800,px:1100,py:800,vx:10,vy:0,r:3,damage:1,enemy:false,life:5,hitIds:[]});C.step(s,.05,{firing:false});assert.equal(s.bullets.length,1);
+  for(const type of ['normal','stier'])for(let side=0;side<4;side++){s.spawnSide=side;const e=C.spawnEnemy(s,type);assert.ok(e);assert.ok(e.x-e.r>=0&&e.x+e.r<=1600&&e.y-e.r>=0&&e.y+e.r<=1600);e.dead=true;}
+  s.bossCap=3;for(let side=0;side<3;side++){s.spawnSide=side;const e=C.spawnSpecial(s,['dinosauria','phoenix','morpho'][side]);assert.ok(e);assert.ok(e.x-e.r>=0&&e.x+e.r<=1600&&e.y-e.r>=0&&e.y+e.r<=1600);}
+});
+
+test('large-map spawns stay just outside the local view and expose their approach side', () => {
+  const s=quiet(state(()=>.5,{map:'ruins'}));s.count=1;s.obstacles=[];
+  const enemies=Array.from({length:4},()=>C.spawnEnemy(s,'normal'));for(const e of enemies){const d=Math.hypot(e.x-s.x,e.y-s.y);assert.ok(d>=540&&d<=680);assert.ok(['top','right','bottom','left'].includes(e.side));}
+  s.bossCap=2;const boss=C.spawnSpecial(s,'dinosauria');const enter=s.events.find(e=>e.type==='bossEnter');assert.deepEqual([enter.spawnSide,enter.sourceX,enter.sourceY],[boss.side,boss.x,boss.y]);
+});
+
+test('boss warning reserves the same offscreen entry point used five seconds later', () => {
+  const s=quiet(state(()=>.5,{map:'ruins'}));s.count=1;s.x=s.y=200;s.boss=5.01;s.bossWarned=false;C.step(s,.05,{firing:false});const warning=s.events.find(e=>e.type==='warning'&&e.kind==='boss');assert.ok(warning.spawnSide);assert.ok(Math.hypot(warning.sourceX-s.x,warning.sourceY-s.y)>=540);
+  s.boss=0;C.step(s,.05,{firing:false});const boss=s.enemies.find(e=>e.type==='boss');assert.deepEqual([boss.side,boss.x,boss.y],[warning.spawnSide,warning.sourceX,warning.sourceY]);
+});
+
+test('permanent walls block shots and the full dash path while low cover remains destructible and dashable', () => {
+  const wall=quiet(state(()=>.5,{map:'ruins'}));wall.count=1;wall.x=500;wall.y=800;wall.obstacles=[{id:'wall',kind:'wall',x:590,y:800,w:40,h:300,dead:false}];
+  assert.equal(C.useAbility(wall,'dash',{moveX:1}),false);assert.equal(wall.dashCooldown,0);
+  const source={id:99,type:'boss',model:'morpho',x:500,y:800};C.addHazard(wall,'beam',source,'rail',{x:800,y:800,width:20,heavy:true},0,60);C.step(wall,.01,{firing:false});assert.equal(wall.obstacles[0].dead,false);assert.equal(wall.obstacles[0].hp,undefined);
+  const cover=quiet(state(()=>.5,{map:'ruins'}));cover.count=1;cover.x=500;cover.y=800;cover.obstacles=[{id:'cover',kind:'cover',x:590,y:800,w:40,h:100,hp:180,max:180,dead:false}];assert.equal(C.useAbility(cover,'dash',{moveX:1}),true);
+});
+
+test('map routes carry a large enemy around more than one permanent wall without entering either', () => {
+  const s=quiet(state(()=>.5,{map:'ruins'}));s.count=1;s.x=1250;s.y=800;s.obstacles=[{id:'a',kind:'wall',x:500,y:800,w:180,h:500,dead:false},{id:'b',kind:'wall',x:700,y:400,w:180,h:500,dead:false}];
+  const e=C.spawnSpecial(s,'dinosauria',180,800);e.intro=999;e.speed=90;const before=Math.hypot(e.x-s.x,e.y-s.y);
+  for(let i=0;i<500;i++){C.updateEnemy(s,e,.05);assert.ok(s.obstacles.every(o=>{const nx=Math.max(o.x-o.w/2,Math.min(o.x+o.w/2,e.x)),ny=Math.max(o.y-o.h/2,Math.min(o.y+o.h/2,e.y));return Math.hypot(e.x-nx,e.y-ny)>=e.r-1e-6;}));}
+  assert.ok(Math.hypot(e.x-s.x,e.y-s.y)<before-300,`enemy only reached ${e.x},${e.y}`);
+});
+
+test('map supply anchors and relocated drops are inside reachable walkable world space', () => {
+  for(const map of Object.keys(C.maps)){const s=quiet(state(()=>.25,{map}));s.pickupTimer=0;C.step(s,.05,{firing:false});for(const box of s.crates)assert.ok(box.x>=s.bounds.left&&box.x<=s.bounds.right&&box.y>=s.bounds.top&&box.y<=s.bounds.bottom&&s.obstacles.every(o=>{const nx=Math.max(o.x-o.w/2,Math.min(o.x+o.w/2,box.x)),ny=Math.max(o.y-o.h/2,Math.min(o.y+o.h/2,box.y));return Math.hypot(box.x-nx,box.y-ny)>=s.r;}));}
+});
+
+test('finite weapon pickups switch slots, preserve ammo, and consume only for a clear aimed target', () => {
+  const s=quiet(state(()=>.5,{map:'ruins'}));s.count=1;s.obstacles=[];s.enemies=[];
+  assert.deepEqual([C.weapons[2].kind,C.weapons[2].max,C.weapons[3].kind,C.weapons[3].max],['autocannon',120,'heavy',18]);C.collect(s,{kind:'autocannon',x:s.x,y:s.y,used:false});C.collect(s,{kind:'heavyCannon',x:s.x,y:s.y,used:false});assert.deepEqual(s.specialAmmo,{autocannon:120,heavy:18});
+  const items=s.stats.items;C.collect(s,{kind:'autocannon',x:s.x,y:s.y,used:false});assert.equal(s.stats.items,items+1);assert.equal(s.specialAmmo.autocannon,120);
+  assert.equal(C.selectWeapon(s,2),true);assert.equal(s.weaponSlot,2);C.step(s,.05,{aimX:1200,aimY:800,firing:true});assert.equal(s.specialAmmo.autocannon,120);
+  const target=C.spawnEnemy(s,'normal',1050,800);target.speed=0;s.shot=0;C.step(s,.05,{aimX:1200,aimY:800,firing:true});assert.equal(s.specialAmmo.autocannon,119);assert.ok(s.bullets.some(b=>b.ammo==='autocannon'));
+  const saved=s.specialAmmo.autocannon;assert.equal(C.selectWeapon(s,3),true);assert.equal(C.selectWeapon(s,2),true);assert.equal(s.specialAmmo.autocannon,saved);assert.ok(s.events.some(e=>e.type==='weaponSwitch'&&e.slot===2));
+});
+
+test('finite weapons do not fire through cover and depletion returns to the infinite main cannon', () => {
+  const s=quiet(state(()=>.5,{map:'ruins'}));s.count=1;s.x=500;s.y=800;s.obstacles=[{id:'wall',kind:'wall',x:700,y:800,w:40,h:300,dead:false}];const target=C.spawnEnemy(s,'normal',900,800);target.speed=0;s.specialAmmo={autocannon:1,heavy:1};C.selectWeapon(s,2);
+  C.step(s,.05,{aimX:1000,aimY:800,firing:true});assert.equal(s.specialAmmo.autocannon,1);
+  s.obstacles=[];s.shot=0;C.step(s,.05,{aimX:1000,aimY:800,firing:true});assert.deepEqual([s.specialAmmo.autocannon,s.weaponSlot],[0,1]);assert.ok(s.events.some(e=>e.type==='weaponDepleted'&&e.kind==='autocannon'));
+  s.shot=0;C.step(s,.05,{aimX:1000,aimY:800,firing:true});assert.equal(s.specialAmmo.autocannon,0);assert.ok(s.bullets.some(b=>b.ammo==='standard'));
+});
+
+test('heavy cannon spends one round and penetrates four aligned enemies before a permanent wall', () => {
+  const s=quiet(state(()=>.5,{map:'ruins'}));s.count=1;s.x=500;s.y=800;s.obstacles=[{id:'wall',kind:'wall',x:1250,y:800,w:40,h:300,dead:false}];const targets=[700,820,940,1060,1340].map(x=>{const e=C.spawnEnemy(s,'normal',x,800);e.hp=e.max=300;e.speed=0;return e;});s.specialAmmo={autocannon:0,heavy:18};C.selectWeapon(s,3);C.step(s,.05,{aimX:1400,aimY:800,firing:true});assert.equal(s.specialAmmo.heavy,17);
+  for(let i=0;i<25;i++)C.step(s,.05,{aimX:1400,aimY:800,firing:false});assert.ok(targets.slice(0,4).every(e=>e.hp<300));assert.equal(targets[4].hp,300);assert.equal(s.obstacles[0].dead,false);
+});

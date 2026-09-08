@@ -1,7 +1,7 @@
 (() => {
   const params = new URLSearchParams(location.search);
   window.FrontlineAudio?.preload?.();
-  const defaults = { gameMode: 'frontline', machine: 'm1a4', encounter: 'mixed', ammo: 'standard', tactic: 'support', arenaBoss: 'dinosauria' };
+  const defaults = { gameMode: 'frontline', machine: 'm1a4', encounter: 'mixed', ammo: 'standard', tactic: 'support', arenaBoss: 'dinosauria', arenaMap: 'ruins' };
   const titleScreen = document.getElementById('titleScreen');
   const overlay = document.getElementById('overlay');
   const radio = document.getElementById('combatRadio');
@@ -46,7 +46,7 @@
   ];
   document.querySelectorAll('.guide-open').forEach(button => button.onclick = () => {
     const endless = document.getElementById('gameMode').value === 'endless';
-    const items = endless ? [['移動與自動射擊', 'WASD／方向鍵走位；游標瞄準，主砲自動開火。'], ['短躍進脫離包圍', '右鍵沿移動方向躍進，越過敵機與掩體。'], ['支援打開缺口', 'Space 指定游標落點，範圍壓制與打斷；18 秒回充。']] : [['帶領編隊換線', 'A／D、左右鍵或拖曳移動。保持射角，編隊自動開火。'], ['走位選擇補給', '靠向需要的補給路線，補充裝甲、僚機或火力。'], ['擊破作戰目標', '避開預警射界，等核心開放反擊；結算後推進下一場。']];
+    const items = endless ? [['移動與自動射擊', 'WASD／方向鍵走位；游標瞄準，主砲自動開火。'], ['短躍進脫離包圍', '右鍵越過敵機與低掩體；高牆需繞行。小雷達顯示道路與補給。'], ['支援打開缺口', 'Space 指定游標落點，範圍壓制與打斷；18 秒回充。']] : [['帶領編隊換線', 'A／D、左右鍵或拖曳移動。保持射角，編隊自動開火。'], ['走位選擇補給', '靠向需要的補給路線，補充裝甲、僚機或火力。'], ['擊破作戰目標', '避開預警射界，等核心開放反擊；結算後推進下一場。']];
     const content = document.createElement('div');
     content.className = 'command-diagrams';
     items.forEach(([title, text], i) => {
@@ -54,7 +54,7 @@
       card.innerHTML = `<svg viewBox="0 0 200 140" aria-hidden="true">${diagramArt[i + (endless ? 0 : 3)]}</svg><h3>${title}</h3><p>${text}</p>`;
       content.append(card);
     });
-    if (endless) { const note = document.createElement('p'); note.className = 'command-footnote'; note.textContent = '左鍵施展機型技能：近距反擊、重砲超頻或高速刃擊；整備時確認冷卻與效果。'; content.append(note); }
+    if (endless) { const note = document.createElement('p'); note.className = 'command-footnote'; note.textContent = '1 主砲無限彈藥；回收彈箱後，2 機砲 120 發、3 穿甲重砲 18 發，Q 輪替。耗盡自動切回主砲。左鍵施展機型技能。'; content.append(note); }
     openCommand(endless ? '四向戰場 · 移動與反擊' : '戰線突破 · 帶隊推進', content, button);
   });
   document.querySelectorAll('.title-radio, .briefing-radio, .phase-dialogue, .report-dialogue').forEach((panel, index) => {
@@ -75,6 +75,12 @@
   }
   function refreshBriefing() {
     updateCommandSummary();
+    for (const card of document.querySelectorAll('[data-choice="arenaMap"]')) {
+      const map = window.GameArenaCore?.maps?.[card.dataset.value];
+      if (!map || card.dataset.mapped) continue;
+      card.querySelector('svg').innerHTML = '<rect width="160" height="160" fill="#15232b"/>' + map.walls.map(([,x,y,w,h]) => `<rect x="${(x-w/2)/10}" y="${(y-h/2)/10}" width="${w/10}" height="${h/10}" fill="#88928a"/>`).join('') + map.covers.map(([,x,y,w,h]) => `<rect x="${(x-w/2)/10}" y="${(y-h/2)/10}" width="${w/10}" height="${h/10}" fill="#bdab80"/>`).join('') + '<circle cx="80" cy="80" r="3" fill="#d8f2e9"/>';
+      card.dataset.mapped = 'true';
+    }
     const endless = document.getElementById('gameMode').value === 'endless';
     document.body.classList.toggle('endless-mode', endless);
     const tacticInput = document.getElementById('tactic');
@@ -110,9 +116,9 @@
     if (!endless) return;
     const firstBoss = document.getElementById('arenaBoss').value;
     const bosses = {
-      dinosauria: { name: 'Dinosauria', role: '重戰車型', hp: 2200, attack: '重砲交叉射界', advice: '首敵是重戰車。先離開直線砲口與曲射落點，最後一輪落地後有 2 秒散熱窗口。' },
-      phoenix: { name: 'Phönix', role: '高機動型', hp: 1600, attack: '側翼突進／鏈刃橫掃', advice: '首敵是 Phönix。直線突進向側面躲，扇形鏈刃繞背或躍出；第二階段突進後會追斬，等收刃再反擊。' },
-      morpho: { name: 'Morpho', role: '電磁加速砲型', hp: 2600, attack: '電磁直射／交錯落點', advice: '首敵是電磁砲。先移出預鎖射線，再避開交錯落點；最後一發後有 2 秒反擊窗口。' }
+      dinosauria: { name: 'Dinosauria', role: '重戰車型', attack: '重砲交叉射界', advice: '首敵是重戰車。先離開直線砲口與曲射落點，最後一輪落地後有 2 秒散熱窗口。' },
+      phoenix: { name: 'Phönix', role: '高機動型', attack: '側翼突進／鏈刃橫掃', advice: '首敵是 Phönix。直線突進向側面躲，扇形鏈刃繞背或躍出；第二階段突進後會追斬，等收刃再反擊。' },
+      morpho: { name: 'Morpho', role: '電磁加速砲型', attack: '電磁直射／交錯落點', advice: '首敵是電磁砲。先移出預鎖射線，再避開交錯落點；最後一發後有 2 秒反擊窗口。' }
     };
     const boss = bosses[firstBoss] || bosses.dinosauria;
     for (const image of document.querySelectorAll('[data-boss-preview]')) {
@@ -128,7 +134,7 @@
     else preview.removeAttribute('src');
     preview.alt = boss.name + ' · ' + boss.role;
     document.getElementById('enemySecond').hidden = true;
-    document.getElementById('enemyStats').innerHTML = `<div><span>初始耐久</span><strong>${boss.hp} HP</strong></div><div><span>攻擊特色</span><strong>${boss.attack}</strong></div><div><span>反擊窗口</span><strong>散熱／撲空 2 秒</strong></div>`;
+    document.getElementById('enemyStats').innerHTML = `<div><span>攻擊特色</span><strong>${boss.attack}</strong></div><div><span>反擊窗口</span><strong>散熱／撲空 2 秒</strong></div>`;
     document.getElementById('encounterBrief').innerHTML = '<span class="skill-name">每四波升階</span><strong>第 5／9 波起，最多 2／3 個重型目標同場。</strong><small>半血或升階後連擊改變。Stier 會偏轉射界追擊，躲開後抓散熱窗口。</small>';
     document.getElementById('ammoBrief').innerHTML = {standard:'<strong>環向應變</strong><span>穩定處理各方向目標</span>',ap:'<strong>直線穿透</strong><span>對準同方向密集目標</span>',he:'<strong>爆風清場</strong><span>處理近身包圍</span>'}[document.getElementById('ammo').value];
     document.getElementById('tacticBrief').innerHTML = '<strong>區域支援 · 初始 2 次／18 秒回充</strong><span>指定落點 · 清場打斷</span>';
@@ -252,7 +258,7 @@
     const input = document.getElementById(id);
     if (input && !input.value) input.value = value;
   });
-  ['machine', 'encounter', 'ammo', 'tactic', 'arenaBoss'].forEach(id => document.getElementById(id).addEventListener('change', refreshBriefing));
+  ['machine', 'encounter', 'ammo', 'tactic', 'arenaBoss', 'arenaMap'].forEach(id => document.getElementById(id).addEventListener('change', refreshBriefing));
   document.getElementById('gameMode').addEventListener('change', () => {
     if (document.getElementById('gameMode').value !== 'endless') window.loadoutPreview?.();
     refreshBriefing();
