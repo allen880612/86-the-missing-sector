@@ -1,6 +1,6 @@
 # 86 戰線：壁外作戰
 
-桌面優先的機甲戰鬥遊戲原型，目前版本 **v37**。
+桌面優先的機甲戰鬥遊戲原型，目前版本 **v38**。
 
 [立即試玩](https://86-the-missing-sector.pages.dev/) · [戰線突破](https://86-the-missing-sector.pages.dev/?gameMode=frontline) · [四向無限](https://86-the-missing-sector.pages.dev/?gameMode=endless)
 
@@ -53,3 +53,5 @@ GitHub PR 執行遊戲測試與發布打包；合併 `main` 檢查通過後才�
 本機打包：`node scripts/build-pages.cjs`。使用 Git checkout 執行，新增執行素材須先納入 Git 追蹤。流程檢查通過只代表可部署；正式上線仍需確認 Actions deploy 成功及 HTTPS 兩模式可啟動。
 
 資料來源：[Pages 免費方案限制](https://developers.cloudflare.com/pages/platform/limits/)、[靜態請求定價](https://developers.cloudflare.com/pages/functions/pricing/)、[CI 部署文件](https://developers.cloudflare.com/pages/how-to/use-direct-upload-with-continuous-integration/)。
+
+四向v38新增三張1600×1600地圖（廢墟街區／補給基地／鐵路砲陣地）、固定高牆與可破低掩體。1／2／3或Q切換主砲與有限機砲／重砲，彈藥耗盡回無限主砲。

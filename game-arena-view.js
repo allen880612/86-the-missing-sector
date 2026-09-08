@@ -1,7 +1,38 @@
 'use strict';
 
-function arenaPoint(x,y){return {x:W*(.07+x*.00086),y:H*(.08+y*.00084),scale:1};}
-function arenaAim(event){const r=canvas.getBoundingClientRect();s.aimX=clamp(((event.clientX-r.left)/W-.07)/.00086,0,1000);s.aimY=clamp(((event.clientY-r.top)/H-.08)/.00084,0,1000);}
+let arenaPointer=null;
+let arenaGroundCache=null;
+const arenaTerrain=new Image();arenaTerrain.src='assets/v38-terrain-atlas.png';
+function arenaCamera(){const b=s.worldBounds||{left:0,right:1000,top:0,bottom:1000};return {x:clamp(s.x-500,b.left,Math.max(b.left,b.right-1000)),y:clamp(s.y-500,b.top,Math.max(b.top,b.bottom-1000))};}
+function arenaPoint(x,y){const c=arenaCamera();return {x:W*(.07+(x-c.x)*.00086),y:H*(.08+(y-c.y)*.00084),scale:1};}
+function arenaRefreshAim(){if(!arenaPointer||arenaPointer.state!==s)return;const c=arenaCamera(),b=s.worldBounds||{left:0,right:1000,top:0,bottom:1000};s.aimX=clamp((arenaPointer.x-.07)/.00086+c.x,b.left,b.right);s.aimY=clamp((arenaPointer.y-.08)/.00084+c.y,b.top,b.bottom);}
+function arenaAim(event){const r=canvas.getBoundingClientRect();arenaPointer={x:(event.clientX-r.left)/r.width,y:(event.clientY-r.top)/r.height,state:s};arenaRefreshAim();}
+function drawArenaGround(){
+ const b=s.worldBounds||{left:0,right:1000,top:0,bottom:1000},map=s.mapId||'ruins';
+ ctx.fillStyle='#17232a';ctx.fillRect(0,0,W,H);
+ if(arenaTerrain.complete&&arenaTerrain.naturalWidth){
+  if(!arenaGroundCache||arenaGroundCache.map!==map){const tile=document.createElement('canvas');tile.width=tile.height=1536;const g=tile.getContext('2d'),q=arenaTerrain.naturalWidth/2;for(let y=0;y<1536;y+=512)for(let x=0;x<1536;x+=512)g.drawImage(arenaTerrain,0,0,q,q,x,y,512,512);if(map==='rail'){for(const y of [528,1008])for(let x=0;x<1536;x+=256)g.drawImage(arenaTerrain,q,q,q,q,x,y-48,256,96);}g.fillStyle=map==='depot'?'#67674726':map==='rail'?'#27343b30':'#20354a26';g.fillRect(0,0,1536,1536);arenaGroundCache={map,canvas:tile,bytes:1536*1536*4};}
+  const a=point(b.left-160,b.top-160),z=point(b.right+160,b.bottom+160);ctx.drawImage(arenaGroundCache.canvas,a.x,a.y,z.x-a.x,z.y-a.y);
+ }
+ ctx.save();
+ if(map==='rail'){
+  for(const y of [500,1100]){for(let x=b.left;x<=b.right;x+=42){line(point(x,y-46),point(x,y+46),'#2a2522aa',6);}for(const offset of [-30,30]){line(point(b.left,y+offset),point(b.right,y+offset),'#182329',5);line(point(b.left,y+offset-2),point(b.right,y+offset-2),'#9d9e8d99',1.5);}}
+ }else{
+  ctx.setLineDash(map==='depot'?[12,9]:[22,26]);for(const x of map==='depot'?[780,820]:[755,845])line(point(x,b.top),point(x,b.bottom),map==='depot'?'#ccb98360':'#c1c6b540',2);ctx.setLineDash([]);
+  if(map==='depot')for(const o of s.obstacles||[]){if(o.kind!=='wall')continue;const a=point(o.x-o.w/2-24,o.y-o.h/2-25),z=point(o.x+o.w/2+24,o.y+o.h/2+25);ctx.strokeStyle='#c0ac7550';ctx.lineWidth=2;ctx.strokeRect(a.x,a.y,z.x-a.x,z.y-a.y);}
+  else{ctx.setLineDash([22,26]);for(const y of [755,845])line(point(b.left,y),point(b.right,y),'#c1c6b536',2);ctx.setLineDash([]);}
+ }
+ const a=point(b.left,b.top),z=point(b.right,b.bottom);ctx.strokeStyle='#b4b6a16b';ctx.lineWidth=3;ctx.strokeRect(a.x,a.y,z.x-a.x,z.y-a.y);ctx.restore();
+}
+function drawArenaRadar(){
+ if(!s.arena||!['playing','paused'].includes(state))return;const b=s.worldBounds||{left:0,right:1000,top:0,bottom:1000},c=arenaCamera(),size=W<700?86:104,x=14,y=82,k=size/(b.right-b.left),q=(wx,wy)=>({x:x+(wx-b.left)*k,y:y+(wy-b.top)*k});
+ ctx.save();rounded(x-5,y-18,size+10,size+24,2,'#0b1a22dd');label(C.maps?.[s.mapId]?.name||'戰區',x+size/2,y-6,9,'#a9b9b9',500);
+ ctx.beginPath();ctx.rect(x,y,size,size);ctx.clip();ctx.fillStyle='#5b686977';for(const o of s.obstacles||[]){if(o.dead)continue;const p=q(o.x-o.w/2,o.y-o.h/2);ctx.fillRect(p.x,p.y,o.w*k,o.h*k);}
+ const corner=q(c.x,c.y);ctx.strokeStyle='#a4bcb780';ctx.lineWidth=1;ctx.strokeRect(corner.x,corner.y,1000*k,1000*k);
+ for(const box of s.crates){if(box.used)continue;const p=q(box.x,box.y);ctx.fillStyle='#d2c293';ctx.fillRect(p.x-1.5,p.y-1.5,3,3);}
+ for(const e of s.enemies){if(e.dead||e.type!=='boss')continue;const p=q(e.x,e.y);ctx.fillStyle='#d99c81';ctx.beginPath();ctx.arc(p.x,p.y,2.6,0,Math.PI*2);ctx.fill();}
+ const p=q(s.x,s.y);ctx.fillStyle='#d5f5e6';ctx.beginPath();ctx.arc(p.x,p.y,2.5,0,Math.PI*2);ctx.fill();line(p,{x:p.x+Math.cos(s.angle)*7,y:p.y+Math.sin(s.angle)*7},'#d5f5e6',1);ctx.restore();
+}
 function arenaDirection(angle){return Math.atan2(Math.sin(angle)*H*.00084,Math.cos(angle)*W*.00086);}
 
 function arenaLoadoutPreview(){
@@ -16,6 +47,9 @@ function arenaLoadoutPreview(){
 function processArenaEvents(){
  for(const e of s.events){
   if(e.type==='mainShot'){muzzle=.14;shotBoost=e.boost||'none';beep('mainShot',{boost:shotBoost});if(motion&&s.machine==='m4a3')shake=Math.max(shake,1.8);}
+  else if(e.type==='specialShot'){muzzle=e.kind==='heavy'?.14:.07;beep(e.kind==='heavy'?'mainShot':'shot');}
+  else if(e.type==='weaponSwitch'){beep('uiSelect');}
+  else if(e.type==='weaponDepleted'){beep('braceReady');toast('彈藥耗盡 · 切回主砲');}
   else if(e.type==='shot')beep('shot');
   else if(e.type==='impact'){if(e.damage<=0)continue;if(e.shell&&!e.killed&&!hitResponses.some(fx=>fx.id===e.targetId&&fx.age<.09)){hitResponses.push({id:e.targetId,age:0,power:e.ammo==='ap'?1:.8});hitResponses=hitResponses.slice(-12);}metalImpact(e.x,e.y,e.armored);beep(e.ammo==='ap'?'apImpact':'impact',{intensity:.65});}
   else if(e.type==='kill'){const heavy=!['normal','gunner','swarm','mine'].includes(e.kind),duration=e.kind==='boss'?3:heavy?1.6:.55;wrecks.push({...e,id:e.sourceId,type:e.kind,recoil:0,walk:0,phase:0,life:duration,duration,burstStage:0});wrecks=wrecks.slice(-30);if(!heavy)blastEffect(e.x,e.y,42);metalImpact(e.x,e.y,false,heavy);}
@@ -128,7 +162,7 @@ function drawArenaUnit(entity,index,size,allied=false,dead=false){
 }
 
 function drawArenaObstacle(o){
- const p=point(o.x,o.y),w=o.w*W*.00086,h=o.h*H*.00084,x=p.x-w/2,y=p.y-h/2,cut=Math.min(9,w*.1,h*.2),health=clamp(o.hp/o.max,0,1);
+ const p=point(o.x,o.y);if(o.kind==='wall'){drawArenaWall(o,p);return;}const w=o.w*W*.00086,h=o.h*H*.00084,x=p.x-w/2,y=p.y-h/2,cut=Math.min(9,w*.1,h*.2),health=clamp(o.hp/o.max,0,1);
  ctx.save();
  if(o.dead){
   ctx.fillStyle='#11151ba6';ctx.beginPath();ctx.ellipse(p.x,p.y,w*.62,h*.75,0,0,Math.PI*2);ctx.fill();
@@ -147,11 +181,22 @@ function drawArenaObstacle(o){
  if(o.flash>0){ctx.globalAlpha=.3;rounded(x+3,y+3,w-6,h-6,cut,'#e4c5a1');}ctx.restore();
 }
 
-function arenaItemName(kind){return {shield:'裝甲補充',recruit:'僚機增援',emp:'區域壓制'}[kind]||itemNames[kind]||'補給';}
+function drawArenaWall(o,p){
+ const w=o.w*W*.00086,h=o.h*H*.00084,x=p.x-w/2,y=p.y-h/2,lift=12;
+ if(x>W+30||x+w< -30||y>H+40||y+h< -40)return;
+ ctx.save();ctx.fillStyle='#050d16aa';ctx.fillRect(x+5,y+7,w+8,h+8);
+ polygon([{x,y:y+h-lift},{x:x+w,y:y+h-lift},{x:x+w,y:y+h},{x,y:y+h}],'#1a242a');
+ ctx.beginPath();ctx.rect(x,y-lift,w,h);ctx.save();ctx.clip();ctx.fillStyle=s.mapId==='depot'?'#51594f':'#424e55';ctx.fillRect(x,y-lift,w,h);
+ if(arenaTerrain.complete&&arenaTerrain.naturalWidth){const q=arenaTerrain.naturalWidth/2,metal=s.mapId==='depot'||s.mapId==='rail',sx=metal?0:q,sy=metal?q:0,sh=Math.min(q,q*h/w);ctx.drawImage(arenaTerrain,sx,sy,q,sh,x,y-lift,w,h);}ctx.restore();
+ line({x:x+2,y:y-lift+1},{x:x+w-2,y:y-lift+1},'#a4aca360',1.5);line({x:x+w-1,y:y-lift+2},{x:x+w-1,y:y+h-lift},'#101b23aa',3);line({x,y:y+h},{x:x+w,y:y+h},'#b5b8a166',1);
+ ctx.restore();
+}
+
+function arenaItemName(kind){return {shield:'裝甲補充',recruit:'僚機增援',emp:'區域壓制',autocannon:'機砲彈箱',heavyCannon:'穿甲重砲彈箱'}[kind]||itemNames[kind]||'補給';}
 function drawArenaSupplies(){
- const effects={repair:'耐久 +12',shield:'裝甲 +10',recruit:s.count<s.maxCount?'僚機 +1':'修復僚機',charge:'戰術 +1',weapon:'火控 +1',ap:'穿甲彈',he:'榴彈',overdrive:'急速 7 秒',emp:'區域壓制'};
- for(const box of s.crates){if(box.used)continue;const p=point(box.x,box.y),col=({repair:'#b8ddba',shield:'#9bc6ee',recruit:'#d5ddb6',charge:'#add6e5',weapon:'#ecdcae',ap:'#e0c39b',he:'#e7ac8b',overdrive:'#c5b5e2',emp:'#e8b8a6'}[box.kind]||'#c4d6de');
-  ctx.save();ctx.globalAlpha=box.life<3?.75:1;ctx.fillStyle='#020b1277';ctx.beginPath();ctx.ellipse(p.x,p.y+5,18,6,0,0,Math.PI*2);ctx.fill();drawSupplyArt(box.kind,p.x,p.y-12,33);line({x:p.x-10,y:p.y+6},{x:p.x+10,y:p.y+6},col,2);label(effects[box.kind]||arenaItemName(box.kind),p.x,p.y+22,10,col,600);ctx.restore();
+ const effects={repair:'耐久 +12',shield:'裝甲 +10',recruit:s.count<s.maxCount?'僚機 +1':'修復僚機',charge:'戰術 +1',weapon:'火控 +1',ap:'穿甲彈',he:'榴彈',overdrive:'急速 7 秒',emp:'區域壓制',autocannon:'機砲 120 發',heavyCannon:'重砲 18 發'};
+ for(const box of s.crates){if(box.used)continue;const p=point(box.x,box.y);if(p.x< -45||p.x>W+45||p.y< -50||p.y>H+50)continue;const col=({repair:'#b8ddba',shield:'#9bc6ee',recruit:'#d5ddb6',charge:'#add6e5',weapon:'#ecdcae',ap:'#e0c39b',he:'#e7ac8b',overdrive:'#c5b5e2',emp:'#e8b8a6'}[box.kind]||'#c4d6de');
+  ctx.save();ctx.globalAlpha=box.life<3?.75:1;ctx.fillStyle='#020b1277';ctx.beginPath();ctx.ellipse(p.x,p.y+5,18,6,0,0,Math.PI*2);ctx.fill();drawSupplyArt(box.kind==='autocannon'?'weapon':box.kind==='heavyCannon'?'ap':box.kind,p.x,p.y-12,33);if(box.kind==='autocannon'||box.kind==='heavyCannon'){const barrels=box.kind==='autocannon'?3:1;for(let i=0;i<barrels;i++)line({x:p.x-5+i*5,y:p.y-19},{x:p.x-5+i*5,y:p.y-35},'#e9d7b2',barrels===1?4:2);}line({x:p.x-10,y:p.y+6},{x:p.x+10,y:p.y+6},col,2);label(effects[box.kind]||arenaItemName(box.kind),p.x,p.y+22,10,col,600);ctx.restore();
  }
 }
 
@@ -266,14 +311,13 @@ function drawArenaSkillSweeps(){
 }
 
 function drawArenaScene(){
- 
- const a=point(55,90),b=point(945,940);ctx.save();ctx.strokeStyle='#91bdc126';ctx.setLineDash([6,14]);ctx.lineWidth=1;ctx.strokeRect(a.x,a.y,b.x-a.x,b.y-a.y);ctx.restore();
+ arenaRefreshAim();drawArenaGround();
  for(const obstacle of s.obstacles||[])drawArenaObstacle(obstacle);
  for(const hazard of s.hazards)drawArenaHazard(hazard);
  for(const fx of supportFx){const p=point(fx.x,fx.y),f=clamp(fx.age/.7,0,1),spread=motion?Math.min(1,.2+f*1.8):1;ctx.save();ctx.globalAlpha=(1-f)*.55;ctx.strokeStyle='#c4e9de';ctx.lineWidth=3*(1-f)+1;ctx.beginPath();ctx.ellipse(p.x,p.y,fx.radius*W*.00086*spread,fx.radius*H*.00084*spread,0,0,Math.PI*2);ctx.stroke();ctx.restore();}
  drawArenaSupplies();
  const base=clamp(H*.115,46,79),objects=[...wrecks.map(e=>({entity:e,dead:true})),...s.enemies.filter(e=>!e.dead).map(entity=>({entity}))];
- for(const {entity:e,dead} of objects.sort((a,b)=>a.entity.y-b.entity.y)){const type=e.type||e.kind,visual=enemyVisual(type,e.model),size=base*(type==='boss'?(e.model==='phoenix'?1.8:e.model==='morpho'?3.5:3.2):type==='stier'?1.5:type==='gunner'?.78:type==='artillery'?1.5:type==='charger'?1.35:type==='shield'?1.65:type==='scout'?.95:type==='mine'?.55:.62);if(['jammer','swarm'].includes(type))drawJammer(e,dead?1-e.life/e.duration:0);else drawArenaUnit(e,visual.index,size,false,dead);if(!dead&&type!=='normal')drawArenaEnemyState(e,size);if(!dead&&e.flash>0){const p=point(e.x,e.y);rounded(p.x-18,p.y-size*.6,36,2,1,'#172a34');rounded(p.x-18,p.y-size*.6,36*clamp(e.hp/e.max,0,1),2,1,'#dab99f');}}
+ for(const {entity:e,dead} of objects.sort((a,b)=>a.entity.y-b.entity.y)){const type=e.type||e.kind,visual=enemyVisual(type,e.model),size=base*(type==='boss'?(e.model==='phoenix'?1.8:e.model==='morpho'?3.5:3.2):type==='stier'?1.5:type==='gunner'?.78:type==='artillery'?1.5:type==='charger'?1.35:type==='shield'?1.65:type==='scout'?.95:type==='mine'?.55:.62);const ep=point(e.x,e.y);if(ep.x< -size||ep.x>W+size||ep.y< -size||ep.y>H+size)continue;if(['jammer','swarm'].includes(type))drawJammer(e,dead?1-e.life/e.duration:0);else drawArenaUnit(e,visual.index,size,false,dead);if(!dead&&type!=='normal')drawArenaEnemyState(e,size);if(!dead&&e.flash>0){const p=point(e.x,e.y);rounded(p.x-18,p.y-size*.6,36,2,1,'#172a34');rounded(p.x-18,p.y-size*.6,36*clamp(e.hp/e.max,0,1),2,1,'#dab99f');}}
  if(s.decoy){const p=point(s.decoy.x,s.decoy.y);ctx.save();ctx.globalAlpha=.65;ctx.setLineDash([4,4]);ctx.strokeStyle='#abd9df';ctx.beginPath();ctx.arc(p.x,p.y,18,0,Math.PI*2);ctx.stroke();ctx.restore();}
  drawArenaDash();
  drawArenaSkillSweeps();
@@ -289,6 +333,7 @@ function drawArenaReticle(){
 }
 
 function drawArenaPlayerMarker(){
+ drawArenaRadar();
  if(!s.arena||s.hp<=0||!['playing','paused'].includes(state))return;
  const p=point(s.x,s.y),base=clamp(H*.115,46,79),w=base*.55,h=base*.39,len=base*.17;
  ctx.save();ctx.globalAlpha=.95;
