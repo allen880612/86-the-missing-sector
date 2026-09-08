@@ -28,3 +28,16 @@ v30：170項測試通過；實際Chrome驗證主機自動射擊、僚機獨立�
 需求與修正以GitHub Issue追蹤，分支使用codex/，PR說明玩家感受上的改變、驗證與限制，Review後合併。這是補入既有本機成果的v30基準，沒有虛構歷史Sprint PR。
 
 目前無限模式使用固定地形與單一Boss同場，尚未加入有限彈藥庫存或多Boss同場。素材出處見assets內credits與manifest。《86》機型／角色屬原作參考，本作遊戲數值與互動為改編，並非官方作品；第三方素材依各自授權標示，未統一宣稱全部素材開源。
+
+
+## 自動部署（Cloudflare Pages 免費靜態方案）
+
+GitHub PR 執行遊戲測試與發布打包；合併 `main` 檢查通過後才部署。Actions 也支援手動重跑。部署只包含已追蹤的執行檔／素材，排除測試、私人研究及 QA。
+
+首次設定：在 Cloudflare 建立 Direct Upload Pages 專案 `86-the-missing-sector`，production branch 設為 `main`；在此 GitHub repo 的 Actions Secrets 設定 `CLOUDFLARE_ACCOUNT_ID` 與僅具有 Pages Write 權限的 `CLOUDFLARE_API_TOKEN`。不要提交 Token、OAuth refresh token 或 `.env`。授權到期時更新 Secret；缺少憑證會明確停止部署。
+
+僅部署 `dist/` 靜態檔案，不使用 Functions、Workers、R2、D1 或付費升級。建置拒絕 Functions／Worker 入口、符號連結、單檔達25MiB或總數達20,000的輸出。PR 不建立預覽部署；main 併發部署會取消過時工作。Cloudflare 免費方案每月500次建置，限制到達時停止發布，不升級方案；帳戶內其他專案也可能使用額度。靜態資源請求免費且不限次數。
+
+本機打包：`node scripts/build-pages.cjs`。使用 Git checkout 執行，新增執行素材須先納入 Git 追蹤。流程檢查通過只代表可部署；正式上線仍需確認 Actions deploy 成功及 HTTPS 兩模式可啟動。
+
+資料來源：[Pages 免費方案限制](https://developers.cloudflare.com/pages/platform/limits/)、[靜態請求定價](https://developers.cloudflare.com/pages/functions/pricing/)、[CI 部署文件](https://developers.cloudflare.com/pages/how-to/use-direct-upload-with-continuous-integration/)。
