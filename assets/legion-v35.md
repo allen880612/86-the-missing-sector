@@ -16,3 +16,9 @@
 
 - 不把粉絲 Wiki 的精確形態名稱、尺寸或能力細節當一手定論。
 - 不以 Eintagsfliege 的廣域電磁干擾推導出任意控制載具、永久奪取或無預警傷害。
+
+## v36：高機動型攻防參考
+
+- Furi開發者以「警告、反應、懲罰」描述Boss攻防循環。本輪採鎖定後不追蹤、突進／鏈刃不同避讓方向、收招暴露的設計；不是只提高單次傷害。[The Game Bakers / PlayStation Blog](https://blog.playstation.com/2016/03/09/furi-on-ps4-a-gauntlet-of-brutal-boss-battles/)
+- Diablo IV開發者強調戰場可讀性及危險提示／傷害區與動畫對齊。本輪鏈刃扇形由傷害核心提供中心、角度與半徑，視覺沿同一區域繪製，取消攻擊就撤預警。[Blizzard開發報告](https://news.blizzard.com/en-us/article/23746639/diablo-iv-quarterly-updatedecember-2021)
+- 側翼路徑、扇掃、傷害數值、兩秒收刃破綻與越障免近戰，均為本作改編；沒有宣稱它們是動畫既有招式。

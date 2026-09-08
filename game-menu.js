@@ -51,7 +51,7 @@
     const firstBoss = document.getElementById('arenaBoss').value;
     const bosses = {
       dinosauria: { name: 'Dinosauria', role: '重戰車型', hp: 2200, attack: '重砲交叉射界', advice: '首敵是重戰車。先離開直線砲口與曲射落點，最後一輪落地後有 2 秒散熱窗口。' },
-      phoenix: { name: 'Phönix', role: '高機動型', hp: 1600, attack: '迷彩／鎖定衝刺', advice: '首敵是 Phönix。射擊可破除迷彩；等它鎖定再側向躍進，撲空後有 2 秒反擊窗口。' },
+      phoenix: { name: 'Phönix', role: '高機動型', hp: 1600, attack: '側翼突進／鏈刃橫掃', advice: '首敵是 Phönix。直線突進向側面躲，扇形鏈刃繞背或躍出；第二階段突進後會追斬，等收刃再反擊。' },
       morpho: { name: 'Morpho', role: '電磁加速砲型', hp: 2600, attack: '電磁直射／交錯落點', advice: '首敵是電磁砲。先移出預鎖射線，再避開交錯落點；最後一發後有 2 秒反擊窗口。' }
     };
     const boss = bosses[firstBoss] || bosses.dinosauria;

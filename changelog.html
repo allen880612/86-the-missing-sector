@@ -24,7 +24,7 @@
 <h1>每一次回報，<br>都改變下一次出擊。</h1>
 <p>戰線更新檔案。從第一場能打完的作戰，到四面接敵的包圍戰，留下玩家的回報、團隊的取捨，以及真正進入戰場的改變。</p>
 <div class="status">
-<b>最新部署 / v35</b>
+<b>最新部署 / v36</b>
 <span>更新於 2026.09.08</span>
 <span>11 份階段紀錄</span>
 </div>
@@ -41,7 +41,25 @@
 </div>
 <div id="entries">
 <details class="entry" data-type="released" open>
-<summary><span class="index">11</span><span class="entry-heading"><span class="meta">S33 <span>／ 最新部署</span></span><strong>戰況持續升級，僚機也有生存與反制</strong><span class="version">v35</span></span><span class="toggle" aria-hidden="true">＋</span></summary>
+<summary><span class="index">12</span><span class="entry-heading"><span class="meta">S34 <span>／ 最新部署</span></span><strong>喘息更頻繁，獵殺更有章法</strong><span class="version">v36</span></span><span class="toggle" aria-hidden="true">＋</span></summary>
+<div class="entry-body"><div class="change-list"><h3>這次出擊，有什麼不同</h3><ul>
+<li>波次縮短為 30 秒；前四波降低傷害壓力，第五至八波逐步拉高，第九波起回到完整成長。每四波的威脅升階仍持續。</li>
+<li>裝甲每份補 10、耐久每份補 12，改成少量多次。普通敵每 12 隻掉落，定時補給首份 8 秒、之後每 18 秒提供生存與作戰補給。</li>
+<li>Phönix 在側翼接近後交替使用鎖定突進與鏈刃橫掃；第二階段突進接追斬。看直線向側面躲，看扇形繞背或躍出，收刃後有反擊窗口。</li>
+<li>突進原始傷害由 42 降至 30，讓威脅來自接近與攻擊節奏。鏈刃的傷害區與預警使用同一扇形；躍進可避開近戰。</li>
+<li>修正掉落在戰場外緣或掩體內難以回收的補給；滿狀態仍可撿取。結算傷害不再顯示冗長浮點小數。</li>
+</ul></div><div class="response"><h3>回報 → 調整</h3><p>玩家試玩指出前輪過難、恢復太稀少，Phönix雖痛卻呆板。本輪把恢復拆小、提高機會，將Boss改成可辨識的兩套近戰攻防；道具不可達與結算數字也納入修正。第一個平衡增量先同步本地供即時回饋，再完成第二個招式增量。後續首頁視覺、大地圖與武器拾取已列入設計，聯機仍是研究，未混稱本輪已實作。</p></div>
+<details class="team-detail"><summary>團隊如何完成這次更新 <span>展開分工</span></summary><dl>
+<div><dt>PO</dt><dd>依真人回饋重排平衡與局部攻防，先給本地增量，串接介面與交付。</dd></div>
+<div><dt>戰鬥</dt><dd>調整恢復／波次與早期傷害、Phönix側翼與扇掃、道具可達位置。</dd></div>
+<div><dt>美術</dt><dd>沿真實命中扇形繪製預警與短刃弧，維持低閃光與取消清理。</dd></div>
+<div><dt>QA</dt><dd>查核Furi／Diablo IV設計資料，以受控場景、固定seed及瀏覽器驗證。</dd></div>
+<div><dt>Review</dt><dd>把數量壓迫改成需要讀招與補給走位；模擬與真人驗收分開記錄。</dd></div>
+</dl></details><a href="assets/legion-v35.md">近戰設計參考與改編界線 →</a>
+</div></details>
+
+<details class="entry" data-type="released">
+<summary><span class="index">11</span><span class="entry-heading"><span class="meta">S33 <span>／ 版本更新</span></span><strong>戰況持續升級，僚機也有生存與反制</strong><span class="version">v35</span></span><span class="toggle" aria-hidden="true">＋</span></summary>
 <div class="entry-body"><div class="change-list"><h3>這次出擊，有什麼不同</h3><ul>
 <li>每 45 秒一波，每四波提升威脅階段；第 5 波可同場兩隻 Boss，第 9 波起最多三隻。特殊編成、火力與耐久繼續增強，保持同屏資源上限。</li>
 <li>Boss 半血後切換第二階段：重戰車與電磁砲增加連擊，高機動型追加突襲。Phönix 可穿過己方小兵完成切入，躲開後仍有反擊窗口。</li>
@@ -565,8 +583,8 @@
 </div>
 </div>
 <p>這裡記錄的不只是做了多少功能，更是每次回報之後，我們真的改了什麼。</p>
-<h3>本輪交付 · v35</h3>
-<ul><li><b>每四波持續升階</b>多重 Boss 與第二階段連擊</li><li><b>機型決定反攻方式</b>近距反擊、重砲超頻、高速刃擊</li><li><b>保護與救回僚機</b>獨立耐久、失控預警、火控復原</li><li><b>避開真正的重擊</b>降低補盾循環，小傷不再吞掉大砲</li></ul>
+<h3>本輪交付 · v36</h3>
+<ul><li><b>少量多次補給</b>更常有恢復機會，走位仍重要</li><li><b>高機動近戰攻防</b>側翼突進、鏈刃橫掃與收刃破綻</li><li><b>更緊湊的波次</b>三十秒接敵、早期逐步增壓</li><li><b>本地先行</b>每個可玩增量即時供試玩</li></ul>
 <h3>交付的判準</h3>
 <p>實作 → 實機檢查 → 獨立 QA → Review → 正式發布。數值測試與真人體感分開記錄。</p>
 <a class="return" href="./?gameMode=endless">進入四向戰場 →</a>
