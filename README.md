@@ -1,8 +1,10 @@
 # 86 戰線：壁外作戰
 
-桌面優先的機甲戰鬥遊戲原型，目前版本 **v44**。
+桌面優先的機甲戰鬥遊戲原型，目前版本 **v45**。
 
 [立即試玩](https://86-the-missing-sector.pages.dev/) · [戰線突破](https://86-the-missing-sector.pages.dev/?gameMode=frontline) · [四向無限](https://86-the-missing-sector.pages.dev/?gameMode=endless) · [版本沿革](https://86-the-missing-sector.pages.dev/changelog.html)
+
+下方設定可切換「畫質 平衡／清晰」，並記住選擇。預設平衡優先戰場流暢度，清晰保留更多戰場細節；首頁與整備等HTML介面不降低解析度。
 
 ## 執行與操作
 

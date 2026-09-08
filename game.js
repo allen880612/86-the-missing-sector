@@ -56,7 +56,8 @@ atlas.onload=()=>{
 };
 atlas.onerror=()=>{$('assetstatus').textContent='素材載入失敗，重新整理可再試';};
 atlas.src=window.UNIT_ATLAS||'assets/units-86.png';
-function resize(){const r=canvas.getBoundingClientRect();W=r.width;H=r.height;const d=Math.min(devicePixelRatio||1,2);canvas.width=W*d;canvas.height=H*d;ctx.setTransform(d,0,0,d,0,0);ctx.imageSmoothingEnabled=true;ctx.imageSmoothingQuality='high';}
+let renderQuality='balanced';try{if(localStorage.getItem('86-render-quality')==='sharp')renderQuality='sharp';}catch{}
+function resize(){const r=canvas.getBoundingClientRect();W=r.width;H=r.height;const d=Math.min(devicePixelRatio||1,renderQuality==='sharp'?2:1.5);canvas.width=W*d;canvas.height=H*d;ctx.setTransform(d,0,0,d,0,0);ctx.imageSmoothingEnabled=true;ctx.imageSmoothingQuality='high';}
 new ResizeObserver(resize).observe(canvas);
 function point(x,y){if(s.arena)return arenaPoint(x,y);const scale=.48+.52*y/1000;return {x:W/2+(x-500)*W*.00077*scale,y:H*(.10+y*.00080),scale};}
 function polygon(points,color,stroke){ctx.beginPath();points.forEach((p,i)=>i?ctx.lineTo(p.x,p.y):ctx.moveTo(p.x,p.y));ctx.closePath();ctx.fillStyle=color;ctx.fill();if(stroke){ctx.strokeStyle=stroke;ctx.lineWidth=1;ctx.stroke();}}
@@ -251,6 +252,9 @@ $('skipPhase').onclick=()=>{if(state==='settling'&&phaseDuration-phaseTime<.25)r
 $('nextEncounter').onclick=()=>{if(state!=='over'||!runConfig||runConfig.mode==='endless')return;const seed=(runConfig.seed+1+Math.floor(Math.random()*999998)-1)%999999+1;runConfig={...runConfig,encounter:$('nextEncounter').dataset.encounter,seed};$('seed').value=seed;$('encounter').value=runConfig.encounter;$('encounter').dispatchEvent(new Event('change',{bubbles:true}));start(true);};
 $('start').onclick=()=>state==='paused'?pause():start();$('pause').onclick=pause;
 function activateAudio(){if(audioActivated)return;audioActivated=true;window.FrontlineAudio?.unlock();window.FrontlineAudio?.setMusic(music);window.FrontlineAudio?.setSfx(sound);$('music').textContent=`音樂 ${music?'開':'關'}`;}
+function qualityLabel(){$('renderQuality').textContent=`畫質 ${renderQuality==='sharp'?'清晰':'平衡'}`;$('renderQuality').setAttribute('aria-pressed',String(renderQuality==='sharp'));}
+qualityLabel();
+$('renderQuality').onclick=()=>{renderQuality=renderQuality==='sharp'?'balanced':'sharp';try{localStorage.setItem('86-render-quality',renderQuality);}catch{}resize();qualityLabel();beep('uiSelect');};
 $('music').textContent='音樂 啟用';
 document.addEventListener('click',activateAudio);
 $('sound').onclick=()=>{activateAudio();sound=!sound;window.FrontlineAudio?.setSfx(sound);$('sound').textContent=`音效 ${sound?'開':'關'}`;$('sound').setAttribute('aria-pressed',String(sound));};
