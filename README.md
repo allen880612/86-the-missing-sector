@@ -1,6 +1,6 @@
 # 86 戰線：壁外作戰
 
-桌面優先的機甲戰鬥遊戲原型，目前版本 **v43**。
+桌面優先的機甲戰鬥遊戲原型，目前版本 **v44**。
 
 [立即試玩](https://86-the-missing-sector.pages.dev/) · [戰線突破](https://86-the-missing-sector.pages.dev/?gameMode=frontline) · [四向無限](https://86-the-missing-sector.pages.dev/?gameMode=endless) · [版本沿革](https://86-the-missing-sector.pages.dev/changelog.html)
 
@@ -22,6 +22,8 @@ python3 -m http.server 8765
 首頁保留模式圖卡，整備以大型機體預覽搭配配置與敵情。失能後以2.8秒黑紅退場、辛的回報與戰報淡入銜接；可跳過，支援減少動態。v41戰鬥平衡維持定版。
 
 首頁或整備開啟「玩法圖解」後，可進入五項實戰練習：走位與主砲、右鍵越障、回收機砲與Q切換、獵兵失衡反擊、飛群干擾與支援。可重試與離開，不產生正式戰報或改動整備設定。
+
+四向重型擊毀保留內爆，以局部暗煙銜接殘骸；同時至多四處煙，不再疊加致命命中的一般火花。這是視覺收束調整，沒有新增裝甲或破甲規則。
 
 ## 驗證與維護
 
