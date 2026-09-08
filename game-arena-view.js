@@ -134,6 +134,23 @@ function arenaEnemyPose(index,resolution,pose){
  return result;
 }
 
+let arenaWingRoster=null;
+function drawArenaFly(e,death=0){
+ const img=sprites[11];if(!img)return;const p=point(e.x,e.y),w=clamp(H*.047,22,34),h=w*img.height/img.width,flutter=motion&&death===0?Math.sin(s.time*8+(e.id||0)*2.1)*2:0;
+ let texture=img;for(const level of jammerLevels)if(level.height>=h*Math.min(devicePixelRatio||1,2))texture=level;
+ ctx.save();ctx.globalAlpha*=1-death;ctx.drawImage(arenaShadow,p.x-w*.34,p.y-2,w*.68,7);ctx.translate(p.x,p.y-5+flutter+(motion?death*10:0));ctx.rotate(arenaDirection(e.moveAngle??e.angle??0)+Math.PI/2+(motion?Math.sin(s.time*5+(e.id||0))*.07+death*.6:0));if(e.flash>0&&!death)ctx.filter='brightness(1.4)';ctx.drawImage(texture,-w/2,-h/2,w,h);ctx.restore();
+}
+function drawArenaWingRoster(){
+ const wings=s.wings||[];if(!arenaWingRoster||arenaWingRoster.state!==s)arenaWingRoster={state:s,ids:[null,null,null],lost:[-10,-10,-10],joined:[-10,-10,-10]};
+ const roster=arenaWingRoster;for(let i=0;i<3;i++)if(roster.ids[i]!==null&&!wings.some(w=>w.id===roster.ids[i])){roster.ids[i]=null;roster.lost[i]=s.time;}
+ for(const wing of wings)if(!roster.ids.includes(wing.id)){const slot=roster.ids.indexOf(null);if(slot>=0){roster.ids[slot]=wing.id;roster.joined[slot]=s.time;}}
+ const p=point(s.x,s.y),base=clamp(H*.115,46,79),y=p.y+base*.57+14;
+ ctx.save();for(let i=0;i<3;i++){const x=p.x-29+i*21,wing=wings.find(w=>w.id===roster.ids[i]),hostile=wing?.hijacked>0,warning=!hostile&&wing?.jam>0,color=hostile?'#e5a083':warning?'#d9bf81':wing&&wing.hp<wing.maxHp*.4?'#d6aa86':'#b1d5c8';rounded(x,y,17,7,1,'#07131fdf');
+  if(wing){rounded(x+1,y+1,15*clamp(wing.hp/wing.maxHp,0,1),5,1,color);if(warning||hostile){line({x:x+8,y:y-5},{x:x+8,y:y-2},color,2);if(hostile)line({x:x+5,y:y-3},{x:x+11,y:y-3},color,1);}if(s.time-roster.joined[i]<.7){ctx.globalAlpha=1-(s.time-roster.joined[i])/.7;ctx.strokeStyle='#d2eade';ctx.lineWidth=1;ctx.strokeRect(x-1,y-1,19,9);ctx.globalAlpha=1;}}
+  else {const lost=s.time-roster.lost[i]<2;line({x:x+5,y:y+2},{x:x+11,y:y+5},lost?'#d49c86':'#60727b',1);line({x:x+11,y:y+2},{x:x+5,y:y+5},lost?'#d49c86':'#60727b',1);}
+ }ctx.restore();
+}
+
 function drawArenaUnit(entity,index,size,allied=false,dead=false){
  const p=point(entity.x,entity.y),img=sprites[index];if(!img)return;
  const sector=entity.model==='phoenix'&&['slashWindup','slash'].includes(entity.phase)?s.hazards.find(h=>h.source===entity.id&&h.geometry==='sector'&&!h.cancelled):null;
@@ -220,7 +237,7 @@ function drawArenaWingStatus(unit,size){
 
 function drawArenaEnemyState(e,size){
  const p=point(e.x,e.y),boss=e.type==='boss',open=e.exposed>0;let pending=null,firing=null;
- if(['jammer','swarm'].includes(e.type)){const radius=e.jamRadius||180;ctx.save();ctx.globalAlpha=.24;ctx.strokeStyle='#cbbfe3';ctx.lineWidth=1.2;ctx.setLineDash([9,16]);ctx.beginPath();ctx.ellipse(p.x,p.y,radius*W*.00086,radius*H*.00084,0,0,Math.PI*2);ctx.stroke();ctx.restore();return;}
+ if(['jammer','swarm'].includes(e.type)){if(e.flockId!==undefined&&s.enemies.some(v=>!v.dead&&v.flockId===e.flockId&&v.id<e.id))return;const radius=e.jamRadius||180;ctx.save();ctx.globalAlpha=.10;ctx.strokeStyle='#cbbfe3';ctx.lineWidth=1.2;ctx.setLineDash([9,16]);ctx.beginPath();ctx.ellipse(p.x,p.y,radius*W*.00086,radius*H*.00084,0,0,Math.PI*2);ctx.stroke();ctx.restore();return;}
  if(e.type==='mine'&&e.phase==='windup'){const r=97,progress=clamp(1-e.windup/.6,0,1);ctx.save();ctx.globalAlpha=.8;ctx.strokeStyle='#ecaa8f';ctx.lineWidth=1.7;ctx.beginPath();ctx.ellipse(p.x,p.y,r*W*.00086,r*H*.00084,0,0,Math.PI*2);ctx.stroke();ctx.lineWidth=3;ctx.beginPath();ctx.ellipse(p.x,p.y,r*.82*W*.00086,r*.82*H*.00084,0,-Math.PI/2,-Math.PI/2+Math.PI*2*progress);ctx.stroke();ctx.restore();return;}
  if(e.type==='scout')for(const h of s.hazards){if(h.linkedTo!==e.id||h.fired)continue;const source=s.enemies.find(n=>n.id===h.source&&!n.dead);if(source){ctx.save();ctx.globalAlpha=.5;ctx.setLineDash([3,7]);line(p,point(source.x,source.y),'#d8bf8e',1.5);ctx.restore();}}
 
@@ -317,7 +334,7 @@ function drawArenaScene(){
  for(const fx of supportFx){const p=point(fx.x,fx.y),f=clamp(fx.age/.7,0,1),spread=motion?Math.min(1,.2+f*1.8):1;ctx.save();ctx.globalAlpha=(1-f)*.55;ctx.strokeStyle='#c4e9de';ctx.lineWidth=3*(1-f)+1;ctx.beginPath();ctx.ellipse(p.x,p.y,fx.radius*W*.00086*spread,fx.radius*H*.00084*spread,0,0,Math.PI*2);ctx.stroke();ctx.restore();}
  drawArenaSupplies();
  const base=clamp(H*.115,46,79),objects=[...wrecks.map(e=>({entity:e,dead:true})),...s.enemies.filter(e=>!e.dead).map(entity=>({entity}))];
- for(const {entity:e,dead} of objects.sort((a,b)=>a.entity.y-b.entity.y)){const type=e.type||e.kind,visual=enemyVisual(type,e.model),size=base*(type==='boss'?(e.model==='phoenix'?1.8:e.model==='morpho'?3.5:3.2):type==='stier'?1.5:type==='gunner'?.78:type==='artillery'?1.5:type==='charger'?1.35:type==='shield'?1.65:type==='scout'?.95:type==='mine'?.55:.62);const ep=point(e.x,e.y);if(ep.x< -size||ep.x>W+size||ep.y< -size||ep.y>H+size)continue;if(['jammer','swarm'].includes(type))drawJammer(e,dead?1-e.life/e.duration:0);else drawArenaUnit(e,visual.index,size,false,dead);if(!dead&&type!=='normal')drawArenaEnemyState(e,size);if(!dead&&e.flash>0){const p=point(e.x,e.y);rounded(p.x-18,p.y-size*.6,36,2,1,'#172a34');rounded(p.x-18,p.y-size*.6,36*clamp(e.hp/e.max,0,1),2,1,'#dab99f');}}
+ for(const {entity:e,dead} of objects.sort((a,b)=>a.entity.y-b.entity.y)){const type=e.type||e.kind,visual=enemyVisual(type,e.model),size=base*(type==='boss'?(e.model==='phoenix'?1.8:e.model==='morpho'?3.5:3.2):type==='stier'?1.5:type==='gunner'?.78:type==='artillery'?1.5:type==='charger'?1.35:type==='shield'?1.65:type==='scout'?.95:type==='mine'?.55:.62);const ep=point(e.x,e.y);if(ep.x< -size||ep.x>W+size||ep.y< -size||ep.y>H+size)continue;if(['jammer','swarm'].includes(type))drawArenaFly(e,dead?1-e.life/e.duration:0);else drawArenaUnit(e,visual.index,size,false,dead);if(!dead&&type!=='normal')drawArenaEnemyState(e,size);if(!dead&&e.flash>0){const p=point(e.x,e.y);rounded(p.x-18,p.y-size*.6,36,2,1,'#172a34');rounded(p.x-18,p.y-size*.6,36*clamp(e.hp/e.max,0,1),2,1,'#dab99f');}}
  if(s.decoy){const p=point(s.decoy.x,s.decoy.y);ctx.save();ctx.globalAlpha=.65;ctx.setLineDash([4,4]);ctx.strokeStyle='#abd9df';ctx.beginPath();ctx.arc(p.x,p.y,18,0,Math.PI*2);ctx.stroke();ctx.restore();}
  drawArenaDash();
  drawArenaSkillSweeps();
@@ -335,6 +352,7 @@ function drawArenaReticle(){
 function drawArenaPlayerMarker(){
  drawArenaRadar();
  if(!s.arena||s.hp<=0||!['playing','paused'].includes(state))return;
+ drawArenaWingRoster();
  const p=point(s.x,s.y),base=clamp(H*.115,46,79),w=base*.55,h=base*.39,len=base*.17;
  ctx.save();ctx.globalAlpha=.95;
  for(const [color,width] of [['#07141eee',5],['#c9fcf3',2]])for(const sx of [-1,1])for(const sy of [-1,1]){const x=p.x+sx*w,y=p.y+sy*h;line({x:x-sx*len,y},{x,y},color,width);line({x,y},{x,y:y-sy*len},color,width);}
