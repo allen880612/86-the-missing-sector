@@ -1,0 +1,30 @@
+{
+  "library": "Lucide",
+  "license": "ISC",
+  "source": "https://raw.githubusercontent.com/lucide-icons/lucide/main/icons/",
+  "iconSize": "24px",
+  "color": "currentColor",
+  "icons": {
+    "crosshair": {"file": "crosshair.svg", "semantic": "瞄準／鎖定；不可單獨表示命中結果"},
+    "radar": {"file": "radar.svg", "semantic": "偵測／掃描範圍；不可表示敵人已被擊破"},
+    "shield": {"file": "shield.svg", "semantic": "護盾／防禦；不可表示修復"},
+    "wrench": {"file": "wrench.svg", "semantic": "維修／機械狀態；不可表示通用增益"},
+    "users": {"file": "users.svg", "semantic": "增援／編隊人數；不可表示招募成功以外的傷害"},
+    "zap": {"file": "zap.svg", "semantic": "電力／EMP／充能；需配合文字數值分辨用途"},
+    "chevrons-up": {"file": "chevrons-up.svg", "semantic": "超載／升級方向；不可表示立即射擊"},
+    "scan": {"file": "scan.svg", "semantic": "分析／索敵；不可表示瞄準完成"},
+    "target": {"file": "target.svg", "semantic": "目標／攻擊選定；不可表示武器類別"},
+    "bomb": {"file": "bomb.svg", "semantic": "爆破／HE；不可表示 AP 穿甲"}
+  },
+  "battleMapping": {
+    "AP": "target.svg",
+    "HE": "bomb.svg",
+    "charge": "zap.svg",
+    "repair": "wrench.svg",
+    "shield": "shield.svg",
+    "overdrive": "chevrons-up.svg",
+    "recruit": "users.svg",
+    "EMP": "radar.svg"
+  },
+  "notes": "AP 與 HE 以不同輪廓區分；EMP 使用 radar 表示範圍干擾，zap 保留給充能／電力。不要用 Unicode ◆✦↑ 取代圖示語意，也不要混用另一套 icon library。"
+}
