@@ -1,6 +1,6 @@
 # 86 戰線：壁外作戰
 
-桌面優先的機甲戰鬥遊戲原型，目前版本 **v36**。
+桌面優先的機甲戰鬥遊戲原型，目前版本 **v37**。
 
 [立即試玩](https://86-the-missing-sector.pages.dev/) · [戰線突破](https://86-the-missing-sector.pages.dev/?gameMode=frontline) · [四向無限](https://86-the-missing-sector.pages.dev/?gameMode=endless)
 
@@ -23,7 +23,9 @@ python3 -m http.server 8765
 node --test game-core.test.cjs game-arena-core.test.cjs game-audio.test.cjs scripts/build-pages.test.cjs
 ```
 
-v36：210項遊戲／音訊／部署測試通過。每四波升階、多Boss與第二階段、僚機耐久／火控劫持、後期副砲，以及三機左鍵技能已接入。受控Chrome驗證三重Boss、翼機辨識、三機技能實際傷害與介面；長程fixture至第29波確認總70敵／3Boss，六局自然規則bot另記結果，不等同真人長局平衡驗收。來源與改編界線見[機制說明](assets/legion-v35.md)。
+v37：210項遊戲／音訊／部署測試通過。每四波升階、多Boss與第二階段、僚機耐久／火控劫持、後期副砲，以及三機左鍵技能已接入。受控Chrome驗證三重Boss、翼機辨識、三機技能實際傷害與介面；長程fixture至第29波確認總70敵／3Boss，六局自然規則bot另記結果，不等同真人長局平衡驗收。來源與改編界線見[機制說明](assets/legion-v35.md)。
+
+v37加入SVG標誌、場景模式卡、可收合小型人物通訊與兩模式玩法圖解。圖解開啟時暫停流程與遊戲輸入；沿用既有背景與音效。
 
 Phönix交替側翼突進／鏈刃扇掃，二階突進接追斬；扇掃有效期結束才開啟2秒收刃破綻。道具移至合法場內點，結算傷害四捨五入。
 

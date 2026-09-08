@@ -14,7 +14,67 @@
     if (typeof audio?.[kind] === 'function') audio[kind]();
     else audio?.effect(kind);
   }
+  const commandDialog = document.getElementById('commandDialog');
+  const reducedMotion = () => document.body.classList.contains('reduce-motion') || matchMedia('(prefers-reduced-motion: reduce)').matches;
+  let dialogTimer, dialogOpener;
+  function openCommand(title, content, opener) {
+    dialogOpener = opener || document.activeElement;
+    clearTimeout(dialogTimer);
+    commandDialog.classList.remove('leaving');
+    document.getElementById('commandDialogTitle').textContent = title;
+    document.getElementById('commandDialogBody').replaceChildren(content);
+    if (!commandDialog.open) commandDialog.showModal();
+    window.dispatchEvent(new Event('command-dialog-open'));
+    window.FrontlineAudio?.unlock();
+    uiSound('uiConfirm');
+  }
+  function closeCommand() {
+    uiSound('uiSelect');
+    if (reducedMotion()) commandDialog.close();
+    else { commandDialog.classList.add('leaving'); dialogTimer = setTimeout(() => { commandDialog.close(); commandDialog.classList.remove('leaving'); }, 180); }
+  }
+  commandDialog.querySelector('button').onclick = closeCommand;
+  commandDialog.addEventListener('close', () => { if (dialogOpener?.isConnected) dialogOpener.focus({ preventScroll: true }); });
+  commandDialog.addEventListener('cancel', event => { event.preventDefault(); closeCommand(); });
+  const diagramArt = [
+    '<path d="M100 116V23M35 78H165m-72-48 7-7 7 7m51 41 7 7-7 7"/><path class="unit" d="M91 65h18l8 17-17 12-17-12Z"/><path d="m109 69 33-31" stroke-dasharray="4 5"/><circle cx="150" cy="31" r="10"/>',
+    '<path d="M20 110Q90 0 172 77m-9-11 9 11-14 1"/><path class="cover" d="M75 90h40v24H75Z"/><ellipse cx="170" cy="100" rx="16" ry="6"/><path class="unit" d="M160 64h17l8 14-16 8-15-8Z"/>',
+    '<ellipse cx="100" cy="83" rx="70" ry="32"/><path d="M100 22v49m-8-9 8 9 8-9M76 91h10m31-19h10m-30 30h10"/><circle cx="100" cy="83" r="5"/>',
+    '<path d="M28 88h144m-12-8 12 8-12 8M60 58V25m40 33V25m40 33V25"/><path class="unit" d="M90 72h20v26H90Zm-40 12h14v20H50Zm86 0h14v20h-14Z"/>',
+    '<path d="M45 31h25v62H45Zm43 0h25v62H88Zm43 0h25v62h-25Z"/><path d="M40 111h123"/><circle cx="57" cy="109" r="5"/><circle cx="101" cy="109" r="5"/><circle cx="145" cy="109" r="5"/>',
+    '<path d="M25 76h150m-10-8 10 8-10 8"/><circle cx="45" cy="76" r="17"/><circle cx="100" cy="76" r="17"/><circle cx="155" cy="76" r="17"/><path class="unit" d="m38 76 5 6 11-14"/>'
+  ];
+  document.querySelectorAll('.guide-open').forEach(button => button.onclick = () => {
+    const endless = document.getElementById('gameMode').value === 'endless';
+    const items = endless ? [['移動與自動射擊', 'WASD／方向鍵走位；游標瞄準，主砲自動開火。'], ['短躍進脫離包圍', '右鍵沿移動方向躍進，越過敵機與掩體。'], ['支援打開缺口', 'Space 指定游標落點，範圍壓制與打斷；18 秒回充。']] : [['帶領編隊換線', 'A／D、左右鍵或拖曳移動。保持射角，編隊自動開火。'], ['走位選擇補給', '靠向需要的補給路線，補充裝甲、僚機或火力。'], ['擊破作戰目標', '避開預警射界，等核心開放反擊；結算後推進下一場。']];
+    const content = document.createElement('div');
+    content.className = 'command-diagrams';
+    items.forEach(([title, text], i) => {
+      const card = document.createElement('section');
+      card.innerHTML = `<svg viewBox="0 0 200 140" aria-hidden="true">${diagramArt[i + (endless ? 0 : 3)]}</svg><h3>${title}</h3><p>${text}</p>`;
+      content.append(card);
+    });
+    if (endless) { const note = document.createElement('p'); note.className = 'command-footnote'; note.textContent = '左鍵施展機型技能：近距反擊、重砲超頻或高速刃擊；整備時確認冷卻與效果。'; content.append(note); }
+    openCommand(endless ? '四向戰場 · 移動與反擊' : '戰線突破 · 帶隊推進', content, button);
+  });
+  document.querySelectorAll('.title-radio, .briefing-radio, .phase-dialogue, .report-dialogue').forEach((panel, index) => {
+    panel.classList.add('command-radio');
+    const close = document.createElement('button'); close.type = 'button'; close.className = 'command-radio-close'; close.textContent = '×'; close.setAttribute('aria-label', '收起通訊');
+    const reopen = document.createElement('button'); reopen.type = 'button'; reopen.className = 'command-radio-reopen'; reopen.textContent = '開啟通訊'; reopen.hidden = true;
+    const details = document.createElement('button'); details.type = 'button'; details.className = 'command-radio-details'; details.textContent = '通訊詳情';
+    close.onclick = () => { panel.classList.add('radio-collapsed'); reopen.hidden = false; uiSound('uiSelect'); reopen.focus({ preventScroll: true }); };
+    reopen.onclick = () => { panel.classList.remove('radio-collapsed'); reopen.hidden = true; uiSound('uiSelect'); close.focus({ preventScroll: true }); };
+    details.onclick = () => { const copy = document.createElement('div'); copy.className = 'command-detail'; panel.querySelectorAll('p:not(.command-summary)').forEach(p => { const paragraph = document.createElement('p'); paragraph.textContent = p.textContent; copy.append(paragraph); }); openCommand('指揮頻道 · 通訊詳情', copy, details); };
+    panel.append(close, details); panel.after(reopen);
+    if (panel.classList.contains('briefing-radio')) { const summary = document.createElement('p'); summary.className = 'command-summary'; panel.querySelector('.briefing-copy').append(summary); }
+  });
+  function updateCommandSummary() {
+    const summary = document.querySelector('.command-summary');
+    const machine = document.getElementById('machine').value;
+    summary.textContent = document.getElementById('gameMode').value === 'endless' ? ({m1a4:'保留反擊，替撤離打開缺口。',m4a3:'先找安全射角，再超頻集火。',xm2:'刃擊打斷後，利用躍進脫離。'})[machine] : ({m1a4:'先避開射界，再近距反擊。',m4a3:'移到安全位置後，停穩開砲。',xm2:'保持橫移，累積動能反攻。'})[machine];
+  }
   function refreshBriefing() {
+    updateCommandSummary();
     const endless = document.getElementById('gameMode').value === 'endless';
     document.body.classList.toggle('endless-mode', endless);
     const tacticInput = document.getElementById('tactic');
