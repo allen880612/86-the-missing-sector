@@ -1,7 +1,553 @@
-<!doctype html><html lang="zh-Hant"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>戰線更新檔案 — 86 戰線</title><meta name="description" content="從第一場出擊到四向包圍戰：86戰線的版本更新、玩家回報與開發團隊紀錄。"><style>
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>戰線更新檔案 — 86 戰線</title>
+<meta name="description" content="從第一場出擊到四向包圍戰：86戰線的版本更新、玩家回報與開發團隊紀錄。">
+<style>
 :root{color-scheme:dark;--bg:#071019;--panel:#0c1923;--line:#29424f;--text:#dde9eb;--muted:#91a8b4;--cyan:#a5e5df;--amber:#ddba8c}*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--text);font-family:-apple-system,BlinkMacSystemFont,"PingFang TC","Microsoft JhengHei",sans-serif;line-height:1.7}a{color:var(--cyan);text-decoration:none}a:hover{color:#fff}button,summary,a{-webkit-tap-highlight-color:transparent}a:focus-visible,button:focus-visible,summary:focus-visible{outline:2px solid var(--cyan);outline-offset:5px}header{border-bottom:1px solid var(--line);background:#08131dea;padding:18px max(24px,calc((100vw - 1220px)/2));display:flex;align-items:center;justify-content:space-between;gap:20px}.brand{font-size:18px;font-weight:800;letter-spacing:4px;display:flex;align-items:center;gap:12px}.mark{display:block;width:22px;height:25px;transform:skew(-18deg);border-left:7px solid var(--cyan);border-right:7px solid var(--cyan)}header nav{display:flex;gap:25px;font-size:13px}.hero{position:relative;max-width:1320px;margin:auto;padding:76px 50px 55px;isolation:isolate;overflow:hidden;border-bottom:1px solid var(--line)}.hero:before{content:"";position:absolute;inset:0;z-index:-2;background:linear-gradient(90deg,#08131df5 8%,#08131dbb 52%,#08131d33),url('art-direction/86-reference/images/concept-key-visual.png') center 43%/cover}.hero:after{content:"";position:absolute;inset:0;z-index:-1;background:linear-gradient(0deg,var(--bg),transparent 65%);pointer-events:none}.eyebrow,.meta,.version,.status,.index{font-family:ui-monospace,SFMono-Regular,Consolas,monospace}.eyebrow{color:var(--cyan);font-size:11px;letter-spacing:3px}.hero h1{font-size:clamp(32px,4.8vw,62px);font-weight:650;letter-spacing:4px;line-height:1.2;margin:20px 0}.hero p{max-width:570px;color:#aabfc9;font-size:15px}.status{display:flex;gap:20px;align-items:center;margin-top:30px;color:var(--muted);font-size:12px}.status b{color:var(--amber);border:1px solid #695543;background:#231f1aa8;padding:4px 12px;font-weight:500}.layout{max-width:1220px;margin:0 auto;padding:38px 0 70px;display:grid;grid-template-columns:minmax(0,1fr) 260px;gap:40px}.toolbar{display:flex;align-items:center;justify-content:space-between;gap:12px;padding-bottom:24px}.filters{display:flex;gap:6px;flex-wrap:wrap}button{font:inherit;cursor:pointer;border:1px solid var(--line);background:transparent;color:var(--muted);font-size:12px;padding:7px 13px;transition:background .16s,color .16s}button:hover,button[aria-pressed="true"]{color:var(--cyan);border-color:#709d9e;background:#163039}#expand{border:0;white-space:nowrap}summary{list-style:none;cursor:pointer}summary::-webkit-details-marker{display:none}.entry{border:1px solid var(--line);margin-bottom:14px;background:linear-gradient(115deg,#101f29,#0a151e)}.entry[hidden]{display:none}.entry>summary{display:flex;align-items:center;gap:22px;padding:23px 25px}.entry:first-of-type{border-top:2px solid var(--amber)}.index{color:#567582;align-self:flex-start;margin-top:3px;font-size:12px}.entry-heading{display:flex;flex-direction:column;gap:7px;flex:1}.meta{color:var(--muted);font-size:11px;letter-spacing:.5px}.meta span{color:#c9aa81}.entry strong{font-size:19px;line-height:1.5;letter-spacing:.4px;font-weight:600}.version{font-size:11px;color:#6e929f}.toggle{font-size:21px;color:#7caaa9}.entry[open]>.entry-heading{color:white}.entry[open]>summary .toggle{transform:rotate(45deg)}.entry-body{padding:0 30px 27px 60px;animation:appear .22s ease-out}.entry-body h3{font-weight:500;font-size:11px;letter-spacing:2px;color:var(--cyan);margin:15px 0 10px}.change-list ul{margin:0;padding-left:18px;color:#c9d8dd;font-size:14px}.change-list li{padding:4px 0}.change-list li::marker{color:#689d9e}.response{border-left:2px solid #95724f;padding:1px 18px;margin:22px 0;background:#18212a}.response h3{color:var(--amber)}.response p{font-size:13px;color:#aebfc7;line-height:1.9;margin:0 0 14px}.team-detail{border-top:1px solid var(--line);padding-top:13px;margin:20px 0}.team-detail>summary{font-size:12px;color:var(--text);display:flex;justify-content:space-between;gap:10px}.team-detail>summary span{color:var(--muted);font-size:11px}.team-detail dl{font-size:12px;margin:15px 0 0}.team-detail dl>div{display:grid;grid-template-columns:43px 1fr;gap:14px;padding:9px 0}.team-detail dt{color:var(--cyan)}.team-detail dd{margin:0;color:#9eb5c0}.entry-body>a{font-size:12px}.sidebar{padding-top:2px}.command{border:1px solid var(--line);padding:22px;background:#101f29}.command-head{display:flex;gap:15px;align-items:center;border-bottom:1px solid var(--line);padding-bottom:18px;margin-bottom:18px}.portrait{width:52px;height:64px;object-fit:cover;object-position:top;border:1px solid #405865;filter:saturate(.6)}.command h2{font-size:14px;font-weight:500;letter-spacing:2px;margin:0}.command small{font-size:9px;color:var(--muted);letter-spacing:2px}.command p{font-size:12px;color:var(--muted);line-height:1.9}.command h3{font-size:11px;color:var(--cyan);font-weight:500;margin-top:24px}.command ul{padding:0;margin:0;list-style:none}.command li{font-size:12px;color:var(--muted);padding:8px 0;border-bottom:1px solid #1b313d}.command li b{display:block;color:#c8d8de;font-weight:500}.note{font-size:11px;color:#688793;margin:22px 5px;line-height:1.9}.return{display:block;text-align:center;padding:11px;border:1px solid #6a9091;font-size:12px;margin-top:22px}.bottom{max-width:1220px;margin:0 auto;padding:22px 0 35px;border-top:1px solid var(--line);font-size:11px;color:#6f8b97;display:flex;justify-content:space-between;gap:20px}.empty{display:none}@keyframes appear{from{opacity:.4;transform:translateY(5px)}to{opacity:1;transform:none}}@media(max-width:1280px){.layout,.bottom{margin-left:30px;margin-right:30px}}@media(max-width:850px){.layout{grid-template-columns:1fr}.sidebar{display:none}.hero{padding:50px 28px 38px}.hero:before{background-position:60% center}.hero p{max-width:450px}.layout{padding-top:25px;margin:0 22px}.bottom{margin:0 22px}.entry>summary{padding:20px 17px;gap:14px}.entry-body{padding:0 20px 23px 43px}.entry strong{font-size:17px}}@media(max-width:480px){header{padding:15px 20px}.brand{font-size:14px;letter-spacing:2px}header nav{font-size:11px;gap:14px}.hero h1{letter-spacing:1px}.hero p{font-size:13px}.toolbar{align-items:flex-start}.filters{gap:5px}button{font-size:11px;padding:6px 9px}.status{gap:12px;font-size:10px}.entry-body{padding-left:20px}.meta{font-size:10px}.bottom{flex-direction:column;gap:7px}.index{display:none}}@media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
-</style></head><body><header><a class="brand" href="./"><span class="mark" aria-hidden="true"></span>86 戰線</a><nav><a href="./?gameMode=endless">返回作戰</a><a href="https://github.com/allen880612/86-the-missing-sector">專案紀錄 ↗</a></nav></header><section class="hero"><div class="eyebrow">FIELD RECORD / DEVELOPMENT ARCHIVE</div><h1>每一次回報，<br>都改變下一次出擊。</h1><p>戰線更新檔案。從第一場能打完的作戰，到四面接敵的包圍戰，留下玩家的回報、團隊的取捨，以及真正進入戰場的改變。</p><div class="status"><b>最新部署 / v33</b><span>更新於 2026.09.08</span><span>09 份階段紀錄</span></div></section><main class="layout"><section aria-label="版本沿革"><div class="toolbar"><div class="filters" role="group" aria-label="紀錄類別"><button aria-pressed="true" data-filter="all">全部紀錄</button><button aria-pressed="false" data-filter="released">版本更新</button><button aria-pressed="false" data-filter="research">研究提案</button></div><button id="expand" aria-expanded="false">展開全部</button></div><div id="entries"><details class="entry" data-type="released" open><summary><span class="index">09</span><span class="entry-heading"><span class="meta">S30–S31 <span>／ 最新部署</span></span><strong>在高壓混戰中，讓主機更能辨認也更有脫身手段</strong><span class="version">v33</span></span><span class="toggle" aria-hidden="true">＋</span></summary><div class="entry-body"><div class="change-list"><h3>這次出擊，有什麼不同</h3><ul><li>主機加入方向標記；右鍵改為依機型跨越距離的 0.36 秒躍進，保留合法起點與落點</li><li>僚機可犧牲攔截致命傷，6秒內不重複，並在戰報統計；滿級火控補給轉為五秒火力全開</li><li>補給節奏降低，斥候協同、戰車直射、阻電機群與自走地雷接入混戰；重砲加入局部受擊與後座。</li></ul></div><div class="response"><h3>回報 → 調整</h3><p>玩家肯定玩法，但指出混戰找不到主機、容易卡住、滿級補給缺少價值。團隊改為清楚的主機標記與越障躍進，加入僚機攔截及滿級火控轉超頻；本輪已部署，仍持續收集實際體感。</p></div><details class="team-detail"><summary>團隊如何完成這次更新 <span>展開分工</span></summary><dl><div><dt>美術</dt><dd>加入主機框標、躍進抬升／落地、特殊敵機提示與砲管局部反應</dd></div><div><dt>音訊</dt><dd>沿用事件音並為攔截、躍進與新威脅提供回饋</dd></div><div><dt>戰鬥</dt><dd>實作跨越落點保護、僚機犧牲、補給節流與多職能敵群</dd></div><div><dt>QA</dt><dd>唯一自然局驗出全部敵種、一次僚機攔截與單次幀時間尖峰；另審出極端落點 fallback</dd></div><div><dt>整合</dt><dd>修正起跳點／終點保留、重觸發反應與戰報統計；完成v33正式發布。</dd></div></dl></details><a href="https://github.com/allen880612/86-the-missing-sector/pull/17">檢視版本交付 ↗</a></div></details><details class="entry" data-type="released" ><summary><span class="index">08</span><span class="entry-heading"><span class="meta">S28–S29 <span>／ 版本紀錄</span></span><strong>正式上線，兩種模式說同一套真話</strong><span class="version">v31–v32</span></span><span class="toggle" aria-hidden="true">＋</span></summary><div class="entry-body"><div class="change-list"><h3>這次出擊，有什麼不同</h3><ul><li>四向整備改用實際 Dinosauria／Morpho，結算不再混入戰線的下一場按鈕與文案</li><li>Boss 直射才有砲口火光，曲射落地保留地面爆炸；兩種 Boss 的兩秒散熱提示立即對應傷害窗口</li><li>建立公開靜態部署流程，正式 HTTPS 可直接遊玩</li></ul></div><div class="response"><h3>回報 → 調整</h3><p>玩家指出本機更新沒有交付到GitHub。團隊補齊可核對的PR與正式發布，也修正四向模式誤顯下一場、Boss落地被當成發射的畫面錯配。</p></div><details class="team-detail"><summary>團隊如何完成這次更新 <span>展開分工</span></summary><dl><div><dt>美術</dt><dd>校正 Boss 火光、散熱白煙與模式預覽素材</dd></div><div><dt>音訊</dt><dd>維持發射、落地與場景聲音的事件邊界</dd></div><div><dt>戰鬥</dt><dd>保留戰線規則並校正 arena 的兩秒暴露語意</dd></div><div><dt>QA</dt><dd>獨立指出下一場可見、HUD 延遲散熱與圓形砲擊錯誤火光</dd></div><div><dt>整合</dt><dd>完成模式 guard、純靜態 CI/CD、安全打包與正式瀏覽器驗證</dd></div></dl></details><a href="https://github.com/allen880612/86-the-missing-sector/pull/14">檢視交付紀錄 ↗</a></div></details><details class="entry" data-type="released" ><summary><span class="index">07</span><span class="entry-heading"><span class="meta">Sprint 25–27 <span>／ 版本紀錄</span></span><strong>無限模式真正變成四向包圍戰</strong><span class="version">v28–v30</span></span><span class="toggle" aria-hidden="true">＋</span></summary><div class="entry-body"><div class="change-list"><h3>這次出擊，有什麼不同</h3><ul><li>WASD 四向移動與滑鼠砲口分離，敵人從四面追擊；戰線仍維持左右移動與自動射擊</li><li>加入可破壞掩體、直射遮蔽、曲射落點、大型 Boss 散熱反擊與九類補給</li><li>依回饋移除停留二選一卡，改靠近直接拾取；右鍵側移加入可見動畫與真碰撞</li></ul></div><div class="response"><h3>回報 → 調整</h3><p>玩家指出『無限』不只是波次延長，並回報按住射擊疲勞、穿牆、空曠與補給卡干擾；團隊改成自動主砲、點按超頻、掩體戰與不中斷移動的直接回收。</p></div><details class="team-detail"><summary>團隊如何完成這次更新 <span>展開分工</span></summary><dl><div><dt>美術</dt><dd>製作四向 view、步態、重砲／曲射／尾跡與補給短標籤</dd></div><div><dt>音訊</dt><dd>復用既有事件音並調整支援請求與落地爆音</dd></div><div><dt>戰鬥</dt><dd>建立獨立 arena core、碰撞、敵繞障、技能與資源循環</dd></div><div><dt>QA</dt><dd>先保留舊規則自然局，再以 rAF 和真右鍵驗中段位移、牆／敵阻擋；另抓出 Boss 越界卡死</dd></div><div><dt>整合</dt><dd>修正素材解析度接線、快取與高密度效能，沒有靠減敵數掩飾</dd></div></dl></details></div></details><details class="entry" data-type="research" ><summary><span class="index">06</span><span class="entry-heading"><span class="meta">Sprint 22、24 <span>／ 研究提案</span></span><strong>先審設計，再決定是否走向立體戰場</strong><span class="version">設計研究，未直接成為正式版本</span></span><span class="toggle" aria-hidden="true">＋</span></summary><div class="entry-body"><div class="change-list"><h3>這次出擊，有什麼不同</h3><ul><li>提供封面、整備、戰鬥、勝敗、攻擊五拍與擊毀收束的互動設計預覽</li><li>比較桌機／手機、Boss 尺度 A/B、角色通訊與減少動態方案</li><li>完成 3D 美術、玩法、素材與引擎可行性研究，但全面 3D 開發暫緩</li></ul></div><div class="response"><h3>回報 → 調整</h3><p>玩家希望立體版先解決模型、動作、VFX 與環境可信度；團隊沒有把概念稿冒充已完成遊戲，改以足鎖、砲口、遮擋與素材分件作為未來 POC 門檻。</p></div><details class="team-detail"><summary>團隊如何完成這次更新 <span>展開分工</span></summary><dl><div><dt>美術</dt><dd>製作八頁設計預覽、尺度比較與戰鬥分鏡</dd></div><div><dt>音訊</dt><dd>整理六場景候選與重型擊毀聲音分鏡，未試聽者保持候選標記</dd></div><div><dt>戰鬥</dt><dd>把四向無限與資源循環拆成可驗故事</dd></div><div><dt>QA</dt><dd>檢查手機通訊遮線、互動頁與減少動態，不代替正式戰鬥驗收</dd></div><div><dt>整合</dt><dd>核實研究來源能支持的範圍，決定 3D 暫緩</dd></div></dl></details></div></details><details class="entry" data-type="released" ><summary><span class="index">05</span><span class="entry-heading"><span class="meta">Sprint 23 <span>／ 版本紀錄</span></span><strong>戰線與無限成為兩個完整入口</strong><span class="version">v27</span></span><span class="toggle" aria-hidden="true">＋</span></summary><div class="entry-body"><div class="change-list"><h3>這次出擊，有什麼不同</h3><ul><li>封面可選有限戰線或持續模式，兩者都能出擊、結算與重試</li><li>無限模式加入交替重型目標，戰線原玩法保留</li><li>六場景 BGM、角色收束與分級殘骸／爆破接入正式流程</li></ul></div><div class="response"><h3>回報 → 調整</h3><p>團隊先保存成熟的 2D 體驗，再探索四向與 3D，避免研究分支拖垮可玩的正式版本。</p></div><details class="team-detail"><summary>團隊如何完成這次更新 <span>展開分工</span></summary><dl><div><dt>美術</dt><dd>整合首頁、人物、轉場與擊毀層級</dd></div><div><dt>音訊</dt><dd>接六曲路由與場景淡化</dd></div><div><dt>戰鬥</dt><dd>建立獨立持續模式核心與交替 Boss</dd></div><div><dt>QA</dt><dd>跑正常時間全場與跨模式返回／重試</dd></div><div><dt>整合</dt><dd>將分散成果收成可維護的雙模式保存版</dd></div></dl></details></div></details><details class="entry" data-type="released" ><summary><span class="index">04</span><span class="entry-heading"><span class="meta">Sprint 14–21 <span>／ 版本紀錄</span></span><strong>戰況、聲音與指揮開始同步</strong><span class="version">v20–v26</span></span><span class="toggle" aria-hidden="true">＋</span></summary><div class="entry-body"><div class="change-list"><h3>這次出擊，有什麼不同</h3><ul><li>危險預告取得聲音優先權，BGM 短暫壓低，弱射擊不再蓋過關鍵警告</li><li>加入正式封面、可捲整備、蕾娜建議、辛戰況回報與六場景音樂路由</li><li>通訊依真 hazard、來源與反攻窗口有效期顯示，不再補播過期建議</li></ul></div><div class="response"><h3>回報 → 調整</h3><p>玩家認為 UI 僵硬、角色不明顯且 Boss 擊毀無感；團隊先修會誤導玩家的通訊時機與遮擋，再把更大的聲畫改造交給下一階段設計。</p></div><details class="team-detail"><summary>團隊如何完成這次更新 <span>展開分工</span></summary><dl><div><dt>美術</dt><dd>改善 Boss 尺度、分件、補給牌避讓與手機 HUD 層級</dd></div><div><dt>音訊</dt><dd>完成場景路由、淡化、duck、暫停與清理生命週期</dd></div><div><dt>戰鬥</dt><dd>提供真攻擊來源、窗口與取消狀態給前端</dd></div><div><dt>QA</dt><dd>以完整自然遭遇重現警告被覆蓋和結束後通訊復活</dd></div><div><dt>整合</dt><dd>依優先級接角色訊息，保留靜態立繪、無配音的真實範圍</dd></div></dl></details></div></details><details class="entry" data-type="released" ><summary><span class="index">03</span><span class="entry-heading"><span class="meta">Sprint 7–13 <span>／ 版本紀錄</span></span><strong>每種武器與敵人開始改變打法</strong><span class="version">v13–v19</span></span><span class="toggle" aria-hidden="true">＋</span></summary><div class="entry-body"><div class="change-list"><h3>這次出擊，有什麼不同</h3><ul><li>支援砲擊與誘餌有真實落點、命中、誘導與取消效果</li><li>Dinosauria 副砲拆除、Grauwolf 鎖定突進與失衡反擊形成不同節奏</li><li>M1A4、M4A3、XM2 的近擊、停穩與動能，以及 AP／HE 的穿透與清群差異接入實戰</li></ul></div><div class="response"><h3>回報 → 調整</h3><p>團隊發現單看通關時間會誤導，改記錄實際出招輪數、拆件與反攻窗口；砲兵機制測得通卻自然局看不到時，直接調整出場節奏，而非加血拖長戰鬥。</p></div><details class="team-detail"><summary>團隊如何完成這次更新 <span>展開分工</span></summary><dl><div><dt>美術</dt><dd>把砲座、突進姿態、彈種軌跡與爆區對應真碰撞位置</dd></div><div><dt>音訊</dt><dd>為戰術、近擊與彈種接短音並避免錯播主砲</dd></div><div><dt>戰鬥</dt><dd>建立拆件、追擊、斥候砲兵鏈、三機技能與彈種後果</dd></div><div><dt>QA</dt><dd>用真 pointer／Space、固定短局與完整遭遇分開驗證</dd></div><div><dt>整合</dt><dd>維持既有數值時先修事件資料與可見結果</dd></div></dl></details></div></details><details class="entry" data-type="released" ><summary><span class="index">02</span><span class="entry-heading"><span class="meta">Sprint 2–6 <span>／ 版本紀錄</span></span><strong>從能玩，走到看得懂選擇</strong><span class="version">v08–v12</span></span><span class="toggle" aria-hidden="true">＋</span></summary><div class="entry-body"><div class="change-list"><h3>這次出擊，有什麼不同</h3><ul><li>補給顯示真實收益、滿值狀態與取得回饋，加入六類補給素材</li><li>整備頁可比較三機型、彈藥、遭遇與反制資訊</li><li>勝敗戰報呈現目標進度、死因，以及再戰或換裝入口</li></ul></div><div class="response"><h3>回報 → 調整</h3><p>玩家肯定音效與補給方向，但指出首頁像文字牆、Boss 攻擊缺乏互動；團隊撤回未開始的戰術投影提案，先修整備決策、攻防提示與結算。</p></div><details class="team-detail"><summary>團隊如何完成這次更新 <span>展開分工</span></summary><dl><div><dt>美術</dt><dd>製作補給圖集並修正縮小辨識、殘骸與預覽一致性</dd></div><div><dt>音訊</dt><dd>區分砲口、命中、跳彈、破甲、擊毀與收取事件</dd></div><div><dt>戰鬥</dt><dd>讓 Morpho 攻擊具備預備、射界、安全缺口與反攻窗口</dd></div><div><dt>QA</dt><dd>跨桌機／手機核對真收益、配置資料與按鈕路徑</dd></div><div><dt>整合</dt><dd>依玩家回饋重排 backlog，避免用新增 Boss 數值掩蓋 UI 問題</dd></div></dl></details></div></details><details class="entry" data-type="released" ><summary><span class="index">01</span><span class="entry-heading"><span class="meta">準備期–Sprint 1 <span>／ 版本紀錄</span></span><strong>第一場真正能打完的作戰</strong><span class="version">早期可玩基準</span></span><span class="toggle" aria-hidden="true">＋</span></summary><div class="entry-body"><div class="change-list"><h3>這次出擊，有什麼不同</h3><ul><li>補上耐久、致命來源、勝敗、戰報、重試與重新整備</li><li>導入機甲圖集、Dinosauria 分件副砲、爆炸與基礎戰鬥音效</li><li>桌面與手機開始具備完整出擊流程</li></ul></div><div class="response"><h3>回報 → 調整</h3><p>早期版本只有功能輪廓，準備畫面曾被誤當成交火證據；團隊改用真實 playing、死亡、重試與暫停流程驗收，並保留素材仍待精修的限制。</p></div><details class="team-detail"><summary>團隊如何完成這次更新 <span>展開分工</span></summary><dl><div><dt>美術</dt><dd>統一敵我朝向、透明素材與副砲分件；首批不合格棋盤底圖遭退件後重做</dd></div><div><dt>音訊</dt><dd>建立 WebAudio 播放生命週期、限流與暫停／清理</dd></div><div><dt>戰鬥</dt><dd>加入真實傷害、不可變戰果與完整狀態流程</dd></div><div><dt>QA</dt><dd>以手機自然死亡、重試、換裝與暫停找流程缺口</dd></div><div><dt>整合</dt><dd>把核心、DOM、素材、聲音和結果頁接成第一個垂直切片</dd></div></dl></details></div></details></div></section><aside class="sidebar"><section class="command"><div class="command-head"><img class="portrait" src="assets/characters/lena-reference.png" alt="蕾娜"><div><small>OPERATIONS ROOM</small><h2>整備室紀錄</h2></div></div><p>這裡記錄的不只是做了多少功能，更是每次回報之後，我們真的改了什麼。</p><h3>本輪交付 · v33</h3><ul><li><b>看清自己的位置</b>爆炸上方保留主機識別符</li><li><b>越障，重新取得射角</b>有起落的機型差異躍進</li><li><b>讓補給持續有價值</b>僚機攔截與滿火控超頻</li><li><b>拆解軍團的協同</b>斥候、阻電機群與地雷</li></ul><h3>交付的判準</h3><p>實作 → 實機檢查 → 獨立 QA → Review → 正式發布。數值測試與真人體感分開記錄。</p><a class="return" href="./?gameMode=endless">進入四向戰場 →</a></section><p class="note">研究提案不是已實裝功能。<br>早期迭代保留本機開發紀錄；可核對的 GitHub 交付由 v30 開始。</p></aside></main><footer class="bottom"><span>86 戰線 · 持續迭代中的非官方遊戲原型</span><span>機型／角色參考原作；互動與數值為遊戲改編。</span></footer><script>
+</style>
+</head>
+<body>
+<header>
+<a class="brand" href="./">
+<span class="mark" aria-hidden="true">
+</span>86 戰線</a>
+<nav>
+<a href="./?gameMode=endless">返回作戰</a>
+<a href="https://github.com/allen880612/86-the-missing-sector">專案紀錄 ↗</a>
+</nav>
+</header>
+<section class="hero">
+<div class="eyebrow">FIELD RECORD / DEVELOPMENT ARCHIVE</div>
+<h1>每一次回報，<br>都改變下一次出擊。</h1>
+<p>戰線更新檔案。從第一場能打完的作戰，到四面接敵的包圍戰，留下玩家的回報、團隊的取捨，以及真正進入戰場的改變。</p>
+<div class="status">
+<b>最新部署 / v33</b>
+<span>更新於 2026.09.08</span>
+<span>09 份階段紀錄</span>
+</div>
+</section>
+<main class="layout">
+<section aria-label="版本沿革">
+<div class="toolbar">
+<div class="filters" role="group" aria-label="紀錄類別">
+<button aria-pressed="true" data-filter="all">全部紀錄</button>
+<button aria-pressed="false" data-filter="released">版本更新</button>
+<button aria-pressed="false" data-filter="research">研究提案</button>
+</div>
+<button id="expand" aria-expanded="false">展開全部</button>
+</div>
+<div id="entries">
+<details class="entry" data-type="released" open>
+<summary>
+<span class="index">09</span>
+<span class="entry-heading">
+<span class="meta">S30–S31 <span>／ 最新部署</span>
+</span>
+<strong>在高壓混戰中，讓主機更能辨認也更有脫身手段</strong>
+<span class="version">v33</span>
+</span>
+<span class="toggle" aria-hidden="true">＋</span>
+</summary>
+<div class="entry-body">
+<div class="change-list">
+<h3>這次出擊，有什麼不同</h3>
+<ul>
+<li>主機加入方向標記；右鍵改為依機型跨越距離的 0.36 秒躍進，保留合法起點與落點</li>
+<li>僚機可犧牲攔截致命傷，6秒內不重複，並在戰報統計；滿級火控補給轉為五秒火力全開</li>
+<li>補給節奏降低，斥候協同、戰車直射、阻電機群與自走地雷接入混戰；重砲加入局部受擊與後座。</li>
+</ul>
+</div>
+<div class="response">
+<h3>回報 → 調整</h3>
+<p>玩家肯定玩法，但指出混戰找不到主機、容易卡住、滿級補給缺少價值。團隊改為清楚的主機標記與越障躍進，加入僚機攔截及滿級火控轉超頻；本輪已部署，仍持續收集實際體感。</p>
+</div>
+<details class="team-detail">
+<summary>團隊如何完成這次更新 <span>展開分工</span>
+</summary>
+<dl>
+<div>
+<dt>美術</dt>
+<dd>加入主機框標、躍進抬升／落地、特殊敵機提示與砲管局部反應</dd>
+</div>
+<div>
+<dt>音訊</dt>
+<dd>沿用事件音並為攔截、躍進與新威脅提供回饋</dd>
+</div>
+<div>
+<dt>戰鬥</dt>
+<dd>實作跨越落點保護、僚機犧牲、補給節流與多職能敵群</dd>
+</div>
+<div>
+<dt>QA</dt>
+<dd>唯一自然局驗出全部敵種、一次僚機攔截與單次幀時間尖峰；另審出極端落點 fallback</dd>
+</div>
+<div>
+<dt>整合</dt>
+<dd>修正起跳點／終點保留、重觸發反應與戰報統計；完成v33正式發布。</dd>
+</div>
+</dl>
+</details>
+<a href="https://github.com/allen880612/86-the-missing-sector/pull/17">檢視版本交付 ↗</a>
+</div>
+</details>
+<details class="entry" data-type="released" >
+<summary>
+<span class="index">08</span>
+<span class="entry-heading">
+<span class="meta">S28–S29 <span>／ 版本紀錄</span>
+</span>
+<strong>正式上線，兩種模式說同一套真話</strong>
+<span class="version">v31–v32</span>
+</span>
+<span class="toggle" aria-hidden="true">＋</span>
+</summary>
+<div class="entry-body">
+<div class="change-list">
+<h3>這次出擊，有什麼不同</h3>
+<ul>
+<li>四向整備改用實際 Dinosauria／Morpho，結算不再混入戰線的下一場按鈕與文案</li>
+<li>Boss 直射才有砲口火光，曲射落地保留地面爆炸；兩種 Boss 的兩秒散熱提示立即對應傷害窗口</li>
+<li>建立公開靜態部署流程，正式 HTTPS 可直接遊玩</li>
+</ul>
+</div>
+<div class="response">
+<h3>回報 → 調整</h3>
+<p>玩家指出本機更新沒有交付到GitHub。團隊補齊可核對的PR與正式發布，也修正四向模式誤顯下一場、Boss落地被當成發射的畫面錯配。</p>
+</div>
+<details class="team-detail">
+<summary>團隊如何完成這次更新 <span>展開分工</span>
+</summary>
+<dl>
+<div>
+<dt>美術</dt>
+<dd>校正 Boss 火光、散熱白煙與模式預覽素材</dd>
+</div>
+<div>
+<dt>音訊</dt>
+<dd>維持發射、落地與場景聲音的事件邊界</dd>
+</div>
+<div>
+<dt>戰鬥</dt>
+<dd>保留戰線規則並校正 arena 的兩秒暴露語意</dd>
+</div>
+<div>
+<dt>QA</dt>
+<dd>獨立指出下一場可見、HUD 延遲散熱與圓形砲擊錯誤火光</dd>
+</div>
+<div>
+<dt>整合</dt>
+<dd>完成模式 guard、純靜態 CI/CD、安全打包與正式瀏覽器驗證</dd>
+</div>
+</dl>
+</details>
+<a href="https://github.com/allen880612/86-the-missing-sector/pull/14">檢視交付紀錄 ↗</a>
+</div>
+</details>
+<details class="entry" data-type="released" >
+<summary>
+<span class="index">07</span>
+<span class="entry-heading">
+<span class="meta">Sprint 25–27 <span>／ 版本紀錄</span>
+</span>
+<strong>無限模式真正變成四向包圍戰</strong>
+<span class="version">v28–v30</span>
+</span>
+<span class="toggle" aria-hidden="true">＋</span>
+</summary>
+<div class="entry-body">
+<div class="change-list">
+<h3>這次出擊，有什麼不同</h3>
+<ul>
+<li>WASD 四向移動與滑鼠砲口分離，敵人從四面追擊；戰線仍維持左右移動與自動射擊</li>
+<li>加入可破壞掩體、直射遮蔽、曲射落點、大型 Boss 散熱反擊與九類補給</li>
+<li>依回饋移除停留二選一卡，改靠近直接拾取；右鍵側移加入可見動畫與真碰撞</li>
+</ul>
+</div>
+<div class="response">
+<h3>回報 → 調整</h3>
+<p>玩家指出『無限』不只是波次延長，並回報按住射擊疲勞、穿牆、空曠與補給卡干擾；團隊改成自動主砲、點按超頻、掩體戰與不中斷移動的直接回收。</p>
+</div>
+<details class="team-detail">
+<summary>團隊如何完成這次更新 <span>展開分工</span>
+</summary>
+<dl>
+<div>
+<dt>美術</dt>
+<dd>製作四向 view、步態、重砲／曲射／尾跡與補給短標籤</dd>
+</div>
+<div>
+<dt>音訊</dt>
+<dd>復用既有事件音並調整支援請求與落地爆音</dd>
+</div>
+<div>
+<dt>戰鬥</dt>
+<dd>建立獨立 arena core、碰撞、敵繞障、技能與資源循環</dd>
+</div>
+<div>
+<dt>QA</dt>
+<dd>先保留舊規則自然局，再以 rAF 和真右鍵驗中段位移、牆／敵阻擋；另抓出 Boss 越界卡死</dd>
+</div>
+<div>
+<dt>整合</dt>
+<dd>修正素材解析度接線、快取與高密度效能，沒有靠減敵數掩飾</dd>
+</div>
+</dl>
+</details>
+</div>
+</details>
+<details class="entry" data-type="research" >
+<summary>
+<span class="index">06</span>
+<span class="entry-heading">
+<span class="meta">Sprint 22、24 <span>／ 研究提案</span>
+</span>
+<strong>先審設計，再決定是否走向立體戰場</strong>
+<span class="version">設計研究，未直接成為正式版本</span>
+</span>
+<span class="toggle" aria-hidden="true">＋</span>
+</summary>
+<div class="entry-body">
+<div class="change-list">
+<h3>這次出擊，有什麼不同</h3>
+<ul>
+<li>提供封面、整備、戰鬥、勝敗、攻擊五拍與擊毀收束的互動設計預覽</li>
+<li>比較桌機／手機、Boss 尺度 A/B、角色通訊與減少動態方案</li>
+<li>完成 3D 美術、玩法、素材與引擎可行性研究，但全面 3D 開發暫緩</li>
+</ul>
+</div>
+<div class="response">
+<h3>回報 → 調整</h3>
+<p>玩家希望立體版先解決模型、動作、VFX 與環境可信度；團隊沒有把概念稿冒充已完成遊戲，改以足鎖、砲口、遮擋與素材分件作為未來 POC 門檻。</p>
+</div>
+<details class="team-detail">
+<summary>團隊如何完成這次更新 <span>展開分工</span>
+</summary>
+<dl>
+<div>
+<dt>美術</dt>
+<dd>製作八頁設計預覽、尺度比較與戰鬥分鏡</dd>
+</div>
+<div>
+<dt>音訊</dt>
+<dd>整理六場景候選與重型擊毀聲音分鏡，未試聽者保持候選標記</dd>
+</div>
+<div>
+<dt>戰鬥</dt>
+<dd>把四向無限與資源循環拆成可驗故事</dd>
+</div>
+<div>
+<dt>QA</dt>
+<dd>檢查手機通訊遮線、互動頁與減少動態，不代替正式戰鬥驗收</dd>
+</div>
+<div>
+<dt>整合</dt>
+<dd>核實研究來源能支持的範圍，決定 3D 暫緩</dd>
+</div>
+</dl>
+</details>
+</div>
+</details>
+<details class="entry" data-type="released" >
+<summary>
+<span class="index">05</span>
+<span class="entry-heading">
+<span class="meta">Sprint 23 <span>／ 版本紀錄</span>
+</span>
+<strong>戰線與無限成為兩個完整入口</strong>
+<span class="version">v27</span>
+</span>
+<span class="toggle" aria-hidden="true">＋</span>
+</summary>
+<div class="entry-body">
+<div class="change-list">
+<h3>這次出擊，有什麼不同</h3>
+<ul>
+<li>封面可選有限戰線或持續模式，兩者都能出擊、結算與重試</li>
+<li>無限模式加入交替重型目標，戰線原玩法保留</li>
+<li>六場景 BGM、角色收束與分級殘骸／爆破接入正式流程</li>
+</ul>
+</div>
+<div class="response">
+<h3>回報 → 調整</h3>
+<p>團隊先保存成熟的 2D 體驗，再探索四向與 3D，避免研究分支拖垮可玩的正式版本。</p>
+</div>
+<details class="team-detail">
+<summary>團隊如何完成這次更新 <span>展開分工</span>
+</summary>
+<dl>
+<div>
+<dt>美術</dt>
+<dd>整合首頁、人物、轉場與擊毀層級</dd>
+</div>
+<div>
+<dt>音訊</dt>
+<dd>接六曲路由與場景淡化</dd>
+</div>
+<div>
+<dt>戰鬥</dt>
+<dd>建立獨立持續模式核心與交替 Boss</dd>
+</div>
+<div>
+<dt>QA</dt>
+<dd>跑正常時間全場與跨模式返回／重試</dd>
+</div>
+<div>
+<dt>整合</dt>
+<dd>將分散成果收成可維護的雙模式保存版</dd>
+</div>
+</dl>
+</details>
+</div>
+</details>
+<details class="entry" data-type="released" >
+<summary>
+<span class="index">04</span>
+<span class="entry-heading">
+<span class="meta">Sprint 14–21 <span>／ 版本紀錄</span>
+</span>
+<strong>戰況、聲音與指揮開始同步</strong>
+<span class="version">v20–v26</span>
+</span>
+<span class="toggle" aria-hidden="true">＋</span>
+</summary>
+<div class="entry-body">
+<div class="change-list">
+<h3>這次出擊，有什麼不同</h3>
+<ul>
+<li>危險預告取得聲音優先權，BGM 短暫壓低，弱射擊不再蓋過關鍵警告</li>
+<li>加入正式封面、可捲整備、蕾娜建議、辛戰況回報與六場景音樂路由</li>
+<li>通訊依真 hazard、來源與反攻窗口有效期顯示，不再補播過期建議</li>
+</ul>
+</div>
+<div class="response">
+<h3>回報 → 調整</h3>
+<p>玩家認為 UI 僵硬、角色不明顯且 Boss 擊毀無感；團隊先修會誤導玩家的通訊時機與遮擋，再把更大的聲畫改造交給下一階段設計。</p>
+</div>
+<details class="team-detail">
+<summary>團隊如何完成這次更新 <span>展開分工</span>
+</summary>
+<dl>
+<div>
+<dt>美術</dt>
+<dd>改善 Boss 尺度、分件、補給牌避讓與手機 HUD 層級</dd>
+</div>
+<div>
+<dt>音訊</dt>
+<dd>完成場景路由、淡化、duck、暫停與清理生命週期</dd>
+</div>
+<div>
+<dt>戰鬥</dt>
+<dd>提供真攻擊來源、窗口與取消狀態給前端</dd>
+</div>
+<div>
+<dt>QA</dt>
+<dd>以完整自然遭遇重現警告被覆蓋和結束後通訊復活</dd>
+</div>
+<div>
+<dt>整合</dt>
+<dd>依優先級接角色訊息，保留靜態立繪、無配音的真實範圍</dd>
+</div>
+</dl>
+</details>
+</div>
+</details>
+<details class="entry" data-type="released" >
+<summary>
+<span class="index">03</span>
+<span class="entry-heading">
+<span class="meta">Sprint 7–13 <span>／ 版本紀錄</span>
+</span>
+<strong>每種武器與敵人開始改變打法</strong>
+<span class="version">v13–v19</span>
+</span>
+<span class="toggle" aria-hidden="true">＋</span>
+</summary>
+<div class="entry-body">
+<div class="change-list">
+<h3>這次出擊，有什麼不同</h3>
+<ul>
+<li>支援砲擊與誘餌有真實落點、命中、誘導與取消效果</li>
+<li>Dinosauria 副砲拆除、Grauwolf 鎖定突進與失衡反擊形成不同節奏</li>
+<li>M1A4、M4A3、XM2 的近擊、停穩與動能，以及 AP／HE 的穿透與清群差異接入實戰</li>
+</ul>
+</div>
+<div class="response">
+<h3>回報 → 調整</h3>
+<p>團隊發現單看通關時間會誤導，改記錄實際出招輪數、拆件與反攻窗口；砲兵機制測得通卻自然局看不到時，直接調整出場節奏，而非加血拖長戰鬥。</p>
+</div>
+<details class="team-detail">
+<summary>團隊如何完成這次更新 <span>展開分工</span>
+</summary>
+<dl>
+<div>
+<dt>美術</dt>
+<dd>把砲座、突進姿態、彈種軌跡與爆區對應真碰撞位置</dd>
+</div>
+<div>
+<dt>音訊</dt>
+<dd>為戰術、近擊與彈種接短音並避免錯播主砲</dd>
+</div>
+<div>
+<dt>戰鬥</dt>
+<dd>建立拆件、追擊、斥候砲兵鏈、三機技能與彈種後果</dd>
+</div>
+<div>
+<dt>QA</dt>
+<dd>用真 pointer／Space、固定短局與完整遭遇分開驗證</dd>
+</div>
+<div>
+<dt>整合</dt>
+<dd>維持既有數值時先修事件資料與可見結果</dd>
+</div>
+</dl>
+</details>
+</div>
+</details>
+<details class="entry" data-type="released" >
+<summary>
+<span class="index">02</span>
+<span class="entry-heading">
+<span class="meta">Sprint 2–6 <span>／ 版本紀錄</span>
+</span>
+<strong>從能玩，走到看得懂選擇</strong>
+<span class="version">v08–v12</span>
+</span>
+<span class="toggle" aria-hidden="true">＋</span>
+</summary>
+<div class="entry-body">
+<div class="change-list">
+<h3>這次出擊，有什麼不同</h3>
+<ul>
+<li>補給顯示真實收益、滿值狀態與取得回饋，加入六類補給素材</li>
+<li>整備頁可比較三機型、彈藥、遭遇與反制資訊</li>
+<li>勝敗戰報呈現目標進度、死因，以及再戰或換裝入口</li>
+</ul>
+</div>
+<div class="response">
+<h3>回報 → 調整</h3>
+<p>玩家肯定音效與補給方向，但指出首頁像文字牆、Boss 攻擊缺乏互動；團隊撤回未開始的戰術投影提案，先修整備決策、攻防提示與結算。</p>
+</div>
+<details class="team-detail">
+<summary>團隊如何完成這次更新 <span>展開分工</span>
+</summary>
+<dl>
+<div>
+<dt>美術</dt>
+<dd>製作補給圖集並修正縮小辨識、殘骸與預覽一致性</dd>
+</div>
+<div>
+<dt>音訊</dt>
+<dd>區分砲口、命中、跳彈、破甲、擊毀與收取事件</dd>
+</div>
+<div>
+<dt>戰鬥</dt>
+<dd>讓 Morpho 攻擊具備預備、射界、安全缺口與反攻窗口</dd>
+</div>
+<div>
+<dt>QA</dt>
+<dd>跨桌機／手機核對真收益、配置資料與按鈕路徑</dd>
+</div>
+<div>
+<dt>整合</dt>
+<dd>依玩家回饋重排 backlog，避免用新增 Boss 數值掩蓋 UI 問題</dd>
+</div>
+</dl>
+</details>
+</div>
+</details>
+<details class="entry" data-type="released" >
+<summary>
+<span class="index">01</span>
+<span class="entry-heading">
+<span class="meta">準備期–Sprint 1 <span>／ 版本紀錄</span>
+</span>
+<strong>第一場真正能打完的作戰</strong>
+<span class="version">早期可玩基準</span>
+</span>
+<span class="toggle" aria-hidden="true">＋</span>
+</summary>
+<div class="entry-body">
+<div class="change-list">
+<h3>這次出擊，有什麼不同</h3>
+<ul>
+<li>補上耐久、致命來源、勝敗、戰報、重試與重新整備</li>
+<li>導入機甲圖集、Dinosauria 分件副砲、爆炸與基礎戰鬥音效</li>
+<li>桌面與手機開始具備完整出擊流程</li>
+</ul>
+</div>
+<div class="response">
+<h3>回報 → 調整</h3>
+<p>早期版本只有功能輪廓，準備畫面曾被誤當成交火證據；團隊改用真實 playing、死亡、重試與暫停流程驗收，並保留素材仍待精修的限制。</p>
+</div>
+<details class="team-detail">
+<summary>團隊如何完成這次更新 <span>展開分工</span>
+</summary>
+<dl>
+<div>
+<dt>美術</dt>
+<dd>統一敵我朝向、透明素材與副砲分件；首批不合格棋盤底圖遭退件後重做</dd>
+</div>
+<div>
+<dt>音訊</dt>
+<dd>建立 WebAudio 播放生命週期、限流與暫停／清理</dd>
+</div>
+<div>
+<dt>戰鬥</dt>
+<dd>加入真實傷害、不可變戰果與完整狀態流程</dd>
+</div>
+<div>
+<dt>QA</dt>
+<dd>以手機自然死亡、重試、換裝與暫停找流程缺口</dd>
+</div>
+<div>
+<dt>整合</dt>
+<dd>把核心、DOM、素材、聲音和結果頁接成第一個垂直切片</dd>
+</div>
+</dl>
+</details>
+</div>
+</details>
+</div>
+</section>
+<aside class="sidebar">
+<section class="command">
+<div class="command-head">
+<img class="portrait" src="assets/characters/lena-reference.png" alt="蕾娜">
+<div>
+<small>OPERATIONS ROOM</small>
+<h2>整備室紀錄</h2>
+</div>
+</div>
+<p>這裡記錄的不只是做了多少功能，更是每次回報之後，我們真的改了什麼。</p>
+<h3>本輪交付 · v33</h3>
+<ul>
+<li>
+<b>看清自己的位置</b>爆炸上方保留主機識別符</li>
+<li>
+<b>越障，重新取得射角</b>有起落的機型差異躍進</li>
+<li>
+<b>讓補給持續有價值</b>僚機攔截與滿火控超頻</li>
+<li>
+<b>拆解軍團的協同</b>斥候、阻電機群與地雷</li>
+</ul>
+<h3>交付的判準</h3>
+<p>實作 → 實機檢查 → 獨立 QA → Review → 正式發布。數值測試與真人體感分開記錄。</p>
+<a class="return" href="./?gameMode=endless">進入四向戰場 →</a>
+</section>
+<p class="note">研究提案不是已實裝功能。<br>早期迭代保留本機開發紀錄；可核對的 GitHub 交付由 v30 開始。</p>
+</aside>
+</main>
+<footer class="bottom">
+<span>86 戰線 · 持續迭代中的非官方遊戲原型</span>
+<span>機型／角色參考原作；互動與數值為遊戲改編。</span>
+</footer>
+<script>
 const entries=[...document.querySelectorAll('.entry')],filters=[...document.querySelectorAll('[data-filter]')],expand=document.querySelector('#expand');
 for(const button of filters)button.addEventListener('click',()=>{for(const b of filters)b.setAttribute('aria-pressed',String(b===button));for(const entry of entries)entry.hidden=button.dataset.filter!=='all'&&entry.dataset.type!==button.dataset.filter;});
 expand.addEventListener('click',()=>{const open=expand.getAttribute('aria-expanded')!=='true';for(const entry of entries)if(!entry.hidden)entry.open=open;expand.setAttribute('aria-expanded',String(open));expand.textContent=open?'收合全部':'展開全部';});
-</script></body></html>
+</script>
+</body>
+</html>
