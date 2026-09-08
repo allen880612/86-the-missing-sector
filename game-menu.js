@@ -55,6 +55,7 @@
       content.append(card);
     });
     if (endless) { const note = document.createElement('p'); note.className = 'command-footnote'; note.textContent = '1 主砲無限彈藥；回收彈箱後，2 機砲 120 發、3 穿甲重砲 18 發，Q 輪替。耗盡自動切回主砲。左鍵施展機型技能。'; content.append(note); }
+    const practice=document.createElement('button');practice.type='button';practice.className='training-start';practice.textContent='進入四向實戰練習 · 五項操作';practice.onpointerenter=()=>uiSound('uiHover');practice.onclick=()=>{clearTimeout(dialogTimer);dialogOpener=null;commandDialog.close();window.dispatchEvent(new Event('training-start'));};content.append(practice);
     openCommand(endless ? '四向戰場 · 移動與反擊' : '戰線突破 · 帶隊推進', content, button);
   });
   document.querySelectorAll('.title-radio, .briefing-radio, .phase-dialogue, .report-dialogue').forEach((panel, index) => {
