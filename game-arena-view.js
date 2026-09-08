@@ -16,7 +16,7 @@ function processArenaEvents(){
  for(const e of s.events){
   if(e.type==='mainShot'){muzzle=.14;shotBoost=e.boost||'none';beep('mainShot',{boost:shotBoost});if(motion&&s.machine==='m4a3')shake=Math.max(shake,1.8);}
   else if(e.type==='shot')beep('shot');
-  else if(e.type==='impact'){metalImpact(e.x,e.y,e.armored);beep(e.ammo==='ap'?'apImpact':'impact',{intensity:.65});}
+  else if(e.type==='impact'){if(e.damage<=0)continue;if(e.shell&&!e.killed&&!hitResponses.some(fx=>fx.id===e.targetId&&fx.age<.09)){hitResponses.push({id:e.targetId,age:0,power:e.ammo==='ap'?1:.8});hitResponses=hitResponses.slice(-12);}metalImpact(e.x,e.y,e.armored);beep(e.ammo==='ap'?'apImpact':'impact',{intensity:.65});}
   else if(e.type==='kill'){const heavy=!['normal','swarm','mine'].includes(e.kind),duration=e.kind==='boss'?3:heavy?1.6:.55;wrecks.push({...e,id:e.sourceId,type:e.kind,recoil:0,walk:0,phase:0,life:duration,duration,burstStage:0});wrecks=wrecks.slice(-30);if(!heavy)blastEffect(e.x,e.y,42);metalImpact(e.x,e.y,false,heavy);}
   else if(e.type==='bossDown'){beep('bossDown');toast('重型目標失能');if(motion)shake=5;}
   else if(e.type==='eliteDown'){beep('eliteDown');if(motion)shake=Math.max(shake,2.4);}
@@ -79,7 +79,8 @@ function drawArenaUnit(entity,index,size,allied=false,dead=false){
  if(rig&&!allied){
   const resolution=entity.type==='boss'?384:['artillery','charger'].includes(entity.type)?192:(devicePixelRatio||1)>1?128:96,pose=dead?'dead'+Math.min(3,Math.floor(clamp(1-entity.life/entity.duration,0,1)*4)):moving?String((Math.floor(walk/(Math.PI*2)*16)%16+16)%16):'idle',frame=arenaEnemyPose(index,resolution,pose);
   ctx.save();if(entity.flash>0&&!dead)ctx.filter='brightness(1.55)';ctx.drawImage(frame.canvas,-frame.width*h/2,-frame.height*h/2,frame.width*h,frame.height*h);ctx.restore();
-  if(!dead)for(const part of rig){if(part.kind!=='barrel')continue;let texture=part.img;for(const level of part.levels)if(level.height>=h*Math.min(devicePixelRatio||1,2))texture=level;ctx.save();ctx.rotate(heading-bodyHeading);ctx.translate((part.px-.5)*w,(part.py-.5)*h+(entity.recoil||0)*h*.055);ctx.drawImage(texture,-part.px*w,-part.py*h,w,h);ctx.restore();}
+  const reaction=!dead&&hitResponses.findLast(fx=>fx.id===entity.id),shot=!dead&&s.hazards.find(h=>h.source===entity.id&&h.geometry==='beam'&&h.kind!=='charge'&&h.fired&&h.life>0),hitKick=reaction?(reaction.age<.025?reaction.age/.025:Math.max(0,1-(reaction.age-.025)/.135)**2)*3*reaction.power:0,shotKick=shot?Math.min(10,h*.04)*clamp(shot.life/.24,0,1)**2:0;
+  if(!dead)for(const part of rig){if(part.kind!=='barrel')continue;let texture=part.img;for(const level of part.levels)if(level.height>=h*Math.min(devicePixelRatio||1,2))texture=level;ctx.save();ctx.rotate(heading-bodyHeading);ctx.translate((part.px-.5)*w,(part.py-.5)*h-(motion?Math.max(hitKick,shotKick):0));if(!motion&&(reaction&&reaction.age<.08||shot))ctx.filter='brightness(1.25)';ctx.drawImage(texture,-part.px*w,-part.py*h,w,h);ctx.restore();}
  }else if(rig){
   if(dead)ctx.filter='saturate(.3) brightness(.6)';else if(entity.flash>0)ctx.filter='brightness(1.55)';
   for(const part of rig){
