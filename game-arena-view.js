@@ -30,7 +30,7 @@ function drawArenaRadar(){
  ctx.beginPath();ctx.rect(x,y,size,size);ctx.clip();ctx.fillStyle='#5b686977';for(const o of s.obstacles||[]){if(o.dead)continue;const p=q(o.x-o.w/2,o.y-o.h/2);ctx.fillRect(p.x,p.y,o.w*k,o.h*k);}
  const corner=q(c.x,c.y);ctx.strokeStyle='#a4bcb780';ctx.lineWidth=1;ctx.strokeRect(corner.x,corner.y,1000*k,1000*k);
  for(const box of s.crates){if(box.used)continue;const p=q(box.x,box.y);ctx.fillStyle='#d2c293';ctx.fillRect(p.x-1.5,p.y-1.5,3,3);}
- for(const e of s.enemies){if(e.dead||e.type!=='boss')continue;const p=q(e.x,e.y);ctx.fillStyle='#d99c81';ctx.beginPath();ctx.arc(p.x,p.y,2.6,0,Math.PI*2);ctx.fill();}
+ for(const e of s.enemies){if(e.dead||e.type!=='boss'||e.model==='phoenix'&&e.phase==='stalk'&&!(e.revealed>0))continue;const p=q(e.x,e.y);ctx.fillStyle='#d99c81';ctx.beginPath();ctx.arc(p.x,p.y,2.6,0,Math.PI*2);ctx.fill();}
  const p=q(s.x,s.y);ctx.fillStyle='#d5f5e6';ctx.beginPath();ctx.arc(p.x,p.y,2.5,0,Math.PI*2);ctx.fill();line(p,{x:p.x+Math.cos(s.angle)*7,y:p.y+Math.sin(s.angle)*7},'#d5f5e6',1);ctx.restore();
 }
 function arenaDirection(angle){return Math.atan2(Math.sin(angle)*H*.00084,Math.cos(angle)*W*.00086);}
@@ -64,20 +64,23 @@ function processArenaEvents(){
    else if(e.type==='wingHostileShot')beep('shot');
    else {ring(x,y,'#b8ded0');beep('braceReady');battleRadio('arena-wing-recovered','火控連線恢復，僚機重新接入。','status','lena',{priority:3,duration:2.2});}
   }
-  else if(e.type==='threatStage'){eventNotice('THREAT LEVEL',`戰場升階 · ${e.stage}`,`重型目標上限 ${e.bossCap}`,2.4);beep('warning');battleRadio('arena-stage-'+e.stage,'敵方增援升級。保留支援，別讓重型目標合圍。','warning','lena',{priority:4,duration:3});}
+  else if(e.type==='threatStage'){if(s.waveKind==='normal')eventNotice('THREAT LEVEL',`戰場升階 · ${e.stage}`,`重型目標上限 ${e.bossCap}`,2.4);beep('warning');battleRadio('arena-stage-'+e.stage,'敵方增援升級。保留支援，別讓重型目標合圍。','warning','lena',{priority:4,duration:3});}
   else if(e.type==='bossPhase'&&e.phase===2){beep('coreOpen');battleRadio('arena-boss-phase2','敵機轉入第二階段。先辨認射界，再找反擊窗口。','warning','shin',{priority:5,duration:2.8});}
   else if(e.type==='weaponMilestone'){ring(s.x,s.y,'#ddcba5');beep('upgrade');eventNotice('FIRE CONTROL',`火控進階 · LV.${e.level}`,`第 ${e.tier} 階武裝`,2.1);battleRadio('arena-milestone-'+e.level,'主砲規格更新。集中火力，打開包圍缺口。','tactic','lena',{priority:3,duration:2.5});}
   else if(e.type==='bossDown'){beep('bossDown');toast(e.model==='phoenix'?'高機動型失能':'重型目標失能');if(motion)shake=5;}
   else if(e.type==='eliteDown'){beep('eliteDown');if(motion)shake=Math.max(shake,2.4);}
   else if(e.type==='coverImpact'){metalImpact(e.x,e.y,true,e.dead);if(e.dead){blastEffect(e.x,e.y,70,false,.55,true);beep('eliteDown');}else beep('impact',{intensity:.35});}
   else if(e.type==='decoyShock'){ring(e.x,e.y,'#bcece6',true);blastEffect(e.x,e.y,90,true,.4,true);beep('decoy');}
+  else if(e.type==='tacticBlocked'){beep('warning');battleRadio('arena-uplink-blocked','支援上行受阻。先離開飛行器干擾範圍。','warning','lena',{priority:5,duration:2.4,valid:()=>s.uplinkBlocked});}
+  else if(e.type==='uplinkChanged'&&!e.blocked){beep('braceReady');}
   else if(e.type==='tacticRecharge'){beep('braceReady');battleRadio('arena-recharge','支援重新就緒。對準包圍缺口呼叫砲擊。','tactic','lena',{priority:2,duration:3});}
   else if(e.type==='supplyChoice'){battleRadio('arena-supply','補給抵達。靠近即可回收。','status','lena',{priority:1,duration:1.8});}
   else if(e.type==='shieldAbsorb'){ring(e.x,e.y,'#9bc6ee');floating('裝甲吸收 '+Math.ceil(e.amount),e.x,e.y,'#b9d7f3');beep('impact',{intensity:.3});}
   else if(e.type==='emp'){ring(e.x,e.y,'#e9c29c',true);blastEffect(e.x,e.y,e.radius,true,.45,true);beep('decoy');}
   else if(e.type==='hurt'&&e.amount>0){burst(e.x??s.x,e.y??s.y,'#b7d7e0',14);beep('hurt');if(motion){shake=4;flash=.14;}if(s.hp>0&&s.hp<s.maxHp*.35)battleRadio('arena-low-hp','耐久下降。先脫離包圍，回收修復補給。','warning','shin',{priority:4,valid:()=>s.hp>0&&s.hp<s.maxHp*.35});}
   else if(e.type==='bossEnter'){const model=e.model||s.enemies.find(v=>v.id===e.sourceId)?.model;eventNotice('HEAVY CONTACT',model==='phoenix'?'高機動型接敵':model==='morpho'?'電磁砲接敵':'重戰車接敵','保持移動 · 射界鎖定後離開',2);beep('bossEnter');}
-  else if(e.type==='phoenixCue'){beep('chargerReady');battleRadio('phoenix-lock','高機動型鎖定了。側向躍進，等鏈刃撲空。','warning','shin',{priority:5,duration:2.8});}
+  else if(e.type==='phoenixStalk'){battleRadio('phoenix-stalk','訊號消失了。保持移動，留意側翼。','warning','shin',{priority:4,duration:1.6,valid:()=>s.enemies.some(enemy=>enemy.id===e.sourceId&&!enemy.dead&&enemy.phase==='stalk'&&!(enemy.revealed>0))});}
+  else if(e.type==='phoenixCue'){beep('chargerReady');battleRadio('phoenix-lock','顯形了！避開突進，還有回身追斬。','warning','shin',{priority:5,duration:2.8});}
   else if(e.type==='phoenixDash'){beep('chargerDash');}
   else if(e.type==='phoenixSlashCue'){beep('chargerReady');battleRadio('phoenix-slash','鏈刃展開，離開正面！','warning','shin',{priority:5,duration:1.8,valid:()=>s.enemies.some(enemy=>enemy.id===e.sourceId&&!enemy.dead&&enemy.phase==='slashWindup')});}
   else if(e.type==='phoenixSlash'){beep('blade',{intensity:.9});}
@@ -100,7 +103,7 @@ function processArenaEvents(){
     }else{ring(s.x,s.y,'#efd7ab');beep('upgrade');battleRadio('arena-overclock','重砲超頻。三秒內集中重砲！','tactic','shin',{priority:3,duration:1.8});}
    }else if(e.kind==='dash')beep('chargerDash');
   }
-  else if(e.type==='waveStart')toast(`第 ${e.wave} 波 · 火控 LV.${s.level}`);
+  else if(e.type==='waveStart'){if(e.kind==='elite'||e.kind==='boss'){eventNotice('REINFORCEMENTS',e.kind==='boss'?'Boss 強襲':'全菁英增援',`第 ${e.wave} 波 · 保留火力，避免合圍`,2.4);beep('warning');}else toast(`第 ${e.wave} 波 · 火控 LV.${s.level}`);}
   else if(e.type==='item'||e.type==='collect'){rewardFeedback(e);const kind=e.kind||e.item;floating(arenaItemName(kind),e.x??s.x,e.y??s.y,'#bcece6');ring(e.x??s.x,e.y??s.y,'#bcece6');beep('upgrade');}
   else if(e.type==='upgrade'){toast(`火控升級 · LV.${s.level}`);beep('upgrade');}
   else if(e.type==='blade'){metalImpact(e.target?.x??e.x,e.target?.y??e.y,false,true);beep('blade');}
@@ -152,10 +155,11 @@ function drawArenaWingRoster(){
 }
 
 function drawArenaUnit(entity,index,size,allied=false,dead=false){
+ if(!dead&&entity.model==='phoenix'&&entity.phase==='stalk'&&!(entity.revealed>0))return;
  const p=point(entity.x,entity.y),img=sprites[index];if(!img)return;
  const sector=entity.model==='phoenix'&&['slashWindup','slash'].includes(entity.phase)?s.hazards.find(h=>h.source===entity.id&&h.geometry==='sector'&&!h.cancelled):null;
  const rig=rigs[index],locked=sector?sector.angle:(entity.type==='charger'||entity.model==='phoenix')&&['windup','dash'].includes(entity.phase)?Math.atan2(entity.lockedY-entity.y,entity.lockedX-entity.x):entity.angle,heading=arenaDirection(locked??-Math.PI/2),bodyHeading=rig?.some(part=>part.kind==='barrel')?arenaDirection(entity.moveAngle??locked??-Math.PI/2):heading,h=size,w=h*img.width/img.height,walk=(entity.walk||0)*1.6,moving=!dead&&(entity.moving??(entity.speed>0&&!entity.charging&&!entity.stagger&&entity.phase!=='windup'));
- ctx.save();ctx.translate(p.x,p.y);ctx.globalAlpha*=dead?clamp(entity.life/.65,0,1):entity.model==='phoenix'&&entity.camo&&!(entity.revealed>0)&&entity.phase==='approach'?.36:1;
+ ctx.save();ctx.translate(p.x,p.y);ctx.globalAlpha*=dead?clamp(entity.life/.65,0,1):1;
  const jump=allied&&entity.main&&s.dash?Math.sin(Math.PI*clamp(s.dash.elapsed/s.dash.duration,0,1)):0,lift=motion?jump*h*.42:0;
  ctx.save();ctx.globalAlpha*=1-jump*.25;ctx.drawImage(arenaShadow,-h*(.5-jump*.06),-h*.275,h*(1-jump*.12),h*.55);ctx.restore();ctx.translate(0,-lift);
  const orientation=allied?Math.PI/2:-Math.PI/2;ctx.rotate(bodyHeading+orientation);
@@ -236,6 +240,7 @@ function drawArenaWingStatus(unit,size){
 }
 
 function drawArenaEnemyState(e,size){
+ if(e.model==='phoenix'&&e.phase==='stalk'&&!(e.revealed>0))return;
  const p=point(e.x,e.y),boss=e.type==='boss',open=e.exposed>0;let pending=null,firing=null;
  if(['jammer','swarm'].includes(e.type)){if(e.flockId!==undefined&&s.enemies.some(v=>!v.dead&&v.flockId===e.flockId&&v.id<e.id))return;const radius=e.jamRadius||180;ctx.save();ctx.globalAlpha=.10;ctx.strokeStyle='#cbbfe3';ctx.lineWidth=1.2;ctx.setLineDash([9,16]);ctx.beginPath();ctx.ellipse(p.x,p.y,radius*W*.00086,radius*H*.00084,0,0,Math.PI*2);ctx.stroke();ctx.restore();return;}
  if(e.type==='mine'&&e.phase==='windup'){const r=97,progress=clamp(1-e.windup/.6,0,1);ctx.save();ctx.globalAlpha=.8;ctx.strokeStyle='#ecaa8f';ctx.lineWidth=1.7;ctx.beginPath();ctx.ellipse(p.x,p.y,r*W*.00086,r*H*.00084,0,0,Math.PI*2);ctx.stroke();ctx.lineWidth=3;ctx.beginPath();ctx.ellipse(p.x,p.y,r*.82*W*.00086,r*.82*H*.00084,0,-Math.PI/2,-Math.PI/2+Math.PI*2*progress);ctx.stroke();ctx.restore();return;}
@@ -256,8 +261,8 @@ function drawArenaEnemyState(e,size){
  }
  ctx.globalCompositeOperation='source-over';
  if(open){
-  const duration=e.type==='stier'?2.4:2,release=clamp(e.exposed/duration,0,1),opening=motion?clamp((duration-e.exposed)/.12,0,1):1,travel=motion?(1-release)*size*.12:0;ctx.globalAlpha=.75*opening;
-  for(const side of [-1,1])for(let i=0;i<3;i++){const x=size*(-.12+i*.07),y=side*size*.10;line({x,y},{x:x-size*.045,y:y+side*size*.05},'#142125',5);line({x,y},{x:x-size*.045,y:y+side*size*.05},'#edcb99',2);}
+  const duration=e.type==='stier'?2.4:e.model==='phoenix'?1.8:2,release=clamp(e.exposed/duration,0,1),opening=motion?clamp((duration-e.exposed)/.12,0,1):1,travel=motion?(1-release)*size*.12:0;ctx.globalAlpha=.75*opening;
+  for(const side of [-1,1])for(let i=0;i<3;i++){const x=size*(-.12+i*.07),y=side*size*.10;line({x,y},{x:x-size*.045,y:y+side*size*.05},'#142125',5);line({x,y},{x:x-size*.045,y:y+side*size*.05},e.model==='phoenix'?'#e9a17a':'#edcb99',2);}
   const steam=smokeArt.whitePuff03;if(steam?.naturalWidth){ctx.globalAlpha=.24*release*opening;for(const side of [-1,1])ctx.drawImage(steam,-size*.2-travel,side*size*.16-size*.09,size*.3+travel,size*.18);}
  }
  if((e.type==='charger'||e.model==='phoenix')&&(e.phase==='dash'||pending&&e.phase==='windup')){
@@ -266,7 +271,8 @@ function drawArenaEnemyState(e,size){
  }
  if(e.model==='phoenix'&&['approach','closing','flank'].includes(e.phase)&&e.moving&&motion&&Number.isFinite(e.moveAngle)){const dust=smokeArt.whitePuff14,walkAngle=arenaDirection(e.moveAngle);ctx.save();ctx.rotate(walkAngle-heading);ctx.globalAlpha=.12;if(dust?.naturalWidth)ctx.drawImage(dust,-size*.56,-size*.1,size*.32,size*.2);ctx.restore();}
  if(e.model==='phoenix'&&['slashWindup','slash'].includes(e.phase)){ctx.globalAlpha=e.phase==='slash'?.75:.35+progress*.3;for(const side of [-1,1])line({x:size*.08,y:side*size*.22},{x:size*.34,y:side*size*.31},'#d8d0bd',e.phase==='slash'?2.5:1.5);}
- if(e.model==='phoenix'&&['windup','dash'].includes(e.phase)){ctx.globalAlpha=e.phase==='dash'?.85:.5;ctx.strokeStyle='#d4d9f3';ctx.lineWidth=e.phase==='dash'?3:1.5;for(const side of [-1,1]){ctx.beginPath();ctx.ellipse(size*.08,side*size*.24,size*.4,size*.22,side*.25,-Math.PI*.55,Math.PI*.45);ctx.stroke();}}
+ if(e.model==='phoenix'&&e.phase==='windup'){const reveal=clamp(1-progress/.5,0,1);ctx.globalAlpha=motion?reveal*.6:.35;for(const side of [-1,1]){line({x:-size*.28,y:side*size*.2},{x:-size*.12,y:side*size*.29},'#a3c4ce',1.5);line({x:size*.08,y:side*size*.31},{x:size*.25,y:side*size*.23},'#d2e2df',1.5);}}
+
  if(e.type==='gunner'){for(const side of [-1,1]){ctx.globalAlpha=e.phase==='windup'?.8:.35;line({x:size*.17,y:side*size*.15},{x:size*.36,y:side*size*.15},'#d4bc98',2);}}
  ctx.restore();
  if(open)label(e.model==='phoenix'?'收刃破綻 · 傷害 ×1.6':'散熱開放 · 傷害 ×1.6',p.x,p.y-size*.5-10,boss?11:10,'#e8d4b1',600);
@@ -334,7 +340,7 @@ function drawArenaScene(){
  for(const fx of supportFx){const p=point(fx.x,fx.y),f=clamp(fx.age/.7,0,1),spread=motion?Math.min(1,.2+f*1.8):1;ctx.save();ctx.globalAlpha=(1-f)*.55;ctx.strokeStyle='#c4e9de';ctx.lineWidth=3*(1-f)+1;ctx.beginPath();ctx.ellipse(p.x,p.y,fx.radius*W*.00086*spread,fx.radius*H*.00084*spread,0,0,Math.PI*2);ctx.stroke();ctx.restore();}
  drawArenaSupplies();
  const base=clamp(H*.115,46,79),objects=[...wrecks.map(e=>({entity:e,dead:true})),...s.enemies.filter(e=>!e.dead).map(entity=>({entity}))];
- for(const {entity:e,dead} of objects.sort((a,b)=>a.entity.y-b.entity.y)){const type=e.type||e.kind,visual=enemyVisual(type,e.model),size=base*(type==='boss'?(e.model==='phoenix'?1.8:e.model==='morpho'?3.5:3.2):type==='stier'?1.5:type==='gunner'?.78:type==='artillery'?1.5:type==='charger'?1.35:type==='shield'?1.65:type==='scout'?.95:type==='mine'?.55:.62);const ep=point(e.x,e.y);if(ep.x< -size||ep.x>W+size||ep.y< -size||ep.y>H+size)continue;if(['jammer','swarm'].includes(type))drawArenaFly(e,dead?1-e.life/e.duration:0);else drawArenaUnit(e,visual.index,size,false,dead);if(!dead&&type!=='normal')drawArenaEnemyState(e,size);if(!dead&&e.flash>0){const p=point(e.x,e.y);rounded(p.x-18,p.y-size*.6,36,2,1,'#172a34');rounded(p.x-18,p.y-size*.6,36*clamp(e.hp/e.max,0,1),2,1,'#dab99f');}}
+ for(const {entity:e,dead} of objects.sort((a,b)=>a.entity.y-b.entity.y)){if(!dead&&e.model==='phoenix'&&e.phase==='stalk'&&!(e.revealed>0))continue;const type=e.type||e.kind,visual=enemyVisual(type,e.model),size=base*(type==='boss'?(e.model==='phoenix'?1.8:e.model==='morpho'?3.5:3.2):type==='stier'?1.5:type==='gunner'?.78:type==='artillery'?1.5:type==='charger'?1.35:type==='shield'?1.65:type==='scout'?.95:type==='mine'?.55:.62);const ep=point(e.x,e.y);if(ep.x< -size||ep.x>W+size||ep.y< -size||ep.y>H+size)continue;if(['jammer','swarm'].includes(type))drawArenaFly(e,dead?1-e.life/e.duration:0);else drawArenaUnit(e,visual.index,size,false,dead);if(!dead&&type!=='normal')drawArenaEnemyState(e,size);if(!dead&&['charger','artillery','shield','stier'].includes(type)){const p=point(e.x,e.y),w=clamp(size*.48,34,52),y=p.y-size*.53;rounded(p.x-w/2-2,y-2,w+4,6,1,'#091620dc');rounded(p.x-w/2,y,w*clamp(e.hp/e.max,0,1),2,1,e.exposed>0?'#e5bb85':'#b6aa8c');for(const side of [-1,1]){line({x:p.x+side*size*.32,y:p.y-size*.2},{x:p.x+side*size*.38,y:p.y-size*.1},'#bdac8466',1.5);line({x:p.x+side*size*.38,y:p.y-size*.1},{x:p.x+side*size*.38,y:p.y+size*.03},'#bdac8466',1.5);}}else if(!dead&&e.flash>0){const p=point(e.x,e.y);rounded(p.x-18,p.y-size*.6,36,2,1,'#172a34');rounded(p.x-18,p.y-size*.6,36*clamp(e.hp/e.max,0,1),2,1,'#dab99f');}}
  if(s.decoy){const p=point(s.decoy.x,s.decoy.y);ctx.save();ctx.globalAlpha=.65;ctx.setLineDash([4,4]);ctx.strokeStyle='#abd9df';ctx.beginPath();ctx.arc(p.x,p.y,18,0,Math.PI*2);ctx.stroke();ctx.restore();}
  drawArenaDash();
  drawArenaSkillSweeps();
