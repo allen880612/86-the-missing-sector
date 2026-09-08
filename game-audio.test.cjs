@@ -57,7 +57,7 @@ test('BGM 以 HTMLAudioElement 串流並接入 Web Audio music bus', () => {
 
 test('六場景各有不同串流曲目，重入同場景不重開，切換使用另一軌淡接', () => {
   const audio = setup(); audio.api.preload(); audio.api.setScene('title'); audio.api.unlock();
-  const expected = ['prologue_theme', 'bgm_sci_fi_theme', 'bgm_space_battle', 'bgm_war_theme', 'bgm_victory', 'bgm_defeat'];
+  const expected = ['prologue_theme', 'bgm_sci_fi_theme', 'bgm_is_it_a_battle', 'bgm_war_theme', 'bgm_victory', 'bgm_defeat'];
   for (const [index, scene] of ['title', 'prep', 'battle', 'boss', 'victory', 'defeat'].entries()) {
     audio.api.setScene(scene);
     assert.ok(audio.audios.some(item => item.src.includes(expected[index])));
@@ -93,7 +93,7 @@ test('首手勢前切場景不播放，靜音與頁面隱藏保存位置，恢�
 
 test('暫停與靜音保存 HTMLAudioElement 位置，stopAll 才回到零', () => {
   const audio = setup(); audio.api.unlock(); audio.api.update({ phase: 'playing', playing: true });
-  const music = audio.audios.find(item => item.src.includes('bgm_space_battle')); music.currentTime = 12.5;
+  const music = audio.audios.find(item => item.src.includes('bgm_is_it_a_battle')); music.currentTime = 12.5;
   audio.api.update({ phase: 'paused', playing: false }); assert.equal(music.currentTime, 12.5);
   audio.api.update({ phase: 'playing', playing: true }); assert.equal(music.playCount, 2);
   audio.api.setMusic(false); audio.api.setMusic(true); assert.equal(music.currentTime, 12.5);

@@ -24,9 +24,9 @@
 <h1>每一次回報，<br>都改變下一次出擊。</h1>
 <p>戰線更新檔案。從第一場能打完的作戰，到四面接敵的包圍戰，留下玩家的回報、團隊的取捨，以及真正進入戰場的改變。</p>
 <div class="status">
-<b>最新部署 / v33</b>
+<b>最新部署 / v34</b>
 <span>更新於 2026.09.08</span>
-<span>09 份階段紀錄</span>
+<span>10 份階段紀錄</span>
 </div>
 </section>
 <main class="layout">
@@ -41,10 +41,33 @@
 </div>
 <div id="entries">
 <details class="entry" data-type="released" open>
+<summary><span class="index">10</span><span class="entry-heading"><span class="meta">S32 <span>／ 最新部署</span></span><strong>新軍團接敵，讓支援與指揮通訊真正進入戰場</strong><span class="version">v34</span></span><span class="toggle" aria-hidden="true">＋</span></summary>
+<div class="entry-body">
+<div class="change-list"><h3>這次出擊，有什麼不同</h3><ul>
+<li>四向戰場的區域支援初始 2 次，每 18 秒回充 1 次、上限 2 次；指定落點後延遲 0.65 秒，以半徑 280 清場並打斷存活敵人。</li>
+<li>新增 Phönix Boss：迷彩與鎖定衝刺，射擊可破除迷彩，撲空後有反擊窗口；新增 Stier 菁英，以短射界扇射與散熱交替作戰。</li>
+<li>Ameise 加入側移機槍掃射班，屬於既有斥候的職能編組；不是把同一批敵人調整出場機率，就稱為新增機型。</li>
+<li>Phönix、Stier 使用兩款新製作的機體素材。整備可用三張預覽卡選 Dinosauria、Phönix 或 Morpho 為首個 Boss，之後三型輪替。</li>
+<li>辛與蕾娜的通訊移到左右下角，人物與文字更清楚；整備建議、畫面進退場、選項互動與提示聲一併整理，減少動態模式保持簡潔。</li>
+<li>更新同一作者的戰鬥 BGM，保留既有音樂與音效控制。音樂聽感仍待玩家回饋。</li>
+</ul></div>
+<div class="response"><h3>回報 → 調整</h3><p>玩家指出支援不足、通訊太淡、介面像閃現，也明確要求新 Boss、菁英與小怪。PO 最初把「沒有新 Boss」誤解成接敵太晚；經玩家澄清後，修正範圍為新增敵型、招式與可辨認素材，而不是只改出場機率。機型名稱參考原作，素材、血量、迷彩反制與攻擊窗口是遊戲改編，不主張精確還原。</p></div>
+<details class="team-detail"><summary>團隊如何完成這次更新 <span>展開分工</span></summary><dl>
+<div><dt>PO</dt><dd>修正需求理解，製作並接入新機體圖集、首敵設定與音訊，統整各項介面契約。</dd></div>
+<div><dt>戰鬥</dt><dd>新增 Phönix、Stier 與 Ameise 掃射職能，實作區域支援回充、範圍壓制與反制窗口。</dd></div>
+<div><dt>美術</dt><dd>實作角落通訊、整備建議、介面進退場及三張首 Boss 預覽卡；以現有風格和素材呈現新增機體。</dd></div>
+<div><dt>音訊</dt><dd>沿用既有音訊 API 整理介面提示與支援時序，更換同作者戰鬥音樂並保留來源紀錄。</dd></div>
+<div><dt>QA</dt><dd>行為、轉場與出場選擇驗證，音樂聽感待玩家回饋；不將受控檢查宣稱為自然戰況全通。</dd></div>
+<div><dt>Review</dt><dd>區分真正新增的 Boss／菁英與既有機型職能，核對改編界線；保留玩家澄清如何改變實作範圍的紀錄。</dd></div>
+</dl></details>
+<a href="assets/legion-v34.md">查看新機體素材與遊戲改編依據 →</a>
+</div></details>
+
+<details class="entry" data-type="released">
 <summary>
 <span class="index">09</span>
 <span class="entry-heading">
-<span class="meta">S30–S31 <span>／ 最新部署</span>
+<span class="meta">S30–S31 <span>／ 版本更新</span>
 </span>
 <strong>在高壓混戰中，讓主機更能辨認也更有脫身手段</strong>
 <span class="version">v33</span>
@@ -522,17 +545,8 @@
 </div>
 </div>
 <p>這裡記錄的不只是做了多少功能，更是每次回報之後，我們真的改了什麼。</p>
-<h3>本輪交付 · v33</h3>
-<ul>
-<li>
-<b>看清自己的位置</b>爆炸上方保留主機識別符</li>
-<li>
-<b>越障，重新取得射角</b>有起落的機型差異躍進</li>
-<li>
-<b>讓補給持續有價值</b>僚機攔截與滿火控超頻</li>
-<li>
-<b>拆解軍團的協同</b>斥候、阻電機群與地雷</li>
-</ul>
+<h3>本輪交付 · v34</h3>
+<ul><li><b>高機動型首次接敵</b>Phönix 鎖定突襲，撲空後集中反擊</li><li><b>看懂新的火線</b>Stier 伏擊扇射與 Ameise 側移掃射</li><li><b>保留突破包圍的手段</b>區域支援打斷，18 秒可靠回充</li><li><b>收到指揮與戰況</b>角落通訊、介面轉場與新戰鬥曲</li></ul>
 <h3>交付的判準</h3>
 <p>實作 → 實機檢查 → 獨立 QA → Review → 正式發布。數值測試與真人體感分開記錄。</p>
 <a class="return" href="./?gameMode=endless">進入四向戰場 →</a>

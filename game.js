@@ -51,7 +51,7 @@ atlas.onload=()=>{
    const item=document.createElement('canvas');item.width=maxX-minX+3;item.height=maxY-minY+3;
    item.getContext('2d').drawImage(layer,x0+minX,y0+minY,maxX-minX+1,maxY-minY+1,1,1,maxX-minX+1,maxY-minY+1);sprites.push(item);
   }
-  rigs=sprites.map((img,index)=>makeRig(img,index));assetReady=true;$('start').disabled=false;$('assetstatus').textContent='作戰裝備就緒';updateUnitPreviews();loadProductionAtlas();loadSpecialists();
+  rigs=sprites.map((img,index)=>makeRig(img,index));assetReady=true;$('start').disabled=false;$('assetstatus').textContent='作戰裝備就緒';updateUnitPreviews();loadProductionAtlas();loadSpecialists();loadSpecialists('assets/legion-v34.png',2,13);
  }catch{$('assetstatus').textContent='機型素材讀取失敗，請重新整理後再試';}
 };
 atlas.onerror=()=>{$('assetstatus').textContent='素材載入失敗，重新整理可再試';};
@@ -155,19 +155,19 @@ function clearNotices(){radioCooldown={};activeRadio=null;window.FrontlineUI?.cl
 function start(retry=false){
  if(!assetReady)return;window.FrontlineAudio?.stopEffects?.();window.FrontlineAudio?.unlock();beep('uiConfirm');window.manualTime=false;
  if(!retry&&!/^\d{1,6}$/.test(params.get('seed')||''))$('seed').value=1+Math.floor(Math.random()*999999);
- if(!retry||!runConfig)runConfig={machine:$('machine').value,encounter:$('encounter').value,ammo:$('ammo').value,tactic:$('tactic').value,mode:$('gameMode')?.value==='endless'?'endless':'frontline',seed:Number($('seed').value)||42};
+ if(!retry||!runConfig)runConfig={machine:$('machine').value,encounter:$('encounter').value,ammo:$('ammo').value,tactic:$('tactic').value,bossModel:$('arenaBoss')?.value||'dinosauria',mode:$('gameMode')?.value==='endless'?'endless':'frontline',seed:Number($('seed').value)||42};
  C=runConfig.mode==='endless'?GameArenaCore:GameCore;let seed=runConfig.seed;s=C.setup(C.create(()=>{seed=(seed*1664525+1013904223)>>>0;return seed/4294967296;}),runConfig);runResult=null;state='launching';phaseTime=phaseDuration=2.6;keys.clear();drag=false;shellBursts=[];supportFx=[];railBursts=[];particles=[];texts=[];rings=[];impacts=[];explosions=[];effectsClock=0;lastExplosion=-1;wrecks=[];traces=[];shake=0;flash=0;danger=0;clearNotices();window.FrontlineUI?.phaseDialogue?.('lena','各機，準備出擊。我會支援你們。');
  $('overlay').hidden=true;$('debrief').hidden=true;$('pause').disabled=false;$('pause').innerHTML='暫停 <kbd>P</kbd>';$('pause').setAttribute('aria-label','暫停遊戲');
- $('transition').hidden=false;$('transition').className='sortie-transition launching';$('phaseLabel').textContent='SPEARHEAD / 出擊準備';$('phaseTitle').textContent=C.machines[s.machine].name;$('phaseDetail').textContent={pursuit:'誘導獵兵突進 · 閃開後反擊 · 後續重戰車',mixed:'突破軍團戰線 · 重戰車與軌道砲',dinosauria:'擊破重戰車 · 側移拆除副砲',morpho:'擊破電磁加速砲 · 避開致命射界',mines:'清理地雷 · 利用連鎖爆破','fire-support':'壓制火力支援 · 擊破斥候與砲兵'}[s.encounter];$('skipPhase').textContent='立即出擊';$('phaseProgress').style.width='0%';$('phaseMachine').src=previewSource(s.machine);$('phaseMachine').alt=C.machines[s.machine].name;const targetModel={arena:'dinosauria',pursuit:'grauwolf',mixed:'dinosauria',dinosauria:'dinosauria',morpho:'morpho',mines:'mine','fire-support':'scorpion'}[s.encounter];$('phaseEnemy').src=previewSource(targetModel);$('phaseEnemy').alt={grauwolf:'Grauwolf',dinosauria:'Dinosauria',morpho:'Morpho',mine:'自走地雷',scorpion:'Skorpion'}[targetModel];$('phaseEnemyName').textContent=$('phaseEnemy').alt;if(s.arena){$('phaseDetail').textContent='四面接敵 · WASD 移動 · 自動主砲 · 左鍵超頻／右鍵躍進';$('phaseEnemyName').textContent='軍團包圍網';$('tip').textContent='靠近補給即可回收';}else $('tip').textContent='走位選補給';canvas.style.cursor=s.arena?'crosshair':'';canvas.focus();hud();
+ $('transition').hidden=false;$('transition').className='sortie-transition launching';$('phaseLabel').textContent='SPEARHEAD / 出擊準備';$('phaseTitle').textContent=C.machines[s.machine].name;$('phaseDetail').textContent={pursuit:'誘導獵兵突進 · 閃開後反擊 · 後續重戰車',mixed:'突破軍團戰線 · 重戰車與軌道砲',dinosauria:'擊破重戰車 · 側移拆除副砲',morpho:'擊破電磁加速砲 · 避開致命射界',mines:'清理地雷 · 利用連鎖爆破','fire-support':'壓制火力支援 · 擊破斥候與砲兵'}[s.encounter];$('skipPhase').textContent='立即出擊';$('phaseProgress').style.width='0%';$('phaseMachine').src=previewSource(s.machine);$('phaseMachine').alt=C.machines[s.machine].name;const targetModel={arena:'dinosauria',pursuit:'grauwolf',mixed:'dinosauria',dinosauria:'dinosauria',morpho:'morpho',mines:'mine','fire-support':'scorpion'}[s.encounter];$('phaseEnemy').src=previewSource(targetModel);$('phaseEnemy').alt={grauwolf:'Grauwolf',dinosauria:'Dinosauria',morpho:'Morpho',mine:'自走地雷',scorpion:'Skorpion'}[targetModel];$('phaseEnemyName').textContent=$('phaseEnemy').alt;if(s.arena){$('phaseEnemy').src=previewSource(runConfig.bossModel);$('phaseEnemy').alt=runConfig.bossModel;$('phaseDetail').textContent='四面接敵 · WASD 移動 · 自動主砲 · 左鍵超頻／右鍵躍進';$('phaseEnemyName').textContent='軍團包圍網';$('tip').textContent='靠近補給即可回收';}else $('tip').textContent='走位選補給';canvas.style.cursor=s.arena?'crosshair':'';canvas.focus();hud();
 }
 function configure(){arenaPoseCache.clear();C=GameCore;state='ready';window.FrontlineAudio?.stopEffects?.();beep('uiSelect');keys.clear();drag=false;shellBursts=[];supportFx=[];railBursts=[];shake=0;particles=[];rings=[];impacts=[];texts=[];wrecks=[];explosions=[];traces=[];flash=0;muzzle=0;danger=0;clearNotices();$('transition').hidden=true;$('debrief').hidden=true;$('overlay').hidden=false;$('overlay').className='overlay';$('loadout').hidden=false;$('result').hidden=true;$('title').innerHTML='出擊<span>整備</span>';$('description').textContent='選擇你的機體，突破軍團戰線。';$('start').innerHTML='開始作戰 <span>→</span>';$('start').disabled=!assetReady;$('pause').disabled=true;$('assetstatus').hidden=false;$('hint').textContent='左右移動 · 自動砲擊 · 走位選補給';loadoutPreview();window.FrontlineUI?.refreshBriefing();preview();hud();}
 $('configure').onclick=configure;
 function previewSource(model){return unitPreviews[model]||'art-direction/86-reference/images/official-'+model+'.jpg';}
 function updateUnitPreviews(){
- const models={grauwolf:4,m1a4:0,m4a3:6,xm2:7,dinosauria:8,morpho:9,ameise:2,eintagsfliege:11,mine:12,scorpion:10};
+ const models={grauwolf:4,m1a4:0,m4a3:6,xm2:7,dinosauria:8,morpho:9,ameise:2,eintagsfliege:11,mine:12,scorpion:10,phoenix:13,stier:14};
  for(const [model,index] of Object.entries(models)){if(unitPreviews[model]||!sprites[index])continue;const source=sprites[index],scale=Math.min(560/source.width,440/source.height),w=source.width*scale,h=source.height*scale,thumb=document.createElement('canvas');thumb.width=640;thumb.height=480;const c=thumb.getContext('2d');c.imageSmoothingQuality='high';const levels=spriteLevels(source),texture=levels.filter(img=>img.height>=h).at(-1)||source;c.drawImage(texture,320-w/2,240-h/2,w,h);unitPreviews[model]=thumb.toDataURL();}
  for(const card of document.querySelectorAll('[data-choice="machine"],[data-choice="encounter"]')){const model=card.dataset.choice==='machine'?card.dataset.value:({pursuit:'grauwolf',mixed:'dinosauria','fire-support':'eintagsfliege',mines:'mine',dinosauria:'dinosauria',morpho:'morpho'})[card.dataset.value],img=card.querySelector('img');if(img&&unitPreviews[model]){img.src=unitPreviews[model];img.alt=model+'戰鬥素材預覽';}}
- loadoutPreview();
+ loadoutPreview();window.FrontlineUI?.refreshBriefing();
 }
 function loadoutPreview(){
  if($('gameMode').value==='endless'&&window.GameArenaCore){arenaLoadoutPreview();return;}
@@ -195,7 +195,7 @@ for(const id of ['machine','encounter','ammo','tactic','gameMode'])$(id).addEven
 function useTactic(){if(state!=='playing')return;s.events=[];if(C.useTactic(s)){processEvents();hud();}}
 $('tactical').onclick=useTactic;
 function pause(){
- if(!['launching','playing','paused'].includes(state))return;
+ if(!['launching','playing','paused'].includes(state))return;beep('uiSelect');
  if(state==='paused'){state=pausedFrom;$('overlay').hidden=true;$('transition').hidden=state!=='launching';canvas.focus();}
  else{pausedFrom=state;state='paused';keys.clear();drag=false;shake=0;flash=0;$('transition').hidden=true;$('overlay').hidden=false;$('loadout').hidden=true;$('overlay').className='overlay paused';$('title').innerHTML='作戰<span>暫停</span>';$('description').textContent='戰線與計時已暫停。';$('start').innerHTML='繼續作戰 <span>→</span>';$('hint').textContent='按 P 或點擊按鈕繼續';$('result').hidden=true;$('assetstatus').hidden=true;}
  $('pause').innerHTML=state==='paused'?'繼續 <kbd>P</kbd>':'暫停 <kbd>P</kbd>';$('pause').setAttribute('aria-label',state==='paused'?'繼續遊戲':'暫停遊戲');
@@ -208,9 +208,9 @@ function showResult(){
  if(!runResult)return;state='over';$('transition').hidden=true;$('debrief').hidden=false;$('debrief').className='debrief '+(runResult.won?'victory':'defeat');
  const r=runResult,model=C.machines[r.machine].name;$('reportMachine').src=previewSource(r.machine);$('reportMachine').alt=model;$('reportModel').textContent=model;$('reportTitle').textContent=r.won?'戰線突破':'作戰中止';$('reportSummary').textContent=r.won?'目標已排除。小隊完成本次作戰。':'主機失去戰鬥能力。調整路線與裝備，再次出擊。';
  $('reportStats').innerHTML=[['作戰時間',formatTime(r.time)],['確認擊破',r.kills],['武裝打斷',r.interrupts],['承受傷害',r.damage]].map(([name,value])=>`<div><span>${name}</span><strong>${value}</strong></div>`).join('');
- $('reportCode').textContent=r.won?'MISSION COMPLETE / 作戰紀錄':'SIGNAL LOST / 作戰紀錄';$('reportObjective').textContent={arena:'無限戰線',pursuit:'獵兵追擊 → 重戰車',mixed:'重戰車 → 電磁加速砲',dinosauria:'Dinosauria · 重戰車',morpho:'Morpho · 電磁加速砲',mines:'地雷連鎖','fire-support':'火力支援壓制'}[r.encounter];$('reportEnemy').src=previewSource({pursuit:r.won?'dinosauria':'grauwolf',mixed:r.bossKills===0?'dinosauria':'morpho',dinosauria:'dinosauria',morpho:'morpho',mines:'mine','fire-support':'scorpion',arena:r.bossKills%2?'morpho':'dinosauria'}[r.encounter]);$('reportEnemy').alt=$('reportObjective').textContent;$('reportObjectiveState').textContent=r.encounter==='mixed'?`${r.bossKills} / 2 擊破`:r.won?'已完成':'未完成';$('reportResources').innerHTML=[['頭目擊破',r.bossKills],['補給取得',r.items],['戰術使用',r.tactics],...(r.mode==='endless'?[['僚機攔截',r.sacrifices||0]]:[])].map(([label,value])=>`<span>${label} <b>${value}</b></span>`).join('');
+ $('reportCode').textContent=r.won?'MISSION COMPLETE / 作戰紀錄':'SIGNAL LOST / 作戰紀錄';$('reportObjective').textContent={arena:'無限戰線',pursuit:'獵兵追擊 → 重戰車',mixed:'重戰車 → 電磁加速砲',dinosauria:'Dinosauria · 重戰車',morpho:'Morpho · 電磁加速砲',mines:'地雷連鎖','fire-support':'火力支援壓制'}[r.encounter];$('reportEnemy').src=previewSource({pursuit:r.won?'dinosauria':'grauwolf',mixed:r.bossKills===0?'dinosauria':'morpho',dinosauria:'dinosauria',morpho:'morpho',mines:'mine','fire-support':'scorpion',arena:s.enemies.find(e=>e.type==='boss'&&!e.dead)?.model||runConfig?.bossModel||'dinosauria'}[r.encounter]);$('reportEnemy').alt=$('reportObjective').textContent;$('reportObjectiveState').textContent=r.encounter==='mixed'?`${r.bossKills} / 2 擊破`:r.won?'已完成':'未完成';$('reportResources').innerHTML=[['頭目擊破',r.bossKills],['補給取得',r.items],['戰術使用',r.tactics],...(r.mode==='endless'?[['僚機攔截',r.sacrifices||0]]:[])].map(([label,value])=>`<span>${label} <b>${value}</b></span>`).join('');
  const cause=r.lastDamage,causes={ram:['衝撞','等敵機鎖定後橫移，讓獵兵撲空。'],contact:['敵機突破','優先清理接近主機的敵機。'],sweep:['電磁加速砲封鎖','提早進入射界間的缺口。'],rail:[cause?.lethal?'致命主砲':'預鎖主砲','砲口鎖定後橫移，讓主機中心離開射界。'],heavy:['重型主砲','砲口鎖定後換線，利用後座窗口反擊。'],secondary:['副砲齊射','站到側面，拆除對應砲座。'],vulcan:['火神砲掃射','鎖定後換線，保留戰術支援。'],mortar:['砲擊爆區','離開落點後別立即折返；優先擊破斥候。'],mine:['自走地雷引爆','提前射爆地雷，利用連鎖清場。']};
- const sourceName={dinosauria:'Dinosauria',morpho:'Morpho',grauwolf:'Grauwolf',charger:'Grauwolf',artillery:'Skorpion',mine:'自走地雷',shield:'Löwe',normal:'Ameise',scout:'Ameise',boss:'Löwe',swarm:'Ameise'}[cause?.model]||'';
+ const sourceName={dinosauria:'Dinosauria',morpho:'Morpho',phoenix:'Phönix',stier:'Stier',gunner:'Ameise 掃射班',grauwolf:'Grauwolf',charger:'Grauwolf',artillery:'Skorpion',mine:'自走地雷',shield:'Löwe',normal:'Ameise',scout:'Ameise',boss:'Löwe',swarm:'Ameise'}[cause?.model]||'';
  if(r.mode==='endless'){causes.mortar=['砲擊爆區','離開落點；掩體擋不住曲射，優先壓制砲兵。'];causes.secondary=['副砲齊射','移出預告射線，或借掩體阻擋直射。'];causes.rail=['電磁主砲','射界鎖定後離開光帶，利用散熱窗口反擊。'];}const info=causes[cause?.kind]||['敵方火力','觀察射界與敵機預備動作，再選擇反擊時機。'];$('reportCause').hidden=r.won;$('reportCause').innerHTML=`<span>致命來源</span><strong>${sourceName?sourceName+' · ':''}${info[0]}</strong><p>${info[1]}</p>`;
  $('retry').textContent=r.mode==='endless'?'重新挑戰':'重試這一場';$('reportFootnote').textContent=r.mode==='endless'?'重新挑戰沿用出擊配置，恢復初始耐久與補給；場內強化重新取得。':'下一場保留出擊機體、初始彈藥與戰術；場內強化重新取得。重試保留本場敵軍安排，敵人仍會依走位反應。';
  const next={mixed:'pursuit',pursuit:'fire-support','fire-support':'mines',mines:'dinosauria',dinosauria:'morpho',morpho:'mixed',arena:'mixed'}[r.encounter];
@@ -312,13 +312,13 @@ const turretImage=new Image();turretImage.onload=()=>{
  const layer=document.createElement('canvas');layer.width=560;layer.height=755;const c=layer.getContext('2d',{willReadFrequently:true});c.drawImage(turretImage,350,250,560,755,0,0,560,755);const pixels=c.getImageData(0,0,560,755),d=pixels.data;
  for(let i=0;i<d.length;i+=4){const excess=d[i+1]-Math.max(d[i],d[i+2]);if(d[i+1]>90&&excess>30){d[i+3]=Math.round(255*(1-clamp((excess-30)/65,0,1)));d[i+1]=Math.min(d[i+1],Math.max(d[i],d[i+2])+10);}}c.putImageData(pixels,0,0);turretSprite=layer;turretLevels=spriteLevels(layer);
 };turretImage.src='assets/dinosauria-turret.png';
-function loadSpecialists(){
+function loadSpecialists(src='assets/legion-specialists.png',columns=3,offset=10){
  const image=new Image();image.onload=()=>{
   const layer=document.createElement('canvas');layer.width=image.width;layer.height=image.height;const c=layer.getContext('2d',{willReadFrequently:true});c.drawImage(image,0,0);const pixels=c.getImageData(0,0,image.width,image.height),d=pixels.data;
   for(let i=0;i<d.length;i+=4){const excess=d[i+1]-Math.max(d[i],d[i+2]);if(d[i+1]>90&&excess>30){d[i+3]=Math.round(255*(1-clamp((excess-30)/65,0,1)));d[i+1]=Math.min(d[i+1],Math.max(d[i],d[i+2])+10);}}c.putImageData(pixels,0,0);
-  const width=Math.floor(image.width/3);for(let k=0;k<3;k++){let left=width,right=0,top=image.height,bottom=0;for(let y=0;y<image.height;y++)for(let x=0;x<width;x++)if(d[(y*image.width+k*width+x)*4+3]>30){left=Math.min(left,x);right=Math.max(right,x);top=Math.min(top,y);bottom=Math.max(bottom,y);}if(right<=left||bottom<=top)continue;const sprite=document.createElement('canvas');sprite.width=right-left+3;sprite.height=bottom-top+3;sprite.getContext('2d').drawImage(layer,k*width+left,top,right-left+1,bottom-top+1,1,1,right-left+1,bottom-top+1);sprites[10+k]=sprite;rigs[10+k]=makeRig(sprite,10+k);if(k===1)jammerLevels=spriteLevels(sprite);}
+  const width=Math.floor(image.width/columns);for(let k=0;k<columns;k++){let left=width,right=0,top=image.height,bottom=0;for(let y=0;y<image.height;y++)for(let x=0;x<width;x++)if(d[(y*image.width+k*width+x)*4+3]>30){left=Math.min(left,x);right=Math.max(right,x);top=Math.min(top,y);bottom=Math.max(bottom,y);}if(right<=left||bottom<=top)continue;const sprite=document.createElement('canvas');sprite.width=right-left+3;sprite.height=bottom-top+3;sprite.getContext('2d').drawImage(layer,k*width+left,top,right-left+1,bottom-top+1,1,1,right-left+1,bottom-top+1);sprites[offset+k]=sprite;rigs[offset+k]=makeRig(sprite,offset+k);if(offset===10&&k===1)jammerLevels=spriteLevels(sprite);}
   updateUnitPreviews();
- };image.src='assets/legion-specialists.png';
+ };image.src=src;
 }
 function spriteLevels(source){
  const levels=[source];while(source.height>96){const smaller=document.createElement('canvas');smaller.width=Math.ceil(source.width/2);smaller.height=Math.ceil(source.height/2);const c=smaller.getContext('2d');c.imageSmoothingQuality='high';c.drawImage(source,0,0,smaller.width,smaller.height);levels.push(smaller);source=smaller;}return levels;
@@ -370,7 +370,7 @@ function makeRig(img,index){
   const c=layer.getContext('2d');c.beginPath();points.forEach(([x,y],i)=>i?c.lineTo(x*img.width,y*img.height):c.moveTo(x*img.width,y*img.height));c.closePath();c.clip();c.drawImage(img,0,0);
   pieces.push({img:layer,levels:null,px,py,kind,side,order});
  }
- const allied=index<2||index===6||index===7,edge=index===12?.44:index>=6?.32:index<2?.36:index===2?.35:.32,rows=index===12?1:index===10?2:index===8?4:index===7||index===9?3:allied||index===4?2:3,start=index===12?.60:index>=6?.25:index<2?.22:.32;
+ const allied=index<2||index===6||index===7,edge=index===12?.44:index>=6?.32:index<2?.36:index===2?.35:.32,rows=index===12?1:index===13||index===14?2:index===10?2:index===8?4:index===7||index===9?3:allied||index===4?2:3,start=index===12?.60:index>=6?.25:index<2?.22:.32;
  for(let row=0;row<rows;row++)for(const side of [-1,1]){
   const top=start+(1-start)*row/rows,bottom=start+(1-start)*(row+1)/rows,l=side<0?0:1-edge,r=side<0?edge:1;
   part([[l,top],[r,top],[r,bottom],[l,bottom]],side<0?edge:1-edge,top+.06,'leg',side,row);
@@ -379,7 +379,7 @@ function makeRig(img,index){
  if(allied){
   const body=pieces[pieces.length-1];body.img.getContext('2d').clearRect(img.width*.43,0,img.width*.15,img.height*.37);
   part([[.43,0],[.58,0],[.58,.37],[.43,.37]],.5,.37,'barrel');
- }else if(index===8||index===9||index===10){const body=pieces[pieces.length-1];body.img.getContext('2d').clearRect(img.width*.44,img.height*.57,img.width*.12,img.height*.43);part([[.44,.57],[.56,.57],[.56,1],[.44,1]],.5,.57,'barrel');}
+ }else if(index===8||index===9||index===10||index===14){const body=pieces[pieces.length-1];body.img.getContext('2d').clearRect(img.width*.44,img.height*.57,img.width*.12,img.height*.43);part([[.44,.57],[.56,.57],[.56,1],[.44,1]],.5,.57,'barrel');}
  for(const piece of pieces)piece.levels=spriteLevels(piece.img);
  return pieces;
 }
@@ -612,6 +612,8 @@ function drawHazards(outlines=false){
 }
 function enemyVisual(type,model){
  const base=Math.max(36,W*.062);
+ if(type==='boss'&&model==='phoenix')return {index:sprites[13]?13:4,size:Math.max(120,W*.17)};
+ if(type==='stier')return {index:sprites[14]?14:10,size:Math.max(70,W*.12)};
  if(type==='boss')return {index:model==='dinosauria'&&sprites[8]?8:model==='morpho'&&sprites[9]?9:5,size:Math.max(model==='morpho'?228:model==='dinosauria'?207:175,W*(model==='morpho'?.32:.27))};
  if(type==='artillery')return {index:sprites[10]?10:3,size:Math.max(60,W*.13)};
  if(type==='jammer')return {index:11,size:Math.max(34,W*.07)};
@@ -773,12 +775,12 @@ function hud(){
  const statusValue=s.arena?clamp(1-s.shot/(C.machines[s.machine].interval*(s.ammo==='ap'?1.25:1)),0,1):s.machine==='m4a3'?clamp(s.brace/.45,0,1):s.machine==='xm2'?clamp((s.momentum||0)/90,0,1):clamp(1-s.blade/2.4,0,1);
  $('machineStatus').innerHTML=state==='playing'?`<svg viewBox="0 0 24 24" fill="none" stroke="#bcdbdf" stroke-width="1.7" aria-hidden="true">${s.machine==='xm2'?'<path d="m15 2-9 12h6l-3 8 10-13h-6z"/>':s.machine==='m4a3'?'<path d="M3 8h18M6 8v8h12V8M12 3v8M4 21l4-5m12 5-4-5"/>':'<path d="m4 4 16 16M20 4 4 20M2 7l5-5m10 20 5-5"/>'}</svg><span class="state-track"><i style="width:${statusValue*100}%"></i></span>`:'';
  $('machineStatus').classList.toggle('skill-ready',statusValue>=1);$('machineStatus').setAttribute('aria-label',s.arena?'主砲裝填':s.machine==='m4a3'?'砲架穩定度':s.machine==='xm2'?'動能蓄積':'近擊準備度');
- $('tactical').disabled=state!=='playing'||!s.charges||s.tacticCooldown>0;$('tactical').innerHTML=`${s.tactic==='decoy'?'放置誘餌':'支援砲擊'}<small>空白鍵 · ${s.charges||0} 次</small>`;
+ $('tactical').disabled=state!=='playing'||!s.charges||s.tacticCooldown>0;$('tactical').innerHTML=`${s.tactic==='decoy'?'放置誘餌':'支援砲擊'}<small>空白鍵 · ${s.charges||0} 次${s.arena&&s.charges<2?' · '+Math.ceil(s.tacticRecharge||0)+'秒回充':''}</small>`;
  $('bossbar').hidden=!boss||!['playing','paused'].includes(state);$('bossnodeleft').hidden=!!s.arena;$('bossnoderight').hidden=!!s.arena;canvas.parentElement.classList.toggle('has-boss',!!boss&&state==='playing');$('game').parentElement.classList.toggle('danger',danger>.25);
  if(boss){
-  $('bossname').textContent=boss.model==='dinosauria'?'DINOSAURIA · 重戰車型':boss.model==='morpho'?'MORPHO · 電磁加速砲型':'LÖWE · 戰車型';$('bosshp').textContent=`${Math.ceil(boss.hp/boss.max*100)}%`;$('bossfill').style.width=`${clamp(boss.hp/boss.max*100,0,100)}%`;
+  $('bossname').textContent=boss.model==='dinosauria'?'DINOSAURIA · 重戰車型':boss.model==='morpho'?'MORPHO · 電磁加速砲型':boss.model==='phoenix'?'PHÖNIX · 高機動型':'LÖWE · 戰車型';$('bosshp').textContent=`${Math.ceil(boss.hp/boss.max*100)}%`;$('bossfill').style.width=`${clamp(boss.hp/boss.max*100,0,100)}%`;
   const pending=s.hazards.filter(h=>h.source===boss.id&&!h.fired).sort((a,b)=>a.delay-b.delay)[0],firing=s.hazards.some(h=>h.source===boss.id&&h.fired&&h.life>0&&(!s.arena||h.geometry==='beam')),permanent=!s.arena&&boss.model==='dinosauria'&&boss.nodes.every(n=>n<=0),phase=s.arena&&boss.exposed>0?'exposed':firing?'firing':boss.exposed>0?'exposed':pending?'charging':'armored';
-  $('bossbar').dataset.phase=phase;$('bossbar').dataset.model=boss.model||'lowe';$('bosshint').textContent=s.arena?(boss.exposed>0?'散熱窗口 · 反擊 ×1.6':firing?'火力釋放':pending?(pending.geometry==='beam'?'射界鎖定 · 移出光帶':'落點鎖定 · 離開圓圈'):'追蹤中'):firing?'砲擊中':boss.exposed>0?(permanent?'核心持續暴露':'核心開放 · '+boss.exposed.toFixed(1)+'s'):pending?({heavy:'主砲鎖定',secondary:'副砲齊射',sweep:'電磁蓄能',rail:'主砲預鎖',vulcan:'火神砲鎖定'}[pending.kind]||'武裝蓄力'):'裝甲閉合';
+  $('bossbar').dataset.phase=phase;$('bossbar').dataset.model=boss.model||'lowe';$('bosshint').textContent=s.arena?(boss.model==='phoenix'?(boss.exposed>0?'突襲撲空 · 反擊 ×1.6':boss.phase==='dash'?'鏈刃突襲':boss.phase==='windup'?'鎖定完成 · 側向躍進':boss.revealed>0?'迷彩破除':'迷彩追蹤 · 持續射擊顯形'):boss.exposed>0?'散熱窗口 · 反擊 ×1.6':firing?'火力釋放':pending?(pending.geometry==='beam'?'射界鎖定 · 移出光帶':'落點鎖定 · 離開圓圈'):'追蹤中'):firing?'砲擊中':boss.exposed>0?(permanent?'核心持續暴露':'核心開放 · '+boss.exposed.toFixed(1)+'s'):pending?({heavy:'主砲鎖定',secondary:'副砲齊射',sweep:'電磁蓄能',rail:'主砲預鎖',vulcan:'火神砲鎖定'}[pending.kind]||'武裝蓄力'):'裝甲閉合';
   const progress=phase==='exposed'?(permanent?1:clamp(boss.exposed/(s.arena?2:boss.model==='morpho'?2.2:1.5),0,1)):pending?clamp(1-pending.delay/pending.maxDelay,0,1):0;
   if($('bossphasefill'))$('bossphasefill').style.width=progress*100+'%';
   for(const [i,id] of ['bossnodeleft','bossnoderight'].entries()){const el=$(id);if(!el)continue;const active=boss.nodes[i]>0,fire=s.hazards.some(h=>h.source===boss.id&&h.fired&&h.life>0&&(h.partIndex===i||h.part===i));const charging=s.hazards.some(h=>h.source===boss.id&&!h.fired&&(h.partIndex===i||h.part===i));el.dataset.active=String(active);el.dataset.firing=String(fire);el.dataset.charging=String(charging);el.setAttribute('aria-label',(i?'右':'左')+'副砲 · '+(active?(fire?'射擊中':charging?'蓄力中':Math.ceil(boss.nodes[i])+'耐久'):'已失能'));}

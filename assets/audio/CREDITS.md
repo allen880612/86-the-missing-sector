@@ -17,6 +17,7 @@ These files are streamed by `game-audio.js`; they are not decoded into Web Audio
 - `reference/prologue_theme_cleyton_kauffman.ogg` — “Prologue Theme”, CleytonKauffman; title route. CC0. Source: https://opengameart.org/content/prologue-theme
 - `bgm_war_theme_spring_spring.ogg` — “War Theme”, Spring Spring; 283.744 s, 44.1 kHz stereo Vorbis. Source: https://opengameart.org/content/war-theme
 - `bgm_space_battle_mintodog.ogg` — “Space Battle”, MintoDog; 88.615 s, 44.1 kHz stereo Vorbis. Source: https://opengameart.org/content/space-battle
+- `bgm_is_it_a_battle_spring_spring.ogg` — “Is it a Battle?”, Julie Damsgaard / Spring Spring / Spring Enterprises; battle track with synth, strings and brass tags; 130.909 s, 44.1 kHz stereo Vorbis. CC0. Source: https://opengameart.org/content/is-it-a-battle. Downloaded 2026-09-08; checked with ffprobe; not auditioned in this environment.
 - `bgm_sci_fi_theme_spring_spring.ogg` — “Unfinished Sci-Fi Theme”, Spring Spring; 214.286 s, 48 kHz stereo Vorbis. Source: https://opengameart.org/content/unfinished-sci-fi-theme
 - `bgm_victory_spring_spring.ogg` — “Victory! Victory! Victory!” (`snd_music_victorytheme.ogg`), Spring Spring; 88.511 s, 44.1 kHz stereo Vorbis. CC0. Source: https://opengameart.org/content/victory-victory-victory
 - `bgm_defeat_no_hope_cleyton_kauffman.ogg` — “No Hope” contemporary version, CleytonKauffman; 13.102 s, 44.1 kHz stereo Vorbis. CC0. Source: https://opengameart.org/content/game-over-theme
