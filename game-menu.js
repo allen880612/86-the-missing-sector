@@ -46,7 +46,7 @@
   ];
   document.querySelectorAll('.guide-open').forEach(button => button.onclick = () => {
     const endless = document.getElementById('gameMode').value === 'endless';
-    const items = endless ? [['移動與自動射擊', 'WASD／方向鍵走位；游標瞄準，主砲自動開火。'], ['短躍進脫離包圍', '右鍵越過敵機與低掩體；高牆需繞行。小雷達顯示道路與補給。'], ['支援打開缺口', 'Space 指定游標落點，範圍壓制與打斷；18 秒回充。']] : [['帶領編隊換線', 'A／D、左右鍵或拖曳移動。保持射角，編隊自動開火。'], ['走位選擇補給', '靠向需要的補給路線，補充裝甲、僚機或火力。'], ['擊破作戰目標', '避開預警射界，等核心開放反擊；結算後推進下一場。']];
+    const items = endless ? [['移動與自動射擊', 'WASD／方向鍵走位；游標瞄準，主砲自動開火。'], ['短躍進脫離包圍', '右鍵越過敵機與低掩體；高牆需繞行。小雷達顯示道路與補給。'], ['支援打開缺口', 'Space 指定游標落點，清出撤退路線；30 秒回充，兩次間隔 6 秒。']] : [['帶領編隊換線', 'A／D、左右鍵或拖曳移動。保持射角，編隊自動開火。'], ['走位選擇補給', '靠向需要的補給路線，補充裝甲、僚機或火力。'], ['擊破作戰目標', '避開預警射界，等核心開放反擊；結算後推進下一場。']];
     const content = document.createElement('div');
     content.className = 'command-diagrams';
     items.forEach(([title, text], i) => {
@@ -105,7 +105,7 @@
       m4a3: 'M4A3，移到安全位置後停穩，讓重砲發揮火力。',
       xm2: 'XM2，保持橫移累積動能，再用強化砲擊反攻。'
     })[machine] || '';
-    document.getElementById('briefingEnemy').textContent = endless ? '每四波敵軍升階。射爆地雷清路、先拆斥候減少協同砲擊；僚機火控受侵時，離開阻電群或呼叫支援。' : ({
+    document.getElementById('briefingEnemy').textContent = endless ? '每三波敵軍升階。射爆地雷清路、先拆斥候減少協同砲擊；僚機火控受侵時，離開阻電群或呼叫支援。' : ({
       mixed: '先拆重戰車副砲；整備後注意電磁砲的安全缺口。',
       dinosauria: '側移拆除副砲；主砲發射後，抓住核心開放的時機。',
       morpho: '提早移進射界缺口；砲擊結束後對準核心。',
@@ -135,9 +135,9 @@
     preview.alt = boss.name + ' · ' + boss.role;
     document.getElementById('enemySecond').hidden = true;
     document.getElementById('enemyStats').innerHTML = `<div><span>攻擊特色</span><strong>${boss.attack}</strong></div><div><span>反擊窗口</span><strong>散熱／撲空 2 秒</strong></div>`;
-    document.getElementById('encounterBrief').innerHTML = '<span class="skill-name">每四波升階</span><strong>第 5／9 波起，最多 2／3 個重型目標同場。</strong><small>半血或升階後連擊改變。Stier 會偏轉射界追擊，躲開後抓散熱窗口。</small>';
+    document.getElementById('encounterBrief').innerHTML = '<span class="skill-name">每三波升階</span><strong>20 秒一波；第 4／10／19／28 波，重型上限 2／3／4／5。</strong><small>半血或升階後連擊改變。Stier 會偏轉射界追擊，躲開後抓散熱窗口。</small>';
     document.getElementById('ammoBrief').innerHTML = {standard:'<strong>環向應變</strong><span>穩定處理各方向目標</span>',ap:'<strong>直線穿透</strong><span>對準同方向密集目標</span>',he:'<strong>爆風清場</strong><span>處理近身包圍</span>'}[document.getElementById('ammo').value];
-    document.getElementById('tacticBrief').innerHTML = '<strong>區域支援 · 初始 2 次／18 秒回充</strong><span>指定落點 · 清場打斷</span>';
+    document.getElementById('tacticBrief').innerHTML = '<strong>區域支援 · 初始 2 次／30 秒回充</strong><span>清路壓制 · Boss 架砲不中斷</span>';
   }
   function clearRadio() {
     clearTimeout(radioTimer);

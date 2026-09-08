@@ -6,7 +6,7 @@
   depot:{name:'補給基地',walls:[['dw1',515,430,430,180],['dw2',1150,430,300,180],['dw3',500,1120,400,200],['dw4',1140,1120,320,200]],covers:[['dc1',270,800,100,55],['dc2',560,800,110,55],['dc3',1040,800,110,55],['dc4',1350,800,100,55]],supplyAnchors:[[800,220],[800,1360],[230,800],[1370,800],[800,800]]},
   rail:{name:'鐵路砲陣地',walls:[['tw1',220,500,300,100],['tw2',800,500,300,100],['tw3',1380,500,300,100],['tw4',250,1100,360,100],['tw5',830,1100,220,100],['tw6',1380,1100,300,100]],covers:[['tc1',510,350,55,140],['tc2',1090,660,55,140],['tc3',570,940,55,140],['tc4',1080,1270,55,140]],supplyAnchors:[[510,800],[1090,800],[570,250],[1080,1350],[800,800]]}
  };
- const WEAPONS={1:{kind:'main',max:null},2:{kind:'autocannon',max:120,damage:11,interval:.1,speed:900,r:4,range:650,left:1},3:{kind:'heavy',max:18,damage:90,interval:.62,speed:720,r:10,range:780,left:4}};
+ const WEAPONS={1:{kind:'main',max:null},2:{kind:'autocannon',max:120,damage:18,interval:.1,speed:900,r:4,range:650,left:2},3:{kind:'heavy',max:18,damage:120,interval:.62,speed:720,r:10,range:780,left:6}};
  const world=s=>s.worldBounds||{left:0,right:1000,top:0,bottom:1000};
  const distanceToSegment=(px,py,x1,y1,x2,y2)=>{
   const dx=x2-x1,dy=y2-y1,length=dx*dx+dy*dy;
@@ -62,7 +62,8 @@
  const aimedEnemy=(s,range,r)=>{const dx=s.aimX-s.x,dy=s.aimY-s.y,d=Math.hypot(dx,dy);if(d<1)return null;const toX=s.x+dx/d*range,toY=s.y+dy/d*range,hit=obstacleHit(s,s.x,s.y,toX,toY,r),limit=hit?hit.t:1;let best=null,bestT=Infinity;for(const e of s.enemies)if(!e.dead){const length=range*range,t=clamp(((e.x-s.x)*(toX-s.x)+(e.y-s.y)*(toY-s.y))/length,0,1);if(t<=limit&&t<bestT&&distanceToSegment(e.x,e.y,s.x,s.y,toX,toY)<=e.r+r){best=e;bestT=t;}}return best;};
  const entryPoint=(s,r,index=0)=>{const wb=world(s),sides=['top','right','bottom','left'],angles=[-Math.PI/2,0,Math.PI/2,Math.PI];for(let edge=0;edge<4;edge++)for(const offset of [0,.18,-.18,.34,-.34]){const side=sides[(index+edge)%4],angle=angles[(index+edge)%4]+offset,x=s.x+Math.cos(angle)*610,y=s.y+Math.sin(angle)*610;if(x-r<wb.left||x+r>wb.right||y-r<wb.top||y+r>wb.bottom)continue;if((s.obstacles||[]).some(o=>!o.dead&&circleRect(x,y,r,o))||s.enemies.some(e=>!e.dead&&Math.hypot(x-e.x,y-e.y)<r+e.r))continue;return {x,y,side};}return null;};
  const insideShape=(x,y,pad,h)=>{if(h.geometry==='circle')return Math.hypot(x-h.x,y-h.y)<=h.r+pad;if(h.geometry==='beam')return distanceToSegment(x,y,h.fromX,h.fromY,h.toX,h.toY)<=h.width/2+pad;if(h.geometry==='sector'){const dx=x-h.x,dy=y-h.y,d=Math.hypot(dx,dy);return d<=h.r+pad&&(d<=pad||Math.abs(Math.atan2(Math.sin(Math.atan2(dy,dx)-h.angle),Math.cos(Math.atan2(dy,dx)-h.angle)))<=h.halfAngle);}return false;};
- const dropKind=(s,quality='ordinary')=>quality==='boss'?'weapon':quality==='elite'?['weapon','charge','overdrive','emp'][s.eliteDropCycle++%4]:['shield','weapon','repair','charge','shield','repair'][s.dropCycle++%6];
+ const dropKind=(s,quality='ordinary')=>quality==='boss'?['heavyCannon','autocannon','overdrive','emp'][s.bossDropCycle++%4]:quality==='elite'?['weapon','autocannon','heavyCannon','emp','overdrive','charge'][s.eliteDropCycle++%6]:['shield','repair','shield','repair','charge','repair'][s.dropCycle++%6];
+ const bossCapForWave=wave=>1+(wave>=4)+(wave>=10)+(wave>=19)+(wave>=28);
  const routeTarget=(s,e,target)=>{
   const obstacles=(s.obstacles||[]).filter(o=>!o.dead),version=obstacles.map(o=>o.id).join('|');
   if(!obstacleHit(s,e.x,e.y,target.x,target.y,e.r+4)){e.route=null;return target;}
@@ -76,7 +77,7 @@
   while(e.route.path.length&&Math.hypot(e.x-e.route.path[0].x,e.y-e.route.path[0].y)<10)e.route.path.shift();
   return e.route.path[0]||target;
  };
- const syncWings=s=>{s.wings=s.wings||[];s.nextWingId=s.nextWingId||1;if(s.over||s.count<=0){s.wings.length=0;s.count=0;return s.wings;}const wanted=Math.max(0,Math.min(3,s.count-1));while(s.wings.length<wanted)s.wings.push({id:s.nextWingId++,hp:36,maxHp:36,jam:0,jamGrace:0,hijacked:0,warned:false,hostileCooldown:0});if(s.wings.length>wanted)s.wings.length=wanted;s.count=1+s.wings.length;return s.wings;};
+ const syncWings=s=>{s.wings=s.wings||[];s.nextWingId=s.nextWingId||1;if(s.over||s.count<=0){s.wings.length=0;s.count=0;return s.wings;}const wanted=Math.max(0,Math.min(3,s.count-1));while(s.wings.length<wanted)s.wings.push({id:s.nextWingId++,hp:60,maxHp:60,jam:0,jamGrace:0,hijacked:0,warned:false,hostileCooldown:0});if(s.wings.length>wanted)s.wings.length=wanted;s.count=1+s.wings.length;return s.wings;};
  const C={
   maps:MAPS,
   weapons:WEAPONS,
@@ -89,9 +90,9 @@
    random,time:0,x:500,y:500,target:500,velocity:0,muzzleY:500,count:3,maxCount:4,
    hp:100,maxHp:100,shield:0,kills:0,bossKills:0,level:0,over:false,won:false,weaponSlot:1,specialAmmo:{autocannon:0,heavy:0},
    enemies:[],bullets:[],gates:[],crates:[],hazards:[],events:[],nextId:1,shot:0,wings:[],nextWingId:1,
-   wingShot:0,spawn:.8,boss:32,bossWarned:false,bossModel:'dinosauria',bossIndex:0,bossSpawnCount:0,bossCap:1,pickupTimer:8,spawnSide:0,wave:1,threatStage:1,nextSpecial:16,specialIndex:0,
-   charges:2,tacticCooldown:0,tacticRecharge:18,invulnerable:0,heavyInvulnerable:0,invulnerabilitySource:null,angle:-Math.PI/2,aimX:500,aimY:200,r:22,
-   burstTime:0,burstCooldown:0,dashCooldown:0,dash:null,wingSaveCooldown:0,normalKills:0,lastEliteDrop:-Infinity,dropCycle:0,eliteDropCycle:0,supplyGroup:0,wingRange:280,jammed:false,
+   wingShot:0,spawn:.8,boss:32,bossWarned:false,bossModel:'dinosauria',bossIndex:0,bossSpawnCount:0,bossCap:1,pickupTimer:8,spawnSide:0,wave:1,threatStage:1,nextSpecial:16,specialIndex:0,nextFlockId:1,mainShotCount:0,wingRecruitTimer:45,
+   charges:2,tacticCooldown:0,tacticRecharge:30,invulnerable:0,heavyInvulnerable:0,invulnerabilitySource:null,angle:-Math.PI/2,aimX:500,aimY:200,r:22,
+   burstTime:0,burstCooldown:0,dashCooldown:0,dash:null,wingSaveCooldown:0,normalKills:0,lastEliteDrop:-Infinity,dropCycle:0,eliteDropCycle:0,bossDropCycle:0,supplyGroup:0,wingRange:280,jammed:false,
    walk:0,scroll:0,brace:0,momentum:0,blade:0,overdrive:0,combo:0,comboTime:0,moving:false,moveAngle:0,
    stats:{recruits:0,sacrifices:0,damage:0,interrupts:0,fullTime:0,bossShots:0,eliteShots:0,peakEnemies:0,items:0,tactics:0,hits:0}
   }),
@@ -100,7 +101,7 @@
    const machine=C.machines[s.machine];
    s.hp=s.maxHp=machine.hp;s.shield=25;s.dash=null;s.dashCooldown=0;s.wingSaveCooldown=0;s.invulnerable=0;s.heavyInvulnerable=0;s.invulnerabilitySource=null;s.mode='endless';s.arena=true;s.encounter='arena';s.wings=[];s.nextWingId=1;syncWings(s);
    s.ammo=['ap','he'].includes(options.ammo)?options.ammo:'standard';s.weaponSlot=1;s.specialAmmo={autocannon:0,heavy:0};
-   s.tactic='support';s.charges=2;s.tacticRecharge=18;s.boss=32;s.nextSpecial=16;s.specialIndex=0;
+   s.tactic='support';s.charges=2;s.tacticRecharge=30;s.boss=32;s.nextSpecial=12;s.specialIndex=0;s.nextFlockId=1;s.mainShotCount=0;s.wingRecruitTimer=45;
    const bosses=['dinosauria','phoenix','morpho'];s.bossModel=bosses.includes(options.bossModel)?options.bossModel:'dinosauria';s.bossIndex=bosses.indexOf(s.bossModel);s.bossSpawnCount=0;s.bossCap=1;s.wave=1;s.threatStage=1;
    const map=MAPS[options.map];s.mapId=map?options.map:null;
    if(map){s.worldBounds={left:0,right:1600,top:0,bottom:1600};s.bounds={left:60,right:1540,top:60,bottom:1540};s.x=s.y=800;s.aimX=800;s.aimY=500;s.supplyAnchors=map.supplyAnchors.map(p=>p.slice());s.obstacles=[...map.walls.map(([id,x,y,w,h])=>({id,kind:'wall',height:'high',x,y,w,h,dead:false})),...map.covers.map(([id,x,y,w,h])=>({id,kind:'cover',height:'low',x,y,w,h,hp:180,max:180,dead:false}))];}
@@ -125,7 +126,7 @@
   spawnEnemy(s,type='normal',x,y){
    const living=s.enemies.filter(e=>!e.dead);if(living.length>=70)return null;
    if(type==='boss'&&s.enemies.filter(e=>e.type==='boss'&&!e.dead).length>=(s.bossCap||1))return null;
-   if(type!=='boss'&&living.filter(e=>e.type!=='boss').length>=67)return null;
+   if(type!=='boss'&&living.filter(e=>e.type!=='boss').length>=65)return null;
    if(['normal','gunner'].includes(type)&&living.filter(e=>['normal','gunner'].includes(e.type)).length>=32)return null;
    const explicit=x!==undefined&&y!==undefined;
    const wb=world(s),ww=wb.right-wb.left,wh=wb.bottom-wb.top;let side,along;
@@ -139,12 +140,12 @@
     side=edge===y-wb.top?'top':edge===wb.right-x?'right':edge===wb.bottom-y?'bottom':'left';
     along=side==='top'||side==='bottom'?x:y;
    }
-   const wave=Math.max(1,s.wave||1),early=wave<5?.75:wave<9?.9:1,scale=1+(wave-1)*.035,specialScale=1+(Math.max(1,s.threatStage||1)-1)*.18,spec={charger:[140,32,128],artillery:[180,36,70],scout:[75,22,115],shield:[260,42,55],jammer:[90,22,95],mine:[55,20,120],swarm:[45,15,135],stier:[220,34,65],gunner:[48,20,90]}[type];
-   const boss=type==='boss',hp=boss?(1800+s.bossKills*350)*specialScale:spec?spec[0]*scale:32*scale;
-   const e={id:s.nextId++,type,x,y,side,hp,max:hp,r:boss?105:spec?spec[1]:18,
-    speed:boss?42:spec?spec[2]:82+Math.min(70,s.time*.3),dead:false,flash:0,walk:0,
+   const wave=Math.max(1,s.wave||1),early=wave<4?.75:wave<7?.9:1,spec={charger:[220,16,32,128],artillery:[300,22,36,70],scout:[100,8,22,115],shield:[650,45,42,55],jammer:[120,9,22,95],mine:[70,6,20,120],swarm:[28,3,12,135],stier:[750,70,34,65],gunner:[55,4,20,90]}[type];
+   const boss=type==='boss',hp=boss?2200:spec?spec[0]+spec[1]*(wave-1):32+3*(wave-1);
+   const e={id:s.nextId++,type,x,y,side,hp,max:hp,r:boss?105:spec?spec[2]:18,
+    speed:boss?42:spec?spec[3]:82+Math.min(70,s.time*.3),dead:false,flash:0,walk:0,
     angle:Math.atan2(s.y-y,s.x-x),cooldown:type==='artillery'?2.4:.5,contactCooldown:0,
-    phase:'approach',windup:0,lockedX:null,lockedY:null,stagger:0,attackCount:0,nodes:[],exposed:0,heat:0,cooling:0,damageScale:early*(1+(wave-1)*.015),jamRadius:type==='jammer'?240:type==='swarm'?170:0,flying:['jammer','swarm'].includes(type)};
+    phase:'approach',windup:0,lockedX:null,lockedY:null,stagger:0,attackCount:0,nodes:[],exposed:0,heat:0,cooling:0,damageScale:early*(1+(wave-1)*.02),jamRadius:type==='jammer'?240:type==='swarm'?170:0,flying:['jammer','swarm'].includes(type)};
    const sides=['top','right','bottom','left'],start=sides.indexOf(side),valid=(cx,cy)=>cx-e.r>=wb.left&&cx+e.r<=wb.right&&cy-e.r>=wb.top&&cy+e.r<=wb.bottom&&
     !(s.obstacles||[]).some(o=>!o.dead&&circleRect(cx,cy,e.r,o))&&Math.hypot(cx-(s.dash?s.dash.toX:s.x),cy-(s.dash?s.dash.toY:s.y))>=e.r+22&&(!s.dash||Math.hypot(cx-s.dash.fromX,cy-s.dash.fromY)>=e.r+22)&&
     !s.enemies.some(other=>!other.dead&&Math.hypot(cx-other.x,cy-other.y)<e.r+other.r);
@@ -167,7 +168,7 @@
     if(s.enemies.filter(e=>e.type==='boss'&&!e.dead).length>=(s.bossCap||1))return null;
     const e=C.spawnEnemy(s,'boss',x,y);
     if(!e)return null;
-    e.model=type;e.hp=e.max=(type==='dinosauria'?2200:type==='phoenix'?1600:2600)*(1+(Math.max(1,s.threatStage||1)-1)*.18);e.r=type==='phoenix'?48:105;e.speed=type==='phoenix'?140:42;e.cooldown=2.6;e.intro=1.2;e.bossStage=1;
+    const wave=Math.max(1,s.wave||1),bossHp={dinosauria:[2800,260],phoenix:[2200,220],morpho:[3200,300]}[type];e.model=type;e.hp=e.max=bossHp[0]+bossHp[1]*(wave-1);e.r=type==='phoenix'?48:105;e.speed=type==='phoenix'?180:42;e.cooldown=2.2;e.intro=1.2;e.bossStage=1;
     if(type==='phoenix'){e.camo=true;e.revealed=0;e.dashLeft=0;}
     const enter=s.events.findLast?.(event=>event.type==='bossEnter');if(enter)enter.model=type;
     return e;
@@ -177,10 +178,10 @@
   collect(s,box){
    if(box.used||s.over)return false;
    const before={hp:s.hp,shield:s.shield,charges:s.charges,count:s.count,level:s.level,overdrive:s.overdrive,ammo:s.ammo,weaponSlot:s.weaponSlot,specialAmmo:{...s.specialAmmo}};
-   if(box.kind==='repair')s.hp=Math.min(s.maxHp,s.hp+12);
+   if(box.kind==='repair'){s.hp=Math.min(s.maxHp,s.hp+12);for(const wing of syncWings(s))wing.hp=Math.min(wing.maxHp,wing.hp+12);}
    else if(box.kind==='shield')s.shield=Math.min(s.maxHp,s.shield+10);
    else if(box.kind==='charge')s.charges=Math.min(2,s.charges+1);
-   else if(box.kind==='recruit'){const count=s.count;if(s.count<s.maxCount){s.count++;syncWings(s);s.stats.recruits++;}else for(const wing of syncWings(s))wing.hp=Math.min(wing.maxHp,wing.hp+18);}
+   else if(box.kind==='recruit'){const count=s.count;if(s.count<s.maxCount){s.count++;syncWings(s);s.stats.recruits++;}else for(const wing of syncWings(s))wing.hp=Math.min(wing.maxHp,wing.hp+24);}
    else if(box.kind==='weapon'){s.level++;if(s.level>=12&&s.level%4===0)s.events.push({type:'weaponMilestone',level:s.level,tier:(s.level-8)/4});}
    else if(box.kind==='ap')s.ammo='ap';
    else if(box.kind==='he')s.ammo='he';
@@ -216,13 +217,13 @@
    const identity={sourceId:e.id,kind:e.type,model:e.model||e.type,x:e.x,y:e.y,angle:e.angle};
    s.events.push({type:'kill',...identity});
    if(e.type==='boss'){
-    s.bossKills++;s.boss=25;s.bossWarned=false;
+    s.bossKills++;s.bossWarned=false;
    s.events.push({type:'bossDown',...identity});
-    {const spot=pickupSpot(s,e.x,e.y);s.crates.push({id:s.nextId++,kind:dropKind(s,'boss'),x:spot.x,y:spot.y,used:false,drop:true,life:30});}
-   }else if(e.type==='normal'||e.type==='gunner'){
+    {const first=pickupSpot(s,e.x-45,e.y),second=pickupSpot(s,e.x+45,e.y);s.crates.push({id:s.nextId++,kind:'weapon',x:first.x,y:first.y,used:false,drop:true,premium:true,life:30},{id:s.nextId++,kind:dropKind(s,'boss'),x:second.x,y:second.y,used:false,drop:true,premium:true,life:30});}
+   }else if(!['charger','artillery','shield','stier'].includes(e.type)){
     if(++s.normalKills%12===0){const spot=pickupSpot(s,e.x,e.y);s.crates.push({id:s.nextId++,kind:dropKind(s),x:spot.x,y:spot.y,used:false,drop:true,life:30});}
    }else{
-    if(s.time-s.lastEliteDrop>=8){s.lastEliteDrop=s.time;const spot=pickupSpot(s,e.x,e.y);s.crates.push({id:s.nextId++,kind:dropKind(s,'elite'),x:spot.x,y:spot.y,used:false,drop:true,life:30});}
+    {const spot=pickupSpot(s,e.x,e.y);s.crates.push({id:s.nextId++,kind:dropKind(s,'elite'),x:spot.x,y:spot.y,used:false,drop:true,premium:true,life:30});}
     s.events.push({type:'eliteDown',...identity});
    }
    s.hazards=s.hazards.filter(h=>(h.source!==e.id&&h.linkedTo!==e.id)||h.fired);
@@ -252,7 +253,7 @@
   useTactic(s,aim){
    if(s.over||!s.charges||s.tacticCooldown>0)return false;
    const x=clamp(aim?.x??aim?.aimX??s.aimX,s.bounds.left,s.bounds.right),y=clamp(aim?.y??aim?.aimY??s.aimY,s.bounds.top,s.bounds.bottom),radius=280;
-   s.charges--;s.tacticCooldown=1;s.stats.tactics++;for(const wing of syncWings(s))if(wing.jam||wing.hijacked||wing.warned){const slot=C.formation(s).find(f=>f.wingId===wing.id)||s;wing.jam=wing.hijacked=0;wing.jamGrace=3;wing.warned=false;s.events.push({type:'wingRecovered',wingId:wing.id,x:slot.x,y:slot.y,reason:'support'});}
+   s.charges--;s.tacticCooldown=6;s.stats.tactics++;for(const wing of syncWings(s))if(wing.jam||wing.hijacked||wing.warned){const slot=C.formation(s).find(f=>f.wingId===wing.id)||s;wing.jam=wing.hijacked=0;wing.jamGrace=3;wing.warned=false;s.events.push({type:'wingRecovered',wingId:wing.id,x:slot.x,y:slot.y,reason:'support'});}
    s.hazards.push({geometry:'circle',x,y,r:radius,fromX:x,fromY:y,toX:x,toY:y,width:0,delay:.65,maxDelay:.65,fired:false,life:.3,source:null,model:'player',kind:'support',damage:0,playerImmune:true});
    s.events.push({type:'tactic',kind:'support',x,y,radius,delay:.65,hits:[]});
    return true;
@@ -281,7 +282,7 @@
    return false;
   },
   insideHazard(s,h){
-   return insideShape(s.x,s.y,0,h);
+   return insideShape(s.x,s.y,0,h)&&!(h.geometry==='sector'&&obstacleHit(s,h.x,h.y,s.x,s.y,0));
   },
   selectWeapon(s,slot){
    slot=Number(slot);if(![1,2,3].includes(slot))return false;
@@ -294,14 +295,15 @@
    if(s.weaponSlot>1){
     const slot=s.weaponSlot,spec=WEAPONS[slot],kind=spec.kind;
     if(!s.specialAmmo[kind]){s.weaponSlot=1;return;}const target=aimedEnemy(s,spec.range,spec.r);if(!target)return;
-    s.bullets.push({x:s.x,y:s.y,px:s.x,py:s.y,vx:dx/length*spec.speed,vy:dy/length*spec.speed,r:spec.r,damage:spec.damage,enemy:false,life:spec.range/spec.speed,shell:true,ammo:kind,left:spec.left,hitIds:[],special:true});s.specialAmmo[kind]--;s.shot=spec.interval;
-    s.events.push({type:'specialShot',slot,kind,x:s.x,y:s.y,angle:s.angle,damage:spec.damage,remaining:s.specialAmmo[kind],targetId:target.id});
+    const level=s.level,damage=kind==='autocannon'?18+1.8*Math.min(12,level)+1.4*Math.max(0,level-12):120+5*Math.min(12,level)+2.5*Math.max(0,level-12),left=spec.left;
+    s.bullets.push({x:s.x,y:s.y,px:s.x,py:s.y,vx:dx/length*spec.speed,vy:dy/length*spec.speed,r:spec.r,damage,enemy:false,life:spec.range/spec.speed,shell:true,ammo:kind,left,hitIds:[],special:true});s.specialAmmo[kind]--;s.shot=spec.interval;
+    s.events.push({type:'specialShot',slot,kind,x:s.x,y:s.y,angle:s.angle,damage,remaining:s.specialAmmo[kind],targetId:target.id});
     if(s.specialAmmo[kind]===0){s.weaponSlot=1;s.events.push({type:'weaponDepleted',slot,kind},{type:'weaponSwitch',slot:1,kind:'main',ammo:null,reason:'depleted'});}return;
    }
    const ammoDamage=s.ammo==='ap'?1.25:s.ammo==='he'?.85:1,level=s.level,milestone=Math.max(0,Math.floor((level-8)/4));
-   const damage=(machine.damage+level*2.5)*ammoDamage;
+   const damage=(machine.damage+2.5*Math.min(12,level)+Math.max(0,level-12))*ammoDamage;s.mainShotCount=(s.mainShotCount||0)+1;
    s.bullets.push({x:s.x,y:s.y,px:s.x,py:s.y,vx:dx/length*machine.projectileSpeed,vy:dy/length*machine.projectileSpeed,r:machine.r,damage,enemy:false,life:1.5,shell:true,ammo:s.ammo,left:s.ammo==='ap'?2:1,hitIds:[]});
-   if(milestone>0){const angle=Math.atan2(dy,dx)+(s.kills%2?-.055:.055),ratio=Math.min(.65,.3+milestone*.05),left=s.ammo==='ap'?(milestone>=3?3:2):milestone>=3?2:1;s.bullets.push({x:s.x,y:s.y,px:s.x,py:s.y,vx:Math.cos(angle)*machine.projectileSpeed,vy:Math.sin(angle)*machine.projectileSpeed,r:Math.max(3,machine.r-1),damage:damage*ratio,enemy:false,life:1.5,shell:true,ammo:s.ammo,left,hitIds:[],milestone});}
+   if(milestone>0&&s.mainShotCount%3===0){const angle=Math.atan2(dy,dx)+(s.kills%2?-.055:.055),ratio=Math.min(.5,.3+milestone*.04),left=s.ammo==='ap'?(milestone>=3?3:2):milestone>=3?2:1;s.bullets.push({x:s.x,y:s.y,px:s.x,py:s.y,vx:Math.cos(angle)*machine.projectileSpeed,vy:Math.sin(angle)*machine.projectileSpeed,r:Math.max(3,machine.r-1),damage:damage*ratio,enemy:false,life:1.5,shell:true,ammo:s.ammo,left,hitIds:[],milestone});}
    s.shot=Math.max(.11,machine.interval-Math.min(12,level)*.008)*(s.ammo==='ap'?1.25:1);
    const event={type:'shoot',machine:s.machine,x:s.x,y:s.y,angle:s.angle,boost:'none',damage,ammo:s.ammo,milestone};
    s.events.push(event,{...event,type:'mainShot'});
@@ -347,7 +349,7 @@
     if(!e.bossStage)e.bossStage=1;if(e.bossStage<2&&(e.hp<=e.max*.5||(s.threatStage||1)>=2)){e.bossStage=2;s.events.push({type:'bossPhase',sourceId:e.id,model:e.model,phase:2});}
     const preparing=new Set(s.hazards.filter(h=>!h.fired&&!h.cancelled&&s.enemies.some(b=>b.id===h.source&&b.type==='boss'&&!b.dead)).map(h=>h.source));
     for(const boss of s.enemies)if(boss.type==='boss'&&!boss.dead&&['closing','flank','windup','slashWindup','dash'].includes(boss.phase))preparing.add(boss.id);
-    const pendingBosses=preparing.size;
+    const pendingBosses=preparing.size,prepareCap=s.wave>=19?3:2;
     if(e.model==='phoenix'){
      e.intro=Math.max(0,(e.intro||0)-dt);
      if(e.phase==='recover'){if(e.exposed<=0){e.phase='approach';e.cooldown=2.2;}return;}
@@ -355,14 +357,14 @@
      const slash=(r,halfAngle,delay,damage,combo=0)=>{const angle=Math.atan2(target.y-e.y,target.x-e.x);e.phase='slashWindup';e.windup=delay;C.addHazard(s,'sector',e,'blade',{x:e.x,y:e.y,r,angle,halfAngle,heavy:true},delay+dt,damage*e.damageScale);s.hazards.at(-1).maxDelay=delay;s.events.push({type:'phoenixSlashCue',x:e.x,y:e.y,radius:r,angle,halfAngle,delay,sourceId:e.id,combo});};
      const flank=mode=>{e.phase='flank';e.attackMode=mode;e.flankTime=1;e.flankSide=e.attackCount%2?1:-1;s.events.push({type:'phoenixFlank',x:e.x,y:e.y,sourceId:e.id,mode,duration:1,direction:e.flankSide});};
      if(e.phase==='closing'){
-      e.closeTime-=dt;const actual=Math.hypot(target.x-e.x,target.y-e.y)||1;if(actual>225)moveCircle(s,e,(target.x-e.x)/actual*e.speed*1.45*dt,(target.y-e.y)/actual*e.speed*1.45*dt,false);
-      if(actual<=230)flank('slash');else if(e.closeTime<=0)flank('dash');return;
+      e.closeTime-=dt;const actual=Math.hypot(target.x-e.x,target.y-e.y)||1,travelX=routed.x-e.x,travelY=routed.y-e.y,travel=Math.hypot(travelX,travelY)||1;if(actual>225)moveCircle(s,e,travelX/travel*e.speed*1.45*dt,travelY/travel*e.speed*1.45*dt,false);
+      if(actual<=230&&!obstacleHit(s,e.x,e.y,target.x,target.y,0))flank('slash');else if(e.closeTime<=0){e.closeTime=1.2;}return;
      }
      if(e.phase==='flank'){
       e.flankTime-=dt;const px=target.x-e.x,py=target.y-e.y,actual=Math.hypot(px,py)||1,radial=actual>300?.55:actual<175?-.55:0,beforeX=e.x,beforeY=e.y;
       moveCircle(s,e,(px/actual*radial-py/actual*.84*e.flankSide)*e.speed*dt,(py/actual*radial+px/actual*.84*e.flankSide)*e.speed*dt,false);
       if(Math.hypot(e.x-beforeX,e.y-beforeY)>.001)e.moveAngle=Math.atan2(e.y-beforeY,e.x-beforeX);
-      if(e.flankTime<=1e-9){if(e.attackMode==='slash')slash(185,Math.PI*5/12,.85,26);else{const distance=clamp(Math.hypot(target.x-e.x,target.y-e.y)+80,180,520),angle=Math.atan2(target.y-e.y,target.x-e.x);e.phase='windup';e.windup=.85;e.lockedX=e.x+Math.cos(angle)*distance;e.lockedY=e.y+Math.sin(angle)*distance;C.addHazard(s,'beam',e,'charge',{x:e.lockedX,y:e.lockedY,width:2*(e.r+16)},.85+dt,0);s.hazards.at(-1).maxDelay=.85;s.events.push({type:'phoenixCue',x:e.x,y:e.y,toX:e.lockedX,toY:e.lockedY,sourceId:e.id,delay:.85});}}return;
+      if(e.flankTime<=1e-9){if(e.attackMode==='slash'){if(obstacleHit(s,e.x,e.y,target.x,target.y,0)){e.phase='closing';e.closeTime=1.2;}else slash(185,Math.PI*5/12,.85,26);}else{const distance=clamp(Math.hypot(target.x-e.x,target.y-e.y)+80,180,520),angle=Math.atan2(target.y-e.y,target.x-e.x);e.phase='windup';e.windup=.85;e.lockedX=e.x+Math.cos(angle)*distance;e.lockedY=e.y+Math.sin(angle)*distance;C.addHazard(s,'beam',e,'charge',{x:e.lockedX,y:e.lockedY,width:2*(e.r+16)},.85+dt,0);s.hazards.at(-1).maxDelay=.85;s.events.push({type:'phoenixCue',x:e.x,y:e.y,toX:e.lockedX,toY:e.lockedY,sourceId:e.id,delay:.85});}}return;
      }
      if(e.phase==='windup'){e.windup-=dt;if(e.windup<=1e-9){e.phase='dash';e.dashLeft=Math.hypot(e.lockedX-e.x,e.lockedY-e.y);s.events.push({type:'phoenixDash',fromX:e.x,fromY:e.y,toX:e.lockedX,toY:e.lockedY,sourceId:e.id});}return;}
      if(e.phase==='dash'){
@@ -374,13 +376,13 @@
      if(e.phase==='slashWindup'){e.windup-=dt;if(e.windup<=1e-9){e.windup=0;e.phase='slash';}return;}
      if(e.phase==='slash'){if(!s.hazards.some(h=>h.source===e.id&&h.geometry==='sector'&&h.fired&&h.life>1e-6))recover();return;}
      e.cooldown-=dt;const actual=Math.hypot(target.x-e.x,target.y-e.y)||1,side=e.attackCount%2?1:-1;
-     const beforeX=e.x,beforeY=e.y,radial=actual>320?.7:actual<180?-.7:.15;moveCircle(s,e,((target.x-e.x)/actual*radial-(target.y-e.y)/actual*.7*side)*e.speed*dt,((target.y-e.y)/actual*radial+(target.x-e.x)/actual*.7*side)*e.speed*dt,false);if(Math.hypot(e.x-beforeX,e.y-beforeY)>.001)e.moveAngle=Math.atan2(e.y-beforeY,e.x-beforeX);
-     if(e.intro<=0&&e.cooldown<=0){if(pendingBosses>=2){e.cooldown=.5;return;}e.attackCount++;e.chainUsed=false;s.stats.bossShots++;const mode=e.attackCount%2?'dash':'slash';if(mode==='slash'&&actual>230){e.phase='closing';e.attackMode=mode;e.closeTime=1.5;}else flank(mode);}return;
+     const beforeX=e.x,beforeY=e.y,travelX=routed.x-e.x,travelY=routed.y-e.y,travel=Math.hypot(travelX,travelY)||1,radial=actual>320?.9:actual<180?-.7:.15;moveCircle(s,e,(travelX/travel*radial-(target.y-e.y)/actual*.7*side)*e.speed*dt,(travelY/travel*radial+(target.x-e.x)/actual*.7*side)*e.speed*dt,false);if(Math.hypot(e.x-beforeX,e.y-beforeY)>.001)e.moveAngle=Math.atan2(e.y-beforeY,e.x-beforeX);
+     if(e.intro<=0&&e.cooldown<=0){if(pendingBosses>=prepareCap){e.cooldown=.5;return;}e.attackCount++;e.chainUsed=false;s.stats.bossShots++;const mode=e.attackCount%2?'dash':'slash';if(mode==='slash'&&actual>230){e.phase='closing';e.attackMode=mode;e.closeTime=1.2;}else flank(mode);}return;
     }
     e.intro=Math.max(0,(e.intro||0)-dt);e.cooldown-=dt;
     const targetDistance=Math.hypot(target.x-e.x,target.y-e.y);
     if(targetDistance>320)moveCircle(s,e,dx/d*e.speed*dt,dy/d*e.speed*dt);
-    if(e.intro<=0&&e.cooldown<=0){if(pendingBosses>=2){e.cooldown=.5;return;}
+    if(e.intro<=0&&e.cooldown<=0){if(pendingBosses>=prepareCap){e.cooldown=.5;return;}
      e.attackCount++;e.cooldown=e.hp<e.max*.45?2.8:3.7;
      if(e.model==='dinosauria'){
       C.addHazard(s,'circle',e,'mortar',{x:target.x,y:target.y,r:150},1.15,40*e.damageScale);
@@ -425,7 +427,7 @@
   },
   step(s,dt,input={}){
    if(s.over)return s;dt=Math.min(.05,Math.max(0,dt));s.events=[];s.time+=dt;
-   const nextWave=1+Math.floor(s.time/30);if(nextWave>s.wave){for(let wave=s.wave+1;wave<=nextWave;wave++){s.level++;s.events.push({type:'waveStart',wave,threatStage:1+Math.floor((wave-1)/4)});if(s.level>=12&&s.level%4===0)s.events.push({type:'weaponMilestone',level:s.level,tier:(s.level-8)/4});}s.wave=nextWave;}const nextThreat=1+Math.floor((s.wave-1)/4);if(nextThreat!==s.threatStage){s.threatStage=nextThreat;s.events.push({type:'threatStage',stage:nextThreat,bossCap:Math.min(3,nextThreat)});}s.bossCap=Math.min(3,s.threatStage);
+   const nextWave=1+Math.floor(s.time/20);if(nextWave>s.wave){for(let wave=s.wave+1;wave<=nextWave;wave++){s.level++;s.events.push({type:'waveStart',wave,threatStage:1+Math.floor((wave-1)/3)});if(s.level>=12&&s.level%4===0)s.events.push({type:'weaponMilestone',level:s.level,tier:(s.level-8)/4});}s.wave=nextWave;}const nextThreat=1+Math.floor((s.wave-1)/3);if(nextThreat!==s.threatStage){s.threatStage=nextThreat;s.events.push({type:'threatStage',stage:nextThreat,bossCap:bossCapForWave(s.wave)});}s.bossCap=bossCapForWave(s.wave);
    const machine=C.machines[s.machine]||C.machines.m1a4;
    let mx=Number(input.moveX)||0,my=Number(input.moveY)||0,magnitude=Math.hypot(mx,my);if(magnitude>1){mx/=magnitude;my/=magnitude;}
    if(magnitude>0)s.moveAngle=Math.atan2(my,mx);const playerX=s.x,playerY=s.y;
@@ -436,7 +438,7 @@
    s.angle=Math.atan2(s.aimY-s.y,s.aimX-s.x);s.target=s.x;s.muzzleY=s.y;
    if(input.weaponSlot!==undefined)C.selectWeapon(s,input.weaponSlot);else if(input.cycleWeapon){const available=[1,s.specialAmmo.autocannon>0&&2,s.specialAmmo.heavy>0&&3].filter(Boolean),index=available.indexOf(s.weaponSlot);C.selectWeapon(s,available[(index+1)%available.length]);}
    s.shot=Math.max(0,s.shot-dt);s.wingShot=Math.max(0,s.wingShot-dt);s.tacticCooldown=Math.max(0,s.tacticCooldown-dt);s.invulnerable=Math.max(0,s.invulnerable-dt);s.heavyInvulnerable=Math.max(0,(s.heavyInvulnerable||0)-dt);if(s.invulnerable<=0&&s.heavyInvulnerable<=0)s.invulnerabilitySource=null;
-   if(s.charges<2){s.tacticRecharge-=dt;if(s.tacticRecharge<=1e-9){s.charges++;s.tacticRecharge=18;s.events.push({type:'tacticRecharge',charges:s.charges,cooldown:18});}}else s.tacticRecharge=18;
+   if(s.charges<2){s.tacticRecharge-=dt;if(s.tacticRecharge<=1e-9){s.charges++;s.tacticRecharge=30;s.events.push({type:'tacticRecharge',charges:s.charges,cooldown:30});}}else s.tacticRecharge=30;
    s.burstTime=Math.max(0,s.burstTime-dt);s.burstCooldown=Math.max(0,s.burstCooldown-dt);s.dashCooldown=Math.max(0,s.dashCooldown-dt);s.wingSaveCooldown=Math.max(0,s.wingSaveCooldown-dt);s.overdrive=Math.max(0,s.overdrive-dt);
    if(s.decoy){s.decoy.life-=dt;if(s.decoy.life<=1e-9){const shock=s.decoy,hits=[];for(const e of s.enemies)if(!e.dead&&Math.hypot(e.x-shock.x,e.y-shock.y)<=180+e.r){const damage=C.damageEnemy(s,e,90);if(damage){e.stagger=Math.max(e.stagger,(e.type==='boss'?.8:1)+dt);hits.push({id:e.id,damage,killed:e.dead});}}s.events.push({type:'decoyShock',x:shock.x,y:shock.y,radius:180,hits});s.decoy=null;}}
    if(input.firing!==false){const before=s.shot,slot=s.weaponSlot;C.fire(s,machine);if(slot===1&&before<=0&&((s.machine==='m4a3'&&s.burstTime>0)||s.overdrive>0)&&s.shot>0)s.shot/=1.7;}
@@ -471,21 +473,22 @@
    for(const h of s.hazards){
     if(h.cancelled)continue;
     if(!h.fired){h.delay-=dt;if(h.delay<=1e-9){h.fired=true;if(h.exposeAfter){const source=s.enemies.find(e=>e.id===h.source&&!e.dead);if(source)source.exposed=2;}
-     if(h.kind==='support'){const hits=[];for(const e of s.enemies)if(!e.dead&&Math.hypot(e.x-h.x,e.y-h.y)<=h.r+e.r){const damage=C.damageEnemy(s,e,e.type==='boss'?300:450);if(damage){let interrupted=false;if(!e.dead){e.stagger=Math.max(e.stagger,1.5);for(const pending of s.hazards)if(!pending.fired&&(pending.source===e.id||pending.linkedTo===e.id))pending.cancelled=interrupted=true;if(e.type==='charger'){e.phase='stagger';e.windup=0;e.lockedX=e.lockedY=null;}else if(e.type==='stier'){e.phase='cooling';e.windup=0;e.cooling=2.4;e.exposed=Math.max(e.exposed,2.4);}else if(e.model==='phoenix'&&['closing','flank','windup','slashWindup','dash'].includes(e.phase)){e.phase='recover';e.windup=0;e.dashLeft=0;e.exposed=Math.max(e.exposed,2);s.events.push({type:'phoenixRecover',x:e.x,y:e.y,sourceId:e.id,exposed:2,interrupted:true});}s.stats.interrupts++;interrupted=true;}hits.push({id:e.id,damage,killed:e.dead,interrupted});}}s.events.push({type:'mortarImpact',kind:h.kind,x:h.x,y:h.y,r:h.r,sourceId:h.source,model:h.model,hits});}
+     if(h.kind==='support'){const hits=[];for(const e of s.enemies)if(!e.dead&&Math.hypot(e.x-h.x,e.y-h.y)<=h.r+e.r){const boss=e.type==='boss',exposed=boss&&e.exposed>0,elite=['charger','artillery','shield','stier'].includes(e.type),damage=C.damageEnemy(s,e,boss?(exposed?300:120):elite?220:450);if(damage){let interrupted=false;if(!e.dead&&(!boss||exposed)){e.stagger=Math.max(e.stagger,.8);for(const pending of s.hazards)if(!pending.fired&&(pending.source===e.id||pending.linkedTo===e.id))pending.cancelled=interrupted=true;if(e.type==='charger'){e.phase='stagger';e.windup=0;e.lockedX=e.lockedY=null;interrupted=true;}else if(e.type==='stier'){e.phase='cooling';e.windup=0;e.cooling=.8;interrupted=true;}else if(e.model==='phoenix'&&['closing','flank','windup','slashWindup','dash'].includes(e.phase)){e.phase='recover';e.windup=0;e.dashLeft=0;s.events.push({type:'phoenixRecover',x:e.x,y:e.y,sourceId:e.id,exposed:e.exposed,interrupted:true});interrupted=true;}else interrupted=true;s.stats.interrupts++;}hits.push({id:e.id,damage,killed:e.dead,interrupted});}}s.events.push({type:'mortarImpact',kind:h.kind,x:h.x,y:h.y,r:h.r,sourceId:h.source,model:h.model,hits});}
      else if(h.geometry==='circle')s.events.push({type:'mortarImpact',kind:h.kind,x:h.x,y:h.y,r:h.r,sourceId:h.source,model:h.model});
      else if(h.geometry==='sector')s.events.push({type:'phoenixSlash',kind:h.kind,x:h.x,y:h.y,radius:h.r,angle:h.angle,halfAngle:h.halfAngle,sourceId:h.source,model:h.model,life:h.life,maxLife:h.maxLife});
      else {if(h.blockedBy){const o=s.obstacles.find(o=>o.id===h.blockedBy);if(o&&!o.dead){const coverDamage=o.kind==='wall'?0:h.heavy?80:h.damage;if(coverDamage){o.hp=Math.max(0,o.hp-coverDamage);o.flash=.12;if(o.hp<=0)o.dead=true;}s.events.push({type:'coverImpact',x:h.toX,y:h.toY,obstacleId:o.id,damage:coverDamage,hp:o.hp,dead:o.dead,kind:h.kind});}}s.events.push({type:'cannon',kind:h.kind,fromX:h.fromX,fromY:h.fromY,toX:h.toX,toY:h.toY,rawToX:h.rawToX,rawToY:h.rawToY,width:h.width,sourceId:h.source,model:h.model,blockedBy:h.blockedBy});}
     }}
     else h.life-=dt;
     if(h.fired&&!h.hitPlayer&&!h.playerImmune&&C.insideHazard(s,h)){h.hitPlayer=true;if(h.damage>0)C.hurt(s,h.damage,false,{kind:h.kind,model:h.model,sourceId:h.source});}
-    if(h.fired&&!h.playerImmune&&h.damage>0){h.hitWingIds=h.hitWingIds||[];for(const f of C.formation(s).slice(1))if(!h.hitWingIds.includes(f.wingId)&&insideShape(f.x,f.y,12,h)){h.hitWingIds.push(f.wingId);C.damageWing(s,f.wingId,h.damage,{kind:h.kind,sourceId:h.source});}}
+    if(h.fired&&!h.playerImmune&&h.damage>0){h.hitWingIds=h.hitWingIds||[];for(const f of C.formation(s).slice(1))if(!h.hitWingIds.includes(f.wingId)&&insideShape(f.x,f.y,12,h)&&!(h.geometry==='sector'&&obstacleHit(s,h.x,h.y,f.x,f.y,0))){h.hitWingIds.push(f.wingId);C.damageWing(s,f.wingId,h.damage*(h.geometry==='beam'?1:.6),{kind:h.kind,sourceId:h.source});}}
    }
    s.hazards=s.hazards.filter(h=>!h.cancelled&&(!h.fired||h.life>0)).slice(-160);
    for(const box of s.crates){if(box.life===undefined)box.life=30;box.life-=dt;if(!box.used&&Math.hypot(box.x-s.x,box.y-s.y)<=56)C.collect(s,box);}
    s.crates=s.crates.filter(box=>!box.used&&box.life>0).slice(-24);
-   s.pickupTimer-=dt;if(s.pickupTimer<=1e-9){s.pickupTimer=18;const pairs=[[[160,180],[290,180]],[[500,820],[630,820]],[[440,590],[570,590]],[[820,520],[820,650]]],anchors=s.supplyAnchors,positions=anchors?[anchors[s.supplyGroup%anchors.length],anchors[(s.supplyGroup+1)%anchors.length]]:pairs[s.supplyGroup%pairs.length],offense=s.mapId?['weapon','charge','overdrive','emp','recruit','autocannon','heavyCannon']:['weapon','charge','ap','he','overdrive','emp','recruit'],kinds=s.supplyGroup===0?['shield','weapon']:[s.supplyGroup%2?'repair':'shield',offense[Math.floor(s.random()*offense.length)]],group=++s.supplyGroup;for(const [i,p] of positions.entries()){const spot=pickupSpot(s,p[0],p[1]);s.crates.push({id:s.nextId++,group,kind:kinds[i],x:spot.x,y:spot.y,used:false,life:18});}s.events.push({type:'supplyChoice',group,crates:s.crates.filter(b=>b.group===group).map(b=>({id:b.id,kind:b.kind,x:b.x,y:b.y}))});}
-   s.spawn-=dt;if(s.spawn<=0){s.spawn=Math.max(.6,1.1-s.time*.0015);const amount=Math.min(3,1+Math.floor((s.wave-1)/2)),order=['scout','artillery','shield','jammer','mine','swarm','charger','stier'],specials=[];if(s.time>=s.nextSpecial){for(let slot=0;slot<Math.min(amount,s.threatStage);slot++){const candidate=order[s.specialIndex++%order.length],baseLimit=candidate==='jammer'?2:candidate==='swarm'?4:3,limit=baseLimit+(s.threatStage>=3?1:0);if(s.enemies.filter(e=>!e.dead&&e.type===candidate).length<limit)specials.push(candidate);}s.nextSpecial+=Math.max(3.5,7-(s.threatStage-1)*.75);}for(let i=0;i<amount;i++){let type=specials[i]||'normal';if(type==='normal'&&s.time>=12&&s.random()<Math.min(.35,.2+(s.threatStage-1)*.02))type='gunner';C.spawnEnemy(s,type);}}
-   const activeBosses=s.enemies.filter(e=>e.type==='boss'&&!e.dead).length;if(activeBosses<s.bossCap){s.boss-=dt;if(s.boss<=5&&!s.bossWarned){s.bossWarned=true;s.bossEntry=s.mapId?entryPoint(s,105,s.bossSpawnCount%4):null;s.events.push({type:'warning',kind:'boss',eta:5,bossCap:s.bossCap,spawnSide:s.bossEntry?.side,sourceX:s.bossEntry?.x,sourceY:s.bossEntry?.y});}if(s.boss<=0){const bosses=['dinosauria','phoenix','morpho'],entry=s.bossEntry,spawned=C.spawnSpecial(s,bosses[(s.bossIndex+s.bossSpawnCount)%bosses.length],entry?.x,entry?.y);if(spawned&&entry){spawned.side=entry.side;const enter=s.events.findLast?.(event=>event.type==='bossEnter');if(enter)enter.spawnSide=entry.side;}if(spawned)s.bossSpawnCount++;s.boss=spawned?25:1;s.bossWarned=false;s.bossEntry=null;}}
+   if(s.count<=1)s.wingRecruitTimer=Math.max(0,(s.wingRecruitTimer??45)-dt);else s.wingRecruitTimer=45;
+   s.pickupTimer-=dt;if(s.pickupTimer<=1e-9){s.pickupTimer=18;const pairs=[[[160,180],[290,180]],[[500,820],[630,820]],[[440,590],[570,590]],[[820,520],[820,650]]],anchors=s.supplyAnchors,positions=anchors?[anchors[s.supplyGroup%anchors.length],anchors[(s.supplyGroup+1)%anchors.length]]:pairs[s.supplyGroup%pairs.length],offense=['charge','overdrive','emp','recruit','ap','he'],survival=s.wingRecruitTimer<=0?'recruit':s.supplyGroup%2?'repair':'shield',attack=s.supplyGroup===0?'autocannon':s.supplyGroup===1?'heavyCannon':offense[Math.floor(s.random()*offense.length)],kinds=[survival,attack],group=++s.supplyGroup;if(survival==='recruit')s.wingRecruitTimer=45;for(const [i,p] of positions.entries()){const spot=pickupSpot(s,p[0],p[1]);s.crates.push({id:s.nextId++,group,kind:kinds[i],x:spot.x,y:spot.y,used:false,life:18});}s.events.push({type:'supplyChoice',group,crates:s.crates.filter(b=>b.group===group).map(b=>({id:b.id,kind:b.kind,x:b.x,y:b.y}))});}
+   s.spawn-=dt;if(s.spawn<=0){s.spawn=Math.max(.6,1.05-s.time*.0012);const amount=Math.min(3,1+Math.floor((s.wave-1)/2)),specialShare=s.time<12?0:Math.min(.55,.2+(s.threatStage-1)*.05),order=['scout','jammer','mine','swarm','scout','jammer','mine','swarm','scout','jammer','mine','swarm','charger','artillery','charger','artillery','charger','shield','stier','shield'];for(let i=0;i<amount;i++){let type=s.random()<specialShare?order[s.specialIndex++%order.length]:(s.time>=12&&s.random()<.28?'gunner':'normal');if(type==='swarm'){const flockId=s.nextFlockId++,size=Math.min(3,amount-i),leader=C.spawnEnemy(s,'swarm'),flock=[];if(leader){leader.flockId=flockId;leader.flockLeader=true;flock.push(leader);for(let member=1;member<size;member++){let fly=null;for(const radius of [44,64,84])for(let step=0;step<12&&!fly;step++){const angle=(step+member*4)*Math.PI/6,x=leader.x+Math.cos(angle)*radius,y=leader.y+Math.sin(angle)*radius;if(flock.every(other=>Math.hypot(x-other.x,y-other.y)<=120)&&!blocked(s,{r:12},x,y,true))fly=C.spawnEnemy(s,'swarm',x,y);}if(fly){fly.flockId=flockId;fly.flockLeader=false;flock.push(fly);}}}i+=size-1;}else C.spawnEnemy(s,type);}}
+   const activeBosses=s.enemies.filter(e=>e.type==='boss'&&!e.dead).length;if(activeBosses<s.bossCap){s.boss-=dt;if(s.boss<=5&&!s.bossWarned){s.bossWarned=true;s.bossEntry=s.mapId?entryPoint(s,105,s.bossSpawnCount%4):null;s.events.push({type:'warning',kind:'boss',eta:5,bossCap:s.bossCap,spawnSide:s.bossEntry?.side,sourceX:s.bossEntry?.x,sourceY:s.bossEntry?.y});}if(s.boss<=0){const bosses=['dinosauria','phoenix','morpho'],entry=s.bossEntry,spawned=C.spawnSpecial(s,bosses[(s.bossIndex+s.bossSpawnCount)%bosses.length],entry?.x,entry?.y);if(spawned&&entry){spawned.side=entry.side;const enter=s.events.findLast?.(event=>event.type==='bossEnter');if(enter)enter.spawnSide=entry.side;}if(spawned)s.bossSpawnCount++;s.boss=spawned?Math.max(8,18-s.threatStage):1;s.bossWarned=false;s.bossEntry=null;}}
    s.enemies=s.enemies.filter(e=>!e.dead);
    s.stats.peakEnemies=Math.max(s.stats.peakEnemies,s.enemies.filter(e=>!e.dead).length);
    return s;
