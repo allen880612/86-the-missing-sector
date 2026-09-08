@@ -1,0 +1,11 @@
+node_modules/
+dist/
+.worktrees/
+.playwright-mcp/
+.env
+.env.*
+!.env.example
+.DS_Store
+*.log
+progress.md
+docs/checkpoints/
