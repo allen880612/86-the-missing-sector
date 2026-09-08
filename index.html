@@ -2,16 +2,16 @@
 <html lang="zh-Hant">
 <head>
 <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><meta name="theme-color" content="#080e18">
-<title>86 戰線 — 戰術試驗場</title><link rel="stylesheet" href="style.css?v=86-34-counterattack"><link rel="icon" href="data:,"></head>
+<title>86 戰線 — 戰術試驗場</title><link rel="stylesheet" href="style.css?v=86-35-escalation"><link rel="icon" href="data:,"></head>
 <body>
 <main class="shell">
-<header><a class="brand" href="./"><span class="brand-mark"><i></i><i></i><i></i></span><span>86 戰線<small>OUTSIDE THE WALL</small></span></a><div class="mode"><i></i> 壁外作戰 <span>／</span> 34</div><div class="actions"><button id="configure">重新配置</button><button id="pause" aria-label="暫停遊戲" disabled>暫停 <kbd>P</kbd></button></div></header>
+<header><a class="brand" href="./"><span class="brand-mark"><i></i><i></i><i></i></span><span>86 戰線<small>OUTSIDE THE WALL</small></span></a><div class="mode"><i></i> 壁外作戰 <span>／</span> 35</div><div class="actions"><button id="configure">重新配置</button><button id="pause" aria-label="暫停遊戲" disabled>暫停 <kbd>P</kbd></button></div></header>
 <section class="arena" aria-label="86 戰線遊戲區">
 <section id="titleScreen" class="title-screen" aria-labelledby="titleScreenHeading">
 <div class="title-art" aria-hidden="true"></div><div class="title-shade" aria-hidden="true"></div>
 <div class="title-copy"><p class="title-kicker">第八十六區 · 矛頭戰隊</p><h1 id="titleScreenHeading"><span>86</span><b>戰線</b></h1><p class="title-subtitle">牆外，仍有人在戰鬥。</p><div class="title-rule" aria-hidden="true"></div><div class="mode-select" aria-label="遊戲模式">
 <button type="button" class="mode-card" data-choice="gameMode" data-value="frontline"><small>2D / 作戰記錄</small><strong>戰線突破</strong><span>選擇遭遇，完成一場作戰</span></button>
-<button type="button" class="mode-card" data-choice="gameMode" data-value="endless"><small>2D / 四向作戰</small><strong>無限戰線</strong><span>四面接敵 · Boss 交替 · 直到主機失能</span></button>
+<button type="button" class="mode-card" data-choice="gameMode" data-value="endless"><small>2D / 四向作戰</small><strong>無限戰線</strong><span>每四波升階 · 多重 Boss · 直到主機失能</span></button>
 <article class="mode-card future-mode" aria-label="3D／2.5D 概念驗證暫緩"><small>3D / 2.5D</small><strong>立體戰場</strong><span>POC · 暫緩</span></article><input type="hidden" id="gameMode" value="frontline"></div>
 <div class="title-actions"><button id="enterGame" class="enter-game" type="button">接通指揮頻道 <span aria-hidden="true">→</span></button></div><small id="titleControl" class="title-control">左右移動 · 自動射擊 · 走位選補給</small></div>
 <aside class="title-radio" aria-label="蕾娜的待命通訊"><div class="radio-portrait"><img src="assets/characters/lena-reference.png" alt="蕾娜"></div><div><strong>蕾娜</strong><small>PARA-RAID / 保持連線</small><p>各機，準備出擊。<br>我會支援你們。</p></div></aside>
@@ -22,14 +22,16 @@
 <div class="vignette"></div>
 <div class="hud"><div class="squad-stat"><span>作戰小隊</span><strong id="count">02<small>／04</small></strong><div id="shield" class="shield">護盾 0</div></div><div class="hud-center"><span id="threat">戰線推進中</span><time id="time">00:00</time><div class="threat-track" role="progressbar" aria-label="作戰目標完成度" aria-valuemin="0" aria-valuemax="100"><i id="threatbar"></i></div><div id="objectiveRoute" class="objective-route" hidden><span id="routeDino"><img id="routeDinoImage" alt="重戰車"></span><i></i><span id="routeMorpho"><img id="routeMorphoImage" alt="電磁加速砲"></span></div></div><div class="kills"><span>確認擊破</span><strong id="kills">000</strong><small id="bosskills">BOSS 00</small></div></div>
 <div id="bossbar" class="bossbar" data-phase="armored" hidden>
+<small id="bossWave" class="boss-wave" hidden></small>
 <div class="boss-caption"><span><i></i> <b id="bossname">LÖWE · 戰車型指揮機</b></span><strong id="bosshp">100%</strong></div>
 <div class="boss-track"><i id="bossfill"></i><span></span><span></span></div>
 <div class="boss-systems">
 <div id="bossnodeleft" class="boss-node" data-active="true" data-firing="false" role="img" aria-label="左副砲在線"><svg viewBox="0 0 28 24" fill="none" aria-hidden="true"><path class="node-body" d="M11 2h6v10h4l3 8H4l3-8h4V2Z"/><path class="node-detail" d="M8 16h12M14 4v9M8 23h12"/><path class="node-break" d="m5 3 18 18M19 3 4 19"/></svg><span>左砲</span></div>
+<div id="bossContacts" class="boss-contacts" hidden></div>
 <div class="boss-phase"><small id="bosshint">裝甲閉合</small><span class="boss-phase-track" aria-hidden="true"><i id="bossphasefill"></i></span></div>
 <div id="bossnoderight" class="boss-node" data-active="true" data-firing="false" role="img" aria-label="右副砲在線"><svg viewBox="0 0 28 24" fill="none" aria-hidden="true"><path class="node-body" d="M11 2h6v10h4l3 8H4l3-8h4V2Z"/><path class="node-detail" d="M8 16h12M14 4v9M8 23h12"/><path class="node-break" d="m5 3 18 18M19 3 4 19"/></svg><span>右砲</span></div>
 </div></div>
-<div id="arenaAbilities" class="arena-abilities" hidden><button id="arenaBurst" type="button" aria-label="左鍵火控超頻，持續3秒，冷卻9秒"><kbd>左鍵</kbd><b>火控超頻</b><span>就緒</span></button><button id="arenaDash" type="button" aria-label="右鍵越障躍進，冷卻3秒"><kbd>右鍵</kbd><b>越障躍進</b><span>就緒</span></button></div>
+<div id="arenaAbilities" class="arena-abilities" hidden><button id="arenaBurst" type="button" aria-label="左鍵機型技能"><kbd>左鍵</kbd><b>機型技能</b><span>就緒</span></button><button id="arenaDash" type="button" aria-label="右鍵越障躍進，冷卻3秒"><kbd>右鍵</kbd><b>越障躍進</b><span>就緒</span></button></div>
 <div id="machineStatus" class="machine-status"></div><div id="toast" class="toast" role="status"></div><div id="warning" class="warning" role="status"></div><div id="combo" class="combo"></div>
 <div class="bottom-hud"><div class="weapon"><div class="weapon-icon"><svg viewBox="0 0 64 28" fill="none" aria-hidden="true"><path d="M5 9h31l5-5h8v5h11v7H35l-5 8h-9l2-8H8z" fill="currentColor"/><path d="M37 19h18M12 4h15" stroke="currentColor" stroke-width="2"/></svg></div><div><small id="weaponlevel">火力 LV.0</small><b id="weaponname">57mm 滑膛砲</b></div><div class="weapon-dots" id="dots"></div></div><div class="boost" id="boost" hidden>超載火力 <strong id="boosttime">8</strong><small>秒</small></div><button id="tactical" class="tactical">支援砲擊 <small>空白鍵 · 1 次</small></button><div class="bottom-tip" id="tip">走位選補給</div></div>
 <aside id="combatRadio" class="combat-radio" data-character="shin" role="status" aria-live="polite" aria-atomic="true" hidden><div class="radio-portrait"><img id="radioPortrait" src="assets/characters/shin-reference.png" alt="辛"></div><div class="radio-copy"><div class="radio-meta"><strong id="radioName">辛</strong><small id="radioChannel">作戰通訊</small></div><p id="radioText"></p></div></aside>
@@ -138,4 +140,4 @@
 </div><button id="start" class="start" disabled>開始作戰 <span>→</span></button><div class="hint" id="hint">左右移動 · 自動砲擊 · 走位選補給</div><small id="assetstatus" class="asset-status">正在準備作戰裝備…</small></div></div>
 </section>
 <footer><span id="footerControls"><kbd>A</kbd><kbd>D</kbd> / <kbd>←</kbd><kbd>→</kbd> 左右移動 <em>或按住畫面拖曳</em></span><div class="audio-levels" aria-label="遊戲設定"><button id="motion" aria-label="減少畫面震動">震動 開</button><button id="sound" aria-label="切換音效" aria-pressed="true">音效 開</button><button id="music" aria-label="切換音樂" aria-pressed="true">音樂 開</button><label>音樂 <input id="musicVolume" type="range" min="0" max="100" value="58" aria-label="背景音樂音量"></label><label>音效 <input id="sfxVolume" type="range" min="0" max="100" value="85" aria-label="音效音量"></label><a href="changelog.html" target="_blank" rel="noopener">更新日誌</a><a href="art-direction/86-reference/design-overview.html">設計資料</a></div></footer>
-</main><script src="assets/units-data.js?v=86-34-counterattack"></script><script src="game-core.js?v=86-34-counterattack"></script><script src="game-arena-core.js?v=86-34-counterattack"></script><script src="game-audio.js?v=86-34-counterattack"></script><script src="game-menu.js?v=86-34-counterattack"></script><script src="game-arena-view.js?v=86-34-counterattack"></script><script src="game.js?v=86-34-counterattack"></script></body></html>
+</main><script src="assets/units-data.js?v=86-35-escalation"></script><script src="game-core.js?v=86-35-escalation"></script><script src="game-arena-core.js?v=86-35-escalation"></script><script src="game-audio.js?v=86-35-escalation"></script><script src="game-menu.js?v=86-35-escalation"></script><script src="game-arena-view.js?v=86-35-escalation"></script><script src="game.js?v=86-35-escalation"></script></body></html>

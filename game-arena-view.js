@@ -8,7 +8,8 @@ function arenaLoadoutPreview(){
  const machine=$('machine').value,m=GameArenaCore.machines[machine],ammo=$('ammo').value,damage=m.damage*(ammo==='ap'?1.25:ammo==='he'?.85:1),interval=m.interval*(ammo==='ap'?1.25:1),n=v=>Number(v.toFixed(2));
  $('allyPreview').src=previewSource(machine);$('allyPreview').alt=m.name;$('allyModel').textContent=machine.toUpperCase();$('allyRole').textContent=m.name+' · 四向作戰';
  $('allyStats').innerHTML='<small class="stats-context">無限戰場 · 開局 LV.0</small>'+[['耐久',m.hp,'HP',m.hp/160],['移速',m.speed,'m/s',m.speed/360],['主砲直擊',n(damage),'／發',damage/55],['裝填',n(interval),'秒',.18/interval]].map(([label,value,unit,ratio])=>`<div class="dossier-stat"><span>${label==='移速'?'移動速度':label}</span><strong>${value}<small>${unit==='m/s'?'單位／秒':unit}</small></strong><i><em style="width:${clamp(ratio,0,1)*100}%"></em></i></div>`).join('');
- $('machineBrief').innerHTML='<span class="skill-name">主砲獨立瞄準</span><div class="skill-chain"><span>WASD 移動</span><b>＋</b><strong>滑鼠瞄準 · 自動開砲</strong></div><small>初始裝甲 25 · 僚機自主迎擊，危急時犧牲攔截。左鍵超頻／右鍵越障躍進／Space 指定位置支援。</small>';
+ const skill={m1a4:['近距反擊','左鍵 · 半徑 170 · 冷卻 8 秒','近身受圍時掃開敵機，接躍進換位。'],m4a3:['重砲超頻','左鍵 · 射速 ×1.7／3 秒 · 冷卻 9 秒','在安全射角啟動，集中重砲處理硬目標。'],xm2:['高速刃擊','左鍵 · 半徑 220 · 冷卻 9 秒','大範圍近身刃擊，配合躍進切換射角。']}[machine];
+ $('machineBrief').innerHTML=`<span class="skill-name">${skill[0]}</span><div class="skill-chain"><strong>${skill[1]}</strong></div><small>${skill[2]} 滑鼠瞄準、自動開砲；右鍵越障躍進，Space 指定支援。</small>`;
  for(const card of document.querySelectorAll('[data-choice="machine"]')){const cm=GameArenaCore.machines[card.dataset.value];let metrics=card.querySelector('.card-metrics');if(!metrics){metrics=document.createElement('div');metrics.className='card-metrics';card.append(metrics);}metrics.innerHTML=`<span>${cm.hp}<small> HP</small></span><span>${n(cm.interval)}<small> 秒裝填</small></span>`;}
 }
 
@@ -19,7 +20,19 @@ function processArenaEvents(){
   else if(e.type==='impact'){if(e.damage<=0)continue;if(e.shell&&!e.killed&&!hitResponses.some(fx=>fx.id===e.targetId&&fx.age<.09)){hitResponses.push({id:e.targetId,age:0,power:e.ammo==='ap'?1:.8});hitResponses=hitResponses.slice(-12);}metalImpact(e.x,e.y,e.armored);beep(e.ammo==='ap'?'apImpact':'impact',{intensity:.65});}
   else if(e.type==='kill'){const heavy=!['normal','gunner','swarm','mine'].includes(e.kind),duration=e.kind==='boss'?3:heavy?1.6:.55;wrecks.push({...e,id:e.sourceId,type:e.kind,recoil:0,walk:0,phase:0,life:duration,duration,burstStage:0});wrecks=wrecks.slice(-30);if(!heavy)blastEffect(e.x,e.y,42);metalImpact(e.x,e.y,false,heavy);}
   else if(e.type==='dashLand'){if(motion){chargerFx.push({arenaLanding:true,x:e.x,y:e.y,age:0});chargerFx=chargerFx.slice(-6);}}
-  else if(e.type==='wingSacrifice'){const wing=C.formation({...s,count:e.countBefore}).at(-1);blastEffect(wing.x,wing.y,65,false,.5,true);beep('hurt');ring(s.x,s.y,'#c3e7f0');battleRadio('arena-wing-save','僚機攔截！趁現在躍進脫離。','warning','shin',{priority:5,duration:2.2});}
+  else if(e.type==='wingSacrifice'){const wing=Number.isFinite(e.x)&&Number.isFinite(e.y)?e:C.formation({...s,count:e.countBefore}).at(-1)||s;blastEffect(wing.x,wing.y,65,false,.5,true);beep('hurt');ring(s.x,s.y,'#c3e7f0');battleRadio('arena-wing-save','僚機攔截！趁現在躍進脫離。','warning','shin',{priority:5,duration:2.2});}
+  else if(['wingHit','wingDown','wingHijackWarning','wingHijacked','wingHostileShot','wingRecovered'].includes(e.type)){
+   const wing=C.formation(s).find(unit=>unit.wingId===(e.wingId??e.id)),x=wing?.x??e.x??s.x,y=wing?.y??e.y??s.y;
+   if(e.type==='wingHit'){metalImpact(x,y,true);beep('impact',{intensity:.3});}
+   else if(e.type==='wingDown'){blastEffect(x,y,45,false,.4,true);beep('hurt');battleRadio('arena-wing-down','僚機失能。回收增援，重新編隊。','warning','shin',{priority:4,duration:2.4});}
+   else if(e.type==='wingHijackWarning'){beep('warning');battleRadio('arena-wing-hack','僚機火控遭到入侵。離開干擾來源！','warning','lena',{priority:5,duration:2.8,valid:()=>s.wings?.some(w=>w.id===(e.wingId??e.id)&&w.jam>0&&!w.hijacked)});}
+   else if(e.type==='wingHijacked'){beep('warning');battleRadio('arena-wing-hostile','僚機火控失守！暫時避開它的射線。','warning','shin',{priority:6,duration:2.5,valid:()=>s.wings?.some(w=>w.id===(e.wingId??e.id)&&w.hijacked>0)});}
+   else if(e.type==='wingHostileShot')beep('shot');
+   else {ring(x,y,'#b8ded0');beep('braceReady');battleRadio('arena-wing-recovered','火控連線恢復，僚機重新接入。','status','lena',{priority:3,duration:2.2});}
+  }
+  else if(e.type==='threatStage'){eventNotice('THREAT LEVEL',`戰場升階 · ${e.stage}`,`重型目標上限 ${e.bossCap}`,2.4);beep('warning');battleRadio('arena-stage-'+e.stage,'敵方增援升級。保留支援，別讓重型目標合圍。','warning','lena',{priority:4,duration:3});}
+  else if(e.type==='bossPhase'&&e.phase===2){beep('coreOpen');battleRadio('arena-boss-phase2','敵機轉入第二階段。先辨認射界，再找反擊窗口。','warning','shin',{priority:5,duration:2.8});}
+  else if(e.type==='weaponMilestone'){ring(s.x,s.y,'#ddcba5');beep('upgrade');eventNotice('FIRE CONTROL',`火控進階 · LV.${e.level}`,`第 ${e.tier} 階武裝`,2.1);battleRadio('arena-milestone-'+e.level,'主砲規格更新。集中火力，打開包圍缺口。','tactic','lena',{priority:3,duration:2.5});}
   else if(e.type==='bossDown'){beep('bossDown');toast(e.model==='phoenix'?'高機動型失能':'重型目標失能');if(motion)shake=5;}
   else if(e.type==='eliteDown'){beep('eliteDown');if(motion)shake=Math.max(shake,2.4);}
   else if(e.type==='coverImpact'){metalImpact(e.x,e.y,true,e.dead);if(e.dead){blastEffect(e.x,e.y,70,false,.55,true);beep('eliteDown');}else beep('impact',{intensity:.35});}
@@ -29,7 +42,7 @@ function processArenaEvents(){
   else if(e.type==='shieldAbsorb'){ring(e.x,e.y,'#9bc6ee');floating('裝甲吸收 '+Math.ceil(e.amount),e.x,e.y,'#b9d7f3');beep('impact',{intensity:.3});}
   else if(e.type==='emp'){ring(e.x,e.y,'#e9c29c',true);blastEffect(e.x,e.y,e.radius,true,.45,true);beep('decoy');}
   else if(e.type==='hurt'&&e.amount>0){burst(e.x??s.x,e.y??s.y,'#b7d7e0',14);beep('hurt');if(motion){shake=4;flash=.14;}if(s.hp>0&&s.hp<s.maxHp*.35)battleRadio('arena-low-hp','耐久下降。先脫離包圍，回收修復補給。','warning','shin',{priority:4,valid:()=>s.hp>0&&s.hp<s.maxHp*.35});}
-  else if(e.type==='bossEnter'){const boss=s.enemies.find(v=>v.type==='boss'&&!v.dead);eventNotice('HEAVY CONTACT',boss?.model==='phoenix'?'高機動型接敵':boss?.model==='morpho'?'電磁砲接敵':'重戰車接敵','保持移動 · 射界鎖定後離開',2);beep('bossEnter');}
+  else if(e.type==='bossEnter'){const model=e.model||s.enemies.find(v=>v.id===e.sourceId)?.model;eventNotice('HEAVY CONTACT',model==='phoenix'?'高機動型接敵':model==='morpho'?'電磁砲接敵':'重戰車接敵','保持移動 · 射界鎖定後離開',2);beep('bossEnter');}
   else if(e.type==='phoenixCue'){beep('chargerReady');battleRadio('phoenix-lock','高機動型鎖定了。側向躍進，等鏈刃撲空。','warning','shin',{priority:5,duration:2.8});}
   else if(e.type==='phoenixDash'){beep('chargerDash');}
   else if(e.type==='phoenixRecover'){beep('coreOpen');battleRadio('phoenix-open','它失衡了。集中火力！','tactic','shin',{priority:4,duration:2});}
@@ -43,7 +56,15 @@ function processArenaEvents(){
   else if(e.type==='blast'||e.type==='mineChain'||e.type==='mineDetonate'){blastEffect(e.x,e.y,e.radius||85,false,.45,true);beep('heBurst');}
   else if(e.type==='mortarImpact'||e.type==='cannon'){if(e.kind==='charge'){beep('chargerDash');continue;}if(e.kind==='support'){supportFx.push({x:e.x,y:e.y,radius:e.r,age:0});supportFx=supportFx.slice(-2);for(let i=0;i<5;i++){const angle=i*Math.PI/2,d=i===4?0:e.r*.48;blastEffect(e.x+Math.cos(angle)*d,e.y+Math.sin(angle)*d,i===4?155:90,i===4,.55,true);}battleRadio('arena-support-impact','砲擊命中。趁敵機失衡，突破包圍。','tactic','shin',{priority:3,duration:3});}else if(e.x!==undefined)blastEffect(e.x,e.y,e.type==='mortarImpact'?(e.r||100):55,false,.5,true);beep(e.kind==='support'?'support':e.kind==='rail'?'rail':e.type==='mortarImpact'?'mortarImpact':'heavyCannon');if(motion)shake=Math.max(shake,2.8);}
   else if(e.type==='tactic'){if(e.kind==='support'){beep('uiConfirm');battleRadio('arena-support','區域砲擊鎖定。清出一條路！','tactic','lena',{priority:2,duration:1.8});}else{ring(e.x,e.y,'#a9e5eb');beep('decoy');}}
-  else if(e.type==='ability'){if(e.kind==='burst'){ring(s.x,s.y,'#efd7ab');beep('upgrade');}else if(e.kind==='dash'){beep('chargerDash');}}
+  else if(e.type==='ability'){
+   if(e.kind==='burst'){
+    if(['counter','blade'].includes(e.skill)&&e.radius>0){
+     const x=e.x??s.x,y=e.y??s.y;bladeFx.push({arenaSweep:true,skill:e.skill,x,y,radius:e.radius,angle:Math.atan2(s.aimY-y,s.aimX-x),age:0});bladeFx=bladeFx.slice(-3);beep('blade',{machine:s.machine,intensity:e.skill==='counter'?.8:1});
+     battleRadio('arena-skill-'+e.skill,e.skill==='counter'?'近距反擊。趁空隙移動！':'高周波刃展開，切開近身包圍。','tactic','shin',{priority:3,duration:1.8});
+    }else{ring(s.x,s.y,'#efd7ab');beep('upgrade');battleRadio('arena-overclock','重砲超頻。三秒內集中重砲！','tactic','shin',{priority:3,duration:1.8});}
+   }else if(e.kind==='dash')beep('chargerDash');
+  }
+  else if(e.type==='waveStart')toast(`第 ${e.wave} 波 · 火控 LV.${s.level}`);
   else if(e.type==='item'||e.type==='collect'){rewardFeedback(e);const kind=e.kind||e.item;floating(arenaItemName(kind),e.x??s.x,e.y??s.y,'#bcece6');ring(e.x??s.x,e.y??s.y,'#bcece6');beep('upgrade');}
   else if(e.type==='upgrade'){toast(`火控升級 · LV.${s.level}`);beep('upgrade');}
   else if(e.type==='blade'){metalImpact(e.target?.x??e.x,e.target?.y??e.y,false,true);beep('blade');}
@@ -125,7 +146,7 @@ function drawArenaObstacle(o){
 
 function arenaItemName(kind){return {shield:'裝甲補充',recruit:'僚機增援',emp:'區域壓制'}[kind]||itemNames[kind]||'補給';}
 function drawArenaSupplies(){
- const effects={repair:'耐久 +30',shield:'裝甲 +35',recruit:'僚機 +1',charge:'戰術 +1',weapon:s.level>=8?'火力全開 5秒':'火控 +1',ap:'穿甲彈',he:'榴彈',overdrive:'急速 7 秒',emp:'區域壓制'};
+ const effects={repair:'耐久 +30',shield:'裝甲 +18',recruit:s.count<s.maxCount?'僚機 +1':'修復僚機',charge:'戰術 +1',weapon:'火控 +1',ap:'穿甲彈',he:'榴彈',overdrive:'急速 7 秒',emp:'區域壓制'};
  for(const box of s.crates){if(box.used)continue;const p=point(box.x,box.y),col=({repair:'#b8ddba',shield:'#9bc6ee',recruit:'#d5ddb6',charge:'#add6e5',weapon:'#ecdcae',ap:'#e0c39b',he:'#e7ac8b',overdrive:'#c5b5e2',emp:'#e8b8a6'}[box.kind]||'#c4d6de');
   ctx.save();ctx.globalAlpha=box.life<3?.75:1;ctx.fillStyle='#020b1277';ctx.beginPath();ctx.ellipse(p.x,p.y+5,18,6,0,0,Math.PI*2);ctx.fill();drawSupplyArt(box.kind,p.x,p.y-12,33);line({x:p.x-10,y:p.y+6},{x:p.x+10,y:p.y+6},col,2);label(effects[box.kind]||arenaItemName(box.kind),p.x,p.y+22,10,col,600);ctx.restore();
  }
@@ -138,6 +159,17 @@ function drawArenaDash(){
  const smoke=smokeArt.whitePuff14;if(smoke?.naturalWidth){ctx.globalAlpha=.18;ctx.drawImage(smoke,tail.x-base*.3,tail.y-base*.12,base*.6,base*.24);}ctx.restore();
 }
 
+function drawArenaWingStatus(unit,size){
+ if(unit.main)return;const wing=s.wings?.find(v=>v.id===unit.wingId),p=point(unit.x,unit.y),hostile=unit.hijacked>0,warning=!hostile&&(wing?.warned||wing?.jam>0),hp=unit.hp??wing?.hp,max=unit.maxHp??wing?.maxHp??36,col=hostile?'#e3a28b':warning?'#d8bf83':'#b3d6cc';
+ ctx.save();
+ if(hp<max||warning||hostile){rounded(p.x-15,p.y+size*.54,30,3,1,'#101e26');rounded(p.x-15,p.y+size*.54,30*clamp(hp/max,0,1),3,1,col);}
+ if(warning||hostile){
+  const r=size*.38;ctx.lineWidth=1.5;if(warning)ctx.setLineDash([3,3]);for(const side of [-1,1]){line({x:p.x+side*r,y:p.y-r*.55},{x:p.x+side*r,y:p.y+r*.55},col,1.5);line({x:p.x+side*r,y:p.y-r*.55},{x:p.x+side*(r-5),y:p.y-r*.55},col,1.5);}ctx.setLineDash([]);
+  if(hostile){polygon([{x:p.x,y:p.y-r-5},{x:p.x+4,y:p.y-r},{x:p.x,y:p.y-r+5},{x:p.x-4,y:p.y-r}],col,'#16222b');label('火控失守',p.x,p.y-size*.56,9,col,600);}
+  else {line({x:p.x-14,y:p.y+size*.54+6},{x:p.x-14+28*clamp((wing?.jam||0)/2,0,1),y:p.y+size*.54+6},col,1.5);label('入侵',p.x,p.y-size*.56,9,col,600);}
+ }ctx.restore();
+}
+
 function drawArenaEnemyState(e,size){
  const p=point(e.x,e.y),boss=e.type==='boss',open=e.exposed>0;let pending=null,firing=null;
  if(['jammer','swarm'].includes(e.type)){const radius=e.jamRadius||180;ctx.save();ctx.globalAlpha=.24;ctx.strokeStyle='#cbbfe3';ctx.lineWidth=1.2;ctx.setLineDash([9,16]);ctx.beginPath();ctx.ellipse(p.x,p.y,radius*W*.00086,radius*H*.00084,0,0,Math.PI*2);ctx.stroke();ctx.restore();return;}
@@ -147,6 +179,7 @@ function drawArenaEnemyState(e,size){
  for(const h of s.hazards){if(h.source!==e.id)continue;if(!h.fired&&(!pending||h.delay<pending.delay))pending=h;else if(h.fired&&h.geometry==='beam'&&h.kind!=='charge'&&h.life>0&&(!firing||h.life>firing.life))firing=h;}
  const charging=!!pending,heading=pending?.geometry==='beam'?Math.atan2((pending.toY-pending.fromY)*H*.00084,(pending.toX-pending.fromX)*W*.00086):firing?.geometry==='beam'?Math.atan2((firing.toY-firing.fromY)*H*.00084,(firing.toX-firing.fromX)*W*.00086):arenaDirection(e.angle??0),progress=pending?clamp(1-pending.delay/pending.maxDelay,0,1):0;
  ctx.save();ctx.translate(p.x,p.y);ctx.rotate(heading);
+ if(boss&&e.bossStage>=2&&!open){ctx.globalAlpha=.7;for(const side of [-1,1])for(let i=0;i<2;i++){const x=size*(-.10+i*.09),y=side*size*.13;line({x:x-size*.04,y},{x:x+size*.015,y:y+side*size*.025},'#142125',4);line({x:x-size*.04,y},{x:x+size*.015,y:y+side*size*.025},'#dfad87',1.5);}ctx.globalAlpha=1;}
  if(charging&&e.type!=='charger'&&e.model!=='phoenix'){
   ctx.globalCompositeOperation='screen';const color=pending.kind==='rail'?'#c4dce9':'#ecd1a6',tip=size*.48,r=size*(.022+progress*.045),glow=ctx.createRadialGradient(tip,0,0,tip,0,r*2);glow.addColorStop(0,color);glow.addColorStop(.3,color+'aa');glow.addColorStop(1,color+'00');ctx.fillStyle=glow;ctx.globalAlpha=.35+progress*.5;ctx.fillRect(tip-r*2,-r*2,r*4,r*4);
   for(let i=0;i<4;i++){ctx.globalAlpha=progress>(i+1)/5?.7:.14;for(const side of [-1,1])line({x:size*(.05+i*.075),y:side*size*.027},{x:size*(.075+i*.075),y:side*size*.027},color,Math.max(1.5,size*.009));}
@@ -202,6 +235,15 @@ function drawArenaHazard(hazard){
  }ctx.restore();
 }
 
+function drawArenaSkillSweeps(){
+ for(const fx of bladeFx){if(!fx.arenaSweep)continue;const f=clamp(fx.age/.26,0,1),p=point(fx.x,fx.y),rx=fx.radius*W*.00086,ry=fx.radius*H*.00084,blade=fx.skill==='blade',color=blade?'#c5e6e6':'#dfc7a2',angle=fx.angle+(motion?f*Math.PI:Math.PI*.35),span=blade?Math.PI*.8:Math.PI*.68;
+  ctx.save();ctx.globalAlpha=(1-f)*.48;ctx.strokeStyle=color;ctx.lineWidth=1;ctx.beginPath();ctx.ellipse(p.x,p.y,rx,ry,0,0,Math.PI*2);ctx.stroke();
+  ctx.beginPath();ctx.ellipse(p.x,p.y,rx,ry,0,0,Math.PI*2);ctx.clip();
+  for(const side of [0,Math.PI]){ctx.globalAlpha=(1-f)*.28;ctx.strokeStyle=color;ctx.lineWidth=blade?7:5;ctx.beginPath();ctx.ellipse(p.x,p.y,rx*.91,ry*.91,0,angle+side-span,angle+side);ctx.stroke();ctx.globalAlpha=(1-f)*.85;ctx.strokeStyle=blade?'#ecf5ee':'#f0dfbf';ctx.lineWidth=blade?2.2:1.8;ctx.beginPath();ctx.ellipse(p.x,p.y,rx*.96,ry*.96,0,angle+side-span*.68,angle+side);ctx.stroke();}
+  ctx.restore();
+ }
+}
+
 function drawArenaScene(){
  
  const a=point(55,90),b=point(945,940);ctx.save();ctx.strokeStyle='#91bdc126';ctx.setLineDash([6,14]);ctx.lineWidth=1;ctx.strokeRect(a.x,a.y,b.x-a.x,b.y-a.y);ctx.restore();
@@ -213,7 +255,8 @@ function drawArenaScene(){
  for(const {entity:e,dead} of objects.sort((a,b)=>a.entity.y-b.entity.y)){const type=e.type||e.kind,visual=enemyVisual(type,e.model),size=base*(type==='boss'?(e.model==='phoenix'?1.8:e.model==='morpho'?3.5:3.2):type==='stier'?1.5:type==='gunner'?.78:type==='artillery'?1.5:type==='charger'?1.35:type==='shield'?1.65:type==='scout'?.95:type==='mine'?.55:.62);if(['jammer','swarm'].includes(type))drawJammer(e,dead?1-e.life/e.duration:0);else drawArenaUnit(e,visual.index,size,false,dead);if(!dead&&type!=='normal')drawArenaEnemyState(e,size);if(!dead&&e.flash>0){const p=point(e.x,e.y);rounded(p.x-18,p.y-size*.6,36,2,1,'#172a34');rounded(p.x-18,p.y-size*.6,36*clamp(e.hp/e.max,0,1),2,1,'#dab99f');}}
  if(s.decoy){const p=point(s.decoy.x,s.decoy.y);ctx.save();ctx.globalAlpha=.65;ctx.setLineDash([4,4]);ctx.strokeStyle='#abd9df';ctx.beginPath();ctx.arc(p.x,p.y,18,0,Math.PI*2);ctx.stroke();ctx.restore();}
  drawArenaDash();
- for(const unit of (s.hp>0?C.formation(s):[{x:s.x,y:s.y,main:true,life:Math.max(0,phaseTime),duration:phaseDuration}])){let near=null,nearDistance=s.enemies.some(e=>!e.dead&&e.jamRadius&&Math.hypot(e.x-unit.x,e.y-unit.y)<=e.jamRadius)?110*110:280*280;if(!unit.main)for(const enemy of s.enemies){if(enemy.dead)continue;const distance=(enemy.x-unit.x)**2+(enemy.y-unit.y)**2;if(distance<nearDistance){near=enemy;nearDistance=distance;}}const unitAngle=near?Math.atan2(near.y-unit.y,near.x-unit.x):unit.angle??s.angle;const machineIndex=s.machine==='m4a3'?6:s.machine==='xm2'?7:0;drawArenaUnit({...unit,angle:unitAngle,moveAngle:unit.main?s.moveAngle:unitAngle,walk:s.walk,moving:s.moving,recoil:unit.main?muzzle/.14:0},machineIndex,base*(unit.main?1:.67),true,s.hp<=0);}
+ drawArenaSkillSweeps();
+ for(const unit of (s.hp>0?C.formation(s):[{x:s.x,y:s.y,main:true,life:Math.max(0,phaseTime),duration:phaseDuration}])){let near=null,nearDistance=s.enemies.some(e=>!e.dead&&e.jamRadius&&Math.hypot(e.x-unit.x,e.y-unit.y)<=e.jamRadius)?110*110:280*280;if(!unit.main)for(const enemy of s.enemies){if(enemy.dead)continue;const distance=(enemy.x-unit.x)**2+(enemy.y-unit.y)**2;if(distance<nearDistance){near=enemy;nearDistance=distance;}}const unitAngle=unit.hijacked>0?Math.atan2(s.y-unit.y,s.x-unit.x):near?Math.atan2(near.y-unit.y,near.x-unit.x):unit.angle??s.angle;const machineIndex=s.machine==='m4a3'?6:s.machine==='xm2'?7:0;drawArenaUnit({...unit,angle:unitAngle,moveAngle:unit.main?s.moveAngle:unitAngle,walk:s.walk,moving:s.moving,recoil:unit.main?muzzle/.14:0},machineIndex,base*(unit.main?1:.67),true,s.hp<=0);drawArenaWingStatus(unit,base*.67);}
  for(const bullet of s.bullets){const p=point(bullet.x,bullet.y),tail=point(bullet.x-bullet.vx*.024,bullet.y-bullet.vy*.024);line(tail,p,bullet.enemy?'#e9a980':bullet.shell?'#f3e0b5':'#b8dce2',bullet.shell?2.6:1.2);}
  if(s.hp>0){const p=point(s.x,s.y);ctx.save();ctx.strokeStyle='#c0eeee';ctx.lineWidth=1.5;ctx.beginPath();ctx.arc(p.x,p.y,5,0,Math.PI*2);ctx.stroke();ctx.restore();rounded(p.x-26,p.y+base*.57,52,3,1,'#15242c');rounded(p.x-26,p.y+base*.57,52*clamp(s.hp/s.maxHp,0,1),3,1,s.hp<s.maxHp*.35?'#e8a38c':'#b6ddd1');if(s.shield>0)rounded(p.x-26,p.y+base*.57+5,52*clamp(s.shield/s.maxHp,0,1),2,1,'#9acced');}
 }

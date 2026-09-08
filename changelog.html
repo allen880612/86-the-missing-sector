@@ -24,9 +24,9 @@
 <h1>每一次回報，<br>都改變下一次出擊。</h1>
 <p>戰線更新檔案。從第一場能打完的作戰，到四面接敵的包圍戰，留下玩家的回報、團隊的取捨，以及真正進入戰場的改變。</p>
 <div class="status">
-<b>最新部署 / v34</b>
+<b>最新部署 / v35</b>
 <span>更新於 2026.09.08</span>
-<span>10 份階段紀錄</span>
+<span>11 份階段紀錄</span>
 </div>
 </section>
 <main class="layout">
@@ -41,7 +41,27 @@
 </div>
 <div id="entries">
 <details class="entry" data-type="released" open>
-<summary><span class="index">10</span><span class="entry-heading"><span class="meta">S32 <span>／ 最新部署</span></span><strong>新軍團接敵，讓支援與指揮通訊真正進入戰場</strong><span class="version">v34</span></span><span class="toggle" aria-hidden="true">＋</span></summary>
+<summary><span class="index">11</span><span class="entry-heading"><span class="meta">S33 <span>／ 最新部署</span></span><strong>戰況持續升級，僚機也有生存與反制</strong><span class="version">v35</span></span><span class="toggle" aria-hidden="true">＋</span></summary>
+<div class="entry-body"><div class="change-list"><h3>這次出擊，有什麼不同</h3><ul>
+<li>每 45 秒一波，每四波提升威脅階段；第 5 波可同場兩隻 Boss，第 9 波起最多三隻。特殊編成、火力與耐久繼續增強，保持同屏資源上限。</li>
+<li>Boss 半血後切換第二階段：重戰車與電磁砲增加連擊，高機動型追加突襲。Phönix 可穿過己方小兵完成切入，躲開後仍有反擊窗口。</li>
+<li>僚機有獨立耐久，會承傷、失能；干擾累積會先預警，再短暫劫持火控。脫離干擾、擊毀來源、EMP 或區域支援均可解除。</li>
+<li>每波獲得火控成長，道具可額外升級；LV.12 解鎖副砲、LV.16 強化、LV.20 加入貫穿，之後仍持續提高傷害。</li>
+<li>普通敵每 20 隻掉落一次；裝甲每次補 18，不再因護盾偏低就必掉。減少普通兵密度，重型砲火命中更有代價；小怪命中的短暫保護不再吞掉 Boss 重擊，重擊後仍保留防連殺保護。</li>
+<li>左鍵依機型分為 M1A4 近距反擊、M4A3 重砲超頻及 XM2 高速刃擊；右鍵仍是越障躍進，可用來切入或撤離。</li>
+<li>加入多重 Boss 狀態列、僚機耐久與入侵辨識、升階及武裝回饋。沿用現有素材與音效，限制大面積閃光。</li>
+</ul></div><div class="response"><h3>回報 → 調整</h3><p>玩家指出二十分鐘後仍缺乏變化，並澄清是「每三至五波持續升級」，而不是只在前五波加難。本輪拆除單 Boss 與 LV.8 停滯，將僚機從致命傷保險改成可受損的戰鬥單位。追加回報指出補盾讓玩家能站射，Review因此把優先序轉向掉落經濟與重擊命中；並重現小怪6傷害竟可擋掉Boss60傷害的保護邏輯問題，實際修正。世界觀提供機動、迷彩與干擾方向；火控劫持、升階和數值是本作改編。</p></div>
+<details class="team-detail"><summary>團隊如何完成這次更新 <span>展開分工</span></summary><dl>
+<div><dt>PO</dt><dd>依玩家澄清修正持續升階目標，整合多目標 HUD、成長提示與發布紀錄。</dd></div>
+<div><dt>戰鬥</dt><dd>實作波次、編成、第二階段、僚機耐久與劫持反制、後期火控。</dd></div>
+<div><dt>美術</dt><dd>用既有機體與局部特效呈現受損、失控、復原及第二階段，避免光污染。</dd></div>
+<div><dt>QA</dt><dd>核對來源與改編界線，跨波次模擬及瀏覽器整合；模擬不等同真人長局平衡驗收。</dd></div>
+<div><dt>Review</dt><dd>將前輪短時間存活測試的盲點納入長期升階驗證，保留對後期難度的玩家回饋。</dd></div>
+</dl></details><a href="assets/legion-v35.md">世界觀依據與改編界線 →</a>
+</div></details>
+
+<details class="entry" data-type="released">
+<summary><span class="index">10</span><span class="entry-heading"><span class="meta">S32 <span>／ 版本更新</span></span><strong>新軍團接敵，讓支援與指揮通訊真正進入戰場</strong><span class="version">v34</span></span><span class="toggle" aria-hidden="true">＋</span></summary>
 <div class="entry-body">
 <div class="change-list"><h3>這次出擊，有什麼不同</h3><ul>
 <li>四向戰場的區域支援初始 2 次，每 18 秒回充 1 次、上限 2 次；指定落點後延遲 0.65 秒，以半徑 280 清場並打斷存活敵人。</li>
@@ -545,8 +565,8 @@
 </div>
 </div>
 <p>這裡記錄的不只是做了多少功能，更是每次回報之後，我們真的改了什麼。</p>
-<h3>本輪交付 · v34</h3>
-<ul><li><b>高機動型首次接敵</b>Phönix 鎖定突襲，撲空後集中反擊</li><li><b>看懂新的火線</b>Stier 伏擊扇射與 Ameise 側移掃射</li><li><b>保留突破包圍的手段</b>區域支援打斷，18 秒可靠回充</li><li><b>收到指揮與戰況</b>角落通訊、介面轉場與新戰鬥曲</li></ul>
+<h3>本輪交付 · v35</h3>
+<ul><li><b>每四波持續升階</b>多重 Boss 與第二階段連擊</li><li><b>機型決定反攻方式</b>近距反擊、重砲超頻、高速刃擊</li><li><b>保護與救回僚機</b>獨立耐久、失控預警、火控復原</li><li><b>避開真正的重擊</b>降低補盾循環，小傷不再吞掉大砲</li></ul>
 <h3>交付的判準</h3>
 <p>實作 → 實機檢查 → 獨立 QA → Review → 正式發布。數值測試與真人體感分開記錄。</p>
 <a class="return" href="./?gameMode=endless">進入四向戰場 →</a>
