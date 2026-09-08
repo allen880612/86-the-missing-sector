@@ -24,7 +24,7 @@
 <h1>每一次回報，<br>都改變下一次出擊。</h1>
 <p>戰線更新檔案。從第一場能打完的作戰，到四面接敵的包圍戰，留下玩家的回報、團隊的取捨，以及真正進入戰場的改變。</p>
 <div class="status">
-<b>最新部署 / v36</b>
+<b>最新部署 / v37</b>
 <span>更新於 2026.09.08</span>
 <span>11 份階段紀錄</span>
 </div>
@@ -40,8 +40,9 @@
 <button id="expand" aria-expanded="false">展開全部</button>
 </div>
 <div id="entries">
-<details class="entry" data-type="released" open>
-<summary><span class="index">12</span><span class="entry-heading"><span class="meta">S34 <span>／ 最新部署</span></span><strong>喘息更頻繁，獵殺更有章法</strong><span class="version">v36</span></span><span class="toggle" aria-hidden="true">＋</span></summary>
+<details class="entry" data-type="released" open><summary><span class="index">13</span><span class="entry-heading"><span class="meta">S35 <span>／ 最新部署</span></span><strong>接通指揮頻道，讓出擊有自己的面貌</strong><span class="version">v37</span></span><span class="toggle" aria-hidden="true">＋</span></summary><div class="entry-body"><div class="change-list"><h3>這次出擊，有什麼不同</h3><ul><li>首頁與頁首換上專門設計的金屬切角標誌，兩種模式以機甲場景圖卡呈現，保留原主視覺。</li><li>蕾娜與辛的出擊／整備／結算通訊收斂為小型面板，可收起再開啟；詳細內容放進獨立視窗。</li><li>玩法圖解依戰線或四向模式切換，以走位、越障、支援和編隊示意搭配短說明。</li><li>面板與圖解有進退場、操作音效及減少動態支援；讀取視窗時暫停出擊倒數與遊戲輸入，關閉後再接續。</li></ul></div><div class="response"><h3>回報 → 調整</h3><p>玩家認為純文字標題、裸露的大段玩法與突然出現的人物仍然粗糙。本輪由美術總監先出互動設計稿與圖像素材，確認後再接回遊戲。玩法資訊保留可讀文字，改用圖解和面板組織；人物回饋不再佔據大型橫幅，也不以阻擋式彈窗打斷戰鬥。</p></div><details class="team-detail"><summary>團隊如何完成這次更新 <span>展開分工</span></summary><dl><div><dt>PO</dt><dd>審核設計稿、隔離下一輪地圖開發，整合視窗暫停與輸入阻隔。</dd></div><div><dt>美術</dt><dd>生成雙模式atlas、製作SVG標誌、玩法示意及小型通訊動態。</dd></div><div><dt>介面</dt><dd>保留既有模式、選機與音訊契約，加入圖解與可收合通訊。</dd></div><div><dt>QA</dt><dd>驗證兩模式說明、焦點與Escape、出擊到結算回圈、兩尺寸與減少動態。</dd></div><div><dt>Review</dt><dd>先提供完整本地增量，記錄頁面可讀性與操作阻擋，而非只確認圖片有載入。</dd></div></dl></details></div></details>
+<details class="entry" data-type="released">
+<summary><span class="index">12</span><span class="entry-heading"><span class="meta">S34 <span>／ 版本更新</span></span><strong>喘息更頻繁，獵殺更有章法</strong><span class="version">v36</span></span><span class="toggle" aria-hidden="true">＋</span></summary>
 <div class="entry-body"><div class="change-list"><h3>這次出擊，有什麼不同</h3><ul>
 <li>波次縮短為 30 秒；前四波降低傷害壓力，第五至八波逐步拉高，第九波起回到完整成長。每四波的威脅升階仍持續。</li>
 <li>裝甲每份補 10、耐久每份補 12，改成少量多次。普通敵每 12 隻掉落，定時補給首份 8 秒、之後每 18 秒提供生存與作戰補給。</li>
@@ -583,8 +584,8 @@
 </div>
 </div>
 <p>這裡記錄的不只是做了多少功能，更是每次回報之後，我們真的改了什麼。</p>
-<h3>本輪交付 · v36</h3>
-<ul><li><b>少量多次補給</b>更常有恢復機會，走位仍重要</li><li><b>高機動近戰攻防</b>側翼突進、鏈刃橫掃與收刃破綻</li><li><b>更緊湊的波次</b>三十秒接敵、早期逐步增壓</li><li><b>本地先行</b>每個可玩增量即時供試玩</li></ul>
+<h3>本輪交付 · v37</h3>
+<ul><li><b>有識別的出擊入口</b>切角標誌與雙模式場景圖</li><li><b>收斂人物通訊</b>小型面板與可收合詳情</li><li><b>玩法用圖解</b>依模式提供移動與攻防示意</li><li><b>讀完再出擊</b>說明視窗隔離倒數與輸入</li></ul>
 <h3>交付的判準</h3>
 <p>實作 → 實機檢查 → 獨立 QA → Review → 正式發布。數值測試與真人體感分開記錄。</p>
 <a class="return" href="./?gameMode=endless">進入四向戰場 →</a>

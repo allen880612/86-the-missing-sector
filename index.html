@@ -2,18 +2,18 @@
 <html lang="zh-Hant">
 <head>
 <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><meta name="theme-color" content="#080e18">
-<title>86 戰線 — 戰術試驗場</title><link rel="stylesheet" href="style.css?v=86-36-phoenix"><link rel="icon" href="data:,"></head>
+<title>86 戰線 — 戰術試驗場</title><link rel="stylesheet" href="style.css?v=86-37-command"><link rel="icon" href="data:,"></head>
 <body>
 <main class="shell">
-<header><a class="brand" href="./"><span class="brand-mark"><i></i><i></i><i></i></span><span>86 戰線<small>OUTSIDE THE WALL</small></span></a><div class="mode"><i></i> 壁外作戰 <span>／</span> 36</div><div class="actions"><button id="configure">重新配置</button><button id="pause" aria-label="暫停遊戲" disabled>暫停 <kbd>P</kbd></button></div></header>
+<header><a class="brand" href="./"><img class="brand-logo" src="assets/v37-wordmark.svg" alt="86 戰線"></a><div class="mode"><i></i> 壁外作戰 <span>／</span> 37</div><div class="actions"><button id="configure">重新配置</button><button id="pause" aria-label="暫停遊戲" disabled>暫停 <kbd>P</kbd></button></div></header>
 <section class="arena" aria-label="86 戰線遊戲區">
 <section id="titleScreen" class="title-screen" aria-labelledby="titleScreenHeading">
 <div class="title-art" aria-hidden="true"></div><div class="title-shade" aria-hidden="true"></div>
-<div class="title-copy"><p class="title-kicker">第八十六區 · 矛頭戰隊</p><h1 id="titleScreenHeading"><span>86</span><b>戰線</b></h1><p class="title-subtitle">牆外，仍有人在戰鬥。</p><div class="title-rule" aria-hidden="true"></div><div class="mode-select" aria-label="遊戲模式">
-<button type="button" class="mode-card" data-choice="gameMode" data-value="frontline"><small>2D / 作戰記錄</small><strong>戰線突破</strong><span>選擇遭遇，完成一場作戰</span></button>
-<button type="button" class="mode-card" data-choice="gameMode" data-value="endless"><small>2D / 四向作戰</small><strong>無限戰線</strong><span>每四波升階 · 多重 Boss · 直到主機失能</span></button>
-<article class="mode-card future-mode" aria-label="3D／2.5D 概念驗證暫緩"><small>3D / 2.5D</small><strong>立體戰場</strong><span>POC · 暫緩</span></article><input type="hidden" id="gameMode" value="frontline"></div>
-<div class="title-actions"><button id="enterGame" class="enter-game" type="button">接通指揮頻道 <span aria-hidden="true">→</span></button></div><small id="titleControl" class="title-control">左右移動 · 自動射擊 · 走位選補給</small></div>
+<div class="title-copy"><p class="title-kicker">第八十六區 · 矛頭戰隊</p><h1 id="titleScreenHeading"><img src="assets/v37-wordmark.svg" alt="86 戰線"></h1><p class="title-subtitle">牆外，仍有人在戰鬥。</p><div class="title-rule" aria-hidden="true"></div><div class="mode-select" aria-label="遊戲模式">
+<button type="button" class="mode-card" data-choice="gameMode" data-game-mode="frontline" data-value="frontline"><span class="mode-art" aria-hidden="true"><img src="assets/v37-mode-atlas.png" alt=""></span><small>2D / 作戰記錄</small><strong>戰線突破</strong><span>選擇遭遇，完成一場作戰</span></button>
+<button type="button" class="mode-card" data-choice="gameMode" data-game-mode="endless" data-value="endless"><span class="mode-art" aria-hidden="true"><img src="assets/v37-mode-atlas.png" alt=""></span><small>2D / 四向作戰</small><strong>無限戰線</strong><span>每四波升階 · 多重 Boss · 直到主機失能</span></button>
+<input type="hidden" id="gameMode" value="frontline"></div>
+<div class="title-actions"><button id="enterGame" class="enter-game" type="button">出擊整備 <span aria-hidden="true">→</span></button><button type="button" class="guide-open">玩法圖解</button></div><a class="mode-research" href="art-direction/86-reference/design-overview.html">3D／2.5D 研究 · 暫緩</a><small id="titleControl" class="title-control">左右移動 · 自動射擊 · 走位選補給</small></div>
 <aside class="title-radio" aria-label="蕾娜的待命通訊"><div class="radio-portrait"><img src="assets/characters/lena-reference.png" alt="蕾娜"></div><div><strong>蕾娜</strong><small>PARA-RAID / 保持連線</small><p>各機，準備出擊。<br>我會支援你們。</p></div></aside>
 <div class="title-signal"><span>指揮頻道待命</span><span>壁外作戰 / SPEARHEAD</span></div>
 </section>
@@ -137,7 +137,7 @@
  <b>誘餌</b><small>放置後離開</small></button></div><input type="hidden" id="tactic" value="support"><div id="tacticBrief" class="equipment-brief"></div></fieldset>
 <label>遭遇種子<input id="seed" type="number" value="42" min="1" max="999999" inputmode="numeric"></label><p class="replay-note">固定隨機起點，方便重試；敵軍仍會依戰況行動。</p>
 
-</div><button id="start" class="start" disabled>開始作戰 <span>→</span></button><div class="hint" id="hint">左右移動 · 自動砲擊 · 走位選補給</div><small id="assetstatus" class="asset-status">正在準備作戰裝備…</small></div></div>
+</div><button id="start" class="start" disabled>開始作戰 <span>→</span></button><div class="hint" id="hint">左右移動 · 自動砲擊 · 走位選補給</div><button type="button" class="guide-open prep-guide">玩法圖解</button><small id="assetstatus" class="asset-status">正在準備作戰裝備…</small></div></div>
 </section>
 <footer><span id="footerControls"><kbd>A</kbd><kbd>D</kbd> / <kbd>←</kbd><kbd>→</kbd> 左右移動 <em>或按住畫面拖曳</em></span><div class="audio-levels" aria-label="遊戲設定"><button id="motion" aria-label="減少畫面震動">震動 開</button><button id="sound" aria-label="切換音效" aria-pressed="true">音效 開</button><button id="music" aria-label="切換音樂" aria-pressed="true">音樂 開</button><label>音樂 <input id="musicVolume" type="range" min="0" max="100" value="58" aria-label="背景音樂音量"></label><label>音效 <input id="sfxVolume" type="range" min="0" max="100" value="85" aria-label="音效音量"></label><a href="changelog.html" target="_blank" rel="noopener">更新日誌</a><a href="art-direction/86-reference/design-overview.html">設計資料</a></div></footer>
-</main><script src="assets/units-data.js?v=86-36-phoenix"></script><script src="game-core.js?v=86-36-phoenix"></script><script src="game-arena-core.js?v=86-36-phoenix"></script><script src="game-audio.js?v=86-36-phoenix"></script><script src="game-menu.js?v=86-36-phoenix"></script><script src="game-arena-view.js?v=86-36-phoenix"></script><script src="game.js?v=86-36-phoenix"></script></body></html>
+</main><dialog id="commandDialog" aria-labelledby="commandDialogTitle"><button type="button" class="command-dialog-close" aria-label="關閉">×</button><small class="command-code">PARA-RAID / FIELD MANUAL</small><h2 id="commandDialogTitle"></h2><div id="commandDialogBody"></div></dialog><script src="assets/units-data.js?v=86-37-command"></script><script src="game-core.js?v=86-37-command"></script><script src="game-arena-core.js?v=86-37-command"></script><script src="game-audio.js?v=86-37-command"></script><script src="game-menu.js?v=86-37-command"></script><script src="game-arena-view.js?v=86-37-command"></script><script src="game.js?v=86-37-command"></script></body></html>
