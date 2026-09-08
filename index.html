@@ -1,0 +1,139 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><meta name="theme-color" content="#080e18">
+<title>86 戰線 — 戰術試驗場</title><link rel="stylesheet" href="style.css?v=86-30-flow"><link rel="icon" href="data:,"></head>
+<body>
+<main class="shell">
+<header><a class="brand" href="./"><span class="brand-mark"><i></i><i></i><i></i></span><span>86 戰線<small>OUTSIDE THE WALL</small></span></a><div class="mode"><i></i> 壁外作戰 <span>／</span> 30</div><div class="actions"><button id="configure">重新配置</button><button id="pause" aria-label="暫停遊戲" disabled>暫停 <kbd>P</kbd></button></div></header>
+<section class="arena" aria-label="86 戰線遊戲區">
+<section id="titleScreen" class="title-screen" aria-labelledby="titleScreenHeading">
+<div class="title-art" aria-hidden="true"></div><div class="title-shade" aria-hidden="true"></div>
+<div class="title-copy"><p class="title-kicker">第八十六區 · 矛頭戰隊</p><h1 id="titleScreenHeading"><span>86</span><b>戰線</b></h1><p class="title-subtitle">牆外，仍有人在戰鬥。</p><div class="title-rule" aria-hidden="true"></div><div class="mode-select" aria-label="遊戲模式">
+<button type="button" class="mode-card" data-choice="gameMode" data-value="frontline"><small>2D / 作戰記錄</small><strong>戰線突破</strong><span>選擇遭遇，完成一場作戰</span></button>
+<button type="button" class="mode-card" data-choice="gameMode" data-value="endless"><small>2D / 四向作戰</small><strong>無限戰線</strong><span>四面接敵 · Boss 交替 · 直到主機失能</span></button>
+<article class="mode-card future-mode" aria-label="3D／2.5D 概念驗證暫緩"><small>3D / 2.5D</small><strong>立體戰場</strong><span>POC · 暫緩</span></article><input type="hidden" id="gameMode" value="frontline"></div>
+<div class="title-actions"><button id="enterGame" class="enter-game" type="button">接通指揮頻道 <span aria-hidden="true">→</span></button></div><small id="titleControl" class="title-control">左右移動 · 自動射擊 · 走位選補給</small></div>
+<aside class="title-radio" aria-label="蕾娜的待命通訊"><div class="radio-portrait"><img src="assets/characters/lena-reference.png" alt="蕾娜"></div><div><strong>蕾娜</strong><small>PARA-RAID / 保持連線</small><p>各機，準備出擊。<br>我會支援你們。</p></div></aside>
+<div class="title-signal"><span>指揮頻道待命</span><span>壁外作戰 / SPEARHEAD</span></div>
+</section>
+<button id="returnTitle" class="return-title" type="button">返回首頁</button>
+<canvas id="game" aria-label="使用 A、D、方向鍵或拖曳左右移動，自動射擊" tabindex="0"></canvas>
+<div class="vignette"></div>
+<div class="hud"><div class="squad-stat"><span>作戰小隊</span><strong id="count">02<small>／04</small></strong><div id="shield" class="shield">護盾 0</div></div><div class="hud-center"><span id="threat">戰線推進中</span><time id="time">00:00</time><div class="threat-track" role="progressbar" aria-label="作戰目標完成度" aria-valuemin="0" aria-valuemax="100"><i id="threatbar"></i></div><div id="objectiveRoute" class="objective-route" hidden><span id="routeDino"><img id="routeDinoImage" alt="重戰車"></span><i></i><span id="routeMorpho"><img id="routeMorphoImage" alt="電磁加速砲"></span></div></div><div class="kills"><span>確認擊破</span><strong id="kills">000</strong><small id="bosskills">BOSS 00</small></div></div>
+<div id="bossbar" class="bossbar" data-phase="armored" hidden>
+<div class="boss-caption"><span><i></i> <b id="bossname">LÖWE · 戰車型指揮機</b></span><strong id="bosshp">100%</strong></div>
+<div class="boss-track"><i id="bossfill"></i><span></span><span></span></div>
+<div class="boss-systems">
+<div id="bossnodeleft" class="boss-node" data-active="true" data-firing="false" role="img" aria-label="左副砲在線"><svg viewBox="0 0 28 24" fill="none" aria-hidden="true"><path class="node-body" d="M11 2h6v10h4l3 8H4l3-8h4V2Z"/><path class="node-detail" d="M8 16h12M14 4v9M8 23h12"/><path class="node-break" d="m5 3 18 18M19 3 4 19"/></svg><span>左砲</span></div>
+<div class="boss-phase"><small id="bosshint">裝甲閉合</small><span class="boss-phase-track" aria-hidden="true"><i id="bossphasefill"></i></span></div>
+<div id="bossnoderight" class="boss-node" data-active="true" data-firing="false" role="img" aria-label="右副砲在線"><svg viewBox="0 0 28 24" fill="none" aria-hidden="true"><path class="node-body" d="M11 2h6v10h4l3 8H4l3-8h4V2Z"/><path class="node-detail" d="M8 16h12M14 4v9M8 23h12"/><path class="node-break" d="m5 3 18 18M19 3 4 19"/></svg><span>右砲</span></div>
+</div></div>
+<div id="arenaAbilities" class="arena-abilities" hidden><button id="arenaBurst" type="button" aria-label="左鍵火控超頻，持續3秒，冷卻9秒"><kbd>左鍵</kbd><b>火控超頻</b><span>就緒</span></button><button id="arenaDash" type="button" aria-label="右鍵快速側移，冷卻3秒"><kbd>右鍵</kbd><b>快速側移</b><span>就緒</span></button></div>
+<div id="machineStatus" class="machine-status"></div><div id="toast" class="toast" role="status"></div><div id="warning" class="warning" role="status"></div><div id="combo" class="combo"></div>
+<div class="bottom-hud"><div class="weapon"><div class="weapon-icon"><svg viewBox="0 0 64 28" fill="none" aria-hidden="true"><path d="M5 9h31l5-5h8v5h11v7H35l-5 8h-9l2-8H8z" fill="currentColor"/><path d="M37 19h18M12 4h15" stroke="currentColor" stroke-width="2"/></svg></div><div><small id="weaponlevel">火力 LV.0</small><b id="weaponname">57mm 滑膛砲</b></div><div class="weapon-dots" id="dots"></div></div><div class="boost" id="boost" hidden>超載火力 <strong id="boosttime">8</strong><small>秒</small></div><button id="tactical" class="tactical">支援砲擊 <small>空白鍵 · 1 次</small></button><div class="bottom-tip" id="tip">走位選補給</div></div>
+<aside id="combatRadio" class="combat-radio" role="status" aria-live="polite" hidden><div class="radio-portrait"><img id="radioPortrait" src="assets/characters/shin-reference.png" alt="辛"></div><div class="radio-copy"><div class="radio-meta"><strong id="radioName">辛</strong><small id="radioChannel">作戰通訊</small></div><p id="radioText"></p></div></aside>
+<div id="eventNotice" class="event-notice" role="status" hidden><span class="event-signal" aria-hidden="true"></span><div><small id="eventCode"></small><strong id="eventTitle"></strong></div><span id="eventDetail"></span></div>
+<div id="transition" class="sortie-transition" hidden><div class="transition-content"><div class="phase-manifest"><figure><img id="phaseMachine" alt=""><figcaption>出擊機體</figcaption></figure><span class="phase-link" aria-hidden="true">→</span><figure><img id="phaseEnemy" alt=""><figcaption id="phaseEnemyName">作戰目標</figcaption></figure></div><div class="phase-dialogue" role="status" aria-live="polite" hidden><div class="phase-speaker-portrait"><img id="phaseSpeakerPortrait" src="assets/characters/lena-reference.png" alt="蕾娜"></div><div><strong id="phaseSpeakerName">蕾娜</strong><small>PARA-RAID / 出擊通訊</small><p id="phaseSpeakerText"></p></div></div><small id="phaseLabel">出擊準備</small><h2 id="phaseTitle">系統連線</h2><p id="phaseDetail"></p><div class="phase-track"><i id="phaseProgress"></i></div><button id="skipPhase" type="button">略過準備</button></div></div>
+<section id="debrief" class="debrief" aria-labelledby="reportTitle" hidden><div class="report-visual"><img id="reportMachine" alt="本次出擊機體"><span id="reportModel"></span></div><div class="report-content"><div class="report-dialogue" role="status" aria-live="polite" hidden><div class="report-speaker-portrait"><img id="reportSpeakerPortrait" src="assets/characters/shin-reference.png" alt="辛"></div><div><strong id="reportSpeakerName">辛</strong><small>PARA-RAID / 戰況回報</small><p id="reportSpeakerText"></p></div></div><small id="reportCode" class="report-code">SPEARHEAD / AFTER ACTION REPORT</small><h2 id="reportTitle" tabindex="-1"></h2><p id="reportSummary"></p><div class="report-objective"><img id="reportEnemy" alt=""><div><small>作戰目標</small><strong id="reportObjective"></strong></div><span id="reportObjectiveState"></span></div><div id="reportCause" class="report-cause"></div><div class="report-decisions"><button id="nextEncounter" class="next-encounter" type="button"><img id="nextEnemy" alt=""><span><small>下一場遭遇</small><strong id="nextName"></strong><span id="nextCounter"></span></span><b aria-hidden="true">→</b></button><div class="report-actions"><button id="retry" type="button">重試這一場</button><button id="changeLoadout" type="button">調整裝備</button></div></div><div id="reportStats" class="report-stats"></div><div id="reportResources" class="report-resources"></div><p id="reportLoadout" class="report-loadout"></p><small class="report-footnote">下一場保留出擊機體、初始彈藥與戰術；場內強化重新取得。重試保留本場敵軍安排，敵人仍會依走位反應。</small></div></section>
+<div id="overlay" class="overlay"><div class="intro"><div class="eyebrow" id="eyebrow"><i></i> 戰線已開放</div><div class="title-code">SPEARHEAD / OPERATION 27</div><h1 id="title">出擊<span>整備</span></h1><p id="description">選擇你的機體，突破軍團戰線。</p><div id="result" class="result" hidden></div><aside id="briefingRadio" class="briefing-radio" aria-label="蕾娜的出擊建議"><div class="radio-portrait"><img src="assets/characters/lena-reference.png" alt="蕾娜"></div><div class="briefing-copy"><div class="radio-meta"><strong>蕾娜</strong><small>指揮管制</small></div><p id="briefingMachine"></p><p id="briefingEnemy"></p></div></aside><div id="loadout" class="loadout" tabindex="0" aria-label="出擊配置，可捲動查看機體與裝備">
+<fieldset class="choice-group machine-choice"><legend>我方機體</legend><div class="choice-grid machine-cards">
+<button type="button" class="choice-card" data-choice="machine" data-value="m1a4"><img src="art-direction/86-reference/images/official-m1a4.jpg" alt=""><b>M1A4</b><small>機動反擊</small></button><button type="button" class="choice-card" data-choice="machine" data-value="m4a3"><img src="art-direction/86-reference/images/official-m4a3.jpg" alt=""><b>M4A3</b><small>停穩重砲</small></button><button type="button" class="choice-card" data-choice="machine" data-value="xm2"><img src="art-direction/86-reference/images/official-xm2.jpg" alt=""><b>XM2</b><small>高速近擊</small></button></div><input type="hidden" id="machine" value="m1a4"></fieldset>
+<fieldset class="choice-group encounter-choice"><legend>遭遇選擇</legend><div class="choice-grid encounter-cards">
+<button type="button" class="choice-card" data-choice="encounter" data-value="mixed"><b>混合戰</b><small>雙頭目</small></button><button type="button" class="choice-card" data-choice="encounter" data-value="fire-support"><b>火力支援</b><small>干擾與砲兵</small></button><button type="button" class="choice-card" data-choice="encounter" data-value="mines"><b>地雷連鎖</b><small>快速體驗</small></button><button type="button" class="choice-card" data-choice="encounter" data-value="dinosauria"><b>Dinosauria</b><small>直接挑戰</small></button><button type="button" class="choice-card" data-choice="encounter" data-value="morpho"><b>Morpho</b><small>直接挑戰</small></button><button type="button" class="choice-card" data-choice="encounter" data-value="pursuit"><b>獵兵追擊</b><small>誘導與反擊</small></button></div><input type="hidden" id="encounter" value="mixed"></fieldset>
+<div id="introSide" class="loadout-previews">
+<figure class="ally-dossier"><div class="preview-heading">機體情報 <span id="allyModel">M1A4</span></div><img id="allyPreview" src="art-direction/86-reference/images/official-m1a4.jpg" alt="M1A4 破壞神官方機型參考"><figcaption id="allyRole">機動反擊</figcaption><div id="allyStats" class="dossier-stats"></div><div id="machineBrief" class="skill-brief"></div></figure>
+<figure class="enemy-dossier"><div class="preview-heading">敵情分析 <span id="enemyModel">DINOSAURIA</span></div><div class="enemy-images"><img id="enemyPreview" src="art-direction/86-reference/images/official-dinosauria.jpg" alt="Dinosauria 重戰車型官方機型參考"><img id="enemySecond" src="art-direction/86-reference/images/official-morpho.jpg" alt="Morpho 電磁加速砲型官方機型參考"></div><figcaption id="enemyRole">重戰車 → 電磁加速砲</figcaption><div id="enemyStats" class="enemy-stats"></div><div id="encounterBrief" class="counter-brief"></div></figure>
+<small class="preview-credit">戰鬥機型預覽 · 設定參考 © 86 動畫製作委員會</small>
+</div>
+<fieldset class="choice-group compact-choice"><legend>起始彈藥</legend><div class="compact-options"><button type="button" class="compact-card" data-choice="ammo" data-value="standard"><svg class="choice-icon" aria-hidden="true"
+  xmlns="http://www.w3.org/2000/svg"
+  width="24"
+  height="24"
+  viewBox="0 0 24 24"
+  fill="none"
+  stroke="currentColor"
+  stroke-width="2"
+  stroke-linecap="round"
+  stroke-linejoin="round"
+>
+  <circle cx="12" cy="12" r="10" />
+  <line x1="22" x2="18" y1="12" y2="12" />
+  <line x1="6" x2="2" y1="12" y2="12" />
+  <line x1="12" x2="12" y1="6" y2="2" />
+  <line x1="12" x2="12" y1="22" y2="18" />
+</svg>
+ <b>通用彈</b><small>均衡</small></button><button type="button" class="compact-card" data-choice="ammo" data-value="ap"><svg class="choice-icon" aria-hidden="true"
+  xmlns="http://www.w3.org/2000/svg"
+  width="24"
+  height="24"
+  viewBox="0 0 24 24"
+  fill="none"
+  stroke="currentColor"
+  stroke-width="2"
+  stroke-linecap="round"
+  stroke-linejoin="round"
+>
+  <circle cx="12" cy="12" r="10" />
+  <circle cx="12" cy="12" r="6" />
+  <circle cx="12" cy="12" r="2" />
+</svg>
+ <b>穿甲彈</b><small>慢射／貫穿</small></button><button type="button" class="compact-card" data-choice="ammo" data-value="he"><svg class="choice-icon" aria-hidden="true"
+  xmlns="http://www.w3.org/2000/svg"
+  width="24"
+  height="24"
+  viewBox="0 0 24 24"
+  fill="none"
+  stroke="currentColor"
+  stroke-width="2"
+  stroke-linecap="round"
+  stroke-linejoin="round"
+>
+  <circle cx="11" cy="13" r="9" />
+  <path d="M14.35 4.65 16.3 2.7a2.41 2.41 0 0 1 3.4 0l1.6 1.6a2.4 2.4 0 0 1 0 3.4l-1.95 1.95" />
+  <path d="m22 2-1.5 1.5" />
+</svg>
+ <b>榴彈</b><small>清群／弱破甲</small></button></div><input type="hidden" id="ammo" value="standard"><div id="ammoBrief" class="equipment-brief"></div></fieldset>
+<fieldset class="choice-group compact-choice"><legend>攜帶戰術</legend><div class="compact-options"><button type="button" class="compact-card" data-choice="tactic" data-value="support"><svg class="choice-icon" aria-hidden="true"
+  xmlns="http://www.w3.org/2000/svg"
+  width="24"
+  height="24"
+  viewBox="0 0 24 24"
+  fill="none"
+  stroke="currentColor"
+  stroke-width="2"
+  stroke-linecap="round"
+  stroke-linejoin="round"
+>
+  <path d="M19.07 4.93A10 10 0 0 0 6.99 3.34" />
+  <path d="M4 6h.01" />
+  <path d="M2.29 9.62A10 10 0 1 0 21.31 8.35" />
+  <path d="M16.24 7.76A6 6 0 1 0 8.23 16.67" />
+  <path d="M12 18h.01" />
+  <path d="M17.99 11.66A6 6 0 0 1 15.77 16.67" />
+  <circle cx="12" cy="12" r="2" />
+  <path d="m13.41 10.59 5.66-5.66" />
+</svg>
+ <b>支援砲擊</b><small>對準後呼叫</small></button><button type="button" class="compact-card" data-choice="tactic" data-value="decoy"><svg class="choice-icon" aria-hidden="true"
+  xmlns="http://www.w3.org/2000/svg"
+  width="24"
+  height="24"
+  viewBox="0 0 24 24"
+  fill="none"
+  stroke="currentColor"
+  stroke-width="2"
+  stroke-linecap="round"
+  stroke-linejoin="round"
+>
+  <path d="M3 7V5a2 2 0 0 1 2-2h2" />
+  <path d="M17 3h2a2 2 0 0 1 2 2v2" />
+  <path d="M21 17v2a2 2 0 0 1-2 2h-2" />
+  <path d="M7 21H5a2 2 0 0 1-2-2v-2" />
+</svg>
+ <b>誘餌</b><small>放置後離開</small></button></div><input type="hidden" id="tactic" value="support"><div id="tacticBrief" class="equipment-brief"></div></fieldset>
+<label>遭遇種子<input id="seed" type="number" value="42" min="1" max="999999" inputmode="numeric"></label><p class="replay-note">固定隨機起點，方便重試；敵軍仍會依戰況行動。</p>
+
+</div><button id="start" class="start" disabled>開始作戰 <span>→</span></button><div class="hint" id="hint">左右移動 · 自動砲擊 · 走位選補給</div><small id="assetstatus" class="asset-status">正在準備作戰裝備…</small></div></div>
+</section>
+<footer><span id="footerControls"><kbd>A</kbd><kbd>D</kbd> / <kbd>←</kbd><kbd>→</kbd> 左右移動 <em>或按住畫面拖曳</em></span><div class="audio-levels" aria-label="遊戲設定"><button id="motion" aria-label="減少畫面震動">震動 開</button><button id="sound" aria-label="切換音效" aria-pressed="true">音效 開</button><button id="music" aria-label="切換音樂" aria-pressed="true">音樂 開</button><label>音樂 <input id="musicVolume" type="range" min="0" max="100" value="58" aria-label="背景音樂音量"></label><label>音效 <input id="sfxVolume" type="range" min="0" max="100" value="85" aria-label="音效音量"></label><a href="art-direction/86-reference/design-overview.html">設計資料</a></div></footer>
+</main><script src="assets/units-data.js?v=86-30-flow"></script><script src="game-core.js?v=86-30-flow"></script><script src="game-arena-core.js?v=86-30-flow"></script><script src="game-audio.js?v=86-30-flow"></script><script src="game-menu.js?v=86-30-flow"></script><script src="game-arena-view.js?v=86-30-flow"></script><script src="game.js?v=86-30-flow"></script></body></html>
