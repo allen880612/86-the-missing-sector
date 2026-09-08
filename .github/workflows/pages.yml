@@ -25,7 +25,7 @@ jobs:
         with:
           node-version: 24
       - name: Run gameplay and deployment tests
-        run: node --test game-core.test.cjs game-arena-core.test.cjs game-audio.test.cjs scripts/build-pages.test.cjs
+        run: node --test game-core.test.cjs game-arena-core.test.cjs game-audio.test.cjs game-training.test.cjs scripts/build-pages.test.cjs
       - name: Build static Pages bundle
         run: node scripts/build-pages.cjs
 
