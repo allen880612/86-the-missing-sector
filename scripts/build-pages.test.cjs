@@ -19,7 +19,7 @@ function run(root){
 }
 test('publishes runtime only and removes stale output',t=>{
  const root=fixture(t);
- for(const file of ['game.js','game.test.js','private.txt','assets/sprite.png','art-direction/86-reference/images/secret-notes.png']){
+ for(const file of ['changelog.html','game.js','game.test.js','private.txt','assets/sprite.png','art-direction/86-reference/images/secret-notes.png']){
   fs.mkdirSync(path.dirname(path.join(root,file)),{recursive:true});fs.writeFileSync(path.join(root,file),'sample');
  }
  assert.equal(run(root).status,0);
@@ -27,7 +27,7 @@ test('publishes runtime only and removes stale output',t=>{
  fs.writeFileSync(path.join(root,'assets','untracked.png'),'private');
  const result=spawnSync(process.execPath,[build],{cwd:root,encoding:'utf8'});
  assert.equal(result.status,0,result.stderr);
- for(const file of ['game.js','assets/sprite.png'])assert.ok(fs.existsSync(path.join(root,'dist',file)));
+ for(const file of ['changelog.html','game.js','assets/sprite.png'])assert.ok(fs.existsSync(path.join(root,'dist',file)));
  for(const file of ['game.test.js','private.txt','stale.txt','assets/untracked.png','art-direction/86-reference/images/secret-notes.png'])assert.equal(fs.existsSync(path.join(root,'dist',file)),false);
 });
 for(const entry of ['functions/api.js','_worker.js','_worker.js/index.js'])test(`rejects server execution: ${entry}`,t=>{

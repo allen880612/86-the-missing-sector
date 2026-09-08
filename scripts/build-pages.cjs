@@ -14,7 +14,7 @@ const forbidden=tracked.filter(file=>file.split('/').includes('functions')||file
 if(forbidden.length)throw new Error(`Static Pages build rejects Functions/Workers files:\n${forbidden.join('\n')}`);
 
 const selected=tracked.filter(file=>
- file==='index.html'||
+ file==='index.html'||file==='changelog.html'||
  file==='style.css'||
  (/^game[^/]*\.js$/.test(file)&&!file.endsWith('.test.js'))||
  file.startsWith('assets/')||
