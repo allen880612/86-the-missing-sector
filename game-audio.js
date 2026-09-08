@@ -5,7 +5,7 @@
   var musicElements = [], musicElementSources = [], musicGains = [], musicTrackIds = [], musicIndex = 0, musicFadeTimer = null;
   var scene = 'title', explicitScene = false, hiddenPaused = false;
   var unlocked = false, musicOn = true, sfxOn = true, phase = 'over', duckUntil = -Infinity, duckLevel = 1;
-  var musicVolume = 0.58, sfxVolume = 0.85;
+  var musicVolume = 0.58, sfxVolume = 0.85, transitionLevel = null;
   var buffers = {}, active = [], lastEffect = {}, lastShot = -Infinity;
   var pendingConfirmTimer = null;
   var MAX_SFX = 24;
@@ -32,7 +32,7 @@
   function clamp(value) { return Math.max(0, Math.min(1, Number(value) || 0)); }
   function playable() { return phase === 'ready' || phase === 'over' || phase === 'launching' || phase === 'playing' || phase === 'settling'; }
   function wantsMusic() { return unlocked && musicOn && playable(); }
-  function phaseLevel() { return phase === 'ready' ? 0.48 : phase === 'over' ? 0.56 : phase === 'launching' ? 0.62 : phase === 'settling' ? 0.72 : 1; }
+  function phaseLevel() { if (phase === 'settling' && transitionLevel !== null) return transitionLevel; return phase === 'ready' ? 0.48 : phase === 'over' ? 0.56 : phase === 'launching' ? 0.62 : phase === 'settling' ? 0.72 : 1; }
   function priority(type) { return type === 'warning' || type === 'hurt' ? 3 : type === 'bossEnter' || type === 'bossDown' || type === 'eliteDown' || type === 'mortarReady' || type === 'chargerReady' ? 2 : 1; }
 
   function makeGain(value, destination) {
@@ -366,6 +366,7 @@
     setSfxVolume: function (value) { sfxVolume = clamp(value); if (sfxBus) sfxBus.gain.value = sfxVolume; },
     update: function (state) {
       phase = (state && state.phase) || ((state && state.playing) ? 'playing' : 'over');
+      transitionLevel = state && Number.isFinite(state.musicFade) ? clamp(state.musicFade) : null;
       if (!explicitScene) {
         if (phase === 'ready') setScene('prep', true);
         else if (phase === 'launching') setScene('battle', true);

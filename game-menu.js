@@ -1,7 +1,7 @@
 (() => {
   const params = new URLSearchParams(location.search);
   window.FrontlineAudio?.preload?.();
-  const defaults = { gameMode: 'frontline', machine: 'm1a4', encounter: 'mixed', ammo: 'standard', tactic: 'support', arenaBoss: 'dinosauria', arenaMap: 'ruins' };
+  const defaults = { gameMode: 'endless', machine: 'm1a4', encounter: 'mixed', ammo: 'standard', tactic: 'support', arenaBoss: 'dinosauria', arenaMap: 'ruins' };
   const titleScreen = document.getElementById('titleScreen');
   const overlay = document.getElementById('overlay');
   const radio = document.getElementById('combatRadio');
@@ -88,7 +88,7 @@
       tacticInput.value = 'support';
       tacticInput.dispatchEvent(new Event('change', { bubbles: true }));
     }
-    document.getElementById('titleControl').textContent = endless ? 'WASD／方向鍵四向移動 · 滑鼠瞄準 · 自動開砲 · 左鍵機型技能／右鍵躍進' : '左右移動 · 自動射擊 · 走位選補給';
+    document.getElementById('titleControl').textContent = endless ? 'WASD 移動 · 游標瞄準 · 自動開砲' : '左右移動 · 自動射擊 · 走位選補給';
     document.getElementById('footerControls').innerHTML = endless ? '<kbd>W</kbd><kbd>A</kbd><kbd>S</kbd><kbd>D</kbd> 四向移動 <em>滑鼠瞄準 · 自動開砲 · 左鍵機型技能／右鍵躍進</em>' : '<kbd>A</kbd><kbd>D</kbd> / <kbd>←</kbd><kbd>→</kbd> 左右移動 <em>或按住畫面拖曳</em>';
     document.getElementById('game').setAttribute('aria-label', endless ? '使用 WASD 或方向鍵四向移動，滑鼠瞄準、自動發射主砲，左鍵機型技能、右鍵躍進' : '使用 A、D、方向鍵或拖曳左右移動，自動射擊');
     document.getElementById('description').textContent = endless ? '配置機體與火力，守住四向戰場。' : '選擇你的機體，突破軍團戰線。';
@@ -243,7 +243,7 @@
     if (value && document.querySelector(`[data-choice="${id}"][data-value="${CSS.escape(value)}"]`)) input.value = value;
     card.addEventListener('click', () => {
       uiSound('uiSelect');
-      if (!document.body.classList.contains('reduce-motion') && !matchMedia('(prefers-reduced-motion: reduce)').matches) card.animate([{ transform: 'scale(.97)' }, { transform: 'scale(1)' }], { duration: 180, easing: 'ease-out' });
+      if (!document.body.classList.contains('reduce-motion') && !matchMedia('(prefers-reduced-motion: reduce)').matches) card.animate([{ opacity: .7 }, { opacity: 1 }], { duration: 160, easing: 'ease-out' });
       input.value = card.dataset.value;
       input.dispatchEvent(new Event('change', { bubbles: true }));
       refreshBriefing();

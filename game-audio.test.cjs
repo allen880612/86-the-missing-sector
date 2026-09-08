@@ -361,3 +361,10 @@ test('榴彈每次爆破使用一次短爆音，穿甲命中用短金屬音而�
 
 
 test('干擾進入與解除各播放短機械素材且同事件限流，靜音後不觸發',async()=>{const a=setup();a.api.unlock();await a.resolveAll();a.api.effect('jamEnter');a.api.effect('jamEnter');a.now(2);a.api.effect('jamClear');assert.equal(a.sources.length,2);assert.ok(a.sources[0].buffer.tag.includes('impactTin'));assert.ok(a.sources[1].buffer.tag.includes('impactMetal'));assert.ok(a.sources.every(v=>v.duration/v.playbackRate.value<.25));assert.equal(a.oscillators.length,0);a.api.setSfx(false);assert.ok(a.sources.every(v=>v.stopped));a.api.effect('jamEnter');assert.equal(a.sources.length,2);});
+
+test('失能過場音量獨立淡出，跳過後恢復場景音量且不覆寫玩家設定',()=>{
+ const a=setup();a.api.unlock();a.api.setMusicVolume(.4);a.api.update({phase:'settling',musicFade:.15});assert.equal(a.gains[1].gain.value,.4);assert.equal(a.gains[2].gain.value,.15);
+ a.api.update({phase:'settling',musicFade:0});assert.equal(a.gains[2].gain.value,0);
+ a.api.setMusic(false);a.api.update({phase:'over'});assert.equal(a.gains[2].gain.value,.56);assert.equal(a.gains[1].gain.value,.4);assert.ok(a.audios.every(e=>e.paused));
+ a.api.setMusic(true);a.api.update({phase:'playing'});assert.equal(a.gains[2].gain.value,1);assert.equal(a.gains[1].gain.value,.4);
+});
