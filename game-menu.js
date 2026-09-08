@@ -43,13 +43,13 @@
       mines: '提前射爆地雷，利用連鎖爆破清出路線。'
     })[encounter] || '';
     if (!endless) return;
-    document.getElementById('enemyModel').textContent = '四向戰場';
+    document.getElementById('enemyModel').textContent = 'DINOSAURIA / MORPHO';
     document.getElementById('enemyRole').textContent = '掩體交戰 · 重型火力 / Boss 交替';
-    document.getElementById('enemyPreview').src = 'art-direction/86-reference/images/official-grauwolf.jpg';
-    document.getElementById('enemyPreview').alt = '四向戰場衝鋒型敵機參考';
+    document.getElementById('enemyPreview').src = window.previewSource?.('dinosauria') || 'art-direction/86-reference/images/official-dinosauria.jpg';
+    document.getElementById('enemyPreview').alt = 'Dinosauria 重戰車型 · 四向戰場 Boss';
     document.getElementById('enemySecond').hidden = false;
-    document.getElementById('enemySecond').src = 'art-direction/86-reference/images/official-lowe.jpg';
-    document.getElementById('enemySecond').alt = '四向戰場 Boss 敵機參考';
+    document.getElementById('enemySecond').src = window.previewSource?.('morpho') || 'art-direction/86-reference/images/official-morpho.jpg';
+    document.getElementById('enemySecond').alt = 'Morpho 電磁加速砲型 · 四向戰場 Boss';
     document.getElementById('enemyStats').innerHTML = '<div><span>普通型</span><strong>持續接敵</strong></div><div><span>衝鋒型</span><strong>近身壓迫</strong></div><div><span>砲兵型</span><strong>遠距封鎖</strong></div>';
     document.getElementById('encounterBrief').innerHTML = '<span class="skill-name">四向戰術</span><strong>觀察四面威脅，移動與砲口分開控制。</strong><small>Boss 交替出現；作戰持續到主機失能。</small>';
     document.getElementById('ammoBrief').innerHTML = {standard:'<strong>環向應變</strong><span>穩定處理各方向目標</span>',ap:'<strong>直線穿透</strong><span>對準同方向密集目標</span>',he:'<strong>爆風清場</strong><span>處理近身包圍</span>'}[document.getElementById('ammo').value];
