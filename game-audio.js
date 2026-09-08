@@ -13,7 +13,7 @@
     music: {
       title: 'assets/audio/reference/prologue_theme_cleyton_kauffman.ogg',
       prep: 'assets/audio/bgm_sci_fi_theme_spring_spring.ogg',
-      battle: 'assets/audio/bgm_space_battle_mintodog.ogg',
+      battle: 'assets/audio/bgm_is_it_a_battle_spring_spring.ogg',
       boss: 'assets/audio/bgm_war_theme_spring_spring.ogg',
       victory: 'assets/audio/bgm_victory_spring_spring.ogg',
       defeat: 'assets/audio/bgm_defeat_no_hope_cleyton_kauffman.ogg'

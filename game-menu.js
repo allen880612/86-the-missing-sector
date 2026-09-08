@@ -1,7 +1,7 @@
 (() => {
   const params = new URLSearchParams(location.search);
   window.FrontlineAudio?.preload?.();
-  const defaults = { gameMode: 'frontline', machine: 'm1a4', encounter: 'mixed', ammo: 'standard', tactic: 'support' };
+  const defaults = { gameMode: 'frontline', machine: 'm1a4', encounter: 'mixed', ammo: 'standard', tactic: 'support', arenaBoss: 'dinosauria' };
   const titleScreen = document.getElementById('titleScreen');
   const overlay = document.getElementById('overlay');
   const radio = document.getElementById('combatRadio');
@@ -17,6 +17,11 @@
   function refreshBriefing() {
     const endless = document.getElementById('gameMode').value === 'endless';
     document.body.classList.toggle('endless-mode', endless);
+    const tacticInput = document.getElementById('tactic');
+    if (endless && tacticInput.value !== 'support') {
+      tacticInput.value = 'support';
+      tacticInput.dispatchEvent(new Event('change', { bubbles: true }));
+    }
     document.getElementById('titleControl').textContent = endless ? 'WASD／方向鍵四向移動 · 滑鼠瞄準 · 自動開砲 · 左鍵超頻／右鍵躍進' : '左右移動 · 自動射擊 · 走位選補給';
     document.getElementById('footerControls').innerHTML = endless ? '<kbd>W</kbd><kbd>A</kbd><kbd>S</kbd><kbd>D</kbd> 四向移動 <em>滑鼠瞄準 · 自動開砲 · 左鍵超頻／右鍵躍進</em>' : '<kbd>A</kbd><kbd>D</kbd> / <kbd>←</kbd><kbd>→</kbd> 左右移動 <em>或按住畫面拖曳</em>';
     document.getElementById('game').setAttribute('aria-label', endless ? '使用 WASD 或方向鍵四向移動，滑鼠瞄準、自動發射主砲，左鍵超頻、右鍵躍進' : '使用 A、D、方向鍵或拖曳左右移動，自動射擊');
@@ -43,17 +48,30 @@
       mines: '提前射爆地雷，利用連鎖爆破清出路線。'
     })[encounter] || '';
     if (!endless) return;
-    document.getElementById('enemyModel').textContent = 'DINOSAURIA / MORPHO';
-    document.getElementById('enemyRole').textContent = '掩體交戰 · 重型火力 / Boss 交替';
-    document.getElementById('enemyPreview').src = window.previewSource?.('dinosauria') || 'art-direction/86-reference/images/official-dinosauria.jpg';
-    document.getElementById('enemyPreview').alt = 'Dinosauria 重戰車型 · 四向戰場 Boss';
-    document.getElementById('enemySecond').hidden = false;
-    document.getElementById('enemySecond').src = window.previewSource?.('morpho') || 'art-direction/86-reference/images/official-morpho.jpg';
-    document.getElementById('enemySecond').alt = 'Morpho 電磁加速砲型 · 四向戰場 Boss';
-    document.getElementById('enemyStats').innerHTML = '<div><span>斥候／砲兵</span><strong>資料鏈協同砲擊</strong></div><div><span>獵兵／戰車</span><strong>衝撞與直射</strong></div><div><span>阻電機群／地雷</span><strong>干擾與連鎖爆破</strong></div>';
-    document.getElementById('encounterBrief').innerHTML = '<span class="skill-name">四向戰術</span><strong>觀察四面威脅，移動與砲口分開控制。</strong><small>Boss 交替出現；作戰持續到主機失能。</small>';
+    const firstBoss = document.getElementById('arenaBoss').value;
+    const bosses = {
+      dinosauria: { name: 'Dinosauria', role: '重戰車型', hp: 2200, attack: '重砲交叉射界', advice: '首敵是重戰車。先離開直線砲口與曲射落點，最後一輪落地後有 2 秒散熱窗口。' },
+      phoenix: { name: 'Phönix', role: '高機動型', hp: 1600, attack: '迷彩／鎖定衝刺', advice: '首敵是 Phönix。射擊可破除迷彩；等它鎖定再側向躍進，撲空後有 2 秒反擊窗口。' },
+      morpho: { name: 'Morpho', role: '電磁加速砲型', hp: 2600, attack: '電磁直射／交錯落點', advice: '首敵是電磁砲。先移出預鎖射線，再避開交錯落點；最後一發後有 2 秒反擊窗口。' }
+    };
+    const boss = bosses[firstBoss] || bosses.dinosauria;
+    for (const image of document.querySelectorAll('[data-boss-preview]')) {
+      const source = window.previewSource?.(image.dataset.bossPreview);
+      if (source && !source.endsWith('official-phoenix.jpg')) image.src = source;
+    }
+    document.getElementById('briefingEnemy').textContent = boss.advice;
+    document.getElementById('enemyModel').textContent = boss.name.toUpperCase();
+    document.getElementById('enemyRole').textContent = '首個接敵 · ' + boss.role;
+    const bossSource = window.previewSource?.(firstBoss);
+    const preview = document.getElementById('enemyPreview');
+    if (bossSource && !bossSource.endsWith('official-phoenix.jpg')) preview.src = bossSource;
+    else preview.removeAttribute('src');
+    preview.alt = boss.name + ' · ' + boss.role;
+    document.getElementById('enemySecond').hidden = true;
+    document.getElementById('enemyStats').innerHTML = `<div><span>初始耐久</span><strong>${boss.hp} HP</strong></div><div><span>攻擊特色</span><strong>${boss.attack}</strong></div><div><span>反擊窗口</span><strong>散熱／撲空 2 秒</strong></div>`;
+    document.getElementById('encounterBrief').innerHTML = '<span class="skill-name">後續接敵</span><strong>三型 Boss 輪替，選擇只決定首敵。</strong><small>Stier：220 HP，短射界扇射後散熱 2.4 秒。Ameise 掃射班：側移機槍，是斥候職能編組。</small>';
     document.getElementById('ammoBrief').innerHTML = {standard:'<strong>環向應變</strong><span>穩定處理各方向目標</span>',ap:'<strong>直線穿透</strong><span>對準同方向密集目標</span>',he:'<strong>爆風清場</strong><span>處理近身包圍</span>'}[document.getElementById('ammo').value];
-    document.getElementById('tacticBrief').innerHTML = document.getElementById('tactic').value === 'decoy' ? '<strong>四向誘敵</strong><span>誘導 6 秒 · 結束時區域震盪</span>' : '<strong>區域砲擊</strong><span>延遲 0.65 秒 · 半徑 230 · 跨越掩體</span>';
+    document.getElementById('tacticBrief').innerHTML = '<strong>區域支援 · 初始 2 次／18 秒回充</strong><span>指定落點 · 清場打斷</span>';
   }
   function clearRadio() {
     clearTimeout(radioTimer);
@@ -118,8 +136,14 @@
       document.getElementById('radioChannel').textContent = type === 'tactic' ? '戰術執行' : type === 'warning' ? '敵情通報' : '作戰通訊';
       document.getElementById('radioText').textContent = String(message);
       radio.dataset.type = ['status', 'tactic', 'warning'].includes(type) ? type : 'status';
+      radio.dataset.character = lena ? 'lena' : 'shin';
       radio.dataset.key = options.key || '';
       radio.hidden = false;
+      uiSound('uiSelect');
+      if (!document.body.classList.contains('reduce-motion') && !matchMedia('(prefers-reduced-motion: reduce)').matches) {
+        radio.getAnimations().forEach(animation => animation.cancel());
+        radio.animate([{ opacity: .35, translate: lena ? '12px 0' : '-12px 0' }, { opacity: 1, translate: '0 0' }], { duration: 240, easing: 'ease-out' });
+      }
       clearTimeout(radioTimer);
       if (!options.managed) radioTimer = setTimeout(clearRadio, (options.duration ?? (type === 'warning' ? 2.8 : 2.4)) * 1000);
       return true;
@@ -153,6 +177,7 @@
     if (value && document.querySelector(`[data-choice="${id}"][data-value="${CSS.escape(value)}"]`)) input.value = value;
     card.addEventListener('click', () => {
       uiSound('uiSelect');
+      if (!document.body.classList.contains('reduce-motion') && !matchMedia('(prefers-reduced-motion: reduce)').matches) card.animate([{ transform: 'scale(.97)' }, { transform: 'scale(1)' }], { duration: 180, easing: 'ease-out' });
       input.value = card.dataset.value;
       input.dispatchEvent(new Event('change', { bubbles: true }));
       refreshBriefing();
@@ -167,7 +192,7 @@
     const input = document.getElementById(id);
     if (input && !input.value) input.value = value;
   });
-  ['machine', 'encounter', 'ammo', 'tactic'].forEach(id => document.getElementById(id).addEventListener('change', refreshBriefing));
+  ['machine', 'encounter', 'ammo', 'tactic', 'arenaBoss'].forEach(id => document.getElementById(id).addEventListener('change', refreshBriefing));
   document.getElementById('gameMode').addEventListener('change', () => {
     if (document.getElementById('gameMode').value !== 'endless') window.loadoutPreview?.();
     refreshBriefing();
