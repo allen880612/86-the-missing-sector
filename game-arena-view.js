@@ -131,7 +131,7 @@ function drawArenaDash(){
 
 function drawArenaEnemyState(e,size){
  const p=point(e.x,e.y),boss=e.type==='boss',open=e.exposed>0;let pending=null,firing=null;
- for(const h of s.hazards){if(h.source!==e.id)continue;if(!h.fired&&(!pending||h.delay<pending.delay))pending=h;else if(h.fired&&h.kind!=='charge'&&(!firing||h.life>firing.life))firing=h;}
+ for(const h of s.hazards){if(h.source!==e.id)continue;if(!h.fired&&(!pending||h.delay<pending.delay))pending=h;else if(h.fired&&h.geometry==='beam'&&h.life>0&&(!firing||h.life>firing.life))firing=h;}
  const charging=!!pending,heading=pending?.geometry==='beam'?Math.atan2((pending.toY-pending.fromY)*H*.00084,(pending.toX-pending.fromX)*W*.00086):firing?.geometry==='beam'?Math.atan2((firing.toY-firing.fromY)*H*.00084,(firing.toX-firing.fromX)*W*.00086):arenaDirection(e.angle??0),progress=pending?clamp(1-pending.delay/pending.maxDelay,0,1):0;
  ctx.save();ctx.translate(p.x,p.y);ctx.rotate(heading);
  if(charging&&e.type!=='charger'){
@@ -139,14 +139,14 @@ function drawArenaEnemyState(e,size){
   for(let i=0;i<4;i++){ctx.globalAlpha=progress>(i+1)/5?.7:.14;for(const side of [-1,1])line({x:size*(.05+i*.075),y:side*size*.027},{x:size*(.075+i*.075),y:side*size*.027},color,Math.max(1.5,size*.009));}
  }
  if(firing){
-  const life=firing.geometry==='beam'?.24:.3,fade=clamp(firing.life/life,0,1),tip=size*.48,length=size*.32*(motion?.55+fade*.45:1),width=size*.055;ctx.globalCompositeOperation='screen';ctx.globalAlpha=motion?fade:.7;
+  const fade=clamp(firing.life/.24,0,1),tip=size*.48,length=size*.32*(motion?.55+fade*.45:1),width=size*.055;ctx.globalCompositeOperation='screen';ctx.globalAlpha=motion?fade:.7;
   const flame=ctx.createLinearGradient(tip,0,tip+length,0);flame.addColorStop(0,'#fff3d9');flame.addColorStop(.25,firing.kind==='rail'?'#b7d8eeaa':'#e3b47aaa');flame.addColorStop(1,'#d6bb9100');polygon([{x:tip,y:-width},{x:tip+length*.65,y:-width*.45},{x:tip+length,y:0},{x:tip+length*.65,y:width*.45},{x:tip,y:width}],flame);
  }
  ctx.globalCompositeOperation='source-over';
  if(open){
-  const release=clamp(e.exposed/2,0,1),travel=motion?(1-release)*size*.12:0;ctx.globalAlpha=.75;
+  const release=clamp(e.exposed/2,0,1),opening=motion?clamp((2-e.exposed)/.12,0,1):1,travel=motion?(1-release)*size*.12:0;ctx.globalAlpha=.75*opening;
   for(const side of [-1,1])for(let i=0;i<3;i++){const x=size*(-.12+i*.07),y=side*size*.10;line({x,y},{x:x-size*.045,y:y+side*size*.05},'#142125',5);line({x,y},{x:x-size*.045,y:y+side*size*.05},'#edcb99',2);}
-  const steam=smokeArt.whitePuff03;if(steam?.naturalWidth){ctx.globalAlpha=.24*release;for(const side of [-1,1])ctx.drawImage(steam,-size*.2-travel,side*size*.16-size*.09,size*.3+travel,size*.18);}
+  const steam=smokeArt.whitePuff03;if(steam?.naturalWidth){ctx.globalAlpha=.24*release*opening;for(const side of [-1,1])ctx.drawImage(steam,-size*.2-travel,side*size*.16-size*.09,size*.3+travel,size*.18);}
  }
  if(e.type==='charger'&&(e.phase==='dash'||pending&&e.phase==='windup')){
   const dust=smokeArt.whitePuff14;ctx.globalAlpha=e.phase==='dash'?.28:.12;if(dust?.naturalWidth)for(const side of [-1,1])ctx.drawImage(dust,-size*.62,side*size*.24-size*.09,size*.4,size*.18);
