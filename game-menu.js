@@ -17,24 +17,24 @@
   function refreshBriefing() {
     const endless = document.getElementById('gameMode').value === 'endless';
     document.body.classList.toggle('endless-mode', endless);
-    document.getElementById('titleControl').textContent = endless ? 'WASD／方向鍵四向移動 · 滑鼠瞄準 · 自動開砲 · 左鍵超頻／右鍵側移' : '左右移動 · 自動射擊 · 走位選補給';
-    document.getElementById('footerControls').innerHTML = endless ? '<kbd>W</kbd><kbd>A</kbd><kbd>S</kbd><kbd>D</kbd> 四向移動 <em>滑鼠瞄準 · 自動開砲 · 左鍵超頻／右鍵側移</em>' : '<kbd>A</kbd><kbd>D</kbd> / <kbd>←</kbd><kbd>→</kbd> 左右移動 <em>或按住畫面拖曳</em>';
-    document.getElementById('game').setAttribute('aria-label', endless ? '使用 WASD 或方向鍵四向移動，滑鼠瞄準、自動發射主砲，左鍵超頻、右鍵側移' : '使用 A、D、方向鍵或拖曳左右移動，自動射擊');
+    document.getElementById('titleControl').textContent = endless ? 'WASD／方向鍵四向移動 · 滑鼠瞄準 · 自動開砲 · 左鍵超頻／右鍵躍進' : '左右移動 · 自動射擊 · 走位選補給';
+    document.getElementById('footerControls').innerHTML = endless ? '<kbd>W</kbd><kbd>A</kbd><kbd>S</kbd><kbd>D</kbd> 四向移動 <em>滑鼠瞄準 · 自動開砲 · 左鍵超頻／右鍵躍進</em>' : '<kbd>A</kbd><kbd>D</kbd> / <kbd>←</kbd><kbd>→</kbd> 左右移動 <em>或按住畫面拖曳</em>';
+    document.getElementById('game').setAttribute('aria-label', endless ? '使用 WASD 或方向鍵四向移動，滑鼠瞄準、自動發射主砲，左鍵超頻、右鍵躍進' : '使用 A、D、方向鍵或拖曳左右移動，自動射擊');
     document.getElementById('description').textContent = endless ? '配置機體與火力，守住四向戰場。' : '選擇你的機體，突破軍團戰線。';
-    if (!overlay.hidden && !overlay.classList.contains('paused')) document.getElementById('hint').textContent = endless ? 'WASD／方向鍵四向移動 · 滑鼠瞄準 · 自動開砲 · 左鍵超頻／右鍵側移 · 四面接敵' : '向下捲動選擇遭遇與裝備 · 可直接出擊';
+    if (!overlay.hidden && !overlay.classList.contains('paused')) document.getElementById('hint').textContent = endless ? 'WASD／方向鍵四向移動 · 滑鼠瞄準 · 自動開砲 · 左鍵超頻／右鍵躍進 · 四面接敵' : '向下捲動選擇遭遇與裝備 · 可直接出擊';
     const machine = document.getElementById('machine').value;
     document.querySelectorAll('[data-choice="machine"] small').forEach(label=>{if(label.closest('.card-metrics'))return;const id=label.closest('[data-choice]').dataset.value;label.textContent=(endless?{m1a4:'均衡火力',m4a3:'重砲裝甲',xm2:'高速連射'}:{m1a4:'機動反擊',m4a3:'停穩重砲',xm2:'高速近擊'})[id];});
     const encounter = document.getElementById('encounter').value;
     document.getElementById('briefingMachine').textContent = (endless ? {
-      m1a4: 'M1A4，機動與火力均衡。僚機顧近身，主砲優先處理包圍較薄的一側。',
-      m4a3: 'M4A3，重砲傷害高、耐久較厚；移動較慢，提早離開砲擊落點。',
-      xm2: 'XM2，移動快、連射快，但裝甲薄。保持距離，別讓追兵包住。'
+      m1a4: 'M1A4，躍進180。僚機顧近身，主砲處理包圍較薄的一側；危急時僚機可攔截致命傷。',
+      m4a3: 'M4A3，厚裝甲與重砲，躍進150。適合用掩體壓制敵人，提早離開曲射落點。',
+      xm2: 'XM2，躍進220、連射快，但耐久薄。利用越障切換射角，別停在敵群中央。'
     } : {
       m1a4: 'M1A4，先避開射界；讓接近的敵機進入近擊範圍。',
       m4a3: 'M4A3，移到安全位置後停穩，讓重砲發揮火力。',
       xm2: 'XM2，保持橫移累積動能，再用強化砲擊反攻。'
     })[machine] || '';
-    document.getElementById('briefingEnemy').textContent = endless ? '直射可借掩體擋下，曲射仍要離開落點。重型機散熱時，開啟超頻反擊。' : ({
+    document.getElementById('briefingEnemy').textContent = endless ? '射爆地雷清路，擊落阻電群恢復僚機索敵；先拆斥候可減少協同砲擊。右鍵躍進跨越包圍，落地後仍須避開砲火。' : ({
       mixed: '先拆重戰車副砲；整備後注意電磁砲的安全缺口。',
       dinosauria: '側移拆除副砲；主砲發射後，抓住核心開放的時機。',
       morpho: '提早移進射界缺口；砲擊結束後對準核心。',
@@ -50,7 +50,7 @@
     document.getElementById('enemySecond').hidden = false;
     document.getElementById('enemySecond').src = window.previewSource?.('morpho') || 'art-direction/86-reference/images/official-morpho.jpg';
     document.getElementById('enemySecond').alt = 'Morpho 電磁加速砲型 · 四向戰場 Boss';
-    document.getElementById('enemyStats').innerHTML = '<div><span>普通型</span><strong>持續接敵</strong></div><div><span>衝鋒型</span><strong>近身壓迫</strong></div><div><span>砲兵型</span><strong>遠距封鎖</strong></div>';
+    document.getElementById('enemyStats').innerHTML = '<div><span>斥候／砲兵</span><strong>資料鏈協同砲擊</strong></div><div><span>獵兵／戰車</span><strong>衝撞與直射</strong></div><div><span>阻電機群／地雷</span><strong>干擾與連鎖爆破</strong></div>';
     document.getElementById('encounterBrief').innerHTML = '<span class="skill-name">四向戰術</span><strong>觀察四面威脅，移動與砲口分開控制。</strong><small>Boss 交替出現；作戰持續到主機失能。</small>';
     document.getElementById('ammoBrief').innerHTML = {standard:'<strong>環向應變</strong><span>穩定處理各方向目標</span>',ap:'<strong>直線穿透</strong><span>對準同方向密集目標</span>',he:'<strong>爆風清場</strong><span>處理近身包圍</span>'}[document.getElementById('ammo').value];
     document.getElementById('tacticBrief').innerHTML = document.getElementById('tactic').value === 'decoy' ? '<strong>四向誘敵</strong><span>誘導 6 秒 · 結束時區域震盪</span>' : '<strong>區域砲擊</strong><span>延遲 0.65 秒 · 半徑 230 · 跨越掩體</span>';

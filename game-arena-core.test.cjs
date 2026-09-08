@@ -73,7 +73,7 @@ test('first supply pair is shield and weapon, later pairs split survival and off
   assert.deepEqual(s.crates.map(box => box.kind), ['shield', 'weapon']);
   for (const box of s.crates) box.used = true;
   C.step(s, .05, { firing: false });
-  for (let i = 0; i < 400; i++) C.step(s, .05, { firing: false });
+  for (let i = 0; i < 500; i++) C.step(s, .05, { firing: false });
   const survival = new Set(['repair', 'shield', 'recruit']);
   const offense = new Set(['weapon', 'charge', 'ap', 'he', 'overdrive', 'emp']);
   assert.equal(s.crates.length, 2);
@@ -178,7 +178,7 @@ test('heavy beam destroys cover on this attack but remains blocked until the nex
   assert.equal(durable.obstacles[1].hp, 100);
 });
 
-test('fire defaults on, burst accelerates it, and dash respects collision', () => {
+test('fire defaults on and burst accelerates it without stacking overdrive', () => {
   const automatic = quiet(state()); automatic.count = 1;
   C.step(automatic, .01, { aimX: 900, aimY: 500 });
   assert.equal(automatic.bullets.length, 1);
@@ -194,12 +194,6 @@ test('fire defaults on, burst accelerates it, and dash respects collision', () =
   C.step(combined, .01, { aimX: 900, aimY: 500 });
   assert.equal(combined.shot, C.machines.m1a4.interval / 1.7);
 
-  const dash = quiet(state()); dash.x = 190; dash.y = 330;
-  assert.equal(C.useAbility(dash, 'dash', { moveX: 1, moveY: 0 }), true);
-  for (let i = 0; i < 5; i++) C.step(dash, .05, { firing: false });
-  assert.ok(dash.x <= 213.001);
-  assert.equal(dash.invulnerable, 0);
-  assert.equal(C.useAbility(dash, 'dash', { moveX: 1, moveY: 0 }), false);
 });
 
 test('support lands after delay and decoy expiry shocks enemies without hurting the player', () => {
@@ -245,51 +239,48 @@ test('supplies collect immediately and independently even when full', () => {
   assert.equal(s.stats.items, 2);
 });
 
-test('full weapon pickup clears the item without a fake upgrade event', () => {
+test('full weapon pickup starts five seconds of overdrive without a fake upgrade event', () => {
   const s = quiet(state()); s.level = 8;
   const item = {kind:'weapon',x:500,y:500,used:false};
   assert.equal(C.collect(s, item), true);
   assert.equal(item.used, true);
   assert.equal(s.level, 8);
-  assert.equal(s.overdrive, 0);
+  assert.equal(s.overdrive, 5);
   assert.ok(!s.events.some(e => e.type === 'upgrade'));
 });
 
-test('dash travels over time along its initial direction and cannot add walking speed', () => {
-  const s = quiet(state()); s.obstacles = []; s.count = 1;
-  C.useAbility(s, 'dash', { moveX: 1 });
-  assert.equal(s.x, 500);
-  assert.equal(s.dash.duration, .22);
-  C.step(s, .05, { moveX: -1, firing: false });
-  assert.ok(s.x > 500 && s.x < 600);
-  const middle = s.x;
-  for (let i = 0; i < 3; i++) C.step(s, .05, { moveX: -1, firing: false });
-  C.step(s, .02, { moveX: -1, firing: false });
-  assert.ok(s.x > middle);
-  assert.ok(Math.abs(s.x - 600) < 1e-6);
-  assert.equal(s.y, 500);
-  assert.equal(s.dash, null);
-  assert.equal(C.useAbility(s, 'dash', {}), false);
-});
-
-test('animated dash stops at cover and enemy collision boundaries', () => {
-  for (const obstacle of ['cover', 'enemy']) {
-    const s = quiet(state()); s.count = 1; s.obstacles = [];
-    let limit;
-    if (obstacle === 'cover') { s.obstacles.push({id:'wall',x:600,y:500,w:40,h:100,hp:100,dead:false}); limit = 558; }
-    else { const e = C.spawnEnemy(s, 'normal', 580, 500); e.speed = 0; limit = e.x - e.r - s.r; }
-    C.useAbility(s, 'dash', { moveX: 1 });
-    for (let i = 0; i < 5; i++) C.step(s, .05, { firing: false });
-    assert.ok(s.x <= limit + .01, obstacle);
-    assert.ok(s.x > 500, obstacle);
-    assert.equal(s.dash, null);
+test('dash crosses blockers over time and lands at each machine distance', () => {
+  for (const [machine, distance] of [['m1a4', 180], ['xm2', 220], ['m4a3', 150]]) {
+    const s = quiet(state(() => .5, { machine })); s.obstacles = []; s.count = 1;
+    const blocker = C.spawnEnemy(s, 'normal', 590, 500); blocker.speed = 0;
+    assert.equal(C.useAbility(s, 'dash', { moveX: 1 }), true);
+    assert.deepEqual([s.x, s.dash.duration, s.dash.toX], [500, .36, 500 + distance]);
+    C.step(s, .05, { moveX: -1, firing: false });
+    assert.ok(s.x > 500 && s.x < 500 + distance);
+    if(machine==='m1a4'){const shield=s.shield;assert.equal(C.hurt(s,20,false,{kind:'contact'}),0);assert.equal(s.shield,shield);C.hurt(s,20,false,{kind:'mortar'});assert.ok(s.shield<shield);}
+    while (s.dash) C.step(s, .05, { moveX: -1, firing: false });
+    assert.ok(Math.abs(s.x - (500 + distance)) < 1e-6, machine);
+    assert.ok(s.events.some(e => e.type === 'dashLand'));
+    assert.ok(blocker.x < s.x, 'dash path may cross an enemy');
   }
 });
 
-test('later supply deliveries spawn every twenty seconds in walkable space', () => {
+test('dash rejects when no landing exists and chooses a legal landing near cover', () => {
+  const blocked = quiet(state()); blocked.count = 1; blocked.obstacles = [{id:'sealed',x:700,y:500,w:240,h:400,hp:100,dead:false}];
+  assert.equal(C.useAbility(blocked, 'dash', { moveX: 1 }), false);
+  assert.equal(blocked.dashCooldown, 0);
+
+  const detour = quiet(state()); detour.count = 1; detour.obstacles = [{id:'tip',x:680,y:500,w:40,h:40,hp:100,dead:false}];
+  assert.equal(C.useAbility(detour, 'dash', { moveX: 1 }), true);
+  assert.ok(detour.dash.toY !== 500 || detour.dash.toX !== 680);
+  while(detour.dash) C.step(detour, .05, { firing: false });
+  assert.ok(detour.x+detour.r<=660||detour.x-detour.r>=700||detour.y+detour.r<=480||detour.y-detour.r>=520);
+});
+
+test('later supply deliveries spawn every twenty-five seconds in walkable space', () => {
   const s = state(() => .25); s.spawn = s.boss = 999;
-  s.supplyGroup = 1; s.pickupTimer = 20;
-  for (let i = 0; i < 399; i++) C.step(s, .05, { firing: false });
+  s.supplyGroup = 1; s.pickupTimer = 25;
+  for (let i = 0; i < 499; i++) C.step(s, .05, { firing: false });
   assert.equal(s.crates.length, 0);
   C.step(s, .05, { firing: false });
   assert.equal(s.crates.length, 2);
@@ -523,6 +514,70 @@ test('dead enemies and expired supplies are reclaimed while living enemies are c
   assert.ok(s.enemies.filter(e => !e.dead).length <= 70);
 });
 
+test('drops use twelve normal kills, throttle elites, and weight survival needs', () => {
+  const s = quiet(state()); s.count = 1; s.hp = 20; s.shield = 80;
+  for (let i = 0; i < 11; i++) { const e=C.spawnEnemy(s,'normal',120+i*45,180); C.damageEnemy(s,e,e.hp); }
+  assert.equal(s.crates.length, 0);
+  let e=C.spawnEnemy(s,'normal',700,180); C.damageEnemy(s,e,e.hp);
+  assert.equal(s.crates.length, 1); assert.equal(s.crates[0].kind, 'repair');
+  s.crates=[];s.hp=s.maxHp;s.shield=0;
+  e=C.spawnEnemy(s,'charger',200,200);C.damageEnemy(s,e,e.hp);
+  assert.equal(s.crates.at(-1).kind,'shield');
+  e=C.spawnEnemy(s,'artillery',800,200);C.damageEnemy(s,e,e.hp);
+  assert.equal(s.crates.length,1,'second elite inside eight seconds is throttled');
+  s.time=8;e=C.spawnEnemy(s,'scout',500,150);C.damageEnemy(s,e,e.hp);
+  assert.equal(s.crates.length,2);
+  const boss=C.spawnSpecial(s,'dinosauria',500,250);C.damageEnemy(s,boss,boss.hp);
+  assert.equal(s.crates.length,3,'boss always drops');
+});
+
+test('scout links an artillery second impact and its death cancels only that pending shot', () => {
+  const s=quiet(state());s.count=1;
+  const gun=C.spawnEnemy(s,'artillery',200,200),scout=C.spawnEnemy(s,'scout',280,200);gun.speed=scout.speed=0;gun.cooldown=0;
+  C.step(s,.05,{firing:false});
+  const linked=s.hazards.find(h=>h.linkedTo===scout.id&&!h.fired);
+  assert.ok(linked);assert.equal(linked.source,gun.id);
+  C.damageEnemy(s,scout,scout.hp);
+  assert.ok(!s.hazards.includes(linked));
+  assert.ok(s.hazards.some(h=>h.source===gun.id&&!h.fired));
+});
+
+test('Lowe beam is cover-blocked and enters a cooling window', () => {
+  const s=quiet(state());s.count=1;s.x=850;s.y=360;
+  const lowe=C.spawnEnemy(s,'shield',500,360);lowe.speed=0;lowe.cooldown=0;
+  C.step(s,.05,{firing:false});
+  const beam=s.hazards.find(h=>h.source===lowe.id&&h.geometry==='beam');
+  assert.ok(beam&&beam.blockedBy==='cover-2');
+  lowe.cooldown=0;C.step(s,.05,{firing:false});
+  assert.ok(lowe.cooling>0);
+});
+
+test('jammers locally reduce wing range and killing them immediately restores it', () => {
+  const s=quiet(state());s.count=2;s.obstacles=[];
+  const target=C.spawnEnemy(s,'normal',740,542),jammer=C.spawnEnemy(s,'jammer',560,760);target.speed=jammer.speed=0;
+  C.step(s,.05,{firing:false});assert.equal(s.bullets.filter(b=>b.ammo==='wing').length,0);assert.ok(s.jammed);assert.ok(s.wingRange<280);
+  C.damageEnemy(s,jammer,jammer.hp);s.wingShot=0;C.step(s,.05,{firing:false});
+  assert.ok(s.bullets.some(b=>b.ammo==='wing'&&b.targetId===target.id));assert.equal(s.jammed,false);
+});
+
+test('mine warns before detonation and a player kill chains damage once', () => {
+  const s=quiet(state());s.count=1;s.shield=0;
+  const mine=C.spawnEnemy(s,'mine',575,500);mine.speed=0;
+  C.step(s,.05,{firing:false});assert.equal(mine.phase,'windup');assert.ok(s.events.some(e=>e.type==='warning'&&e.kind==='mine'));
+  for(let i=0;i<13;i++)C.step(s,.05,{firing:false});assert.ok(mine.dead);assert.ok(s.hp<s.maxHp);
+  const chain=quiet(state());chain.count=1;chain.x=800;chain.y=800;const first=C.spawnEnemy(chain,'mine',400,500),second=C.spawnEnemy(chain,'mine',450,500),victim=C.spawnEnemy(chain,'shield',515,500);first.speed=second.speed=victim.speed=0;
+  C.damageEnemy(chain,first,first.hp);assert.ok(second.dead);assert.ok(victim.hp<victim.max);assert.ok(chain.events.some(e=>e.type==='mineChain'));
+});
+
+test('a wingman sacrifices itself only for lethal post-shield damage and respects cooldown', () => {
+  const s=quiet(state());s.count=3;s.shield=10;s.hp=50;
+  assert.equal(C.hurt(s,70,false,{kind:'rail',sourceId:9}),0);assert.deepEqual([s.count,s.hp,s.shield,s.wingSaveCooldown],[2,50,0,6]);
+  assert.ok(s.events.some(e=>e.type==='wingSacrifice'&&e.absorbed===60));
+  s.invulnerable=0;C.hurt(s,70,false,{kind:'rail'});assert.equal(s.hp,0);
+  const armored=quiet(state());armored.count=2;armored.shield=100;C.hurt(armored,50,false,{kind:'rail'});assert.equal(armored.count,2);
+  const solo=quiet(state());solo.count=1;solo.shield=0;C.hurt(solo,solo.hp,false,{kind:'rail'});assert.equal(solo.hp,0);
+});
+
 test('destroying artillery cancels its warning but preserves fired hazards', () => {
   const s = quiet(state());
   const gun = C.spawnEnemy(s, 'artillery', 300, 300);
@@ -554,4 +609,14 @@ test('boss death continues endless play and player death yields a retryable resu
   assert.equal(retry.over, false);
   assert.equal(retry.hp, retry.maxHp);
   assert.deepEqual([retry.x, retry.y], [500, 500]);
+});
+
+test('dash reserves the takeoff point from movement and spawns for safe fallback', () => {
+  const s=quiet(state());s.obstacles=[];s.count=1;s.x=300;s.y=500;
+  const enemy=C.spawnEnemy(s,'normal',230,500);enemy.speed=500;
+  assert.ok(C.useAbility(s,'dash',{moveX:1,moveY:0}));
+  const spawned=C.spawnEnemy(s,'normal',300,500);
+  assert.ok(!spawned||Math.hypot(spawned.x-300,spawned.y-500)>=spawned.r+s.r);
+  C.step(s,.05,{firing:false});
+  assert.ok(Math.hypot(enemy.x-300,enemy.y-500)>=enemy.r+s.r-1e-6);
 });
