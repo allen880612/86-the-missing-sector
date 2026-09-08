@@ -103,7 +103,7 @@ function processArenaEvents(){
     }else{ring(s.x,s.y,'#efd7ab');beep('upgrade');battleRadio('arena-overclock','重砲超頻。三秒內集中重砲！','tactic','shin',{priority:3,duration:1.8});}
    }else if(e.kind==='dash')beep('chargerDash');
   }
-  else if(e.type==='waveCleared'){eventNotice('SECTOR SECURED','區域清空 · 整補',`耐久 +${e.hpRecovered} · 裝甲 +${e.shieldRecovered} · 僚機整修`,3);beep('braceReady');battleRadio('arena-regroup-'+e.wave,'這一帶暫時安全。整補後再前進。','status','shin',{priority:4,duration:3,valid:()=>s.wavePhase==='regroup'});}
+  else if(e.type==='waveCleared'){beep('braceReady');battleRadio('arena-regroup-'+e.wave,`區域清空。耐久 +${e.hpRecovered} · 裝甲 +${e.shieldRecovered} · 僚機整修。`,'status','shin',{priority:4,duration:3,valid:()=>s.wavePhase==='regroup'});}
   else if(e.type==='waveStart'){if(e.kind==='elite'||e.kind==='boss'){eventNotice('REINFORCEMENTS',e.kind==='boss'?'Boss 強襲':'全菁英增援',`第 ${e.wave} 波 · 保留火力，避免合圍`,2.4);beep('warning');}else toast(`第 ${e.wave} 波 · 火控 LV.${s.level}`);}
   else if(e.type==='item'||e.type==='collect'){rewardFeedback(e);const kind=e.kind||e.item;floating(arenaItemName(kind),e.x??s.x,e.y??s.y,'#bcece6');ring(e.x??s.x,e.y??s.y,'#bcece6');beep('upgrade');}
   else if(e.type==='upgrade'){toast(`火控升級 · LV.${s.level}`);beep('upgrade');}
