@@ -1,0 +1,47 @@
+[
+  {
+    "file": "building-a.glb",
+    "bytes": 177316,
+    "triangles": 2046,
+    "meshes": 1,
+    "skins": 0,
+    "animations": 0,
+    "images": [
+      {
+        "uri": "Textures/colormap.png",
+        "name": "colormap"
+      }
+    ],
+    "sha256": "0e6ef8eb1e1bdbb9d06b5496b5daf3066e00eaf74b3fcd61b74072116a1c86cf"
+  },
+  {
+    "file": "shipping-container-a.glb",
+    "bytes": 36624,
+    "triangles": 402,
+    "meshes": 1,
+    "skins": 0,
+    "animations": 0,
+    "images": [
+      {
+        "uri": "Textures/colormap.png",
+        "name": "colormap"
+      }
+    ],
+    "sha256": "7b2d5ca874c8e659ee6cfd1614f0470b70410b2ddc7620ac83b8954dedeb861d"
+  },
+  {
+    "file": "water-tower.glb",
+    "bytes": 93836,
+    "triangles": 968,
+    "meshes": 1,
+    "skins": 0,
+    "animations": 0,
+    "images": [
+      {
+        "uri": "Textures/colormap.png",
+        "name": "colormap"
+      }
+    ],
+    "sha256": "11ac7ae19f32ce889bfe7a9c8e78c8ce8c77b7a76b52fd4ffa439a022ea2ef40"
+  }
+]

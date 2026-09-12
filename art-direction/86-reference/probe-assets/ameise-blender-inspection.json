@@ -1,0 +1,1472 @@
+{
+  "version": "4.5.13 LTS",
+  "objects": [
+    {
+      "name": "ameise base armature",
+      "type": "ARMATURE",
+      "parent": "ameise animation controller",
+      "dimensions": [
+        27.81673812866211,
+        26.661462783813477,
+        10.100549697875977
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "rotation": [
+        0.0,
+        -0.0,
+        0.0
+      ],
+      "bones": [
+        {
+          "name": "ameise base",
+          "parent": null,
+          "head": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "tail": [
+            0.0,
+            0.0,
+            3.353524923324585
+          ]
+        },
+        {
+          "name": "ameise right gun",
+          "parent": "ameise base",
+          "head": [
+            2.456688165664673,
+            0.979324460029602,
+            3.7628846168518066
+          ],
+          "tail": [
+            2.4566876888275146,
+            10.334102630615234,
+            3.7628846168518066
+          ]
+        },
+        {
+          "name": "ameise right gun_end",
+          "parent": "ameise right gun",
+          "head": [
+            2.4566876888275146,
+            10.334102630615234,
+            3.7628846168518066
+          ],
+          "tail": [
+            2.4566872119903564,
+            19.688880920410156,
+            3.7628846168518066
+          ]
+        },
+        {
+          "name": "ameise left gun",
+          "parent": "ameise base",
+          "head": [
+            -2.4564051628112793,
+            0.97932368516922,
+            3.762885570526123
+          ],
+          "tail": [
+            -2.4564056396484375,
+            10.334102630615234,
+            3.762885570526123
+          ]
+        },
+        {
+          "name": "ameise left gun_end",
+          "parent": "ameise left gun",
+          "head": [
+            -2.4564056396484375,
+            10.334102630615234,
+            3.762885570526123
+          ],
+          "tail": [
+            -2.4564061164855957,
+            19.688880920410156,
+            3.762885570526123
+          ]
+        },
+        {
+          "name": "ameise middle left",
+          "parent": "ameise base",
+          "head": [
+            -1.96999990940094,
+            -8.611142021663909e-08,
+            0.9849019050598145
+          ],
+          "tail": [
+            -6.5725884437561035,
+            -2.8729695600304694e-07,
+            3.333310842514038
+          ]
+        },
+        {
+          "name": "ameise middle left outer",
+          "parent": "ameise middle left",
+          "head": [
+            -6.5725884437561035,
+            -2.8729695600304694e-07,
+            3.333310842514038
+          ],
+          "tail": [
+            -13.908370018005371,
+            -6.079540639802872e-07,
+            -4.3119025230407715
+          ]
+        },
+        {
+          "name": "ameise middle left outer toe",
+          "parent": "ameise middle left outer",
+          "head": [
+            -13.908370018005371,
+            -6.079540639802872e-07,
+            -4.3119025230407715
+          ],
+          "tail": [
+            -13.908370018005371,
+            -6.079541776671249e-07,
+            -5.322601318359375
+          ]
+        },
+        {
+          "name": "ameise middle left outer toe_end",
+          "parent": "ameise middle left outer toe",
+          "head": [
+            -13.908370018005371,
+            -6.079541776671249e-07,
+            -5.322601318359375
+          ],
+          "tail": [
+            -13.908370018005371,
+            -6.079541776671249e-07,
+            -6.33329963684082
+          ]
+        },
+        {
+          "name": "ameise middle right",
+          "parent": "ameise base",
+          "head": [
+            1.96999990940094,
+            8.611142021663909e-08,
+            0.9849019050598145
+          ],
+          "tail": [
+            6.5725884437561035,
+            2.8729695600304694e-07,
+            3.333310842514038
+          ]
+        },
+        {
+          "name": "ameise middle right outer",
+          "parent": "ameise middle right",
+          "head": [
+            6.5725884437561035,
+            2.8729695600304694e-07,
+            3.333310842514038
+          ],
+          "tail": [
+            13.908369064331055,
+            6.079524155211402e-07,
+            -4.3119001388549805
+          ]
+        },
+        {
+          "name": "ameise middle right outer toe",
+          "parent": "ameise middle right outer",
+          "head": [
+            13.908370018005371,
+            6.07953722919774e-07,
+            -4.311899185180664
+          ],
+          "tail": [
+            13.908370018005371,
+            6.079536092329363e-07,
+            -5.322597503662109
+          ]
+        },
+        {
+          "name": "ameise middle right outer toe_end",
+          "parent": "ameise middle right outer toe",
+          "head": [
+            13.908370018005371,
+            6.079536092329363e-07,
+            -5.322597503662109
+          ],
+          "tail": [
+            13.908370018005371,
+            6.079534955460986e-07,
+            -6.333295822143555
+          ]
+        },
+        {
+          "name": "ameise back right",
+          "parent": "ameise base",
+          "head": [
+            1.8567882776260376,
+            -2.5026328563690186,
+            0.9849019050598145
+          ],
+          "tail": [
+            6.195260047912598,
+            -4.259980201721191,
+            3.335829257965088
+          ]
+        },
+        {
+          "name": "ameise back right outer",
+          "parent": "ameise back right",
+          "head": [
+            6.195260047912598,
+            -4.259980201721191,
+            3.335829257965088
+          ],
+          "tail": [
+            12.914661407470703,
+            -6.9725799560546875,
+            -4.309382915496826
+          ]
+        },
+        {
+          "name": "ameise back right outer toe",
+          "parent": "ameise back right outer",
+          "head": [
+            12.914661407470703,
+            -6.9725799560546875,
+            -4.309382915496826
+          ],
+          "tail": [
+            12.914660453796387,
+            -6.972580909729004,
+            -5.3200812339782715
+          ]
+        },
+        {
+          "name": "ameise back right outer toe_end",
+          "parent": "ameise back right outer toe",
+          "head": [
+            12.914660453796387,
+            -6.972580909729004,
+            -5.3200812339782715
+          ],
+          "tail": [
+            12.914660453796387,
+            -6.972580909729004,
+            -6.330779552459717
+          ]
+        },
+        {
+          "name": "ameise back left",
+          "parent": "ameise base",
+          "head": [
+            -1.8560322523117065,
+            -2.50182843208313,
+            0.9849019050598145
+          ],
+          "tail": [
+            -6.195260524749756,
+            -4.259980201721191,
+            3.335829496383667
+          ]
+        },
+        {
+          "name": "ameise back left outer",
+          "parent": "ameise back left",
+          "head": [
+            -6.195260524749756,
+            -4.259980201721191,
+            3.335829496383667
+          ],
+          "tail": [
+            -12.864660263061523,
+            -6.9725799560546875,
+            -4.315593242645264
+          ]
+        },
+        {
+          "name": "ameise back left outer toe",
+          "parent": "ameise back left outer",
+          "head": [
+            -12.864660263061523,
+            -6.9725799560546875,
+            -4.315593242645264
+          ],
+          "tail": [
+            -12.864662170410156,
+            -6.972579002380371,
+            -5.326290607452393
+          ]
+        },
+        {
+          "name": "ameise back left outer toe_end",
+          "parent": "ameise back left outer toe",
+          "head": [
+            -12.864662170410156,
+            -6.972579002380371,
+            -5.326290607452393
+          ],
+          "tail": [
+            -12.864662170410156,
+            -6.972579002380371,
+            -6.336988925933838
+          ]
+        },
+        {
+          "name": "ameise front left",
+          "parent": "ameise base",
+          "head": [
+            -1.842015027999878,
+            2.613163948059082,
+            0.9849019050598145
+          ],
+          "tail": [
+            -6.195235252380371,
+            4.359978675842285,
+            3.335829019546509
+          ]
+        },
+        {
+          "name": "ameise front left outer",
+          "parent": "ameise front left",
+          "head": [
+            -6.195235252380371,
+            4.359978675842285,
+            3.335829019546509
+          ],
+          "tail": [
+            -12.9146728515625,
+            7.072579860687256,
+            -4.316091537475586
+          ]
+        },
+        {
+          "name": "ameise front left outer toe",
+          "parent": "ameise front left outer",
+          "head": [
+            -12.9146728515625,
+            7.072579860687256,
+            -4.316091537475586
+          ],
+          "tail": [
+            -12.914673805236816,
+            7.072579383850098,
+            -5.326790809631348
+          ]
+        },
+        {
+          "name": "ameise front left outer toe_end",
+          "parent": "ameise front left outer toe",
+          "head": [
+            -12.914673805236816,
+            7.072579383850098,
+            -5.326790809631348
+          ],
+          "tail": [
+            -12.914673805236816,
+            7.072579383850098,
+            -6.337489128112793
+          ]
+        },
+        {
+          "name": "ameise front right",
+          "parent": "ameise base",
+          "head": [
+            1.8427462577819824,
+            2.6109700202941895,
+            0.9849019050598145
+          ],
+          "tail": [
+            6.195258140563965,
+            4.359979152679443,
+            3.3358283042907715
+          ]
+        },
+        {
+          "name": "ameise front right outer",
+          "parent": "ameise front right",
+          "head": [
+            6.195258140563965,
+            4.359979152679443,
+            3.3358283042907715
+          ],
+          "tail": [
+            12.914657592773438,
+            7.072579383850098,
+            -4.316271781921387
+          ]
+        },
+        {
+          "name": "ameise front right outer toe",
+          "parent": "ameise front right outer",
+          "head": [
+            12.914657592773438,
+            7.072579383850098,
+            -4.316271781921387
+          ],
+          "tail": [
+            12.914657592773438,
+            7.072579860687256,
+            -5.326970100402832
+          ]
+        },
+        {
+          "name": "ameise front right outer toe_end",
+          "parent": "ameise front right outer toe",
+          "head": [
+            12.914657592773438,
+            7.072579860687256,
+            -5.326970100402832
+          ],
+          "tail": [
+            12.914657592773438,
+            7.072579860687256,
+            -6.337668418884277
+          ]
+        }
+      ]
+    },
+    {
+      "name": "sensor light",
+      "type": "LIGHT",
+      "parent": "ameise base armature",
+      "dimensions": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "rotation": [
+        2.384185791015625e-07,
+        -0.0,
+        0.0
+      ]
+    },
+    {
+      "name": "ameise outer leg",
+      "type": "MESH",
+      "parent": "ameise base armature",
+      "dimensions": [
+        24.001922607421875,
+        30.309717178344727,
+        8.875821113586426
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "rotation": [
+        -1.0474256839643203e-07,
+        -1.5105742079413176e-07,
+        1.9547688961029053
+      ],
+      "vertices": 1824,
+      "triangles": 3552,
+      "uvLayers": [
+        "UVMap"
+      ],
+      "vertexGroups": 12,
+      "materials": [
+        "baked ameise textures"
+      ]
+    },
+    {
+      "name": "ameise inner leg",
+      "type": "MESH",
+      "parent": "ameise base armature",
+      "dimensions": [
+        13.650835037231445,
+        15.269421577453613,
+        3.2785701751708984
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "rotation": [
+        -1.0474256839643203e-07,
+        -1.5105742079413176e-07,
+        1.9547688961029053
+      ],
+      "vertices": 936,
+      "triangles": 1800,
+      "uvLayers": [
+        "UVMap"
+      ],
+      "vertexGroups": 6,
+      "materials": [
+        "baked ameise textures"
+      ]
+    },
+    {
+      "name": "armor 3",
+      "type": "MESH",
+      "parent": "ameise base armature",
+      "dimensions": [
+        2.813870429992676,
+        3.0887904167175293,
+        1.2578952312469482
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "rotation": [
+        -1.6292062809952768e-07,
+        -1.6292067073209182e-07,
+        1.5707961320877075
+      ],
+      "vertices": 96,
+      "triangles": 168,
+      "uvLayers": [
+        "UVMap"
+      ],
+      "vertexGroups": 1,
+      "materials": [
+        "baked ameise textures"
+      ]
+    },
+    {
+      "name": "ball joints",
+      "type": "MESH",
+      "parent": "ameise base armature",
+      "dimensions": [
+        6.101193904876709,
+        4.982187747955322,
+        1.0108816623687744
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "rotation": [
+        -1.6292062809952768e-07,
+        -1.6292067073209182e-07,
+        1.5707961320877075
+      ],
+      "vertices": 348,
+      "triangles": 672,
+      "uvLayers": [
+        "UVMap"
+      ],
+      "vertexGroups": 1,
+      "materials": [
+        "baked ameise textures"
+      ]
+    },
+    {
+      "name": "composite sensor hull",
+      "type": "MESH",
+      "parent": "ameise base armature",
+      "dimensions": [
+        6.915092945098877,
+        2.0000007152557373,
+        2.4480512142181396
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "rotation": [
+        3.734738243110769e-07,
+        0.3490656912326813,
+        1.5707966089248657
+      ],
+      "vertices": 150,
+      "triangles": 296,
+      "uvLayers": [
+        "UVMap"
+      ],
+      "vertexGroups": 1,
+      "materials": [
+        "baked ameise textures"
+      ]
+    },
+    {
+      "name": "main body leg base",
+      "type": "MESH",
+      "parent": "ameise base armature",
+      "dimensions": [
+        6.151442527770996,
+        1.200740933418274,
+        3.520051956176758
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "rotation": [
+        -1.5707964897155762,
+        -1.49011640360186e-07,
+        1.570796012878418
+      ],
+      "vertices": 576,
+      "triangles": 1128,
+      "uvLayers": [
+        "UVMap"
+      ],
+      "vertexGroups": 1,
+      "materials": [
+        "baked ameise textures"
+      ]
+    },
+    {
+      "name": "small bits of armor below big armor plate",
+      "type": "MESH",
+      "parent": "ameise base armature",
+      "dimensions": [
+        3.7538437843322754,
+        2.9300990104675293,
+        1.581902265548706
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "rotation": [
+        -1.6292062809952768e-07,
+        -1.6292067073209182e-07,
+        1.5707961320877075
+      ],
+      "vertices": 160,
+      "triangles": 280,
+      "uvLayers": [
+        "UVMap"
+      ],
+      "vertexGroups": 1,
+      "materials": [
+        "baked ameise textures"
+      ]
+    },
+    {
+      "name": "patterns on top armor",
+      "type": "MESH",
+      "parent": "ameise base armature",
+      "dimensions": [
+        3.495692491531372,
+        1.3064936399459839,
+        0.32166242599487305
+      ],
+      "scale": [
+        1.6173895597457886,
+        0.5723059177398682,
+        0.10122006386518478
+      ],
+      "rotation": [
+        5.810432526232034e-07,
+        0.37984931468963623,
+        1.5707967281341553
+      ],
+      "vertices": 128,
+      "triangles": 248,
+      "uvLayers": [
+        "UVMap"
+      ],
+      "vertexGroups": 1,
+      "materials": [
+        "baked ameise textures"
+      ]
+    },
+    {
+      "name": "gun base connects to body",
+      "type": "MESH",
+      "parent": "ameise base armature",
+      "dimensions": [
+        1.5944006443023682,
+        6.267391204833984,
+        2.593195676803589
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "rotation": [
+        -1.6292062809952768e-07,
+        -1.6292067073209182e-07,
+        1.5707961320877075
+      ],
+      "vertices": 596,
+      "triangles": 1168,
+      "uvLayers": [
+        "UVMap"
+      ],
+      "vertexGroups": 3,
+      "materials": [
+        "baked ameise textures"
+      ]
+    },
+    {
+      "name": "\"toe\" base",
+      "type": "MESH",
+      "parent": "ameise base armature",
+      "dimensions": [
+        23.71860694885254,
+        30.135881423950195,
+        2.784080982208252
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "rotation": [
+        -1.0474256839643203e-07,
+        -1.5105742079413176e-07,
+        1.9547688961029053
+      ],
+      "vertices": 720,
+      "triangles": 1344,
+      "uvLayers": [
+        "UVMap"
+      ],
+      "vertexGroups": 6,
+      "materials": [
+        "baked ameise textures"
+      ]
+    },
+    {
+      "name": "ameise top armor",
+      "type": "MESH",
+      "parent": "ameise base armature",
+      "dimensions": [
+        21.21116828918457,
+        3.72373104095459,
+        2.611833095550537
+      ],
+      "scale": [
+        0.9999999403953552,
+        1.0,
+        0.9999999403953552
+      ],
+      "rotation": [
+        -1.167524388279162e-07,
+        0.36333703994750977,
+        1.5707963705062866
+      ],
+      "vertices": 257,
+      "triangles": 516,
+      "uvLayers": [
+        "UVMap"
+      ],
+      "vertexGroups": 1,
+      "materials": [
+        "baked ameise textures"
+      ]
+    },
+    {
+      "name": "armor 5",
+      "type": "MESH",
+      "parent": "ameise base armature",
+      "dimensions": [
+        5.127994537353516,
+        2.84529972076416,
+        3.235349178314209
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "rotation": [
+        -4.3711281705327565e-08,
+        -1.6292067073209182e-07,
+        1.5707956552505493
+      ],
+      "vertices": 120,
+      "triangles": 216,
+      "uvLayers": [
+        "UVMap"
+      ],
+      "vertexGroups": 1,
+      "materials": [
+        "baked ameise textures"
+      ]
+    },
+    {
+      "name": "base2",
+      "type": "MESH",
+      "parent": "ameise base armature",
+      "dimensions": [
+        4.4249773025512695,
+        1.3442453145980835,
+        1.3278250694274902
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "rotation": [
+        -1.6292062809952768e-07,
+        -1.6292067073209182e-07,
+        1.5707961320877075
+      ],
+      "vertices": 18,
+      "triangles": 32,
+      "uvLayers": [
+        "UVMap"
+      ],
+      "vertexGroups": 1,
+      "materials": [
+        "baked ameise textures"
+      ]
+    },
+    {
+      "name": "detail around sensor",
+      "type": "MESH",
+      "parent": "ameise base armature",
+      "dimensions": [
+        1.6702980995178223,
+        1.2630586624145508,
+        2.159815788269043
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "rotation": [
+        -1.6292062809952768e-07,
+        -1.6292067073209182e-07,
+        1.5707961320877075
+      ],
+      "vertices": 92,
+      "triangles": 180,
+      "uvLayers": [
+        "UVMap"
+      ],
+      "vertexGroups": 1,
+      "materials": [
+        "baked ameise textures"
+      ]
+    },
+    {
+      "name": "outermost sensor shell",
+      "type": "MESH",
+      "parent": "ameise base armature",
+      "dimensions": [
+        1.590598225593567,
+        0.7976933717727661,
+        0.7760782241821289
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "rotation": [
+        -1.5707966089248657,
+        1.570796012878418,
+        0.0
+      ],
+      "vertices": 88,
+      "triangles": 172,
+      "uvLayers": [
+        "UVMap"
+      ],
+      "vertexGroups": 1,
+      "materials": [
+        "baked ameise textures"
+      ]
+    },
+    {
+      "name": "temp base in front",
+      "type": "MESH",
+      "parent": "ameise base armature",
+      "dimensions": [
+        6.513790607452393,
+        3.979987621307373,
+        1.652467966079712
+      ],
+      "scale": [
+        1.0000001192092896,
+        1.0,
+        1.0000001192092896
+      ],
+      "rotation": [
+        -8.461397555947769e-07,
+        -0.13876712322235107,
+        1.5707967281341553
+      ],
+      "vertices": 179,
+      "triangles": 348,
+      "uvLayers": [
+        "UVMap"
+      ],
+      "vertexGroups": 1,
+      "materials": [
+        "baked ameise textures"
+      ]
+    },
+    {
+      "name": "hydralic for 'toe'",
+      "type": "MESH",
+      "parent": "ameise base armature",
+      "dimensions": [
+        21.644012451171875,
+        27.58075523376465,
+        1.447694182395935
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "rotation": [
+        -1.0474256839643203e-07,
+        -1.5105742079413176e-07,
+        1.9547688961029053
+      ],
+      "vertices": 96,
+      "triangles": 168,
+      "uvLayers": [
+        "UVMap"
+      ],
+      "vertexGroups": 6,
+      "materials": [
+        "baked ameise textures"
+      ]
+    },
+    {
+      "name": "armor",
+      "type": "MESH",
+      "parent": "ameise base armature",
+      "dimensions": [
+        5.353573322296143,
+        4.147134304046631,
+        2.2481448650360107
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "rotation": [
+        -1.6292062809952768e-07,
+        -1.6292067073209182e-07,
+        1.5707961320877075
+      ],
+      "vertices": 96,
+      "triangles": 184,
+      "uvLayers": [
+        "UVMap"
+      ],
+      "vertexGroups": 1,
+      "materials": [
+        "baked ameise textures"
+      ]
+    },
+    {
+      "name": "armor 6 underside",
+      "type": "MESH",
+      "parent": "ameise base armature",
+      "dimensions": [
+        2.7189767360687256,
+        2.27744722366333,
+        0.949510395526886
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "rotation": [
+        -1.6292062809952768e-07,
+        -1.6292067073209182e-07,
+        1.5707961320877075
+      ],
+      "vertices": 40,
+      "triangles": 76,
+      "uvLayers": [
+        "UVMap"
+      ],
+      "vertexGroups": 1,
+      "materials": [
+        "baked ameise textures"
+      ]
+    },
+    {
+      "name": "big armor plate on back",
+      "type": "MESH",
+      "parent": "ameise base armature",
+      "dimensions": [
+        4.268520832061768,
+        2.958226203918457,
+        5.513054370880127
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "rotation": [
+        -1.6292062809952768e-07,
+        -1.6292067073209182e-07,
+        1.5707961320877075
+      ],
+      "vertices": 200,
+      "triangles": 384,
+      "uvLayers": [
+        "UVMap"
+      ],
+      "vertexGroups": 1,
+      "materials": [
+        "baked ameise textures"
+      ]
+    },
+    {
+      "name": "heat dissipating metal pieces",
+      "type": "MESH",
+      "parent": "ameise base armature",
+      "dimensions": [
+        5.228078842163086,
+        1.6754244565963745,
+        9.684179306030273
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "rotation": [
+        -1.6292062809952768e-07,
+        -1.6292067073209182e-07,
+        1.5707961320877075
+      ],
+      "vertices": 988,
+      "triangles": 1748,
+      "uvLayers": [
+        "UVMap"
+      ],
+      "vertexGroups": 1,
+      "materials": [
+        "baked ameise textures"
+      ]
+    },
+    {
+      "name": "side grill grill",
+      "type": "MESH",
+      "parent": "ameise base armature",
+      "dimensions": [
+        3.617036819458008,
+        3.8291354179382324,
+        1.9907872676849365
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "rotation": [
+        -1.6292062809952768e-07,
+        -1.6292067073209182e-07,
+        1.5707961320877075
+      ],
+      "vertices": 156,
+      "triangles": 104,
+      "uvLayers": [
+        "UVMap"
+      ],
+      "vertexGroups": 1,
+      "materials": [
+        "baked ameise textures"
+      ]
+    },
+    {
+      "name": "true base",
+      "type": "MESH",
+      "parent": "ameise base armature",
+      "dimensions": [
+        6.094071388244629,
+        2.7276034355163574,
+        1.6463658809661865
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "rotation": [
+        -1.6292062809952768e-07,
+        -1.6292067073209182e-07,
+        1.5707961320877075
+      ],
+      "vertices": 72,
+      "triangles": 140,
+      "uvLayers": [
+        "UVMap"
+      ],
+      "vertexGroups": 1,
+      "materials": [
+        "baked ameise textures"
+      ]
+    },
+    {
+      "name": "ameise gun",
+      "type": "MESH",
+      "parent": "ameise base armature",
+      "dimensions": [
+        10.2098388671875,
+        6.065825462341309,
+        2.248467445373535
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "rotation": [
+        -1.6292062809952768e-07,
+        -1.6292067073209182e-07,
+        1.5707961320877075
+      ],
+      "vertices": 932,
+      "triangles": 1772,
+      "uvLayers": [
+        "UVMap"
+      ],
+      "vertexGroups": 2,
+      "materials": [
+        "baked ameise textures"
+      ]
+    },
+    {
+      "name": "toe",
+      "type": "MESH",
+      "parent": "ameise base armature",
+      "dimensions": [
+        23.556060791015625,
+        30.014074325561523,
+        0.8123754262924194
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "rotation": [
+        -1.0474256839643203e-07,
+        -1.5105742079413176e-07,
+        1.9547688961029053
+      ],
+      "vertices": 192,
+      "triangles": 360,
+      "uvLayers": [
+        "UVMap"
+      ],
+      "vertexGroups": 6,
+      "materials": [
+        "baked ameise textures"
+      ]
+    },
+    {
+      "name": "armor 2",
+      "type": "MESH",
+      "parent": "ameise base armature",
+      "dimensions": [
+        10.797966957092285,
+        2.2071666717529297,
+        6.6227874755859375
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "rotation": [
+        -1.6292062809952768e-07,
+        -1.6292067073209182e-07,
+        1.5707961320877075
+      ],
+      "vertices": 60,
+      "triangles": 112,
+      "uvLayers": [
+        "UVMap"
+      ],
+      "vertexGroups": 1,
+      "materials": [
+        "baked ameise textures"
+      ]
+    },
+    {
+      "name": "armor 7",
+      "type": "MESH",
+      "parent": "ameise base armature",
+      "dimensions": [
+        2.308213710784912,
+        1.8188375234603882,
+        1.008182406425476
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "rotation": [
+        3.734738243110769e-07,
+        0.3490656912326813,
+        1.5707966089248657
+      ],
+      "vertices": 138,
+      "triangles": 272,
+      "uvLayers": [
+        "UVMap"
+      ],
+      "vertexGroups": 1,
+      "materials": [
+        "baked ameise textures"
+      ]
+    },
+    {
+      "name": "center sensor shell",
+      "type": "MESH",
+      "parent": "ameise base armature",
+      "dimensions": [
+        1.3975088596343994,
+        0.700857937335968,
+        0.5172224044799805
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "rotation": [
+        -1.5707966089248657,
+        1.570796012878418,
+        0.0
+      ],
+      "vertices": 96,
+      "triangles": 192,
+      "uvLayers": [
+        "UVMap"
+      ],
+      "vertexGroups": 1,
+      "materials": [
+        "baked ameise textures"
+      ]
+    },
+    {
+      "name": "light of the sensor",
+      "type": "MESH",
+      "parent": "ameise base armature",
+      "dimensions": [
+        1.1506294012069702,
+        0.5770465731620789,
+        0.45904970169067383
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "rotation": [
+        -1.5707966089248657,
+        1.570796012878418,
+        0.0
+      ],
+      "vertices": 120,
+      "triangles": 262,
+      "uvLayers": [
+        "UVMap"
+      ],
+      "vertexGroups": 1,
+      "materials": [
+        "baked ameise textures",
+        "composite sensor"
+      ]
+    },
+    {
+      "name": "side grills shell",
+      "type": "MESH",
+      "parent": "ameise base armature",
+      "dimensions": [
+        5.068490982055664,
+        3.995422124862671,
+        2.773491382598877
+      ],
+      "scale": [
+        0.9999998807907104,
+        1.0,
+        0.9999998807907104
+      ],
+      "rotation": [
+        1.4953707250242587e-07,
+        0.18986941874027252,
+        1.5707963705062866
+      ],
+      "vertices": 90,
+      "triangles": 176,
+      "uvLayers": [
+        "UVMap"
+      ],
+      "vertexGroups": 1,
+      "materials": [
+        "baked ameise textures"
+      ]
+    },
+    {
+      "name": "underside armor",
+      "type": "MESH",
+      "parent": "ameise base armature",
+      "dimensions": [
+        10.750770568847656,
+        3.6395483016967773,
+        1.5106823444366455
+      ],
+      "scale": [
+        1.0000001192092896,
+        1.0,
+        1.0000001192092896
+      ],
+      "rotation": [
+        -8.461397555947769e-07,
+        -0.13876712322235107,
+        1.5707967281341553
+      ],
+      "vertices": 275,
+      "triangles": 552,
+      "uvLayers": [
+        "UVMap"
+      ],
+      "vertexGroups": 1,
+      "materials": [
+        "baked ameise textures"
+      ]
+    },
+    {
+      "name": "ameise animation controller",
+      "type": "EMPTY",
+      "parent": null,
+      "dimensions": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "rotation": [
+        -1.6292067073209182e-07,
+        0.0,
+        0.0
+      ]
+    }
+  ],
+  "actions": [],
+  "materials": [
+    {
+      "name": "baked ameise textures",
+      "nodes": [
+        [
+          "Principled BSDF",
+          "BSDF_PRINCIPLED"
+        ],
+        [
+          "Material Output",
+          "OUTPUT_MATERIAL"
+        ],
+        [
+          "Normal Map",
+          "NORMAL_MAP"
+        ],
+        [
+          "Image Texture",
+          "TEX_IMAGE"
+        ],
+        [
+          "Image Texture.001",
+          "TEX_IMAGE"
+        ],
+        [
+          "Image Texture.002",
+          "TEX_IMAGE"
+        ],
+        [
+          "Image Texture.003",
+          "TEX_IMAGE"
+        ],
+        [
+          "Image Texture.004",
+          "TEX_IMAGE"
+        ]
+      ]
+    },
+    {
+      "name": "composite sensor",
+      "nodes": [
+        [
+          "Principled BSDF",
+          "BSDF_PRINCIPLED"
+        ],
+        [
+          "Material Output",
+          "OUTPUT_MATERIAL"
+        ],
+        [
+          "Normal Map",
+          "NORMAL_MAP"
+        ]
+      ]
+    }
+  ],
+  "images": [
+    {
+      "name": "ameise 4k color.png.001",
+      "path": "ameise 4k color.png",
+      "size": [
+        4096,
+        4096
+      ]
+    },
+    {
+      "name": "ameise 4k color.png.002",
+      "path": "ameise 4k color.png",
+      "size": [
+        4096,
+        4096
+      ]
+    },
+    {
+      "name": "ameise 4k metallic.png",
+      "path": "ameise 4k metallic.png",
+      "size": [
+        0,
+        0
+      ]
+    },
+    {
+      "name": "ameise 4k normal.png.001",
+      "path": "ameise 4k normal.png",
+      "size": [
+        4096,
+        4096
+      ]
+    },
+    {
+      "name": "ameise 4k roughness.png",
+      "path": "ameise 4k roughness.png",
+      "size": [
+        0,
+        0
+      ]
+    }
+  ]
+}

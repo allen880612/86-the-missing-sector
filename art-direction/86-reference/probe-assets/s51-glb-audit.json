@@ -1,0 +1,79 @@
+{
+  "audit": "GLB JSON/BIN structure only",
+  "files": {
+    "ameise-reuse-probe.glb": {
+      "bytes": 3811148,
+      "glbVersion": 2,
+      "headerLengthMatchesFile": true,
+      "chunks": { "jsonBytes": 63352, "binBytes": 3747768 },
+      "bufferLengthMatchesBinChunk": true,
+      "bufferViewsInBounds": true,
+      "sceneCount": 1,
+      "nodeCount": 62,
+      "meshCount": 31,
+      "meshPrimitiveCount": 32,
+      "triangleCount": 18622,
+      "materialCount": 2,
+      "textureCount": 2,
+      "images": {
+        "count": 2,
+        "mimeTypes": ["image/png", "image/png"],
+        "embeddedInBufferViews": true,
+        "externalUris": []
+      },
+      "skinning": {
+        "skinsDeclared": 1,
+        "jointCount": 29,
+        "meshNodesReferencingSkin": 31,
+        "primitivesWithJointsAndWeights": 32,
+        "effectiveSkinnedMesh": true
+      },
+      "animations": [{
+        "name": "DIAGNOSTIC_front_leg_articulation",
+        "channelCount": 87,
+        "samplerCount": 87,
+        "interpretation": "diagnostic front-leg articulation only; not a walk cycle"
+      }]
+    },
+    "juggernaut-reuse-probe.glb": {
+      "bytes": 14951380,
+      "glbVersion": 2,
+      "headerLengthMatchesFile": true,
+      "chunks": { "jsonBytes": 85548, "binBytes": 14865804 },
+      "bufferLengthMatchesBinChunk": true,
+      "bufferViewsInBounds": true,
+      "sceneCount": 1,
+      "nodeCount": 92,
+      "meshCount": 51,
+      "meshPrimitiveCount": 51,
+      "triangleCount": 152384,
+      "materialCount": 1,
+      "textureCount": 2,
+      "images": {
+        "count": 2,
+        "mimeTypes": ["image/png", "image/png"],
+        "embeddedInBufferViews": true,
+        "externalUris": []
+      },
+      "skinning": {
+        "skinsDeclared": 1,
+        "declaredJointCount": 39,
+        "meshNodesReferencingSkin": 0,
+        "primitivesWithJointsAndWeights": 0,
+        "effectiveSkinnedMesh": false,
+        "rigidMeshChildrenDirectlyUnderJointNodes": 30,
+        "interpretation": "the skins entry is unused by every mesh; articulated parts move as rigid mesh children in the bone-node hierarchy"
+      },
+      "animations": [{
+        "name": "DIAGNOSTIC_front_leg_articulation",
+        "channelCount": 117,
+        "samplerCount": 117,
+        "interpretation": "diagnostic front-leg articulation only; not a walk cycle"
+      }]
+    }
+  },
+  "limits": [
+    "This audit does not claim locomotion, foot locking, production animation quality, or Babylon runtime correctness.",
+    "The reported two-pose visual change and console error=[] came from the main agent's separate CUA check and was not rerun here."
+  ]
+}
