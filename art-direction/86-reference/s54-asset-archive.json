@@ -13,7 +13,7 @@
         "bytes": 14005052,
         "sha256": "20003daf0d92d7d3397c8da1dbbf8a44521392803998bc654dad29f8e38a160e",
         "verified": "LFS size and SHA-256 match",
-        "import_status": "not inspected"
+        "import_status": "Imported in Blender and rendered in Godot S55/S56; not accepted for production art/performance"
       },
       {
         "file": "morpho walk forward anim.fbx",
@@ -23,7 +23,7 @@
         "bytes": 91856124,
         "sha256": "fe6c559387de0be7261cb4b7afe5d96a27c3834e8d377e6eea64822bbd2a3f13",
         "verified": "LFS size and SHA-256 match",
-        "import_status": "not inspected"
+        "import_status": "Imported in Blender and rendered in Godot S55/S56; not accepted for production art/performance"
       }
     ]
   },
@@ -212,5 +212,221 @@
       "origin": "Previously verified S51 intake; project-86-reuse-audit.md",
       "status": "local archive, not game publication"
     }
-  ]
+  ],
+  "rocks_ground_08-manifest": {
+    "asset": "rocks_ground_08",
+    "source": "https://polyhaven.com/a/rocks_ground_08",
+    "license": "CC0",
+    "date": "2026-09-13",
+    "files": [
+      {
+        "kind": "diff",
+        "file": "rocks_ground_08_diff_1k.jpg",
+        "source": "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/1k/rocks_ground_08/rocks_ground_08_diff_1k.jpg",
+        "bytes": 967573,
+        "md5": "dcfb4bfdbeb7a6522032b00c6922a2bb",
+        "sha256": "854f22105dd5a85fbc27e840704576e1fc99353bf6d881ded71c6100d15cc57d"
+      },
+      {
+        "kind": "nor_gl",
+        "file": "rocks_ground_08_nor_gl_1k.jpg",
+        "source": "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/1k/rocks_ground_08/rocks_ground_08_nor_gl_1k.jpg",
+        "bytes": 1435205,
+        "md5": "9bc3e3876d2ca8708be50b43e99211b9",
+        "sha256": "15661239defd2560d0fd9cbc295d08774b3c039ba8dd643fca562c4674ea29e4"
+      },
+      {
+        "kind": "arm",
+        "file": "rocks_ground_08_arm_1k.jpg",
+        "source": "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/1k/rocks_ground_08/rocks_ground_08_arm_1k.jpg",
+        "bytes": 271387,
+        "md5": "40be6bf8a68c3aff37045397439cb1d7",
+        "sha256": "db1017a4a87a8e088053fe67f4d80e1fb3a77de6a17eaae64edb6ca96fea394c"
+      },
+      {
+        "kind": "disp",
+        "file": "rocks_ground_08_disp_1k.png",
+        "source": "https://dl.polyhaven.org/file/ph-assets/Textures/png/1k/rocks_ground_08/rocks_ground_08_disp_1k.png",
+        "bytes": 1983660,
+        "md5": "ebb0600b69faa890d7f08024a4864557",
+        "sha256": "3b06c7b7690a800a56b97ae5ec848b268c23899639901dc735670089c9207117"
+      }
+    ]
+  },
+  "rubble-manifest": {
+    "asset": "rubble",
+    "source": "https://polyhaven.com/a/rubble",
+    "license": "CC0",
+    "date": "2026-09-13",
+    "files": [
+      {
+        "kind": "diff",
+        "file": "rubble_diff_1k.jpg",
+        "source": "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/1k/rubble/rubble_diff_1k.jpg",
+        "bytes": 781237,
+        "md5": "122abdafa123de51425f4041e7a5da9a",
+        "sha256": "a656a0692138c045c9707933cf0551559b316b817e90089abf12b6ba76e5e779"
+      },
+      {
+        "kind": "nor_gl",
+        "file": "rubble_nor_gl_1k.jpg",
+        "source": "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/1k/rubble/rubble_nor_gl_1k.jpg",
+        "bytes": 1124135,
+        "md5": "039c7f07e4a8b2b588a767bd27aa8b75",
+        "sha256": "e0f1c7d35a3dc994dd0fd3a1e65f469369c5e92172e158ced34e2368d89fccd2"
+      },
+      {
+        "kind": "arm",
+        "file": "rubble_arm_1k.jpg",
+        "source": "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/1k/rubble/rubble_arm_1k.jpg",
+        "bytes": 801973,
+        "md5": "1bca81c87f8d072b2860452175de6acd",
+        "sha256": "0078618edda9950ebd1b1210cbe4b6e07f3dcccb7b3b1e56ccc1eb4b37cba6df"
+      },
+      {
+        "kind": "disp",
+        "file": "rubble_disp_1k.png",
+        "source": "https://dl.polyhaven.org/file/ph-assets/Textures/png/1k/rubble/rubble_disp_1k.png",
+        "bytes": 1716416,
+        "md5": "f0af5d794ed4c79e95b31277dced3876",
+        "sha256": "eb68b760b7fade40e21220e455f608c6055196e3f9ad11ef46ecbb1ce9b1aa9a"
+      }
+    ]
+  },
+  "current_catalog": [
+    {
+      "id": "XM2",
+      "local_path": ".worktrees/s45-3d-sortie/art-direction/86-reference/probe-assets/s55-reginleif-import.glb",
+      "bytes": 34221152,
+      "sha256": "798623aca1de8524a078e559d8519a535486f7c090fe6050d3c73a80d9549b94",
+      "status": "445798 triangles; 54 joints; no animation. Material normal convention and runtime budget pending.",
+      "rights": "local research; third-party redistribution unresolved"
+    },
+    {
+      "id": "Morpho",
+      "local_path": ".worktrees/s45-3d-sortie/art-direction/86-reference/probe-assets/s55-morpho.glb",
+      "bytes": 12789368,
+      "sha256": "ab10fb642a77d5edb43dca832bfd60d67eaa0ab973641923f75ed48f2fb9d455",
+      "status": "Forward animation sampled at 1.2/2.4s; 40.2m length gives 5.44m pose height, not official 11.4m. Continuous motion unverified.",
+      "rights": "local research; third-party redistribution unresolved"
+    },
+    {
+      "id": "Ameise",
+      "local_path": ".worktrees/s45-3d-sortie/art-direction/86-reference/probe-assets/ameise-reuse-probe.glb",
+      "bytes": 3811148,
+      "sha256": "e53a845f4cb3a9cfb15dcef6a16ea8b456fbc734b16d46fea7eda8011d03e6f5",
+      "status": "Reusable imported model; diagnostic leg clip only, not completed walking.",
+      "rights": "local research; third-party redistribution unresolved"
+    },
+    {
+      "id": "Rail maintenance environment",
+      "local_path": ".worktrees/s45-3d-sortie/art-direction/86-reference/probe-assets/s56-rail-environment.glb",
+      "bytes": 51384120,
+      "sha256": "5f15241ef34c45800d4538dee4c4e351fc7ce66b328b589b896a5a949e58c656",
+      "status": "Five enclosed halls, 1819294 scene triangles, 51MB. S56 independent review: structure improved, overall art rejected; no combat or performance approval.",
+      "rights": "CC0 source components; authored assembly"
+    }
+  ],
+  "archive_policy": {
+    "updated": "2026-09-13",
+    "source_root": "assets/model/",
+    "derivative_root": ".worktrees/s45-3d-sortie/art-direction/86-reference/probe-assets/",
+    "reference_index": "art-direction/86-reference/s54-reference-index.json",
+    "read_first": "art-direction/86-reference/s54-combat-reference.md",
+    "workflow": "Check catalog, local path and checksum first. Search/download only missing or invalid dependencies. Preserve original and source license; update stage/status after import and review.",
+    "video_policy": "Store official URL, inspected timestamps and observations. Videos not downloaded; game art not licensed by a reference link.",
+    "verification": {
+      "verified_original_files": 36,
+      "method": "byte count + SHA-256",
+      "files": [
+        "assets/model/project86-source/Reginleif_Model.fbx",
+        "assets/model/project86-source/morpho walk forward anim.fbx",
+        "assets/model/project86-source/Morpho Materials/composite sensor morpho.mat",
+        "assets/model/project86-source/Morpho Materials/morpho armor - dark silver.mat",
+        "assets/model/project86-source/Morpho Materials/morpho armor - dark stone silver.mat",
+        "assets/model/project86-source/Morpho Materials/morpho armor - silver.mat",
+        "assets/model/project86-source/Morpho Materials/morpho armor - stone silver.mat",
+        "assets/model/project86-source/Morpho Materials/morpho black.mat",
+        "assets/model/project86-source/Morpho Materials/morpho grey.mat",
+        "assets/model/project86-source/Morpho Materials/morpho railgun cannon color.mat",
+        "assets/model/project86-source/Reginleif Textures/Reginleif_standard.mat",
+        "assets/model/project86-source/Reginleif Textures/reginleif 4k color.png",
+        "assets/model/project86-source/Reginleif Textures/reginleif 4k metallic.png",
+        "assets/model/project86-source/Reginleif Textures/reginleif 4k normal.png",
+        "assets/model/project86-source/Reginleif_Model.fbx.meta",
+        "assets/model/project86-source/morpho walk forward anim.fbx.meta",
+        "assets/model/project86-source/ameise/ameise 4k color.png",
+        "assets/model/project86-source/ameise/ameise 4k normal.png",
+        "assets/model/project86-source/ameise/Ameise asurada model.fbx",
+        "assets/model/project86-source/ameise/2k-ameise 4k normal.png",
+        "assets/model/project86-source/ameise/inspection.json",
+        "assets/model/project86-source/ameise/2k-ameise 4k color.png",
+        "assets/model/project86-source/juggernaut/Robot_2_Base_Color.png",
+        "assets/model/project86-source/juggernaut/2k-Robot_2_Base_Color.png",
+        "assets/model/project86-source/juggernaut/2k-Robot_2_Normal_OpenGL.png",
+        "assets/model/project86-source/juggernaut/Robot_2_Normal_OpenGL.png",
+        "assets/model/project86-source/juggernaut/inspection.json",
+        "assets/model/project86-source/juggernaut/NewTexturedJuggernaut.fbx",
+        "assets/model/polyhaven/rocks_ground_08/rocks_ground_08_diff_1k.jpg",
+        "assets/model/polyhaven/rocks_ground_08/rocks_ground_08_nor_gl_1k.jpg",
+        "assets/model/polyhaven/rocks_ground_08/rocks_ground_08_arm_1k.jpg",
+        "assets/model/polyhaven/rocks_ground_08/rocks_ground_08_disp_1k.png",
+        "assets/model/polyhaven/rubble/rubble_diff_1k.jpg",
+        "assets/model/polyhaven/rubble/rubble_nor_gl_1k.jpg",
+        "assets/model/polyhaven/rubble/rubble_arm_1k.jpg",
+        "assets/model/polyhaven/rubble/rubble_disp_1k.png"
+      ]
+    }
+  },
+  "structure_texture_catalog": [
+    {
+      "local_path": ".worktrees/s45-3d-sortie/probe-assets/s54-structure-textures/rough_concrete_diff_1k.jpg",
+      "source": "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/1k/rough_concrete/rough_concrete_diff_1k.jpg",
+      "bytes": 1042065,
+      "sha256": "dd7fc03e152eb8c2fd511248aa2e9bf7428a645bd0e0b74ac1d887ad136cb0bc",
+      "license": "CC0",
+      "status": "Used in S56 candidate, art not accepted"
+    },
+    {
+      "local_path": ".worktrees/s45-3d-sortie/probe-assets/s54-structure-textures/rough_concrete_arm_1k.jpg",
+      "source": "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/1k/rough_concrete/rough_concrete_arm_1k.jpg",
+      "bytes": 900369,
+      "sha256": "1b733bf12c056d680dbc82d53be03dd281ac88ad5555a4a05b5a33ecb579ae1d",
+      "license": "CC0",
+      "status": "Used in S56 candidate, art not accepted"
+    },
+    {
+      "local_path": ".worktrees/s45-3d-sortie/probe-assets/s54-structure-textures/rough_concrete_nor_gl_1k.jpg",
+      "source": "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/1k/rough_concrete/rough_concrete_nor_gl_1k.jpg",
+      "bytes": 1447537,
+      "sha256": "54c85854ad5cafb16840df91a605c857bdf3d07fa79f11921c8327fccf6423ae",
+      "license": "CC0",
+      "status": "Used in S56 candidate, art not accepted"
+    },
+    {
+      "local_path": ".worktrees/s45-3d-sortie/probe-assets/s54-structure-textures/rusty_metal_diff_1k.jpg",
+      "source": "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/1k/rusty_metal/rusty_metal_diff_1k.jpg",
+      "bytes": 577389,
+      "sha256": "b532f22a08a9c36b5adf785373e213cd635a2d3769cb61196bbf5404cce7cd43",
+      "license": "CC0",
+      "status": "Used in S56 candidate, art not accepted"
+    },
+    {
+      "local_path": ".worktrees/s45-3d-sortie/probe-assets/s54-structure-textures/rusty_metal_arm_1k.jpg",
+      "source": "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/1k/rusty_metal/rusty_metal_arm_1k.jpg",
+      "bytes": 130505,
+      "sha256": "a9e7409b0e0b0ee2982802e3f70f8dbfc86eafd67b8c7f3d5fbdcb9974e42f67",
+      "license": "CC0",
+      "status": "Used in S56 candidate, art not accepted"
+    },
+    {
+      "local_path": ".worktrees/s45-3d-sortie/probe-assets/s54-structure-textures/rusty_metal_nor_gl_1k.jpg",
+      "source": "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/1k/rusty_metal/rusty_metal_nor_gl_1k.jpg",
+      "bytes": 420984,
+      "sha256": "cf7c8d72c7b5e1923321762d47f91d59b5233cb5b3c456823c54a2403109ff6a",
+      "license": "CC0",
+      "status": "Used in S56 candidate, art not accepted"
+    }
+  ],
+  "next_missing_asset": "A cohesive war-damaged rail/industrial site: broken roof volumes, broken platform/trackbed, structural rubble and plausible rail entrance. Stop adding intact facades; require inspected downloadable files, sources and rights."
 }

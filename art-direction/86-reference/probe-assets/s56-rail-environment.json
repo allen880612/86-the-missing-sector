@@ -1,0 +1,37 @@
+{
+  "units": "metres",
+  "gltf_bounds_min": [
+    -41.58000183105469,
+    0.0,
+    -110.3499984741211
+  ],
+  "gltf_bounds_max": [
+    42.58000183105469,
+    13.569281578063965,
+    30.0
+  ],
+  "clear_corridor": "X -8 to +8 empty until rear main hall at Z -92",
+  "objects": 1472,
+  "source": [
+    "https://polyhaven.com/a/modular_factory_facade",
+    "https://polyhaven.com/a/rough_concrete",
+    "https://polyhaven.com/a/rusty_metal"
+  ],
+  "license": "All source textures and factory mesh CC0; new geometry original project derivation",
+  "art_status": "Environment candidate only; independent Godot fixed-camera review required",
+  "contents": "Five enclosed halls with roofs, side/rear walls, foundations; attached aprons/canopies; continuous retaining walls; low foreground platforms; rear water towers",
+  "glb_bytes": 51384120,
+  "sha256": "5f15241ef34c45800d4538dee4c4e351fc7ce66b328b589b896a5a949e58c656",
+  "unique_meshes": 1110,
+  "mesh_instances": 1472,
+  "unique_geometry_triangles": 1449330,
+  "instanced_scene_triangles": 1819294,
+  "materials": 5,
+  "embedded_images": 13,
+  "embedded_image_bytes": 10813182,
+  "rotated_wall_nodes": 287,
+  "all_meshes_have_normals_uv": true,
+  "qa_note": "Only CPU QA image is PRE-FIX. It identified side wall rotations ignored by quaternion mode. Final GLB corrects rotation_mode to XYZ and verifies rotated wall transforms; root Godot render is required for final visual check.",
+  "budget_note": "Shared factory geometry cuts file size, but 1472 nodes and about 1.8M instanced triangles still cost rendering work. Sector-based static merging/LOD is not done.",
+  "reproducibility": "Run Blender --background --python art-direction/86-reference/probe-assets/s56-build-rail-environment.py from .worktrees/s45-3d-sortie; dependency helpers are at worktree ROOT probe-assets/s54-build-maintenance-bay.py and probe-assets/s54-structure-textures/, not the research probe-assets directory."
+}

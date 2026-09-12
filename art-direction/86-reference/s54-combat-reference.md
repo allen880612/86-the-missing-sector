@@ -2,6 +2,38 @@
 
 2026-09-13。先收集與驗證整場交戰所需素材，再做場景。這是研究紀錄，沒有把正式 2D 或被否決的 3D 試驗場改成新版本。
 
+## 收藏入口與使用規則（S56 更新）
+
+先查這份索引，再搜尋。原始模型／貼圖已留在 `assets/model/`，匯入與場景衍生物在 `.worktrees/s45-3d-sortie/art-direction/86-reference/probe-assets/`。影片保存官方連結、時間碼與實看筆記，未下載影片，也不把影片當成可使用的遊戲素材。
+
+- **素材總索引**：`s54-asset-archive.json`，含原檔、衍生檔位置、來源、授權範圍、大小、SHA-256、驗收階段。S56 重驗36個原始／依賴檔，以及4個衍生GLB的雜湊。
+- **畫面參考索引**：`s54-reference-index.json`，已看過的AC6、The Ascent、Helldivers 2片段直接定位；不重複搜尋同一段。
+- **匯入／製作證據**：`probe-assets/s55-*.json`、`s56-rail-environment.json`、`s56-encounter-run.json`；下載成功、引擎可讀、美術通過和即時可用是不同階段。
+- **缺項才補收集**：檔案存在且校驗符合就直接重用；需要新動作、破壞場景或缺失貼圖時，只補該項並更新索引。原檔不覆寫，衍生物保留處理腳本。
+
+|收藏類別|已有資源|使用判定|
+|---|---|---|
+|我方機甲|使用者提供M1A4；Project-86 XM2與早期M1A4|模型已入庫；XM2無內建動作，Project-86個別素材對外再散布仍未釐清。|
+|軍團|Ameise、Morpho及其材質／貼圖／骨架|已有引擎驗證；Morpho有前進clip，但全場動畫、比例與效能未通過。|
+|工業環境|Poly Haven廠房門窗牆面；粗混凝土、鏽金屬；S56完整廠房組合|CC0來源可重用，組合仍屬美術候選，不等於完成廢墟。|
+|地表|rocks_ground_08、rubble，兩套1K色彩／法線／ARM／位移，共約9.08MB|原始8檔大小與SHA-256吻合。地表貼圖已用於本地試驗；位移圖尚未用。|
+|爆炸與煙|Sinestesia爆炸atlas、Kenney煙塵、lava-blast序列|沿用既有素材；各自授權見VFX CREDITS，尚未通過3D交火驗收。|
+|對照畫面|AC6工業交火與巨型機械、The Ascent環境分層、HD2機械軍團|只作畫面參考；已觀察範圍詳列下方，未宣稱完整影片或音訊驗收。|
+
+## S56：素材組合的實際環境檢查
+
+新下載只補地面缺項，來源為 [Poly Haven rocks_ground_08](https://polyhaven.com/a/rocks_ground_08) 與 [rubble](https://polyhaven.com/a/rubble)；沿用其 [CC0授權](https://polyhaven.com/license)。原始API回應、下載網址及校驗資料保存在各自目錄。
+
+![S56 移除機甲後的環境實測](images/s56-environment-only.png)
+
+![S56 全場同框實測，非完成版遊戲](images/s56-encounter-cinematic.png)
+
+本輪以既有廠房套件組成五座有屋頂、側背牆及基座的廠房，加入雨棚、月台與水塔。原始衍生GLB為51.38MB、約181.9萬場景三角面；仍過重。Godot依35m區塊，將363個靜態重複實例放入10個MultiMesh群組；這不是軍團骨架合批，也不是FPS通過證明。
+
+地形試驗為400×480m，中央維持平整，遠側提高地勢。首輪實測發現三角形面朝下，使地面被剔除；修正索引順序後，法線Y由負轉正，地表與接地陰影已在重出畫面確認。沒有以雙面材質或濃霧掩飾問題。最終圖由Godot／M3 Metal Forward+實際輸出。
+
+結構改善不代表戰場美術完成：目前仍有整齊廠房、反覆地表與缺乏破壞／交火事件的問題。Astra獨立Review：整體美術不通過。下一個素材缺口是有體積戰損的工業／鐵道遺址套件，需破頂、斷裂月台、結構瓦礫及合理軌道出口；不再重複排完好牆片。詳細見 [獨立QA](s54-encounter-reference.md) 與 [Sprint紀錄](sprint-journal.md)。本頁圖片保留作後續比較，2D遊戲不受影響。
+
 ## S55：實際匯入與整場診斷，尚未通過美術驗收
 
 2026-09-13。兩個新模型已經在 Blender 匯入並轉成內嵌貼圖／材質的 GLB，再於 Godot 4.7.2、Apple M3 Metal Forward+ 實際渲染。下面是引擎截圖，不是生成概念圖，也不是新遊戲版本。
@@ -54,8 +86,8 @@
 |用途|本地位置|目前狀態|
 |---|---|---|
 |玩家提供的 M1A4|`assets/model/juggernaut_86_eighty-six.glb`|既有1K實檔；已驗95,482三角面、無內建骨架動畫；不是XM2。|
-|Reginleif／XM2 候選|`assets/model/project86-source/Reginleif_Model.fbx`|已下載14,005,052 B，LFS SHA-256吻合；尚未驗收匯入、材質、骨架。|
-|Morpho 候選|`assets/model/project86-source/morpho walk forward anim.fbx`|已下載91,856,124 B，LFS SHA-256吻合；不能因檔名有walk就宣稱動畫可用。|
+|Reginleif／XM2 候選|`assets/model/project86-source/Reginleif_Model.fbx`|已下載14,005,052 B，LFS SHA-256吻合；S55已匯入，59網格／54骨／無內建動作；美術與即時預算未通過。|
+|Morpho 候選|`assets/model/project86-source/morpho walk forward anim.fbx`|已下載91,856,124 B，LFS SHA-256吻合；S55已匯入，前進clip姿勢可求值；連續動作、官方高度與即時預算仍待驗收。|
 |Ameise 原始模型／貼圖|`assets/model/project86-source/ameise/`|從S51暫存歸檔，含原FBX、原貼圖、2K衍生貼圖與先前匯入檢查。|
 |早期 Juggernaut 原始模型／貼圖|`assets/model/project86-source/juggernaut/`|同上，避免暫存被清掉後重新取得。|
 |工業牆、門窗與PBR|`assets/model/polyhaven/modular_factory_facade/`|既有17檔、約17.6MB、CC0；有 intake-manifest；不是完整廢墟或鐵道場景。|
@@ -73,7 +105,7 @@
 
 |畫面問題|最小實作路徑|驗收證據|
 |---|---|---|
-|巨砲没有尺度|匯入Morpho、依官方尺寸校正；鐵道／電桿／同地面敵群作比例參照；相機固定對照。|兩種鏡頭都能辨識我方、軍勢、巨砲，不靠名稱或血條說明。|
+|巨砲沒有尺度|匯入Morpho、依官方尺寸校正；鐵道／電桿／同地面敵群作比例參照；相機固定對照。|兩種鏡頭都能辨識我方、軍勢、巨砲，不靠名稱或血條說明。|
 |敵人像複製玩具|近處少量完整步態，中景共享網格／材質並錯開步伐，遠景降細節；編成保留間隙。|18–30台同框的實際幀時間、輪廓及接地；不得宣稱骨架可直接MultiMesh批次播放。|
 |特效只是一閃|一個攻擊拆成瞄準／蓄力、砲口與後座、飛行、落點火花與碎片、餘煙；既有atlas配3D粒子。|同一發砲從來源到落點可追蹤，煙不遮掉逃生區。|
 |場景扁平|既有工業套件作兩翼，中央保留鐵道與射界；近景碎石、中景敵群、遠景煙塵及地平線分層。|灰階縮圖仍看得出主角、威脅與路線。|
@@ -88,7 +120,7 @@ Godot 現有 GPU 粒子可使用網格繪製通道，適合先把現有煙塵／
 ## 下一輪直接接續，不重查
 
 1. 先讀本頁與兩份manifest；來源檔已存在且雜湊吻合就不重新下載。
-2. 驗收Reginleif／Morpho的實際網格、材質依賴、骨架和動作；缺貼圖才精準補檔。
+2. Reginleif／Morpho匯入已完成，直接讀S55結果；下一步是缺少的完整動作與即時成本，不重做下載／格式辨識。
 3. 使用已有Ameise和環境素材做完整交戰構圖。先交整場，再交同場10–15秒的交火節奏試驗。
 4. 只補尚缺的鐵道／大型Boss依賴／合適煙塵序列；取得來源和作者授權資料一起入庫。
 

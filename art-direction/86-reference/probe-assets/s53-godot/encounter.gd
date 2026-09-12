@@ -26,6 +26,7 @@ func put_model(model: Node3D, length: float, axis: int, at: Vector3, yaw: float,
     var factor := length / box.size[axis]
     model.scale *= factor
     model.position = -Vector3(box.get_center().x, box.position.y, box.get_center().z) * factor
+    mount.add_to_group("encounter_units")
     mount.position = at
     mount.rotation_degrees.y = yaw
     asset_bounds[label] = {"source_size":str(box.size), "length_axis":axis, "length_target":length, "uniform_scale":factor, "scaled_height":box.size.y * factor}
@@ -44,6 +45,105 @@ func box_mesh(size: Vector3, at: Vector3, color: Color, metal: float = 0.0) -> M
     obj.position = at
     world.add_child(obj)
     return obj
+
+func batch_static_environment(model: Node3D):
+    var groups := {}
+    var originals := all_meshes(model)
+    for node in originals:
+        var cell := Vector2i(floori(node.global_position.x/35.0),floori(node.global_position.z/35.0))
+        var key := str(node.mesh.get_instance_id())+"/"+str(cell)
+        if not groups.has(key):
+            groups[key] = []
+        groups[key].append(node)
+    var batched := 0
+    var batches := 0
+    for nodes in groups.values():
+        if nodes.size() < 3:
+            continue
+        var multi := MultiMesh.new()
+        multi.transform_format = MultiMesh.TRANSFORM_3D
+        multi.mesh = nodes[0].mesh
+        multi.instance_count = nodes.size()
+        var instance := MultiMeshInstance3D.new()
+        instance.multimesh = multi
+        world.add_child(instance)
+        for i in range(nodes.size()):
+            multi.set_instance_transform(i,nodes[i].global_transform)
+            nodes[i].visible = false
+        batched += nodes.size()
+        batches += 1
+    asset_bounds["environment_batches"] = {"original_mesh_nodes":originals.size(),"batched_instances":batched,"multimesh_groups":batches,"partition_metres":35,"note":"static shared meshes only; does not batch rigged enemies or prove FPS"}
+
+func terrain_height(x: float, z: float, noise: FastNoiseLite) -> float:
+    var side := smoothstep(35.0,90.0,absf(x))
+    var rear := smoothstep(100.0,175.0,-z)
+    return maxf(side*(14.0+noise.get_noise_2d(x,z)*10.0),rear*(24.0+noise.get_noise_2d(x+100,z)*12.0))
+
+func surface_material(asset: String, repeat_scale: float) -> StandardMaterial3D:
+    var folder := INPUT+"model/polyhaven/"+asset+"/"
+    var manifest = JSON.parse_string(FileAccess.get_file_as_string(folder+"intake-manifest.json"))
+    var maps = {}
+    for item in manifest.files:
+        maps[item.kind] = folder+item.file
+    var mat := StandardMaterial3D.new()
+    mat.albedo_texture = image_texture(maps.diff)
+    mat.normal_enabled = true
+    mat.normal_texture = image_texture(maps.nor_gl)
+    mat.roughness_texture = image_texture(maps.arm)
+    mat.roughness_texture_channel = BaseMaterial3D.TEXTURE_CHANNEL_GREEN
+    mat.ao_enabled = true
+    mat.ao_texture = mat.roughness_texture
+    mat.ao_texture_channel = BaseMaterial3D.TEXTURE_CHANNEL_RED
+    mat.uv1_scale = Vector3(repeat_scale,repeat_scale,1)
+    return mat
+
+func build_ground():
+    var noise := FastNoiseLite.new()
+    noise.seed = 56086
+    noise.frequency = 0.026
+    noise.fractal_octaves = 3
+    var st := SurfaceTool.new()
+    st.begin(Mesh.PRIMITIVE_TRIANGLES)
+    var nx := 100
+    var nz := 120
+    for row in range(nz+1):
+        for col in range(nx+1):
+            var x := -200.0+float(col)*4.0
+            var z := -350.0+float(row)*4.0
+            var tint := 0.73+noise.get_noise_2d(x*2,z*2)*0.17
+            st.set_color(Color(tint,tint,tint,1))
+            st.set_uv(Vector2(x/3.0,z/3.0))
+            st.add_vertex(Vector3(x,terrain_height(x,z,noise)-0.04,z))
+    for row in range(nz):
+        for col in range(nx):
+            var a := row*(nx+1)+col
+            for index in [a,a+1,a+nx+1,a+1,a+nx+2,a+nx+1]:
+                st.add_index(index)
+    st.generate_normals()
+    st.generate_tangents()
+    var mesh := st.commit()
+    var ground := MeshInstance3D.new()
+    ground.mesh = mesh
+    var mat := surface_material("rocks_ground_08",1.0)
+    mat.vertex_color_use_as_albedo = true
+    ground.material_override = mat
+    world.add_child(ground)
+    var ballast := MeshInstance3D.new()
+    var bed := PlaneMesh.new()
+    bed.size = Vector2(4.0,145)
+    ballast.mesh = bed
+    ballast.position = Vector3(0,0.015,-38)
+    var bed_mat := surface_material("rubble",1.0)
+    bed_mat.uv1_scale = Vector3(2.0,72.5,1)
+    bed_mat.albedo_color = Color(0.64,0.65,0.67)
+    ballast.material_override = bed_mat
+    world.add_child(ballast)
+    for x in [-0.7175,0.7175]:
+        box_mesh(Vector3(0.10,0.16,145),Vector3(x,0.19,-38),Color(0.13,0.15,0.16),0.7)
+    for index in range(180):
+        var z := 31.0-float(index)*0.8
+        box_mesh(Vector3(2.6,0.13,0.24),Vector3(0,0.085,z),Color(0.14,0.12,0.10))
+    asset_bounds["environment_ground"] = {"size":"400 x 480m", "terrain_triangles":nx*nz*2,"first_normal":str(mesh.surface_get_arrays(0)[Mesh.ARRAY_NORMAL][0]),"corridor":"level inside |X| <=35, Z >= -100", "materials":"CC0 rocks_ground_08 + rubble; authored terrain grade"}
 
 func build():
     root.size = Vector2i(1600, 900)
@@ -79,41 +179,10 @@ func build():
     sun.shadow_enabled = true
     sun.directional_shadow_max_distance = 140
     world.add_child(sun)
-    var ground := MeshInstance3D.new()
-    var plane := PlaneMesh.new()
-    plane.size = Vector2(180,200)
-    ground.mesh = plane
-    var road := StandardMaterial3D.new()
-    road.albedo_texture = image_texture(INPUT + "3d/asphalt_02_diff_1k.jpg")
-    road.normal_enabled = true
-    road.normal_texture = image_texture(INPUT + "3d/asphalt_02_nor_gl_1k.jpg")
-    road.albedo_color = Color(0.45,0.47,0.49)
-    road.roughness = 0.94
-    road.uv1_scale = Vector3(45,50,1)
-    ground.material_override = road
-    ground.position.z = -40
-    world.add_child(ground)
-    # Railway geometry is a layout proxy, not an approved environment asset.
-    for x in [-1.1,1.1]:
-        box_mesh(Vector3(0.12,0.16,120),Vector3(x,0.14,-32),Color(0.16,0.19,0.22),0.65)
-    for z in range(-85,24,2):
-        box_mesh(Vector3(3.4,0.13,0.30),Vector3(0,0.05,z),Color(0.18,0.16,0.14))
-    var factory := read_gltf(INPUT + "model/polyhaven/modular_factory_facade/modular_factory_facade_1k.gltf")
-    for section in range(16):
-        var x := float(section * 3 - 44)
-        module(factory,"wall_window_centered_large_01",Vector3(x,0,-62))
-        module(factory,"window_centered_large_01",Vector3(x,0,-62))
-        module(factory,"wall_window_centered_large_01",Vector3(x,3,-62))
-        module(factory,"window_centered_large_01",Vector3(x,3,-62))
-        module(factory,"cornice01_standard_standard_01",Vector3(x,6,-62))
-    for side in [-1,1]:
-        for section in range(7):
-            var at := Vector3(side*24,0,-5-section*5)
-            box_mesh(Vector3(4,1.2,4.7),at+Vector3(0,0.6,0),Color(0.23,0.24,0.25))
-            if section % 3 != 0:
-                module(factory,"wall_window_centered_large_01",at+Vector3(0,1.2,0))
-                module(factory,"window_centered_large_01",at+Vector3(0,1.2,0))
-    factory.free()
+    build_ground()
+    var factory := read_gltf(PROBE+"s56-rail-environment.glb")
+    world.add_child(factory)
+    batch_static_environment(factory)
     var boss := read_gltf(PROBE + "s55-morpho.glb")
     await put_model(boss,40.2,2,Vector3(5,0,-33),52,"Morpho")
     var scout := read_gltf(PROBE + "ameise-reuse-probe.glb")
@@ -137,7 +206,12 @@ func build():
     camera.fov = 54
     camera.look_at(Vector3(0,1,-19))
     camera.current = true
-    await take_frame("s55-encounter-cinematic.png")
+    for unit in get_nodes_in_group("encounter_units"):
+        unit.visible = false
+    await take_frame("s56-environment-only.png")
+    for unit in get_nodes_in_group("encounter_units"):
+        unit.visible = true
+    await take_frame("s56-encounter-cinematic.png")
     var players := boss.find_children("*","AnimationPlayer",true,false)
     var animation_names: Array = []
     for player in players:
@@ -147,20 +221,20 @@ func build():
                 player.play(clip)
                 player.seek(1.2,true)
                 player.pause()
-    await take_frame("s55-morpho-motion-1.png")
+    await take_frame("s56-morpho-motion-1.png")
     for player in players:
         for clip in player.get_animation_list():
             if "move forward" in clip:
                 player.play(clip)
                 player.seek(2.4,true)
                 player.pause()
-    await take_frame("s55-morpho-motion-2.png")
+    await take_frame("s56-morpho-motion-2.png")
     camera.position = Vector3(24,34,39)
     camera.fov = 54
     camera.look_at(Vector3(0,0,-20))
-    await take_frame("s55-encounter-oblique.png")
+    await take_frame("s56-encounter-oblique.png")
     var report := {"stage":"composition diagnostic, no combat implemented", "boss_animation_names":animation_names,"scouts":24,"Ameise_length":"3.8m artistic placeholder; official dimensions unavailable","assets":asset_bounds,"renderer":RenderingServer.get_current_rendering_method(),"driver":RenderingServer.get_current_rendering_driver_name(),"meshes":all_meshes(world).size()}
-    FileAccess.open(PROBE+"s55-encounter-run.json",FileAccess.WRITE).store_string(JSON.stringify(report,"  "))
+    FileAccess.open(PROBE+"s56-encounter-run.json",FileAccess.WRITE).store_string(JSON.stringify(report,"  "))
     world.queue_free()
     await process_frame
     quit()
