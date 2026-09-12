@@ -1,0 +1,10 @@
+config_version=5
+[application]
+config/name="86 S53 Material Study"
+[display]
+window/size/viewport_width=1280
+window/size/viewport_height=720
+[rendering]
+renderer/rendering_method="forward_plus"
+renderer/rendering_method.mobile="forward_plus"
+textures/default_filters/use_nearest_mipmap_filter=false

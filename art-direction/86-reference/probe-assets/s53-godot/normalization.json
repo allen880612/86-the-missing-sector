@@ -1,0 +1,11 @@
+{
+  "source_sha256": "f7c4e8c4961244f3d83e4ef57561f958b6753e15be205eb661cd9a4b49c0a19d",
+  "changed_materials": [
+    "BODY",
+    "ARMOR_2",
+    "GUN2",
+    "material"
+  ],
+  "binary_chunk_unchanged": true,
+  "exact_uv_equality": true
+}

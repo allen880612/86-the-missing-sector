@@ -9,3 +9,7 @@ dist/
 *.log
 progress.md
 docs/checkpoints/
+
+# Local engine cache and reproducible model derivative.
+art-direction/86-reference/probe-assets/s53-godot/.godot/
+art-direction/86-reference/probe-assets/s53-godot/juggernaut-normalized.glb
