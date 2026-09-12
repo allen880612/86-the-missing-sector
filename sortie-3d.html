@@ -1,0 +1,25 @@
+<!doctype html>
+<html lang="zh-Hant"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="theme-color" content="#091519"><title>86 戰線 — 鐵灰回廊</title><link rel="icon" href="assets/v37-wordmark.svg" type="image/svg+xml"><link rel="stylesheet" href="game-3d.css"></head>
+<body>
+<canvas id="battlefield" aria-label="立體戰場：使用 WASD 移動、滑鼠瞄準" tabindex="0"></canvas>
+<div class="vignette" aria-hidden="true"></div><div id="transition" aria-hidden="true"></div>
+<header class="topbar"><a href="index.html" class="brand" aria-label="返回 86 戰線"><img src="assets/v37-wordmark.svg" alt="86 戰線"></a><span class="build">FIELD TEST <b>01</b> <i></i> 立體戰場</span><div class="utilities"><button id="cameraBtn" title="比較低俯視與標準視野">視角：斜俯</button><button id="audioBtn" aria-pressed="false">音訊：待接通</button><button id="pauseBtn" hidden>暫停 <kbd>P</kbd></button></div></header>
+<section id="briefing" class="screen">
+<div class="mission-card"><div class="eyebrow"><span></span> SPEARHEAD / 作戰實驗 01</div><h1>鐵灰<span>回廊</span></h1><p class="subtitle">穿過封鎖線。把戰場帶回視野之內。</p>
+<div class="mission-rule"></div><div class="mission-number">01 <span>工業廢墟 · 立體交戰</span></div>
+<div class="brief-steps"><div><svg viewBox="0 0 48 48" aria-hidden="true"><circle cx="24" cy="24" r="12"/><path d="M24 4v12m0 16v12M4 24h12m16 0h12"/></svg><p><b>切斷觀測</b><span>擊毀斥候與觀測節點，削弱砲火追蹤。</span></p></div><div><svg viewBox="0 0 48 48" aria-hidden="true"><path d="M5 34h12V20h14v14h12M8 16Q24-3 40 16m-9-1 9 1-1-9"/></svg><p><b>躍過低牆</b><span>滑鼠指向開砲；翻越掩體，切入側面。</span></p></div><div><svg viewBox="0 0 48 48" aria-hidden="true"><path d="M27 8H9v32h18M21 24h22m-9-9 9 9-9 9"/></svg><p><b>突破後撤離</b><span>解除重型威脅，返回南側接應區。</span></p></div></div>
+<button id="deployBtn" class="primary" disabled><span>載入戰場</span><span aria-hidden="true">↗</span></button><p class="prototype-note">探索樣板 · 約 3–5 分鐘<br>機體為參考原作的程序化拆件模型，仍在美術驗證階段。</p></div>
+<div class="machine-tag"><span>XM2 / REGINLEIF</span><b>女武神</b><p>高速近擊型 · 自動主砲 · 翻越躍進</p></div>
+</section>
+<div id="combatUI" hidden>
+<div class="objective-panel"><span id="objectiveLabel">觀測節點</span><b id="objectiveText">切斷軍團觀測</b><div><span id="missionTime">00:00</span><span id="objectiveCount"></span></div></div>
+<div id="heavyBar" hidden><span>LÖWE <small>重型戰車</small></span><meter id="heavyHealth" min="0" max="1" value="1"></meter></div>
+<div class="map-panel"><span>戰術地圖 <small>N ↑</small></span><canvas id="tacticalMap" width="152" height="178" aria-label="戰術地圖：白色為我方、金色方塊為觀測節點、青色為接應區"></canvas><div class="map-key"><span>◆ 觀測</span><span>＋ 修復</span><span>○ 接應</span></div></div><div id="reticle" aria-hidden="true"></div>
+<aside id="radio" class="radio" hidden><img id="radioPortrait" src="assets/characters/shin-reference.png" alt="辛"><div><small id="radioName">UNDERTAKER / 辛</small><p id="radioText"></p></div><button id="radioClose" aria-label="關閉通訊">×</button></aside>
+<footer class="combat-bottom"><div class="integrity"><small>XM2 <span id="hpText">100</span></small><meter id="hp" min="0" max="100" value="100"></meter><span>機體完整度</span></div><div class="skills"><div id="jumpSkill"><kbd>右鍵</kbd><b>翻越躍進</b><span>就緒</span><i></i></div><div id="bladeSkill"><kbd>左鍵</kbd><b>高頻刃</b><span>就緒</span><i></i></div><div id="supportSkill"><kbd>Space</kbd><b>支援砲擊</b><span>就緒</span><i></i></div></div><div class="input-guide"><span>WASD 移動 · 滑鼠瞄準</span><b>主砲自動射擊</b></div></footer>
+</div>
+<section id="pauseScreen" class="modal-backdrop" hidden><div class="dialog"><span class="eyebrow">PARA-RAID / STANDBY</span><h2>作戰暫停</h2><p>戰場已暫停。準備好後，回到你的機體。</p><button id="resumeBtn" class="primary">繼續作戰 <span>→</span></button><button id="abandonBtn" class="secondary">返回整備</button></div></section>
+<section id="resultScreen" class="modal-backdrop" hidden><div class="dialog result"><span id="resultKicker" class="eyebrow">AFTER ACTION REPORT</span><h2 id="resultTitle">作戰結束</h2><p id="resultMessage"></p><div class="results"><div><small>作戰時間</small><b id="resultTime"></b></div><div><small>確認擊毀</small><b id="resultKills"></b></div><div><small>承受傷害</small><b id="resultDamage"></b></div></div><div class="debrief-radio"><img src="assets/characters/lena-reference.png" alt="蕾娜"><p id="resultRadio"></p></div><button id="retryBtn" class="primary">再次出擊 <span>↗</span></button><button id="briefBtn" class="secondary">返回整備</button><a href="index.html" class="back-link">返回 2D 戰線</a></div></section>
+<div id="loadError" class="modal-backdrop" hidden><div class="dialog"><h2>戰場未能載入</h2><p id="errorText">請使用支援 WebGL 的桌面瀏覽器，並開啟硬體加速。</p><a class="primary" href="index.html">返回 2D 戰線</a></div></div>
+<script src="assets/vendor/babylon-9.26.0.js"></script><script src="game-audio.js"></script><script src="game-3d-core.js"></script><script src="game-3d-models.js"></script><script src="game-3d.js"></script>
+</body></html>

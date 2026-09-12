@@ -6,6 +6,14 @@
 
 下方設定可切換「畫質 平衡／清晰」，並記住選擇。預設平衡優先戰場流暢度，清晰保留更多戰場細節；首頁與整備等HTML介面不降低解析度。
 
+## 立體戰場探索：鐵灰回廊
+
+新增獨立 `sortie-3d.html` 入口。Babylon.js 9.26.0 真3D斜俯視場景，XM2程序化四足模型、工業高低牆、斥候觀測／獵兵突進／重型砲火。摧毀兩處觀測節點、清除重型與追兵，再返回南側接應區。
+
+WASD依畫面方向移動、滑鼠指向自動主砲；右鍵躍進可越低牆與小型敵機，左鍵近身刃擊，Space指定區域支援，P暫停。重型閉合裝甲抵抗傷害，發射後的散熱窗口可反擊。小地圖標示觀測節點、附近敵機與接應區。
+
+這是有完整流程的探索樣板，機甲為參考原作輪廓的程序化拆件，非官方模型或最終美術；尚未加入完整3D無限波次、僚機、武器庫與多人。2D兩種模式與已認可的平衡保持不變。新增引擎與材質來源詳assets/CREDITS.md。請用支援WebGL及硬體加速的桌面瀏覽器。
+
 ## 執行與操作
 
 ```sh
@@ -30,7 +38,7 @@ python3 -m http.server 8765
 ## 驗證與維護
 
 ```sh
-node --test game-core.test.cjs game-arena-core.test.cjs game-audio.test.cjs game-training.test.cjs scripts/build-pages.test.cjs
+node --test game-core.test.cjs game-arena-core.test.cjs game-audio.test.cjs game-training.test.cjs game-3d-core.test.cjs scripts/build-pages.test.cjs
 ```
 
 測試與受控Chrome情境用來核對行為及介面，不能證明長局真人平衡。高DPR密集繪製效能仍待改善。當前參數與限制見[專案共識](CONTEXT.md)，每輪玩家回饋、團隊分工與實際改動見更新檔案。

@@ -14,8 +14,8 @@ const forbidden=tracked.filter(file=>file.split('/').includes('functions')||file
 if(forbidden.length)throw new Error(`Static Pages build rejects Functions/Workers files:\n${forbidden.join('\n')}`);
 
 const selected=tracked.filter(file=>
- file==='index.html'||file==='changelog.html'||
- file==='style.css'||
+ file==='index.html'||file==='changelog.html'||file==='sortie-3d.html'||
+ file==='style.css'||file==='game-3d.css'||
  (/^game[^/]*\.js$/.test(file)&&!file.endsWith('.test.js'))||
  file.startsWith('assets/')||
  file==='art-direction/86-reference/design-overview.html'||
