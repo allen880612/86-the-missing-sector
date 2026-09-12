@@ -1,0 +1,1447 @@
+{
+  "status": "local Project-86 research derivative; not cleared for public redistribution",
+  "blenderVersion": "4.5.13 LTS",
+  "source": {
+    "fbx": "/Users/wei/Documents/ChatGPT/遊戲練習/assets/model/project86-source/Reginleif_Model.fbx",
+    "fbxSha256": "20003daf0d92d7d3397c8da1dbbf8a44521392803998bc654dad29f8e38a160e",
+    "fbxMeta": "/Users/wei/Documents/ChatGPT/遊戲練習/assets/model/project86-source/Reginleif_Model.fbx.meta",
+    "fbxMetaSha256": "33bae83a70644999b8ec973cb75d3f9f0be6d3563c5374c75144c2a2e9ee3350",
+    "unityModelImporter": {
+      "animationType": 2,
+      "clipAnimations": [],
+      "globalScale": 1.0,
+      "useFileScale": 1,
+      "bakeAxisConversion": 0
+    },
+    "unityMaterial": "/Users/wei/Documents/ChatGPT/遊戲練習/assets/model/project86-source/Reginleif Textures/Reginleif_standard.mat",
+    "unityMaterialSha256": "73f5ab33694bdbef02e47f964390844b7a32f6c71e65d8849ecfb5951dadf368"
+  },
+  "geometry": {
+    "meshObjects": 59,
+    "verticesAcrossObjects": 225735,
+    "trianglesAcrossObjects": 445798,
+    "boundsInBlenderUnits": {
+      "minXYZ": [
+        -21.405494689941406,
+        -23.166719436645508,
+        -0.20164713263511658
+      ],
+      "maxXYZ": [
+        21.4053897857666,
+        22.06161117553711,
+        17.428083419799805
+      ],
+      "extentXYZ": [
+        42.81088447570801,
+        45.22833061218262,
+        17.62973055243492
+      ]
+    },
+    "sceneUnitSystem": "METRIC",
+    "sceneUnitScaleLength": 1.0,
+    "meshes": [
+      {
+        "name": "cockpit hatch.001",
+        "vertices": 5331,
+        "triangles": 9920,
+        "uvLayers": [
+          "UVMap"
+        ],
+        "colorAttributes": [],
+        "vertexGroups": 1,
+        "armatureModifiers": [
+          "reginleif default"
+        ],
+        "parent": "reginleif default",
+        "parentType": "OBJECT",
+        "parentBone": ""
+      },
+      {
+        "name": "hydraulic pump connector inner leg.005",
+        "vertices": 768,
+        "triangles": 1528,
+        "uvLayers": [
+          "UVMap"
+        ],
+        "colorAttributes": [],
+        "vertexGroups": 1,
+        "armatureModifiers": [
+          "reginleif default"
+        ],
+        "parent": "reginleif default",
+        "parentType": "OBJECT",
+        "parentBone": ""
+      },
+      {
+        "name": "INNER LEG.005",
+        "vertices": 5484,
+        "triangles": 10888,
+        "uvLayers": [
+          "UVMap"
+        ],
+        "colorAttributes": [
+          "Col"
+        ],
+        "vertexGroups": 1,
+        "armatureModifiers": [
+          "reginleif default"
+        ],
+        "parent": "reginleif default",
+        "parentType": "OBJECT",
+        "parentBone": ""
+      },
+      {
+        "name": "left grappling hook.001",
+        "vertices": 334,
+        "triangles": 624,
+        "uvLayers": [
+          "UVMap"
+        ],
+        "colorAttributes": [],
+        "vertexGroups": 1,
+        "armatureModifiers": [
+          "reginleif default"
+        ],
+        "parent": "reginleif default",
+        "parentType": "OBJECT",
+        "parentBone": ""
+      },
+      {
+        "name": "OUTER LEG ARMOR.004",
+        "vertices": 14082,
+        "triangles": 28160,
+        "uvLayers": [
+          "UVMap"
+        ],
+        "colorAttributes": [],
+        "vertexGroups": 1,
+        "armatureModifiers": [
+          "reginleif default"
+        ],
+        "parent": "reginleif default",
+        "parentType": "OBJECT",
+        "parentBone": ""
+      },
+      {
+        "name": "pile driver.001",
+        "vertices": 128,
+        "triangles": 252,
+        "uvLayers": [
+          "UVMap"
+        ],
+        "colorAttributes": [],
+        "vertexGroups": 1,
+        "armatureModifiers": [
+          "reginleif default"
+        ],
+        "parent": "reginleif default",
+        "parentType": "OBJECT",
+        "parentBone": ""
+      },
+      {
+        "name": "main body base of the 2ndary weapons.001",
+        "vertices": 258,
+        "triangles": 508,
+        "uvLayers": [
+          "UVMap"
+        ],
+        "colorAttributes": [
+          "Attribute"
+        ],
+        "vertexGroups": 1,
+        "armatureModifiers": [
+          "reginleif default"
+        ],
+        "parent": "reginleif default",
+        "parentType": "OBJECT",
+        "parentBone": ""
+      },
+      {
+        "name": "gun. grappling hook base.001",
+        "vertices": 400,
+        "triangles": 696,
+        "uvLayers": [
+          "UVMap"
+        ],
+        "colorAttributes": [],
+        "vertexGroups": 1,
+        "armatureModifiers": [
+          "reginleif default"
+        ],
+        "parent": "reginleif default",
+        "parentType": "OBJECT",
+        "parentBone": ""
+      },
+      {
+        "name": "gun front cover.001",
+        "vertices": 2380,
+        "triangles": 4776,
+        "uvLayers": [
+          "UVMap"
+        ],
+        "colorAttributes": [],
+        "vertexGroups": 1,
+        "armatureModifiers": [
+          "reginleif default"
+        ],
+        "parent": "reginleif default",
+        "parentType": "OBJECT",
+        "parentBone": ""
+      },
+      {
+        "name": "hydraulic pump connector inner leg.006",
+        "vertices": 768,
+        "triangles": 1528,
+        "uvLayers": [
+          "UVMap"
+        ],
+        "colorAttributes": [],
+        "vertexGroups": 1,
+        "armatureModifiers": [
+          "reginleif default"
+        ],
+        "parent": "reginleif default",
+        "parentType": "OBJECT",
+        "parentBone": ""
+      },
+      {
+        "name": "INNER LEG.001 hard shading.001",
+        "vertices": 1118,
+        "triangles": 2220,
+        "uvLayers": [
+          "UVMap"
+        ],
+        "colorAttributes": [
+          "Col"
+        ],
+        "vertexGroups": 1,
+        "armatureModifiers": [
+          "reginleif default"
+        ],
+        "parent": "reginleif default",
+        "parentType": "OBJECT",
+        "parentBone": ""
+      },
+      {
+        "name": "main body.001",
+        "vertices": 16732,
+        "triangles": 32168,
+        "uvLayers": [
+          "UVMap"
+        ],
+        "colorAttributes": [
+          "Attribute"
+        ],
+        "vertexGroups": 1,
+        "armatureModifiers": [
+          "reginleif default"
+        ],
+        "parent": "reginleif default",
+        "parentType": "OBJECT",
+        "parentBone": ""
+      },
+      {
+        "name": "OUTER LEG ARMOR.005",
+        "vertices": 14082,
+        "triangles": 28160,
+        "uvLayers": [
+          "UVMap"
+        ],
+        "colorAttributes": [],
+        "vertexGroups": 1,
+        "armatureModifiers": [
+          "reginleif default"
+        ],
+        "parent": "reginleif default",
+        "parentType": "OBJECT",
+        "parentBone": ""
+      },
+      {
+        "name": "pile driver.005",
+        "vertices": 128,
+        "triangles": 252,
+        "uvLayers": [
+          "UVMap"
+        ],
+        "colorAttributes": [],
+        "vertexGroups": 1,
+        "armatureModifiers": [
+          "reginleif default"
+        ],
+        "parent": "reginleif default",
+        "parentType": "OBJECT",
+        "parentBone": ""
+      },
+      {
+        "name": "base_minigun",
+        "vertices": 592,
+        "triangles": 1192,
+        "uvLayers": [
+          "UVMap"
+        ],
+        "colorAttributes": [],
+        "vertexGroups": 2,
+        "armatureModifiers": [
+          "reginleif default"
+        ],
+        "parent": "reginleif default",
+        "parentType": "OBJECT",
+        "parentBone": ""
+      },
+      {
+        "name": "cannon round.001",
+        "vertices": 192,
+        "triangles": 380,
+        "uvLayers": [
+          "UVMap"
+        ],
+        "colorAttributes": [],
+        "vertexGroups": 1,
+        "armatureModifiers": [
+          "reginleif default"
+        ],
+        "parent": "reginleif default",
+        "parentType": "OBJECT",
+        "parentBone": ""
+      },
+      {
+        "name": "cockpit hatch internal backside.001",
+        "vertices": 96,
+        "triangles": 188,
+        "uvLayers": [
+          "UVMap"
+        ],
+        "colorAttributes": [],
+        "vertexGroups": 1,
+        "armatureModifiers": [
+          "reginleif default"
+        ],
+        "parent": "reginleif default",
+        "parentType": "OBJECT",
+        "parentBone": ""
+      },
+      {
+        "name": "hydraulic pump connector inner leg.007",
+        "vertices": 768,
+        "triangles": 1528,
+        "uvLayers": [
+          "UVMap"
+        ],
+        "colorAttributes": [],
+        "vertexGroups": 1,
+        "armatureModifiers": [
+          "reginleif default"
+        ],
+        "parent": "reginleif default",
+        "parentType": "OBJECT",
+        "parentBone": ""
+      },
+      {
+        "name": "INNER LEG.006",
+        "vertices": 5484,
+        "triangles": 10888,
+        "uvLayers": [
+          "UVMap"
+        ],
+        "colorAttributes": [],
+        "vertexGroups": 1,
+        "armatureModifiers": [
+          "reginleif default"
+        ],
+        "parent": "reginleif default",
+        "parentType": "OBJECT",
+        "parentBone": ""
+      },
+      {
+        "name": "main body _ side of cockpit armor plates.001",
+        "vertices": 500,
+        "triangles": 992,
+        "uvLayers": [
+          "UVMap"
+        ],
+        "colorAttributes": [
+          "Attribute"
+        ],
+        "vertexGroups": 1,
+        "armatureModifiers": [
+          "reginleif default"
+        ],
+        "parent": "reginleif default",
+        "parentType": "OBJECT",
+        "parentBone": ""
+      },
+      {
+        "name": "OUTER LEG ARMOR.006",
+        "vertices": 14082,
+        "triangles": 28160,
+        "uvLayers": [
+          "UVMap"
+        ],
+        "colorAttributes": [],
+        "vertexGroups": 1,
+        "armatureModifiers": [
+          "reginleif default"
+        ],
+        "parent": "reginleif default",
+        "parentType": "OBJECT",
+        "parentBone": ""
+      },
+      {
+        "name": "pile driver.006",
+        "vertices": 128,
+        "triangles": 252,
+        "uvLayers": [
+          "UVMap"
+        ],
+        "colorAttributes": [],
+        "vertexGroups": 1,
+        "armatureModifiers": [
+          "reginleif default"
+        ],
+        "parent": "reginleif default",
+        "parentType": "OBJECT",
+        "parentBone": ""
+      },
+      {
+        "name": "base_minigun barrel",
+        "vertices": 608,
+        "triangles": 1200,
+        "uvLayers": [
+          "UVMap"
+        ],
+        "colorAttributes": [],
+        "vertexGroups": 2,
+        "armatureModifiers": [
+          "reginleif default"
+        ],
+        "parent": "reginleif default",
+        "parentType": "OBJECT",
+        "parentBone": ""
+      },
+      {
+        "name": "base_armor for heat blades.001",
+        "vertices": 1512,
+        "triangles": 3008,
+        "uvLayers": [
+          "UVMap"
+        ],
+        "colorAttributes": [],
+        "vertexGroups": 2,
+        "armatureModifiers": [
+          "reginleif default"
+        ],
+        "parent": "reginleif default",
+        "parentType": "OBJECT",
+        "parentBone": ""
+      },
+      {
+        "name": "hydraulic pump connector inner leg.004",
+        "vertices": 768,
+        "triangles": 1528,
+        "uvLayers": [
+          "UVMap"
+        ],
+        "colorAttributes": [],
+        "vertexGroups": 1,
+        "armatureModifiers": [
+          "reginleif default"
+        ],
+        "parent": "reginleif default",
+        "parentType": "OBJECT",
+        "parentBone": ""
+      },
+      {
+        "name": "hydraulic pump connector outer leg.004",
+        "vertices": 352,
+        "triangles": 732,
+        "uvLayers": [
+          "UVMap"
+        ],
+        "colorAttributes": [],
+        "vertexGroups": 1,
+        "armatureModifiers": [
+          "reginleif default"
+        ],
+        "parent": "reginleif default",
+        "parentType": "OBJECT",
+        "parentBone": ""
+      },
+      {
+        "name": "INNER LEG.002 hard shading.001",
+        "vertices": 1118,
+        "triangles": 2220,
+        "uvLayers": [
+          "UVMap"
+        ],
+        "colorAttributes": [],
+        "vertexGroups": 1,
+        "armatureModifiers": [
+          "reginleif default"
+        ],
+        "parent": "reginleif default",
+        "parentType": "OBJECT",
+        "parentBone": ""
+      },
+      {
+        "name": "main body leg joint bases.001",
+        "vertices": 1536,
+        "triangles": 2816,
+        "uvLayers": [
+          "UVMap"
+        ],
+        "colorAttributes": [
+          "Attribute"
+        ],
+        "vertexGroups": 1,
+        "armatureModifiers": [
+          "reginleif default"
+        ],
+        "parent": "reginleif default",
+        "parentType": "OBJECT",
+        "parentBone": ""
+      },
+      {
+        "name": "OUTER LEG ARMOR.007",
+        "vertices": 14082,
+        "triangles": 28160,
+        "uvLayers": [
+          "UVMap"
+        ],
+        "colorAttributes": [],
+        "vertexGroups": 1,
+        "armatureModifiers": [
+          "reginleif default"
+        ],
+        "parent": "reginleif default",
+        "parentType": "OBJECT",
+        "parentBone": ""
+      },
+      {
+        "name": "pile driver.007",
+        "vertices": 128,
+        "triangles": 252,
+        "uvLayers": [
+          "UVMap"
+        ],
+        "colorAttributes": [],
+        "vertexGroups": 1,
+        "armatureModifiers": [
+          "reginleif default"
+        ],
+        "parent": "reginleif default",
+        "parentType": "OBJECT",
+        "parentBone": ""
+      },
+      {
+        "name": "ammo cartridge lock.001",
+        "vertices": 1248,
+        "triangles": 2516,
+        "uvLayers": [
+          "UVMap"
+        ],
+        "colorAttributes": [],
+        "vertexGroups": 1,
+        "armatureModifiers": [
+          "reginleif default"
+        ],
+        "parent": "reginleif default",
+        "parentType": "OBJECT",
+        "parentBone": ""
+      },
+      {
+        "name": "base for weapon",
+        "vertices": 2528,
+        "triangles": 5012,
+        "uvLayers": [
+          "UVMap"
+        ],
+        "colorAttributes": [],
+        "vertexGroups": 2,
+        "armatureModifiers": [
+          "reginleif default"
+        ],
+        "parent": "reginleif default",
+        "parentType": "OBJECT",
+        "parentBone": ""
+      },
+      {
+        "name": "cockpit  extension at top.001",
+        "vertices": 50,
+        "triangles": 96,
+        "uvLayers": [
+          "UVMap"
+        ],
+        "colorAttributes": [],
+        "vertexGroups": 1,
+        "armatureModifiers": [
+          "reginleif default"
+        ],
+        "parent": "reginleif default",
+        "parentType": "OBJECT",
+        "parentBone": ""
+      },
+      {
+        "name": "hydraulic pump connector outer leg.005",
+        "vertices": 352,
+        "triangles": 732,
+        "uvLayers": [
+          "UVMap"
+        ],
+        "colorAttributes": [],
+        "vertexGroups": 1,
+        "armatureModifiers": [
+          "reginleif default"
+        ],
+        "parent": "reginleif default",
+        "parentType": "OBJECT",
+        "parentBone": ""
+      },
+      {
+        "name": "INNER LEG.007",
+        "vertices": 5484,
+        "triangles": 10888,
+        "uvLayers": [
+          "UVMap"
+        ],
+        "colorAttributes": [],
+        "vertexGroups": 1,
+        "armatureModifiers": [
+          "reginleif default"
+        ],
+        "parent": "reginleif default",
+        "parentType": "OBJECT",
+        "parentBone": ""
+      },
+      {
+        "name": "OUTER LEG.004",
+        "vertices": 11780,
+        "triangles": 23545,
+        "uvLayers": [
+          "UVMap"
+        ],
+        "colorAttributes": [],
+        "vertexGroups": 1,
+        "armatureModifiers": [
+          "reginleif default"
+        ],
+        "parent": "reginleif default",
+        "parentType": "OBJECT",
+        "parentBone": ""
+      },
+      {
+        "name": "OUTER LEG W/ PILE DRIVER.004",
+        "vertices": 5533,
+        "triangles": 11066,
+        "uvLayers": [
+          "UVMap"
+        ],
+        "colorAttributes": [],
+        "vertexGroups": 1,
+        "armatureModifiers": [
+          "reginleif default"
+        ],
+        "parent": "reginleif default",
+        "parentType": "OBJECT",
+        "parentBone": ""
+      },
+      {
+        "name": "right grappling hook.001",
+        "vertices": 334,
+        "triangles": 624,
+        "uvLayers": [
+          "UVMap"
+        ],
+        "colorAttributes": [],
+        "vertexGroups": 1,
+        "armatureModifiers": [
+          "reginleif default"
+        ],
+        "parent": "reginleif default",
+        "parentType": "OBJECT",
+        "parentBone": ""
+      },
+      {
+        "name": "underbelly grill default",
+        "vertices": 88,
+        "triangles": 124,
+        "uvLayers": [
+          "UVMap"
+        ],
+        "colorAttributes": [],
+        "vertexGroups": 1,
+        "armatureModifiers": [
+          "reginleif default"
+        ],
+        "parent": "reginleif default",
+        "parentType": "OBJECT",
+        "parentBone": ""
+      },
+      {
+        "name": "ammo cartridge.001",
+        "vertices": 380,
+        "triangles": 760,
+        "uvLayers": [
+          "UVMap"
+        ],
+        "colorAttributes": [],
+        "vertexGroups": 1,
+        "armatureModifiers": [
+          "reginleif default"
+        ],
+        "parent": "reginleif default",
+        "parentType": "OBJECT",
+        "parentBone": ""
+      },
+      {
+        "name": "gun. barrel with smooth shading.001",
+        "vertices": 512,
+        "triangles": 764,
+        "uvLayers": [
+          "UVMap"
+        ],
+        "colorAttributes": [],
+        "vertexGroups": 1,
+        "armatureModifiers": [
+          "reginleif default"
+        ],
+        "parent": "reginleif default",
+        "parentType": "OBJECT",
+        "parentBone": ""
+      },
+      {
+        "name": "hydraulic pump connector outer leg.006",
+        "vertices": 352,
+        "triangles": 732,
+        "uvLayers": [
+          "UVMap"
+        ],
+        "colorAttributes": [],
+        "vertexGroups": 1,
+        "armatureModifiers": [
+          "reginleif default"
+        ],
+        "parent": "reginleif default",
+        "parentType": "OBJECT",
+        "parentBone": ""
+      },
+      {
+        "name": "INNER LEG.003 hard shading.001",
+        "vertices": 1118,
+        "triangles": 2220,
+        "uvLayers": [
+          "UVMap"
+        ],
+        "colorAttributes": [],
+        "vertexGroups": 1,
+        "armatureModifiers": [
+          "reginleif default"
+        ],
+        "parent": "reginleif default",
+        "parentType": "OBJECT",
+        "parentBone": ""
+      },
+      {
+        "name": "OUTER LEG.005",
+        "vertices": 11780,
+        "triangles": 23545,
+        "uvLayers": [
+          "UVMap"
+        ],
+        "colorAttributes": [],
+        "vertexGroups": 1,
+        "armatureModifiers": [
+          "reginleif default"
+        ],
+        "parent": "reginleif default",
+        "parentType": "OBJECT",
+        "parentBone": ""
+      },
+      {
+        "name": "OUTER LEG W/ PILE DRIVER.005",
+        "vertices": 5533,
+        "triangles": 11066,
+        "uvLayers": [
+          "UVMap"
+        ],
+        "colorAttributes": [],
+        "vertexGroups": 1,
+        "armatureModifiers": [
+          "reginleif default"
+        ],
+        "parent": "reginleif default",
+        "parentType": "OBJECT",
+        "parentBone": ""
+      },
+      {
+        "name": "right grappling hook wire.001",
+        "vertices": 32,
+        "triangles": 60,
+        "uvLayers": [
+          "UVMap"
+        ],
+        "colorAttributes": [],
+        "vertexGroups": 2,
+        "armatureModifiers": [
+          "reginleif default"
+        ],
+        "parent": "reginleif default",
+        "parentType": "OBJECT",
+        "parentBone": ""
+      },
+      {
+        "name": "grappling hook big base piece.001",
+        "vertices": 894,
+        "triangles": 1780,
+        "uvLayers": [
+          "UVMap"
+        ],
+        "colorAttributes": [],
+        "vertexGroups": 1,
+        "armatureModifiers": [
+          "reginleif default"
+        ],
+        "parent": "reginleif default",
+        "parentType": "OBJECT",
+        "parentBone": ""
+      },
+      {
+        "name": "gun.001",
+        "vertices": 24374,
+        "triangles": 46452,
+        "uvLayers": [
+          "UVMap"
+        ],
+        "colorAttributes": [],
+        "vertexGroups": 1,
+        "armatureModifiers": [
+          "reginleif default"
+        ],
+        "parent": "reginleif default",
+        "parentType": "OBJECT",
+        "parentBone": ""
+      },
+      {
+        "name": "hydraulic pump connector outer leg.007",
+        "vertices": 352,
+        "triangles": 732,
+        "uvLayers": [
+          "UVMap"
+        ],
+        "colorAttributes": [],
+        "vertexGroups": 1,
+        "armatureModifiers": [
+          "reginleif default"
+        ],
+        "parent": "reginleif default",
+        "parentType": "OBJECT",
+        "parentBone": ""
+      },
+      {
+        "name": "INNER LEG hard shading.001",
+        "vertices": 1118,
+        "triangles": 2220,
+        "uvLayers": [
+          "UVMap"
+        ],
+        "colorAttributes": [],
+        "vertexGroups": 1,
+        "armatureModifiers": [
+          "reginleif default"
+        ],
+        "parent": "reginleif default",
+        "parentType": "OBJECT",
+        "parentBone": ""
+      },
+      {
+        "name": "OUTER LEG.006",
+        "vertices": 11780,
+        "triangles": 23545,
+        "uvLayers": [
+          "UVMap"
+        ],
+        "colorAttributes": [],
+        "vertexGroups": 1,
+        "armatureModifiers": [
+          "reginleif default"
+        ],
+        "parent": "reginleif default",
+        "parentType": "OBJECT",
+        "parentBone": ""
+      },
+      {
+        "name": "OUTER LEG W/ PILE DRIVER.006",
+        "vertices": 5533,
+        "triangles": 11066,
+        "uvLayers": [
+          "UVMap"
+        ],
+        "colorAttributes": [],
+        "vertexGroups": 1,
+        "armatureModifiers": [
+          "reginleif default"
+        ],
+        "parent": "reginleif default",
+        "parentType": "OBJECT",
+        "parentBone": ""
+      },
+      {
+        "name": "left grappling hook wire.001",
+        "vertices": 32,
+        "triangles": 60,
+        "uvLayers": [
+          "UVMap"
+        ],
+        "colorAttributes": [],
+        "vertexGroups": 2,
+        "armatureModifiers": [
+          "reginleif default"
+        ],
+        "parent": "reginleif default",
+        "parentType": "OBJECT",
+        "parentBone": ""
+      },
+      {
+        "name": "gun internal mount.001",
+        "vertices": 6984,
+        "triangles": 13886,
+        "uvLayers": [
+          "UVMap"
+        ],
+        "colorAttributes": [],
+        "vertexGroups": 1,
+        "armatureModifiers": [
+          "reginleif default"
+        ],
+        "parent": "reginleif default",
+        "parentType": "OBJECT",
+        "parentBone": ""
+      },
+      {
+        "name": "INNER LEG.004",
+        "vertices": 5484,
+        "triangles": 10888,
+        "uvLayers": [
+          "UVMap"
+        ],
+        "colorAttributes": [],
+        "vertexGroups": 1,
+        "armatureModifiers": [
+          "reginleif default"
+        ],
+        "parent": "reginleif default",
+        "parentType": "OBJECT",
+        "parentBone": ""
+      },
+      {
+        "name": "internal mnt separated for rigging.001",
+        "vertices": 664,
+        "triangles": 1308,
+        "uvLayers": [
+          "UVMap"
+        ],
+        "colorAttributes": [],
+        "vertexGroups": 1,
+        "armatureModifiers": [
+          "reginleif default"
+        ],
+        "parent": "reginleif default",
+        "parentType": "OBJECT",
+        "parentBone": ""
+      },
+      {
+        "name": "OUTER LEG.007",
+        "vertices": 11780,
+        "triangles": 23545,
+        "uvLayers": [
+          "UVMap"
+        ],
+        "colorAttributes": [],
+        "vertexGroups": 1,
+        "armatureModifiers": [
+          "reginleif default"
+        ],
+        "parent": "reginleif default",
+        "parentType": "OBJECT",
+        "parentBone": ""
+      },
+      {
+        "name": "OUTER LEG W/ PILE DRIVER.007",
+        "vertices": 5533,
+        "triangles": 11066,
+        "uvLayers": [
+          "UVMap"
+        ],
+        "colorAttributes": [],
+        "vertexGroups": 1,
+        "armatureModifiers": [
+          "reginleif default"
+        ],
+        "parent": "reginleif default",
+        "parentType": "OBJECT",
+        "parentBone": ""
+      },
+      {
+        "name": "cockpit hatch detail.001",
+        "vertices": 164,
+        "triangles": 324,
+        "uvLayers": [
+          "UVMap"
+        ],
+        "colorAttributes": [],
+        "vertexGroups": 1,
+        "armatureModifiers": [
+          "reginleif default"
+        ],
+        "parent": "reginleif default",
+        "parentType": "OBJECT",
+        "parentBone": ""
+      }
+    ]
+  },
+  "rig": {
+    "armatureObjects": 1,
+    "armatures": [
+      {
+        "name": "reginleif default",
+        "matrixWorld": [
+          [
+            1.0,
+            1.4242977592693676e-14,
+            8.742277657347586e-08,
+            0.0
+          ],
+          [
+            -9.450735398100284e-22,
+            1.0,
+            -1.6292067073209182e-07,
+            0.0
+          ],
+          [
+            -8.742277657347586e-08,
+            1.6292067073209182e-07,
+            1.0,
+            4.4937615394592285
+          ],
+          [
+            0.0,
+            0.0,
+            0.0,
+            1.0
+          ]
+        ],
+        "boneCount": 54,
+        "rootBones": [
+          "base"
+        ],
+        "bones": [
+          {
+            "name": "base",
+            "parent": null
+          },
+          {
+            "name": "left base of weapon",
+            "parent": "base"
+          },
+          {
+            "name": "left weapon",
+            "parent": "left base of weapon"
+          },
+          {
+            "name": "left weapon_end",
+            "parent": "left weapon"
+          },
+          {
+            "name": "right base of weapon",
+            "parent": "base"
+          },
+          {
+            "name": "right weapon",
+            "parent": "right base of weapon"
+          },
+          {
+            "name": "right weapon_end",
+            "parent": "right weapon"
+          },
+          {
+            "name": "cockpit hatch",
+            "parent": "base"
+          },
+          {
+            "name": "cockpit hatch_end",
+            "parent": "cockpit hatch"
+          },
+          {
+            "name": "gun mount base",
+            "parent": "base"
+          },
+          {
+            "name": "internal mnt",
+            "parent": "gun mount base"
+          },
+          {
+            "name": "gun",
+            "parent": "internal mnt"
+          },
+          {
+            "name": "cannon rnd",
+            "parent": "gun"
+          },
+          {
+            "name": "cannon rnd_end",
+            "parent": "cannon rnd"
+          },
+          {
+            "name": "rght grp hook",
+            "parent": "gun"
+          },
+          {
+            "name": "rght grp hook_end",
+            "parent": "rght grp hook"
+          },
+          {
+            "name": "left grp hook",
+            "parent": "gun"
+          },
+          {
+            "name": "left grp hook_end",
+            "parent": "left grp hook"
+          },
+          {
+            "name": "Inner leg",
+            "parent": "base"
+          },
+          {
+            "name": "Outer leg",
+            "parent": "Inner leg"
+          },
+          {
+            "name": "outer hyd pump",
+            "parent": "Outer leg"
+          },
+          {
+            "name": "outer hyd pump_end",
+            "parent": "outer hyd pump"
+          },
+          {
+            "name": "outer armor",
+            "parent": "Outer leg"
+          },
+          {
+            "name": "pile driv",
+            "parent": "outer armor"
+          },
+          {
+            "name": "pile driv_end",
+            "parent": "pile driv"
+          },
+          {
+            "name": "inner hyd pump",
+            "parent": "Inner leg"
+          },
+          {
+            "name": "inner hyd pump_end",
+            "parent": "inner hyd pump"
+          },
+          {
+            "name": "Inner leg.001",
+            "parent": "base"
+          },
+          {
+            "name": "Outer leg.001",
+            "parent": "Inner leg.001"
+          },
+          {
+            "name": "outer hyd pump.001",
+            "parent": "Outer leg.001"
+          },
+          {
+            "name": "outer hyd pump.001_end",
+            "parent": "outer hyd pump.001"
+          },
+          {
+            "name": "outer armor.001",
+            "parent": "Outer leg.001"
+          },
+          {
+            "name": "pile driv.001",
+            "parent": "outer armor.001"
+          },
+          {
+            "name": "pile driv.001_end",
+            "parent": "pile driv.001"
+          },
+          {
+            "name": "inner hyd pump.001",
+            "parent": "Inner leg.001"
+          },
+          {
+            "name": "inner hyd pump.001_end",
+            "parent": "inner hyd pump.001"
+          },
+          {
+            "name": "Inner leg.002",
+            "parent": "base"
+          },
+          {
+            "name": "Outer leg.002",
+            "parent": "Inner leg.002"
+          },
+          {
+            "name": "outer hyd pump.002",
+            "parent": "Outer leg.002"
+          },
+          {
+            "name": "outer hyd pump.002_end",
+            "parent": "outer hyd pump.002"
+          },
+          {
+            "name": "outer armor.002",
+            "parent": "Outer leg.002"
+          },
+          {
+            "name": "pile driv.002",
+            "parent": "outer armor.002"
+          },
+          {
+            "name": "pile driv.002_end",
+            "parent": "pile driv.002"
+          },
+          {
+            "name": "inner hyd pump.002",
+            "parent": "Inner leg.002"
+          },
+          {
+            "name": "inner hyd pump.002_end",
+            "parent": "inner hyd pump.002"
+          },
+          {
+            "name": "Inner leg.003",
+            "parent": "base"
+          },
+          {
+            "name": "Outer leg.003",
+            "parent": "Inner leg.003"
+          },
+          {
+            "name": "outer hyd pump.003",
+            "parent": "Outer leg.003"
+          },
+          {
+            "name": "outer hyd pump.003_end",
+            "parent": "outer hyd pump.003"
+          },
+          {
+            "name": "outer armor.003",
+            "parent": "Outer leg.003"
+          },
+          {
+            "name": "pile driv.003",
+            "parent": "outer armor.003"
+          },
+          {
+            "name": "pile driv.003_end",
+            "parent": "pile driv.003"
+          },
+          {
+            "name": "inner hyd pump.003",
+            "parent": "Inner leg.003"
+          },
+          {
+            "name": "inner hyd pump.003_end",
+            "parent": "inner hyd pump.003"
+          }
+        ]
+      }
+    ],
+    "skinnedMeshObjects": 59,
+    "boneParentedMeshObjects": 0
+  },
+  "sourceActions": [],
+  "material": {
+    "name": "Reginleif_standard_portable",
+    "unityEvidence": {
+      "_Surface": 0.0,
+      "_Smoothness": 0.5,
+      "_SmoothnessTextureChannel": 0.0,
+      "_BumpScale": 1.0,
+      "_Cull": 2.0,
+      "m_ValidKeywords": [
+        "_METALLICSPECGLOSSMAP",
+        "_NORMALMAP"
+      ],
+      "_BaseMap": "reginleif 4k color.png",
+      "_MetallicGlossMap": "reginleif 4k metallic.png",
+      "_BumpMap": "reginleif 4k normal.png"
+    },
+    "reconstruction": "derived glTF ORM uses R=1, G roughness=1-metallic alpha*_Smoothness, B metallic=source red; opaque base color; tangent normal RGB preserved without green inversion",
+    "alphaEvidence": {
+      "colorAndMetallicAlphaIdenticalAt1K": true,
+      "metallicAlphaMinMax": [
+        0.0,
+        1.0
+      ]
+    },
+    "normalDirection": "not established by the archived local files; source green channel is preserved and Blender tangent-space normal decoding is used",
+    "images": {
+      "color": {
+        "sourcePath": "/Users/wei/Documents/ChatGPT/遊戲練習/assets/model/project86-source/Reginleif Textures/reginleif 4k color.png",
+        "sourceSha256": "d0d02b961da6179e10ff012051c7a9c101d99e0d1ba200fae1e5f620d5940d2c",
+        "sourceSize": [
+          4096,
+          4096
+        ],
+        "derivedPath": "/Users/wei/Documents/ChatGPT/遊戲練習/.worktrees/s45-3d-sortie/art-direction/86-reference/probe-assets/s55-reginleif-color-1k.png",
+        "derivedSize": [
+          1024,
+          1024
+        ],
+        "colorspace": "sRGB",
+        "channelMin": [
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "channelMax": [
+          0.8431373238563538,
+          0.8431373238563538,
+          0.8431373238563538,
+          1.0
+        ],
+        "channelMean": [
+          0.3941118121147156,
+          0.39285165071487427,
+          0.39287135004997253,
+          0.662504255771637
+        ],
+        "alphaSha256At1K": "0f1749b5ca3a2c138d11c9dfb4a21ef685b4aff2aeacd9402585017ba03754cb",
+        "derivedSha256": "be76fff115d5601559bc8f2039549962c04443c1fcc0b7aa01773c9b7bac87a4"
+      },
+      "metallic": {
+        "sourcePath": "/Users/wei/Documents/ChatGPT/遊戲練習/assets/model/project86-source/Reginleif Textures/reginleif 4k metallic.png",
+        "sourceSha256": "4dbdf409192c7420e28bd61a8786d8351b01f2d6ac4e61bb6db232676cdbffad",
+        "sourceSize": [
+          4096,
+          4096
+        ],
+        "derivedPath": "/Users/wei/Documents/ChatGPT/遊戲練習/.worktrees/s45-3d-sortie/art-direction/86-reference/probe-assets/s55-reginleif-metallic-1k.png",
+        "derivedSize": [
+          1024,
+          1024
+        ],
+        "colorspace": "Non-Color",
+        "channelMin": [
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "channelMax": [
+          0.874509871006012,
+          0.874509871006012,
+          0.874509871006012,
+          1.0
+        ],
+        "channelMean": [
+          0.4261561632156372,
+          0.4261561632156372,
+          0.4261561632156372,
+          0.662504255771637
+        ],
+        "alphaSha256At1K": "0f1749b5ca3a2c138d11c9dfb4a21ef685b4aff2aeacd9402585017ba03754cb",
+        "derivedSha256": "550d824fbbf015ced75bbd89a1ff174cab262f93c753ccc0e1f46a8ba39a3157"
+      },
+      "normal": {
+        "sourcePath": "/Users/wei/Documents/ChatGPT/遊戲練習/assets/model/project86-source/Reginleif Textures/reginleif 4k normal.png",
+        "sourceSha256": "d69bcca5513f1924240f44a6b3f3ed2c3010f269eb54b99df4b64724979c96c2",
+        "sourceSize": [
+          4096,
+          4096
+        ],
+        "derivedPath": "/Users/wei/Documents/ChatGPT/遊戲練習/.worktrees/s45-3d-sortie/art-direction/86-reference/probe-assets/s55-reginleif-normal-1k.png",
+        "derivedSize": [
+          1024,
+          1024
+        ],
+        "colorspace": "Non-Color",
+        "channelMin": [
+          0.0,
+          0.019607843831181526,
+          0.0,
+          0.0
+        ],
+        "channelMax": [
+          1.0,
+          1.0,
+          1.0,
+          1.0
+        ],
+        "channelMean": [
+          0.5011102557182312,
+          0.5010654926300049,
+          0.9989600777626038,
+          0.7921647429466248
+        ],
+        "alphaSha256At1K": "96b801b28e336cf2c02313e2410334e9fedec31bbcf8f8ff9a97675a9b1add28",
+        "derivedSha256": "f802078e73267ab44a86961aa89bea80c0675ae16745d60ac93a2fd0c615e017"
+      },
+      "orm": {
+        "derivedPath": "/Users/wei/Documents/ChatGPT/遊戲練習/.worktrees/s45-3d-sortie/art-direction/86-reference/probe-assets/s55-reginleif-orm-1k.png",
+        "derivedSize": [
+          1024,
+          1024
+        ],
+        "colorspace": "Non-Color",
+        "packing": "R=1 (no occlusion map), G=1-metallicAlpha*_Smoothness, B=metallicRed, A=1",
+        "channelMin": [
+          1.0,
+          0.5,
+          0.0,
+          1.0
+        ],
+        "channelMax": [
+          1.0,
+          1.0,
+          0.874509871006012,
+          1.0
+        ],
+        "channelMean": [
+          1.0,
+          0.6687477827072144,
+          0.4261561632156372,
+          1.0
+        ],
+        "derivedSha256": "86921dc9da32ae58707a97ed52913edbf4ebd725f0c41a03f90ddfac419318bd"
+      }
+    }
+  },
+  "orientation": {
+    "sourceFbxVersion": 7400,
+    "blenderAxes": "+Z up, +Y depth before glTF conversion",
+    "glbAxes": "+Y up",
+    "unit": "unconfirmed; values are Blender import units and were not normalized to official dimensions",
+    "forwardAxis": "unconfirmed; bounds and armature transforms are recorded without guessing from the cannon"
+  },
+  "glb": {
+    "path": "/Users/wei/Documents/ChatGPT/遊戲練習/.worktrees/s45-3d-sortie/art-direction/86-reference/probe-assets/s55-reginleif-import.glb",
+    "bytes": 34221152,
+    "sha256": "798623aca1de8524a078e559d8519a535486f7c090fe6050d3c73a80d9549b94",
+    "nodes": 114,
+    "meshes": 59,
+    "skins": 1,
+    "animations": [],
+    "materials": [
+      "Reginleif_standard_portable"
+    ],
+    "images": 3,
+    "externalUris": []
+  },
+  "limitations": [
+    "No new animation, retopology, decimation, LOD, collision, or gameplay integration was created.",
+    "The source has no imported Action; the separate Unity recoil .anim was not converted.",
+    "Forward direction and normal-map green-channel convention require visual comparison or authoring metadata.",
+    "The source FBX unit-to-metre scale is not established by the archived files; bounds are not labelled as metres.",
+    "6 meshes contain vertex-color attributes; the archived Unity material does not reference them, so Blender omits those unused attributes from glTF.",
+    "The Unity prefab material assignment is reproduced as one material on every mesh; FBX embedded material slot names are not retained in the derivative."
+  ]
+}

@@ -1,0 +1,28 @@
+{
+  "s55-morpho.glb": {
+    "bytes": 12789368,
+    "sha256": "ab10fb642a77d5edb43dca832bfd60d67eaa0ab973641923f75ed48f2fb9d455",
+    "triangles": 126688,
+    "meshes": 151,
+    "joints": [
+      774
+    ],
+    "animations": [
+      "morpho arma|morpho arma|Action",
+      "morpho arma|morpho arma|morpho move forward",
+      "morpho arma|morpho arma|Morpho no anim"
+    ],
+    "external_uris": false
+  },
+  "s55-reginleif-import.glb": {
+    "bytes": 34221152,
+    "sha256": "798623aca1de8524a078e559d8519a535486f7c090fe6050d3c73a80d9549b94",
+    "triangles": 445798,
+    "meshes": 59,
+    "joints": [
+      54
+    ],
+    "animations": [],
+    "external_uris": false
+  }
+}

@@ -1,0 +1,4796 @@
+{
+  "version": "4.5.13 LTS",
+  "objects": [
+    {
+      "name": "Morpho walk path individual",
+      "type": "MESH",
+      "parent": null,
+      "dimensions": [
+        9.308938615504303e-07,
+        33.10309600830078,
+        11.337369918823242
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "triangles": 0,
+      "vertices": 48,
+      "materials": [],
+      "uvLayers": [],
+      "vertexGroups": 0
+    },
+    {
+      "name": "Morpho walk path grouped",
+      "type": "MESH",
+      "parent": null,
+      "dimensions": [
+        9.308938615504303e-07,
+        33.56465530395508,
+        11.337369918823242
+      ],
+      "scale": [
+        1.0,
+        1.013943076133728,
+        1.0
+      ],
+      "triangles": 0,
+      "vertices": 48,
+      "materials": [],
+      "uvLayers": [],
+      "vertexGroups": 0
+    },
+    {
+      "name": "Morpho walk path tail ends",
+      "type": "MESH",
+      "parent": null,
+      "dimensions": [
+        9.308938615504303e-07,
+        33.56465530395508,
+        20.829435348510742
+      ],
+      "scale": [
+        1.0,
+        1.013943076133728,
+        1.0
+      ],
+      "triangles": 0,
+      "vertices": 48,
+      "materials": [],
+      "uvLayers": [],
+      "vertexGroups": 0
+    },
+    {
+      "name": "morpho arma",
+      "type": "ARMATURE",
+      "parent": null,
+      "dimensions": [
+        825.3125,
+        1911.943359375,
+        340.40875244140625
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "bones": [
+        "base",
+        "big_leg_inner_leg.R",
+        "big_leg_innermid_leg.R",
+        "big_leg_outermid_leg.R",
+        "big_leg_outer_leg.R",
+        "big_leg_outer_leg.R_end",
+        "big_leg_inner_leg.R.001",
+        "big_leg_innermid_leg.R.001",
+        "big_leg_outermid_leg.R.001",
+        "big_leg_outer_leg.R.001",
+        "big_leg_outer_leg.R.001_end",
+        "big_leg_inner_leg.L",
+        "big_leg_innermid_leg.L",
+        "big_leg_outermid_leg.L",
+        "big_leg_outer_leg.L",
+        "big_leg_outer_leg.L_end",
+        "big_leg_inner_leg.L.001",
+        "big_leg_innermid_leg.L.001",
+        "big_leg_outermid_leg.L.001",
+        "big_leg_outer_leg.L.001",
+        "big_leg_outer_leg.L.001_end",
+        "minigun_turret_mid.R",
+        "minigun_turret_mid.R_end",
+        "minigun_turret_mid.L",
+        "minigun_turret_mid.L_end",
+        "minigun_turret_rear.R",
+        "minigun_turret_rear.R_end",
+        "minigun_turret_rear.L",
+        "minigun_turret_rear.L_end",
+        "minigun_turret_front.R",
+        "minigun_turret_front.R_end",
+        "minigun_turret_front.L",
+        "minigun_turret_front.L_end",
+        "railgun_base",
+        "railgun_turret",
+        "railgun_turret_end",
+        "big_leg_inner_leg.R.002",
+        "big_leg_innermid_leg.R.002",
+        "big_leg_outermid_leg.R.002",
+        "big_leg_outer_leg.R.002",
+        "big_leg_outer_leg.R.002_end",
+        "big_leg_inner_leg.R.003",
+        "big_leg_innermid_leg.R.003",
+        "big_leg_outermid_leg.R.003",
+        "big_leg_outer_leg.R.003",
+        "big_leg_outer_leg.R.003_end",
+        "big_leg_inner_leg.L.002",
+        "big_leg_innermid_leg.L.002",
+        "big_leg_outermid_leg.L.002",
+        "big_leg_outer_leg.L.002",
+        "big_leg_outer_leg.L.002_end",
+        "big_leg_inner_leg.L.003",
+        "big_leg_innermid_leg.L.003",
+        "big_leg_outermid_leg.L.003",
+        "big_leg_outer_leg.L.003",
+        "big_leg_outer_leg.L.003_end",
+        "big_leg_inner_leg.R.004",
+        "big_leg_innermid_leg.R.004",
+        "big_leg_outermid_leg.R.004",
+        "big_leg_outer_leg.R.004",
+        "big_leg_outer_leg.R.004_end",
+        "big_leg_inner_leg.R.005",
+        "big_leg_innermid_leg.R.005",
+        "big_leg_outermid_leg.R.005",
+        "big_leg_outer_leg.R.005",
+        "big_leg_outer_leg.R.005_end",
+        "big_leg_inner_leg.L.004",
+        "big_leg_innermid_leg.L.004",
+        "big_leg_outermid_leg.L.004",
+        "big_leg_outer_leg.L.004",
+        "big_leg_outer_leg.L.004_end",
+        "big_leg_inner_leg.L.005",
+        "big_leg_innermid_leg.L.005",
+        "big_leg_outermid_leg.L.005",
+        "big_leg_outer_leg.L.005",
+        "big_leg_outer_leg.L.005_end",
+        "big_leg_inner_leg.R.006",
+        "big_leg_innermid_leg.R.006",
+        "big_leg_outermid_leg.R.006",
+        "big_leg_outer_leg.R.006",
+        "big_leg_outer_leg.R.006_end",
+        "big_leg_inner_leg.R.007",
+        "big_leg_innermid_leg.R.007",
+        "big_leg_outermid_leg.R.007",
+        "big_leg_outer_leg.R.007",
+        "big_leg_outer_leg.R.007_end",
+        "big_leg_inner_leg.L.006",
+        "big_leg_innermid_leg.L.006",
+        "big_leg_outermid_leg.L.006",
+        "big_leg_outer_leg.L.006",
+        "big_leg_outer_leg.L.006_end",
+        "big_leg_inner_leg.L.007",
+        "big_leg_innermid_leg.L.007",
+        "big_leg_outermid_leg.L.007",
+        "big_leg_outer_leg.L.007",
+        "big_leg_outer_leg.L.007_end",
+        "big_leg_inner_leg.R.008",
+        "big_leg_innermid_leg.R.008",
+        "big_leg_outermid_leg.R.008",
+        "big_leg_outer_leg.R.008",
+        "big_leg_outer_leg.R.008_end",
+        "big_leg_inner_leg.R.009",
+        "big_leg_innermid_leg.R.009",
+        "big_leg_outermid_leg.R.009",
+        "big_leg_outer_leg.R.009",
+        "big_leg_outer_leg.R.009_end",
+        "big_leg_inner_leg.L.008",
+        "big_leg_innermid_leg.L.008",
+        "big_leg_outermid_leg.L.008",
+        "big_leg_outer_leg.L.008",
+        "big_leg_outer_leg.L.008_end",
+        "big_leg_inner_leg.L.009",
+        "big_leg_innermid_leg.L.009",
+        "big_leg_outermid_leg.L.009",
+        "big_leg_outer_leg.L.009",
+        "big_leg_outer_leg.L.009_end",
+        "big_leg_inner_leg.R.010",
+        "big_leg_innermid_leg.R.010",
+        "big_leg_outermid_leg.R.010",
+        "big_leg_outer_leg.R.010",
+        "big_leg_outer_leg.R.010_end",
+        "big_leg_inner_leg.R.011",
+        "big_leg_innermid_leg.R.011",
+        "big_leg_outermid_leg.R.011",
+        "big_leg_outer_leg.R.011",
+        "big_leg_outer_leg.R.011_end",
+        "big_leg_inner_leg.L.010",
+        "big_leg_innermid_leg.L.010",
+        "big_leg_outermid_leg.L.010",
+        "big_leg_outer_leg.L.010",
+        "big_leg_outer_leg.L.010_end",
+        "big_leg_inner_leg.L.011",
+        "big_leg_innermid_leg.L.011",
+        "big_leg_outermid_leg.L.011",
+        "big_leg_outer_leg.L.011",
+        "big_leg_outer_leg.L.011_end",
+        "big_leg_inner_leg.R.012",
+        "big_leg_innermid_leg.R.012",
+        "big_leg_outermid_leg.R.012",
+        "big_leg_outer_leg.R.012",
+        "big_leg_outer_leg.R.012_end",
+        "big_leg_inner_leg.R.013",
+        "big_leg_innermid_leg.R.013",
+        "big_leg_outermid_leg.R.013",
+        "big_leg_outer_leg.R.013",
+        "big_leg_outer_leg.R.013_end",
+        "big_leg_inner_leg.L.012",
+        "big_leg_innermid_leg.L.012",
+        "big_leg_outermid_leg.L.012",
+        "big_leg_outer_leg.L.012",
+        "big_leg_outer_leg.L.012_end",
+        "big_leg_inner_leg.L.013",
+        "big_leg_innermid_leg.L.013",
+        "big_leg_outermid_leg.L.013",
+        "big_leg_outer_leg.L.013",
+        "big_leg_outer_leg.L.013_end",
+        "big_leg_inner_leg.R.014",
+        "big_leg_innermid_leg.R.014",
+        "big_leg_outermid_leg.R.014",
+        "big_leg_outer_leg.R.014",
+        "big_leg_outer_leg.R.014_end",
+        "big_leg_inner_leg.R.015",
+        "big_leg_innermid_leg.R.015",
+        "big_leg_outermid_leg.R.015",
+        "big_leg_outer_leg.R.015",
+        "big_leg_outer_leg.R.015_end",
+        "big_leg_inner_leg.L.014",
+        "big_leg_innermid_leg.L.014",
+        "big_leg_outermid_leg.L.014",
+        "big_leg_outer_leg.L.014",
+        "big_leg_outer_leg.L.014_end",
+        "big_leg_inner_leg.L.015",
+        "big_leg_innermid_leg.L.015",
+        "big_leg_outermid_leg.L.015",
+        "big_leg_outer_leg.L.015",
+        "big_leg_outer_leg.L.015_end",
+        "big_leg_controller_set_1.R",
+        "big_leg_controller_set_1.R_end",
+        "big_leg_controller_set_5.R",
+        "big_leg_controller_set_5.R_end",
+        "big_leg_controller_set_1.L",
+        "big_leg_controller_set_1.L_end",
+        "big_leg_controller_set_5.L",
+        "big_leg_controller_set_5.L_end",
+        "big_leg_controller_set_2.R",
+        "big_leg_controller_set_2.R_end",
+        "big_leg_controller_set_2.L",
+        "big_leg_controller_set_2.L_end",
+        "big_leg_controller_set_6.R",
+        "big_leg_controller_set_6.R_end",
+        "big_leg_controller_set_6.L",
+        "big_leg_controller_set_6.L_end",
+        "big_leg_controller_set_3.R",
+        "big_leg_controller_set_3.R_end",
+        "big_leg_controller_set_3.L",
+        "big_leg_controller_set_3.L_end",
+        "big_leg_controller_set_7.R",
+        "big_leg_controller_set_7.R_end",
+        "big_leg_controller_set_7.L",
+        "big_leg_controller_set_7.L_end",
+        "big_leg_controller_set_4.R",
+        "big_leg_controller_set_4.R_end",
+        "big_leg_controller_set_4.L",
+        "big_leg_controller_set_4.L_end",
+        "big_leg_controller_set_8.R",
+        "big_leg_controller_set_8.R_end",
+        "big_leg_controller_set_8.L",
+        "big_leg_controller_set_8.L_end",
+        "IK_tail_leg_bone.R",
+        "IK_tail_leg_bone.R_end",
+        "IK_tail_leg_bone.L",
+        "IK_tail_leg_bone.L_end",
+        "tail_leg_bone.R",
+        "tail_leg_bone.R.001",
+        "tail_leg_bone.R.002",
+        "tail_leg_bone.R.003",
+        "tail_leg_bone.R.004",
+        "tail_leg_bone.R.005",
+        "tail_leg_bone.R.006",
+        "tail_leg_bone.R.007",
+        "tail_leg_bone.R.008",
+        "tail_leg_bone.R.009",
+        "tail_leg_bone.R.010",
+        "tail_leg_bone.R.011",
+        "tail_leg_bone.R.012",
+        "tail_leg_bone_end.R",
+        "tail_leg_controller_set_4.R",
+        "tail_leg_controller_set_4.R_end",
+        "tail_endleg_controller_set_4.R",
+        "tail_endleg_controller_set_4.R_end",
+        "IK_small_leg.R.028",
+        "IK_small_leg.R.028_end",
+        "IK_small_leg.R.029",
+        "IK_small_leg.R.029_end",
+        "IK_small_leg.R.030",
+        "IK_small_leg.R.030_end",
+        "IK_small_leg.R.027",
+        "IK_small_leg.R.027_end",
+        "IK_small_leg.R.026",
+        "IK_small_leg.R.026_end",
+        "tail_leg_inner_leg.R.026",
+        "small_innermid_leg.R.026",
+        "small_outermid_leg.R.026",
+        "small_outer_leg.R.026",
+        "small_outer_leg.R.026_end",
+        "tail_leg_inner_leg.R.027",
+        "small_innermid_leg.R.027",
+        "small_outermid_leg.R.027",
+        "small_outer_leg.R.027",
+        "small_outer_leg.R.027_end",
+        "tail_endleg_inner_leg.R",
+        "tail_endleg_innermid_leg.R",
+        "tail_endleg_outermid_leg.R",
+        "tail_endleg_outer_leg.R",
+        "tail_endleg_outer_leg.R_end",
+        "tail_endleg_inner_leg.R.001",
+        "tail_endleg_innermid_leg.R.001",
+        "tail_endleg_outermid_leg.R.001",
+        "tail_endleg_outer_leg.R.001",
+        "tail_endleg_outer_leg.R.001_end",
+        "tail_endleg_inner_leg.R.002",
+        "tail_endleg_innermid_leg.R.002",
+        "tail_endleg_outermid_leg.R.002",
+        "tail_endleg_outer_leg.R.002",
+        "tail_endleg_outer_leg.R.002_end",
+        "tail_endleg_inner_leg.R.003",
+        "tail_endleg_innermid_leg.R.003",
+        "tail_endleg_outermid_leg.R.003",
+        "tail_endleg_outer_leg.R.003",
+        "tail_endleg_outer_leg.R.003_end",
+        "IK_small_leg.R.031",
+        "IK_small_leg.R.031_end",
+        "tail_leg_inner_leg.R.024",
+        "small_innermid_leg.R.024",
+        "small_outermid_leg.R.024",
+        "small_outer_leg.R.024",
+        "small_outer_leg.R.024_end",
+        "tail_leg_inner_leg.R.025",
+        "small_innermid_leg.R.025",
+        "small_outermid_leg.R.025",
+        "small_outer_leg.R.025",
+        "small_outer_leg.R.025_end",
+        "IK_small_leg.R.025",
+        "IK_small_leg.R.025_end",
+        "IK_small_leg.R.024",
+        "IK_small_leg.R.024_end",
+        "IK_small_leg.R.022",
+        "IK_small_leg.R.022_end",
+        "IK_small_leg.R.023",
+        "IK_small_leg.R.023_end",
+        "tail_leg_inner_leg.R.022",
+        "small_innermid_leg.R.022",
+        "small_outermid_leg.R.022",
+        "small_outer_leg.R.022",
+        "small_outer_leg.R.022_end",
+        "tail_leg_inner_leg.R.023",
+        "small_innermid_leg.R.023",
+        "small_outermid_leg.R.023",
+        "small_outer_leg.R.023",
+        "small_outer_leg.R.023_end",
+        "IK_small_leg.R.021",
+        "IK_small_leg.R.021_end",
+        "tail_leg_controller_set_3.R",
+        "tail_leg_controller_set_3.R_end",
+        "IK_small_leg.R.020",
+        "IK_small_leg.R.020_end",
+        "tail_leg_inner_leg.R.020",
+        "small_innermid_leg.R.020",
+        "small_outermid_leg.R.020",
+        "small_outer_leg.R.020",
+        "small_outer_leg.R.020_end",
+        "tail_leg_inner_leg.R.021",
+        "small_innermid_leg.R.021",
+        "small_outermid_leg.R.021",
+        "small_outer_leg.R.021",
+        "small_outer_leg.R.021_end",
+        "IK_small_leg.R.019",
+        "IK_small_leg.R.019_end",
+        "IK_small_leg.R.018",
+        "IK_small_leg.R.018_end",
+        "tail_leg_inner_leg.R.018",
+        "small_innermid_leg.R.018",
+        "small_outermid_leg.R.018",
+        "small_outer_leg.R.018",
+        "small_outer_leg.R.018_end",
+        "tail_leg_inner_leg.R.019",
+        "small_innermid_leg.R.019",
+        "small_outermid_leg.R.019",
+        "small_outer_leg.R.019",
+        "small_outer_leg.R.019_end",
+        "IK_small_leg.R.017",
+        "IK_small_leg.R.017_end",
+        "IK_small_leg.R.016",
+        "IK_small_leg.R.016_end",
+        "tail_leg_inner_leg.R.016",
+        "small_innermid_leg.R.016",
+        "small_outermid_leg.R.016",
+        "small_outer_leg.R.016",
+        "small_outer_leg.R.016_end",
+        "tail_leg_inner_leg.R.017",
+        "small_innermid_leg.R.017",
+        "small_outermid_leg.R.017",
+        "small_outer_leg.R.017",
+        "small_outer_leg.R.017_end",
+        "IK_small_leg.R.014",
+        "IK_small_leg.R.014_end",
+        "IK_small_leg.R.015",
+        "IK_small_leg.R.015_end",
+        "tail_leg_inner_leg.R.014",
+        "small_innermid_leg.R.014",
+        "small_outermid_leg.R.014",
+        "small_outer_leg.R.014",
+        "small_outer_leg.R.014_end",
+        "tail_leg_inner_leg.R.015",
+        "small_innermid_leg.R.015",
+        "small_outermid_leg.R.015",
+        "small_outer_leg.R.015",
+        "small_outer_leg.R.015_end",
+        "IK_small_leg.R.013",
+        "IK_small_leg.R.013_end",
+        "IK_small_leg.R.012",
+        "IK_small_leg.R.012_end",
+        "tail_leg_controller_set_2.R",
+        "tail_leg_controller_set_2.R_end",
+        "tail_leg_inner_leg.R.012",
+        "small_innermid_leg.R.012",
+        "small_outermid_leg.R.012",
+        "small_outer_leg.R.012",
+        "small_outer_leg.R.012_end",
+        "tail_leg_inner_leg.R.013",
+        "small_innermid_leg.R.013",
+        "small_outermid_leg.R.013",
+        "small_outer_leg.R.013",
+        "small_outer_leg.R.013_end",
+        "IK_small_leg.R.011",
+        "IK_small_leg.R.011_end",
+        "IK_small_leg.R.010",
+        "IK_small_leg.R.010_end",
+        "tail_leg_inner_leg.R.010",
+        "small_innermid_leg.R.010",
+        "small_outermid_leg.R.010",
+        "small_outer_leg.R.010",
+        "small_outer_leg.R.010_end",
+        "tail_leg_inner_leg.R.011",
+        "small_innermid_leg.R.011",
+        "small_outermid_leg.R.011",
+        "small_outer_leg.R.011",
+        "small_outer_leg.R.011_end",
+        "IK_small_leg.R.009",
+        "IK_small_leg.R.009_end",
+        "IK_small_leg.R.008",
+        "IK_small_leg.R.008_end",
+        "tail_leg_inner_leg.R.008",
+        "small_innermid_leg.R.008",
+        "small_outermid_leg.R.008",
+        "small_outer_leg.R.008",
+        "small_outer_leg.R.008_end",
+        "tail_leg_inner_leg.R.009",
+        "small_innermid_leg.R.009",
+        "small_outermid_leg.R.009",
+        "small_outer_leg.R.009",
+        "small_outer_leg.R.009_end",
+        "IK_small_leg.R.006",
+        "IK_small_leg.R.006_end",
+        "IK_small_leg.R.007",
+        "IK_small_leg.R.007_end",
+        "tail_leg_inner_leg.R.006",
+        "small_innermid_leg.R.006",
+        "small_outermid_leg.R.006",
+        "small_outer_leg.R.006",
+        "small_outer_leg.R.006_end",
+        "tail_leg_inner_leg.R.007",
+        "small_innermid_leg.R.007",
+        "small_outermid_leg.R.007",
+        "small_outer_leg.R.007",
+        "small_outer_leg.R.007_end",
+        "IK_small_leg.R.005",
+        "IK_small_leg.R.005_end",
+        "IK_small_leg.R.004",
+        "IK_small_leg.R.004_end",
+        "tail_leg_controller_set_1.R",
+        "tail_leg_controller_set_1.R_end",
+        "tail_leg_inner_leg.R.004",
+        "small_innermid_leg.R.004",
+        "small_outermid_leg.R.004",
+        "small_outer_leg.R.004",
+        "small_outer_leg.R.004_end",
+        "tail_leg_inner_leg.R.005",
+        "small_innermid_leg.R.005",
+        "small_outermid_leg.R.005",
+        "small_outer_leg.R.005",
+        "small_outer_leg.R.005_end",
+        "IK_small_leg.R.003",
+        "IK_small_leg.R.003_end",
+        "IK_small_leg.R.002",
+        "IK_small_leg.R.002_end",
+        "tail_leg_inner_leg.R.002",
+        "small_innermid_leg.R.002",
+        "small_outermid_leg.R.002",
+        "small_outer_leg.R.002",
+        "small_outer_leg.R.002_end",
+        "tail_leg_inner_leg.R.003",
+        "small_innermid_leg.R.003",
+        "small_outermid_leg.R.003",
+        "small_outer_leg.R.003",
+        "small_outer_leg.R.003_end",
+        "IK_small_leg.R.001",
+        "IK_small_leg.R.001_end",
+        "tail_leg_inner_leg.R",
+        "small_innermid_leg.R",
+        "small_outermid_leg.R",
+        "small_outer_leg.R",
+        "small_outer_leg.R_end",
+        "tail_leg_inner_leg.R.001",
+        "small_innermid_leg.R.001",
+        "small_outermid_leg.R.001",
+        "small_outer_leg.R.001",
+        "small_outer_leg.R.001_end",
+        "IK_small_leg.R",
+        "IK_small_leg.R_end",
+        "tail_leg_bone.L",
+        "tail_leg_bone.L.001",
+        "tail_leg_bone.L.002",
+        "tail_leg_bone.L.003",
+        "tail_leg_bone.L.004",
+        "tail_leg_bone.L.005",
+        "tail_leg_bone.L.006",
+        "tail_leg_bone.L.007",
+        "tail_leg_bone.L.008",
+        "tail_leg_bone.L.009",
+        "tail_leg_bone.L.010",
+        "tail_leg_bone.L.011",
+        "tail_leg_bone.L.012",
+        "tail_leg_bone_end.L",
+        "IK_small_leg.L.031",
+        "IK_small_leg.L.031_end",
+        "tail_leg_controller_set_4.L",
+        "tail_leg_controller_set_4.L_end",
+        "tail_endleg_controller_set_4.L",
+        "tail_endleg_controller_set_4.L_end",
+        "IK_small_leg.L.028",
+        "IK_small_leg.L.028_end",
+        "IK_small_leg.L.029",
+        "IK_small_leg.L.029_end",
+        "IK_small_leg.L.030",
+        "IK_small_leg.L.030_end",
+        "IK_small_leg.L.027",
+        "IK_small_leg.L.027_end",
+        "IK_small_leg.L.026",
+        "IK_small_leg.L.026_end",
+        "tail_leg_inner_leg.L.026",
+        "small_innermid_leg.L.026",
+        "small_outermid_leg.L.026",
+        "small_outer_leg.L.026",
+        "small_outer_leg.L.026_end",
+        "tail_leg_inner_leg.L.027",
+        "small_innermid_leg.L.027",
+        "small_outermid_leg.L.027",
+        "small_outer_leg.L.027",
+        "small_outer_leg.L.027_end",
+        "tail_endleg_inner_leg.L",
+        "tail_endleg_innermid_leg.L",
+        "tail_endleg_outermid_leg.L",
+        "tail_endleg_outer_leg.L",
+        "tail_endleg_outer_leg.L_end",
+        "tail_endleg_inner_leg.L.001",
+        "tail_endleg_innermid_leg.L.001",
+        "tail_endleg_outermid_leg.L.001",
+        "tail_endleg_outer_leg.L.001",
+        "tail_endleg_outer_leg.L.001_end",
+        "tail_endleg_inner_leg.L.002",
+        "tail_endleg_innermid_leg.L.002",
+        "tail_endleg_outermid_leg.L.002",
+        "tail_endleg_outer_leg.L.002",
+        "tail_endleg_outer_leg.L.002_end",
+        "tail_endleg_inner_leg.L.003",
+        "tail_endleg_innermid_leg.L.003",
+        "tail_endleg_outermid_leg.L.003",
+        "tail_endleg_outer_leg.L.003",
+        "tail_endleg_outer_leg.L.003_end",
+        "tail_leg_inner_leg.L.024",
+        "small_innermid_leg.L.024",
+        "small_outermid_leg.L.024",
+        "small_outer_leg.L.024",
+        "small_outer_leg.L.024_end",
+        "tail_leg_inner_leg.L.025",
+        "small_innermid_leg.L.025",
+        "small_outermid_leg.L.025",
+        "small_outer_leg.L.025",
+        "small_outer_leg.L.025_end",
+        "IK_small_leg.L.025",
+        "IK_small_leg.L.025_end",
+        "IK_small_leg.L.024",
+        "IK_small_leg.L.024_end",
+        "IK_small_leg.L.022",
+        "IK_small_leg.L.022_end",
+        "IK_small_leg.L.023",
+        "IK_small_leg.L.023_end",
+        "tail_leg_inner_leg.L.022",
+        "small_innermid_leg.L.022",
+        "small_outermid_leg.L.022",
+        "small_outer_leg.L.022",
+        "small_outer_leg.L.022_end",
+        "tail_leg_inner_leg.L.023",
+        "small_innermid_leg.L.023",
+        "small_outermid_leg.L.023",
+        "small_outer_leg.L.023",
+        "small_outer_leg.L.023_end",
+        "IK_small_leg.L.021",
+        "IK_small_leg.L.021_end",
+        "tail_leg_controller_set_3.L",
+        "tail_leg_controller_set_3.L_end",
+        "IK_small_leg.L.020",
+        "IK_small_leg.L.020_end",
+        "tail_leg_inner_leg.L.020",
+        "small_innermid_leg.L.020",
+        "small_outermid_leg.L.020",
+        "small_outer_leg.L.020",
+        "small_outer_leg.L.020_end",
+        "tail_leg_inner_leg.L.021",
+        "small_innermid_leg.L.021",
+        "small_outermid_leg.L.021",
+        "small_outer_leg.L.021",
+        "small_outer_leg.L.021_end",
+        "IK_small_leg.L.019",
+        "IK_small_leg.L.019_end",
+        "IK_small_leg.L.018",
+        "IK_small_leg.L.018_end",
+        "tail_leg_inner_leg.L.018",
+        "small_innermid_leg.L.018",
+        "small_outermid_leg.L.018",
+        "small_outer_leg.L.018",
+        "small_outer_leg.L.018_end",
+        "tail_leg_inner_leg.L.019",
+        "small_innermid_leg.L.019",
+        "small_outermid_leg.L.019",
+        "small_outer_leg.L.019",
+        "small_outer_leg.L.019_end",
+        "IK_small_leg.L.017",
+        "IK_small_leg.L.017_end",
+        "IK_small_leg.L.016",
+        "IK_small_leg.L.016_end",
+        "tail_leg_inner_leg.L.016",
+        "small_innermid_leg.L.016",
+        "small_outermid_leg.L.016",
+        "small_outer_leg.L.016",
+        "small_outer_leg.L.016_end",
+        "tail_leg_inner_leg.L.017",
+        "small_innermid_leg.L.017",
+        "small_outermid_leg.L.017",
+        "small_outer_leg.L.017",
+        "small_outer_leg.L.017_end",
+        "IK_small_leg.L.014",
+        "IK_small_leg.L.014_end",
+        "IK_small_leg.L.015",
+        "IK_small_leg.L.015_end",
+        "tail_leg_inner_leg.L.014",
+        "small_innermid_leg.L.014",
+        "small_outermid_leg.L.014",
+        "small_outer_leg.L.014",
+        "small_outer_leg.L.014_end",
+        "tail_leg_inner_leg.L.015",
+        "small_innermid_leg.L.015",
+        "small_outermid_leg.L.015",
+        "small_outer_leg.L.015",
+        "small_outer_leg.L.015_end",
+        "IK_small_leg.L.013",
+        "IK_small_leg.L.013_end",
+        "IK_small_leg.L.012",
+        "IK_small_leg.L.012_end",
+        "tail_leg_controller_set_2.L",
+        "tail_leg_controller_set_2.L_end",
+        "tail_leg_inner_leg.L.012",
+        "small_innermid_leg.L.012",
+        "small_outermid_leg.L.012",
+        "small_outer_leg.L.012",
+        "small_outer_leg.L.012_end",
+        "tail_leg_inner_leg.L.013",
+        "small_innermid_leg.L.013",
+        "small_outermid_leg.L.013",
+        "small_outer_leg.L.013",
+        "small_outer_leg.L.013_end",
+        "IK_small_leg.L.011",
+        "IK_small_leg.L.011_end",
+        "IK_small_leg.L.010",
+        "IK_small_leg.L.010_end",
+        "tail_leg_inner_leg.L.010",
+        "small_innermid_leg.L.010",
+        "small_outermid_leg.L.010",
+        "small_outer_leg.L.010",
+        "small_outer_leg.L.010_end",
+        "tail_leg_inner_leg.L.011",
+        "small_innermid_leg.L.011",
+        "small_outermid_leg.L.011",
+        "small_outer_leg.L.011",
+        "small_outer_leg.L.011_end",
+        "IK_small_leg.L.009",
+        "IK_small_leg.L.009_end",
+        "IK_small_leg.L.008",
+        "IK_small_leg.L.008_end",
+        "tail_leg_inner_leg.L.008",
+        "small_innermid_leg.L.008",
+        "small_outermid_leg.L.008",
+        "small_outer_leg.L.008",
+        "small_outer_leg.L.008_end",
+        "tail_leg_inner_leg.L.009",
+        "small_innermid_leg.L.009",
+        "small_outermid_leg.L.009",
+        "small_outer_leg.L.009",
+        "small_outer_leg.L.009_end",
+        "IK_small_leg.L.006",
+        "IK_small_leg.L.006_end",
+        "IK_small_leg.L.007",
+        "IK_small_leg.L.007_end",
+        "tail_leg_inner_leg.L.006",
+        "small_innermid_leg.L.006",
+        "small_outermid_leg.L.006",
+        "small_outer_leg.L.006",
+        "small_outer_leg.L.006_end",
+        "tail_leg_inner_leg.L.007",
+        "small_innermid_leg.L.007",
+        "small_outermid_leg.L.007",
+        "small_outer_leg.L.007",
+        "small_outer_leg.L.007_end",
+        "IK_small_leg.L.005",
+        "IK_small_leg.L.005_end",
+        "IK_small_leg.L.004",
+        "IK_small_leg.L.004_end",
+        "tail_leg_controller_set_1.L",
+        "tail_leg_controller_set_1.L_end",
+        "tail_leg_inner_leg.L.004",
+        "small_innermid_leg.L.004",
+        "small_outermid_leg.L.004",
+        "small_outer_leg.L.004",
+        "small_outer_leg.L.004_end",
+        "tail_leg_inner_leg.L.005",
+        "small_innermid_leg.L.005",
+        "small_outermid_leg.L.005",
+        "small_outer_leg.L.005",
+        "small_outer_leg.L.005_end",
+        "IK_small_leg.L.003",
+        "IK_small_leg.L.003_end",
+        "IK_small_leg.L.002",
+        "IK_small_leg.L.002_end",
+        "tail_leg_inner_leg.L.002",
+        "small_innermid_leg.L.002",
+        "small_outermid_leg.L.002",
+        "small_outer_leg.L.002",
+        "small_outer_leg.L.002_end",
+        "tail_leg_inner_leg.L.003",
+        "small_innermid_leg.L.003",
+        "small_outermid_leg.L.003",
+        "small_outer_leg.L.003",
+        "small_outer_leg.L.003_end",
+        "IK_small_leg.L.001",
+        "IK_small_leg.L.001_end",
+        "tail_leg_inner_leg.L",
+        "small_innermid_leg.L",
+        "small_outermid_leg.L",
+        "small_outer_leg.L",
+        "small_outer_leg.L_end",
+        "tail_leg_inner_leg.L.001",
+        "small_innermid_leg.L.001",
+        "small_outermid_leg.L.001",
+        "small_outer_leg.L.001",
+        "small_outer_leg.L.001_end",
+        "IK_small_leg.L",
+        "IK_small_leg.L_end",
+        "IK_big_leg.R",
+        "IK_big_leg.R_end",
+        "IK_big_leg.R.001",
+        "IK_big_leg.R.001_end",
+        "IK_big_leg.L",
+        "IK_big_leg.L_end",
+        "IK_big_leg.L.001",
+        "IK_big_leg.L.001_end",
+        "IK_big_leg.R.002",
+        "IK_big_leg.R.002_end",
+        "IK_big_leg.R.003",
+        "IK_big_leg.R.003_end",
+        "IK_big_leg.L.002",
+        "IK_big_leg.L.002_end",
+        "IK_big_leg.L.003",
+        "IK_big_leg.L.003_end",
+        "IK_big_leg.R.004",
+        "IK_big_leg.R.004_end",
+        "IK_big_leg.R.005",
+        "IK_big_leg.R.005_end",
+        "IK_big_leg.L.004",
+        "IK_big_leg.L.004_end",
+        "IK_big_leg.L.005",
+        "IK_big_leg.L.005_end",
+        "IK_big_leg.R.006",
+        "IK_big_leg.R.006_end",
+        "IK_big_leg.R.007",
+        "IK_big_leg.R.007_end",
+        "IK_big_leg.L.006",
+        "IK_big_leg.L.006_end",
+        "IK_big_leg.L.007",
+        "IK_big_leg.L.007_end",
+        "IK_big_leg.R.008",
+        "IK_big_leg.R.008_end",
+        "IK_big_leg.R.009",
+        "IK_big_leg.R.009_end",
+        "IK_big_leg.L.008",
+        "IK_big_leg.L.008_end",
+        "IK_big_leg.L.009",
+        "IK_big_leg.L.009_end",
+        "IK_big_leg.R.011",
+        "IK_big_leg.R.011_end",
+        "IK_big_leg.L.011",
+        "IK_big_leg.L.011_end",
+        "IK_big_leg.R.012",
+        "IK_big_leg.R.012_end",
+        "IK_big_leg.R.013",
+        "IK_big_leg.R.013_end",
+        "IK_big_leg.L.012",
+        "IK_big_leg.L.012_end",
+        "IK_big_leg.L.013",
+        "IK_big_leg.L.013_end",
+        "IK_big_leg.R.014",
+        "IK_big_leg.R.014_end",
+        "IK_big_leg.R.015",
+        "IK_big_leg.R.015_end",
+        "IK_big_leg.L.014",
+        "IK_big_leg.L.014_end",
+        "IK_big_leg.L.015",
+        "IK_big_leg.L.015_end",
+        "IK_big_leg.R.010",
+        "IK_big_leg.R.010_end",
+        "IK_big_leg.L.010",
+        "IK_big_leg.L.010_end",
+        "all ik individual controllers controller",
+        "all ik individual controllers controller_end"
+      ]
+    },
+    {
+      "name": "optical sensor morpho light",
+      "type": "LIGHT",
+      "parent": "morpho arma",
+      "dimensions": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ]
+    },
+    {
+      "name": "optical sensor morpho light outward facing",
+      "type": "LIGHT",
+      "parent": "morpho arma",
+      "dimensions": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ]
+    },
+    {
+      "name": "rail gun gun inner cover",
+      "type": "MESH",
+      "parent": "morpho arma",
+      "dimensions": [
+        66.10455322265625,
+        66.10455322265625,
+        7.62939453125e-06
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "triangles": 38,
+      "vertices": 40,
+      "materials": [
+        "morpho black"
+      ],
+      "uvLayers": [
+        "UVMap"
+      ],
+      "vertexGroups": 1
+    },
+    {
+      "name": "upper body rock protrusion front",
+      "type": "MESH",
+      "parent": "morpho arma",
+      "dimensions": [
+        22.722633361816406,
+        104.52732849121094,
+        24.534404754638672
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "triangles": 92,
+      "vertices": 48,
+      "materials": [
+        "morpho armor - dark stone silver"
+      ],
+      "uvLayers": [
+        "UVMap"
+      ],
+      "vertexGroups": 1
+    },
+    {
+      "name": "outmost plates",
+      "type": "MESH",
+      "parent": "morpho arma",
+      "dimensions": [
+        273.9290466308594,
+        602.1535034179688,
+        81.98121643066406
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "triangles": 1808,
+      "vertices": 908,
+      "materials": [
+        "morpho armor - silver"
+      ],
+      "uvLayers": [
+        "UVMap"
+      ],
+      "vertexGroups": 1
+    },
+    {
+      "name": "outer engine armor plate smaller",
+      "type": "MESH",
+      "parent": "morpho arma",
+      "dimensions": [
+        109.55106353759766,
+        87.96025085449219,
+        41.936767578125
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "triangles": 128,
+      "vertices": 72,
+      "materials": [
+        "morpho armor - silver"
+      ],
+      "uvLayers": [
+        "UVMap"
+      ],
+      "vertexGroups": 1
+    },
+    {
+      "name": "big leg inner connector.010",
+      "type": "MESH",
+      "parent": "morpho arma",
+      "dimensions": [
+        129.37037658691406,
+        297.8094787597656,
+        81.25965881347656
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        0.9999999403953552
+      ],
+      "triangles": 640,
+      "vertices": 336,
+      "materials": [
+        "morpho armor - silver",
+        "morpho armor - dark silver"
+      ],
+      "uvLayers": [
+        "UVMap"
+      ],
+      "vertexGroups": 6
+    },
+    {
+      "name": "big leg inner connector.016",
+      "type": "MESH",
+      "parent": "morpho arma",
+      "dimensions": [
+        165.01670837402344,
+        249.47711181640625,
+        77.79425811767578
+      ],
+      "scale": [
+        0.9999998807907104,
+        1.0,
+        0.9999999403953552
+      ],
+      "triangles": 640,
+      "vertices": 336,
+      "materials": [
+        "morpho armor - silver",
+        "morpho armor - dark silver"
+      ],
+      "uvLayers": [
+        "UVMap"
+      ],
+      "vertexGroups": 6
+    },
+    {
+      "name": "autogun turret base.004",
+      "type": "MESH",
+      "parent": "morpho arma",
+      "dimensions": [
+        21.445457458496094,
+        52.0152702331543,
+        20.033103942871094
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "triangles": 1460,
+      "vertices": 770,
+      "materials": [
+        "morpho black",
+        "morpho armor - dark stone silver"
+      ],
+      "uvLayers": [
+        "UVMap"
+      ],
+      "vertexGroups": 1
+    },
+    {
+      "name": "big leg inner connector.019",
+      "type": "MESH",
+      "parent": "morpho arma",
+      "dimensions": [
+        322.59271240234375,
+        140.6512908935547,
+        38.777889251708984
+      ],
+      "scale": [
+        1.0,
+        0.9999999403953552,
+        1.0
+      ],
+      "triangles": 400,
+      "vertices": 208,
+      "materials": [
+        "morpho armor - silver",
+        "morpho armor - dark silver"
+      ],
+      "uvLayers": [
+        "UVMap"
+      ],
+      "vertexGroups": 2
+    },
+    {
+      "name": "smol leg outer connector.004",
+      "type": "MESH",
+      "parent": "morpho arma",
+      "dimensions": [
+        32.04644775390625,
+        319.5442810058594,
+        38.575645446777344
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "triangles": 1616,
+      "vertices": 884,
+      "materials": [
+        "morpho armor - silver",
+        "morpho black",
+        "morpho armor - dark silver"
+      ],
+      "uvLayers": [
+        "UVMap"
+      ],
+      "vertexGroups": 8
+    },
+    {
+      "name": "smol leg outer connector.021",
+      "type": "MESH",
+      "parent": "morpho arma",
+      "dimensions": [
+        36.93585205078125,
+        161.9113311767578,
+        38.33021926879883
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "triangles": 1616,
+      "vertices": 884,
+      "materials": [
+        "morpho armor - silver",
+        "morpho black",
+        "morpho armor - dark silver"
+      ],
+      "uvLayers": [
+        "UVMap"
+      ],
+      "vertexGroups": 8
+    },
+    {
+      "name": "cannon blocking",
+      "type": "MESH",
+      "parent": "morpho arma",
+      "dimensions": [
+        105.64906311035156,
+        78.79559326171875,
+        175.5390167236328
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "triangles": 880,
+      "vertices": 472,
+      "materials": [
+        "morpho armor - silver"
+      ],
+      "uvLayers": [
+        "UVMap"
+      ],
+      "vertexGroups": 1
+    },
+    {
+      "name": "upper body rock protrusions",
+      "type": "MESH",
+      "parent": "morpho arma",
+      "dimensions": [
+        115.37903594970703,
+        323.2702941894531,
+        54.477230072021484
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "triangles": 476,
+      "vertices": 280,
+      "materials": [
+        "morpho armor - dark stone silver"
+      ],
+      "uvLayers": [
+        "UVMap"
+      ],
+      "vertexGroups": 1
+    },
+    {
+      "name": "rear triple plate",
+      "type": "MESH",
+      "parent": "morpho arma",
+      "dimensions": [
+        215.25596618652344,
+        71.80926513671875,
+        84.9486312866211
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "triangles": 120,
+      "vertices": 72,
+      "materials": [
+        "morpho armor - silver"
+      ],
+      "uvLayers": [
+        "UVMap"
+      ],
+      "vertexGroups": 1
+    },
+    {
+      "name": "command area (where kiri resides)",
+      "type": "MESH",
+      "parent": "morpho arma",
+      "dimensions": [
+        91.76470947265625,
+        256.59149169921875,
+        52.51930236816406
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "triangles": 3430,
+      "vertices": 1717,
+      "materials": [
+        "morpho armor - silver",
+        "morpho black"
+      ],
+      "uvLayers": [
+        "UVMap"
+      ],
+      "vertexGroups": 1
+    },
+    {
+      "name": "underside cover piece",
+      "type": "MESH",
+      "parent": "morpho arma",
+      "dimensions": [
+        121.42562103271484,
+        555.295654296875,
+        78.21730041503906
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "triangles": 114,
+      "vertices": 68,
+      "materials": [
+        "morpho black"
+      ],
+      "uvLayers": [
+        "UVMap"
+      ],
+      "vertexGroups": 1
+    },
+    {
+      "name": "big leg outer connector.011",
+      "type": "MESH",
+      "parent": "morpho arma",
+      "dimensions": [
+        209.38253784179688,
+        526.1558837890625,
+        99.40340423583984
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "triangles": 976,
+      "vertices": 548,
+      "materials": [
+        "morpho armor - silver",
+        "morpho black",
+        "morpho armor - dark silver"
+      ],
+      "uvLayers": [
+        "UVMap"
+      ],
+      "vertexGroups": 2
+    },
+    {
+      "name": "big leg outer connector.017",
+      "type": "MESH",
+      "parent": "morpho arma",
+      "dimensions": [
+        269.900634765625,
+        329.2377014160156,
+        92.50458526611328
+      ],
+      "scale": [
+        1.0,
+        0.9999999403953552,
+        1.0
+      ],
+      "triangles": 976,
+      "vertices": 548,
+      "materials": [
+        "morpho armor - silver",
+        "morpho black",
+        "morpho armor - dark silver"
+      ],
+      "uvLayers": [
+        "UVMap"
+      ],
+      "vertexGroups": 2
+    },
+    {
+      "name": "autogun strcuture base.003",
+      "type": "MESH",
+      "parent": "morpho arma",
+      "dimensions": [
+        24.97948455810547,
+        24.979488372802734,
+        12.085369110107422
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "triangles": 192,
+      "vertices": 112,
+      "materials": [
+        "morpho armor - dark stone silver"
+      ],
+      "uvLayers": [
+        "UVMap"
+      ],
+      "vertexGroups": 1
+    },
+    {
+      "name": "big leg inner to main body connect.019",
+      "type": "MESH",
+      "parent": "morpho arma",
+      "dimensions": [
+        263.1292724609375,
+        108.53240966796875,
+        14.290802955627441
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "triangles": 56,
+      "vertices": 32,
+      "materials": [
+        "morpho armor - silver"
+      ],
+      "uvLayers": [
+        "UVMap"
+      ],
+      "vertexGroups": 2
+    },
+    {
+      "name": "smol leg outer connector.005",
+      "type": "MESH",
+      "parent": "morpho arma",
+      "dimensions": [
+        20.234161376953125,
+        323.1875,
+        48.613773345947266
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "triangles": 1616,
+      "vertices": 884,
+      "materials": [
+        "morpho armor - silver",
+        "morpho black",
+        "morpho armor - dark silver"
+      ],
+      "uvLayers": [
+        "UVMap"
+      ],
+      "vertexGroups": 8
+    },
+    {
+      "name": "smol leg outer connector.022",
+      "type": "MESH",
+      "parent": "morpho arma",
+      "dimensions": [
+        41.39056396484375,
+        168.67196655273438,
+        32.51942825317383
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "triangles": 1616,
+      "vertices": 884,
+      "materials": [
+        "morpho armor - silver",
+        "morpho black",
+        "morpho armor - dark silver"
+      ],
+      "uvLayers": [
+        "UVMap"
+      ],
+      "vertexGroups": 8
+    },
+    {
+      "name": "big stone piece right front pc",
+      "type": "MESH",
+      "parent": "morpho arma",
+      "dimensions": [
+        45.84819030761719,
+        120.9522705078125,
+        13.964767456054688
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "triangles": 148,
+      "vertices": 84,
+      "materials": [
+        "morpho armor - stone silver"
+      ],
+      "uvLayers": [
+        "UVMap"
+      ],
+      "vertexGroups": 1
+    },
+    {
+      "name": "back of body underside",
+      "type": "MESH",
+      "parent": "morpho arma",
+      "dimensions": [
+        79.90696716308594,
+        357.4851989746094,
+        101.64840698242188
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "triangles": 1064,
+      "vertices": 536,
+      "materials": [
+        "morpho black",
+        "morpho armor - dark stone silver",
+        "morpho armor - dark silver"
+      ],
+      "uvLayers": [
+        "UVMap"
+      ],
+      "vertexGroups": 1
+    },
+    {
+      "name": "upper body armor outline",
+      "type": "MESH",
+      "parent": "morpho arma",
+      "dimensions": [
+        156.2690887451172,
+        486.066650390625,
+        70.30979919433594
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "triangles": 838,
+      "vertices": 430,
+      "materials": [
+        "morpho armor - silver",
+        "morpho grey"
+      ],
+      "uvLayers": [
+        "UVMap"
+      ],
+      "vertexGroups": 1
+    },
+    {
+      "name": "tail to main body connectors",
+      "type": "MESH",
+      "parent": "morpho arma",
+      "dimensions": [
+        151.9925079345703,
+        127.17404174804688,
+        19.10771942138672
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "triangles": 112,
+      "vertices": 64,
+      "materials": [
+        "morpho armor - silver",
+        "morpho black",
+        "morpho armor - dark silver",
+        "morpho grey"
+      ],
+      "uvLayers": [
+        "UVMap"
+      ],
+      "vertexGroups": 1
+    },
+    {
+      "name": "big leg inner connector.011",
+      "type": "MESH",
+      "parent": "morpho arma",
+      "dimensions": [
+        133.78945922851562,
+        322.6434631347656,
+        85.70433044433594
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        0.9999999403953552
+      ],
+      "triangles": 640,
+      "vertices": 336,
+      "materials": [
+        "morpho armor - silver",
+        "morpho armor - dark silver"
+      ],
+      "uvLayers": [
+        "UVMap"
+      ],
+      "vertexGroups": 6
+    },
+    {
+      "name": "big leg inner connector.017",
+      "type": "MESH",
+      "parent": "morpho arma",
+      "dimensions": [
+        156.44384765625,
+        186.89834594726562,
+        67.22992706298828
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        0.9999999403953552
+      ],
+      "triangles": 640,
+      "vertices": 336,
+      "materials": [
+        "morpho armor - silver",
+        "morpho armor - dark silver"
+      ],
+      "uvLayers": [
+        "UVMap"
+      ],
+      "vertexGroups": 6
+    },
+    {
+      "name": "autogun turret base.003",
+      "type": "MESH",
+      "parent": "morpho arma",
+      "dimensions": [
+        21.445457458496094,
+        52.0152702331543,
+        20.033096313476562
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "triangles": 1460,
+      "vertices": 770,
+      "materials": [
+        "morpho black",
+        "morpho armor - dark stone silver"
+      ],
+      "uvLayers": [
+        "UVMap"
+      ],
+      "vertexGroups": 1
+    },
+    {
+      "name": "grauwolf leg inner connector 2.020",
+      "type": "MESH",
+      "parent": "morpho arma",
+      "dimensions": [
+        168.908935546875,
+        64.54157257080078,
+        49.915985107421875
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        0.9999999403953552
+      ],
+      "triangles": 128,
+      "vertices": 72,
+      "materials": [
+        "morpho black",
+        "morpho armor - dark silver"
+      ],
+      "uvLayers": [
+        "UVMap"
+      ],
+      "vertexGroups": 2
+    },
+    {
+      "name": "smol leg outer connector.006",
+      "type": "MESH",
+      "parent": "morpho arma",
+      "dimensions": [
+        34.1373291015625,
+        329.0402526855469,
+        41.231117248535156
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "triangles": 1616,
+      "vertices": 884,
+      "materials": [
+        "morpho armor - silver",
+        "morpho black",
+        "morpho armor - dark silver"
+      ],
+      "uvLayers": [
+        "UVMap"
+      ],
+      "vertexGroups": 8
+    },
+    {
+      "name": "smol leg outer connector.023",
+      "type": "MESH",
+      "parent": "morpho arma",
+      "dimensions": [
+        34.1044921875,
+        176.1392822265625,
+        36.08019256591797
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "triangles": 1616,
+      "vertices": 884,
+      "materials": [
+        "morpho armor - silver",
+        "morpho black",
+        "morpho armor - dark silver"
+      ],
+      "uvLayers": [
+        "UVMap"
+      ],
+      "vertexGroups": 8
+    },
+    {
+      "name": "big stone piece right",
+      "type": "MESH",
+      "parent": "morpho arma",
+      "dimensions": [
+        91.06873321533203,
+        329.6766357421875,
+        13.96478271484375
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "triangles": 400,
+      "vertices": 228,
+      "materials": [
+        "morpho armor - stone silver"
+      ],
+      "uvLayers": [
+        "UVMap"
+      ],
+      "vertexGroups": 1
+    },
+    {
+      "name": "middle body inner rock lining L",
+      "type": "MESH",
+      "parent": "morpho arma",
+      "dimensions": [
+        86.16732025146484,
+        306.3848876953125,
+        44.10736083984375
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "triangles": 800,
+      "vertices": 460,
+      "materials": [
+        "morpho armor - dark stone silver"
+      ],
+      "uvLayers": [
+        "UVMap"
+      ],
+      "vertexGroups": 1
+    },
+    {
+      "name": "outer engine armor plate",
+      "type": "MESH",
+      "parent": "morpho arma",
+      "dimensions": [
+        135.04617309570312,
+        187.1552276611328,
+        68.89820861816406
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "triangles": 176,
+      "vertices": 96,
+      "materials": [
+        "morpho armor - silver"
+      ],
+      "uvLayers": [
+        "UVMap"
+      ],
+      "vertexGroups": 1
+    },
+    {
+      "name": "big leg outer connector.004",
+      "type": "MESH",
+      "parent": "morpho arma",
+      "dimensions": [
+        215.46035766601562,
+        184.92025756835938,
+        102.80944061279297
+      ],
+      "scale": [
+        0.9999999403953552,
+        0.9999999403953552,
+        1.0
+      ],
+      "triangles": 976,
+      "vertices": 548,
+      "materials": [
+        "morpho armor - silver",
+        "morpho black",
+        "morpho armor - dark silver"
+      ],
+      "uvLayers": [
+        "UVMap"
+      ],
+      "vertexGroups": 2
+    },
+    {
+      "name": "big leg outer connector.012",
+      "type": "MESH",
+      "parent": "morpho arma",
+      "dimensions": [
+        156.78697204589844,
+        569.589111328125,
+        114.49308776855469
+      ],
+      "scale": [
+        0.9999998807907104,
+        0.9999998807907104,
+        1.0
+      ],
+      "triangles": 976,
+      "vertices": 548,
+      "materials": [
+        "morpho armor - silver",
+        "morpho black",
+        "morpho armor - dark silver"
+      ],
+      "uvLayers": [
+        "UVMap"
+      ],
+      "vertexGroups": 2
+    },
+    {
+      "name": "big tail",
+      "type": "MESH",
+      "parent": "morpho arma",
+      "dimensions": [
+        213.28396606445312,
+        93.73110961914062,
+        78.57461547851562
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "triangles": 576,
+      "vertices": 320,
+      "materials": [
+        "morpho armor - silver",
+        "morpho armor - dark silver"
+      ],
+      "uvLayers": [
+        "UVMap"
+      ],
+      "vertexGroups": 2
+    },
+    {
+      "name": "autogun strcuture base.005",
+      "type": "MESH",
+      "parent": "morpho arma",
+      "dimensions": [
+        24.9794921875,
+        24.9794921875,
+        9.377933502197266
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "triangles": 160,
+      "vertices": 96,
+      "materials": [
+        "morpho armor - dark stone silver"
+      ],
+      "uvLayers": [
+        "UVMap"
+      ],
+      "vertexGroups": 1
+    },
+    {
+      "name": "big leg outer connector.020",
+      "type": "MESH",
+      "parent": "morpho arma",
+      "dimensions": [
+        171.66839599609375,
+        154.8228759765625,
+        75.92186737060547
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        0.9999999403953552
+      ],
+      "triangles": 848,
+      "vertices": 476,
+      "materials": [
+        "morpho armor - silver",
+        "morpho armor - dark silver"
+      ],
+      "uvLayers": [
+        "UVMap"
+      ],
+      "vertexGroups": 2
+    },
+    {
+      "name": "smol leg outer connector.007",
+      "type": "MESH",
+      "parent": "morpho arma",
+      "dimensions": [
+        23.353271484375,
+        336.0786437988281,
+        31.497486114501953
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "triangles": 1616,
+      "vertices": 884,
+      "materials": [
+        "morpho armor - silver",
+        "morpho black",
+        "morpho armor - dark silver"
+      ],
+      "uvLayers": [
+        "UVMap"
+      ],
+      "vertexGroups": 8
+    },
+    {
+      "name": "smol leg outer connector.024",
+      "type": "MESH",
+      "parent": "morpho arma",
+      "dimensions": [
+        46.53082275390625,
+        183.45599365234375,
+        34.057289123535156
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "triangles": 1616,
+      "vertices": 884,
+      "materials": [
+        "morpho armor - silver",
+        "morpho black",
+        "morpho armor - dark silver"
+      ],
+      "uvLayers": [
+        "UVMap"
+      ],
+      "vertexGroups": 8
+    },
+    {
+      "name": "big stone piece left front pc",
+      "type": "MESH",
+      "parent": "morpho arma",
+      "dimensions": [
+        45.84819793701172,
+        120.9522705078125,
+        13.96478271484375
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "triangles": 188,
+      "vertices": 108,
+      "materials": [
+        "morpho armor - stone silver"
+      ],
+      "uvLayers": [
+        "UVMap"
+      ],
+      "vertexGroups": 1
+    },
+    {
+      "name": "grills",
+      "type": "MESH",
+      "parent": "morpho arma",
+      "dimensions": [
+        39.52448272705078,
+        154.6119384765625,
+        42.623355865478516
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "triangles": 192,
+      "vertices": 104,
+      "materials": [
+        "morpho armor - dark stone silver"
+      ],
+      "uvLayers": [
+        "UVMap"
+      ],
+      "vertexGroups": 1
+    },
+    {
+      "name": "underbody hull",
+      "type": "MESH",
+      "parent": "morpho arma",
+      "dimensions": [
+        204.34613037109375,
+        493.03021240234375,
+        79.57289123535156
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "triangles": 568,
+      "vertices": 292,
+      "materials": [
+        "morpho black",
+        "morpho grey"
+      ],
+      "uvLayers": [
+        "UVMap"
+      ],
+      "vertexGroups": 1
+    },
+    {
+      "name": "big leg inner connector.004",
+      "type": "MESH",
+      "parent": "morpho arma",
+      "dimensions": [
+        129.2364959716797,
+        141.37254333496094,
+        59.435394287109375
+      ],
+      "scale": [
+        0.9999999403953552,
+        0.9999999403953552,
+        0.9999998807907104
+      ],
+      "triangles": 640,
+      "vertices": 336,
+      "materials": [
+        "morpho armor - silver",
+        "morpho armor - dark silver"
+      ],
+      "uvLayers": [
+        "UVMap"
+      ],
+      "vertexGroups": 6
+    },
+    {
+      "name": "big leg inner connector.012",
+      "type": "MESH",
+      "parent": "morpho arma",
+      "dimensions": [
+        105.61650085449219,
+        349.1485900878906,
+        102.32430267333984
+      ],
+      "scale": [
+        0.9999999403953552,
+        1.0,
+        0.9999998807907104
+      ],
+      "triangles": 640,
+      "vertices": 336,
+      "materials": [
+        "morpho armor - silver",
+        "morpho armor - dark silver"
+      ],
+      "uvLayers": [
+        "UVMap"
+      ],
+      "vertexGroups": 6
+    },
+    {
+      "name": "medium tail armor",
+      "type": "MESH",
+      "parent": "morpho arma",
+      "dimensions": [
+        229.61663818359375,
+        180.35205078125,
+        76.76557922363281
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "triangles": 2112,
+      "vertices": 1184,
+      "materials": [
+        "morpho armor - silver",
+        "morpho armor - dark silver"
+      ],
+      "uvLayers": [
+        "UVMap"
+      ],
+      "vertexGroups": 8
+    },
+    {
+      "name": "autogun turret base.005",
+      "type": "MESH",
+      "parent": "morpho arma",
+      "dimensions": [
+        21.445457458496094,
+        52.0152702331543,
+        20.033092498779297
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "triangles": 1460,
+      "vertices": 770,
+      "materials": [
+        "morpho black",
+        "morpho armor - dark stone silver"
+      ],
+      "uvLayers": [
+        "UVMap"
+      ],
+      "vertexGroups": 1
+    },
+    {
+      "name": "inner big leg piece.020",
+      "type": "MESH",
+      "parent": "morpho arma",
+      "dimensions": [
+        202.3013458251953,
+        95.98889923095703,
+        47.47555160522461
+      ],
+      "scale": [
+        0.9999998807907104,
+        0.9999999403953552,
+        1.0
+      ],
+      "triangles": 184,
+      "vertices": 96,
+      "materials": [
+        "morpho armor - silver"
+      ],
+      "uvLayers": [
+        "UVMap"
+      ],
+      "vertexGroups": 2
+    },
+    {
+      "name": "smol leg outer connector.008",
+      "type": "MESH",
+      "parent": "morpho arma",
+      "dimensions": [
+        31.836669921875,
+        346.6008605957031,
+        38.6522102355957
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "triangles": 1616,
+      "vertices": 884,
+      "materials": [
+        "morpho armor - silver",
+        "morpho black",
+        "morpho armor - dark silver"
+      ],
+      "uvLayers": [
+        "UVMap"
+      ],
+      "vertexGroups": 8
+    },
+    {
+      "name": "smol leg outer connector.025",
+      "type": "MESH",
+      "parent": "morpho arma",
+      "dimensions": [
+        38.65325927734375,
+        191.36729431152344,
+        39.11493682861328
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "triangles": 1616,
+      "vertices": 884,
+      "materials": [
+        "morpho armor - silver",
+        "morpho black",
+        "morpho armor - dark silver"
+      ],
+      "uvLayers": [
+        "UVMap"
+      ],
+      "vertexGroups": 8
+    },
+    {
+      "name": "smol leg outer connector.009",
+      "type": "MESH",
+      "parent": "morpho arma",
+      "dimensions": [
+        18.84820556640625,
+        352.0462951660156,
+        49.040199279785156
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "triangles": 1616,
+      "vertices": 884,
+      "materials": [
+        "morpho armor - silver",
+        "morpho black",
+        "morpho armor - dark silver"
+      ],
+      "uvLayers": [
+        "UVMap"
+      ],
+      "vertexGroups": 8
+    },
+    {
+      "name": "big leg outer connector.013",
+      "type": "MESH",
+      "parent": "morpho arma",
+      "dimensions": [
+        172.17095947265625,
+        589.199462890625,
+        108.79316711425781
+      ],
+      "scale": [
+        0.9999998807907104,
+        0.9999998807907104,
+        1.0
+      ],
+      "triangles": 976,
+      "vertices": 548,
+      "materials": [
+        "morpho armor - silver",
+        "morpho black",
+        "morpho armor - dark silver"
+      ],
+      "uvLayers": [
+        "UVMap"
+      ],
+      "vertexGroups": 2
+    },
+    {
+      "name": "big stone piece left",
+      "type": "MESH",
+      "parent": "morpho arma",
+      "dimensions": [
+        88.49666595458984,
+        323.38916015625,
+        13.964797973632812
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "triangles": 380,
+      "vertices": 222,
+      "materials": [
+        "morpho armor - stone silver"
+      ],
+      "uvLayers": [
+        "UVMap"
+      ],
+      "vertexGroups": 1
+    },
+    {
+      "name": "Cylinder in front",
+      "type": "MESH",
+      "parent": "morpho arma",
+      "dimensions": [
+        18.232227325439453,
+        18.232227325439453,
+        70.14096069335938
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "triangles": 410,
+      "vertices": 288,
+      "materials": [
+        "morpho armor - dark stone silver",
+        "morpho grey"
+      ],
+      "uvLayers": [
+        "UVMap"
+      ],
+      "vertexGroups": 1
+    },
+    {
+      "name": "back of body underside for wings",
+      "type": "MESH",
+      "parent": "morpho arma",
+      "dimensions": [
+        107.80715942382812,
+        84.1981201171875,
+        20.725936889648438
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "triangles": 216,
+      "vertices": 112,
+      "materials": [
+        "morpho black",
+        "morpho armor - dark silver"
+      ],
+      "uvLayers": [
+        "UVMap"
+      ],
+      "vertexGroups": 1
+    },
+    {
+      "name": "front armor mustache",
+      "type": "MESH",
+      "parent": "morpho arma",
+      "dimensions": [
+        51.92544174194336,
+        55.1495361328125,
+        33.44081115722656
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "triangles": 220,
+      "vertices": 264,
+      "materials": [
+        "morpho black"
+      ],
+      "uvLayers": [
+        "UVMap"
+      ],
+      "vertexGroups": 1
+    },
+    {
+      "name": "back armor",
+      "type": "MESH",
+      "parent": "morpho arma",
+      "dimensions": [
+        89.9640121459961,
+        208.68101501464844,
+        34.228233337402344
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "triangles": 568,
+      "vertices": 286,
+      "materials": [
+        "morpho armor - silver",
+        "morpho black"
+      ],
+      "uvLayers": [
+        "UVMap"
+      ],
+      "vertexGroups": 1
+    },
+    {
+      "name": "big leg outer connector.005",
+      "type": "MESH",
+      "parent": "morpho arma",
+      "dimensions": [
+        258.9716796875,
+        231.40182495117188,
+        92.58289337158203
+      ],
+      "scale": [
+        1.0,
+        0.9999998807907104,
+        1.0
+      ],
+      "triangles": 976,
+      "vertices": 548,
+      "materials": [
+        "morpho armor - silver",
+        "morpho black",
+        "morpho armor - dark silver"
+      ],
+      "uvLayers": [
+        "UVMap"
+      ],
+      "vertexGroups": 2
+    },
+    {
+      "name": "small tail armor",
+      "type": "MESH",
+      "parent": "morpho arma",
+      "dimensions": [
+        280.532470703125,
+        327.5504455566406,
+        54.86271667480469
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "triangles": 4096,
+      "vertices": 2304,
+      "materials": [
+        "morpho armor - silver",
+        "morpho black",
+        "morpho armor - dark silver",
+        "morpho grey"
+      ],
+      "uvLayers": [
+        "UVMap"
+      ],
+      "vertexGroups": 16
+    },
+    {
+      "name": "autogun strcuture base.006",
+      "type": "MESH",
+      "parent": "morpho arma",
+      "dimensions": [
+        24.979488372802734,
+        24.9794921875,
+        9.377933502197266
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "triangles": 160,
+      "vertices": 96,
+      "materials": [
+        "morpho armor - dark stone silver"
+      ],
+      "uvLayers": [
+        "UVMap"
+      ],
+      "vertexGroups": 1
+    },
+    {
+      "name": "big leg inner connector.020",
+      "type": "MESH",
+      "parent": "morpho arma",
+      "dimensions": [
+        189.76312255859375,
+        106.5169677734375,
+        50.53762435913086
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "triangles": 400,
+      "vertices": 208,
+      "materials": [
+        "morpho armor - silver",
+        "morpho armor - dark silver"
+      ],
+      "uvLayers": [
+        "UVMap"
+      ],
+      "vertexGroups": 2
+    },
+    {
+      "name": "smol leg outer connector.026",
+      "type": "MESH",
+      "parent": "morpho arma",
+      "dimensions": [
+        42.6158447265625,
+        199.39649963378906,
+        33.35942077636719
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "triangles": 1616,
+      "vertices": 884,
+      "materials": [
+        "morpho armor - silver",
+        "morpho black",
+        "morpho armor - dark silver"
+      ],
+      "uvLayers": [
+        "UVMap"
+      ],
+      "vertexGroups": 8
+    },
+    {
+      "name": "optical sensor",
+      "type": "MESH",
+      "parent": "morpho arma",
+      "dimensions": [
+        9.199082374572754,
+        9.199081420898438,
+        49.1314697265625
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "triangles": 216,
+      "vertices": 112,
+      "materials": [
+        "morpho armor - dark stone silver",
+        "composite sensor morpho"
+      ],
+      "uvLayers": [
+        "UVMap"
+      ],
+      "vertexGroups": 1
+    },
+    {
+      "name": "wrench thing right",
+      "type": "MESH",
+      "parent": "morpho arma",
+      "dimensions": [
+        125.96619415283203,
+        245.66357421875,
+        101.86581420898438
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "triangles": 264,
+      "vertices": 144,
+      "materials": [
+        "morpho armor - dark stone silver"
+      ],
+      "uvLayers": [
+        "UVMap"
+      ],
+      "vertexGroups": 1
+    },
+    {
+      "name": "big leg inner connector.005",
+      "type": "MESH",
+      "parent": "morpho arma",
+      "dimensions": [
+        146.6294708251953,
+        145.8214874267578,
+        57.331993103027344
+      ],
+      "scale": [
+        1.0,
+        0.9999999403953552,
+        0.9999998807907104
+      ],
+      "triangles": 640,
+      "vertices": 336,
+      "materials": [
+        "morpho armor - silver",
+        "morpho armor - dark silver"
+      ],
+      "uvLayers": [
+        "UVMap"
+      ],
+      "vertexGroups": 6
+    },
+    {
+      "name": "big leg inner connector.013",
+      "type": "MESH",
+      "parent": "morpho arma",
+      "dimensions": [
+        114.9026870727539,
+        369.61505126953125,
+        100.98826599121094
+      ],
+      "scale": [
+        0.9999999403953552,
+        1.0,
+        0.9999998807907104
+      ],
+      "triangles": 640,
+      "vertices": 336,
+      "materials": [
+        "morpho armor - silver",
+        "morpho armor - dark silver"
+      ],
+      "uvLayers": [
+        "UVMap"
+      ],
+      "vertexGroups": 6
+    },
+    {
+      "name": "tail end part",
+      "type": "MESH",
+      "parent": "morpho arma",
+      "dimensions": [
+        284.8811340332031,
+        312.9239501953125,
+        86.56654357910156
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "triangles": 1436,
+      "vertices": 748,
+      "materials": [
+        "morpho armor - silver",
+        "morpho armor - dark silver",
+        "morpho grey"
+      ],
+      "uvLayers": [
+        "UVMap"
+      ],
+      "vertexGroups": 2
+    },
+    {
+      "name": "autogun turret base.006",
+      "type": "MESH",
+      "parent": "morpho arma",
+      "dimensions": [
+        21.445457458496094,
+        52.0152702331543,
+        20.033100128173828
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "triangles": 1460,
+      "vertices": 770,
+      "materials": [
+        "morpho black",
+        "morpho armor - dark stone silver"
+      ],
+      "uvLayers": [
+        "UVMap"
+      ],
+      "vertexGroups": 1
+    },
+    {
+      "name": "big leg inner to main body connect.020",
+      "type": "MESH",
+      "parent": "morpho arma",
+      "dimensions": [
+        205.99160766601562,
+        91.82867431640625,
+        14.51749038696289
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "triangles": 56,
+      "vertices": 32,
+      "materials": [
+        "morpho armor - silver"
+      ],
+      "uvLayers": [
+        "UVMap"
+      ],
+      "vertexGroups": 2
+    },
+    {
+      "name": "smol leg outer connector.010",
+      "type": "MESH",
+      "parent": "morpho arma",
+      "dimensions": [
+        33.7449951171875,
+        359.30889892578125,
+        42.109130859375
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "triangles": 1616,
+      "vertices": 884,
+      "materials": [
+        "morpho armor - silver",
+        "morpho black",
+        "morpho armor - dark silver"
+      ],
+      "uvLayers": [
+        "UVMap"
+      ],
+      "vertexGroups": 8
+    },
+    {
+      "name": "smol leg outer connector.027",
+      "type": "MESH",
+      "parent": "morpho arma",
+      "dimensions": [
+        35.22247314453125,
+        207.87965393066406,
+        34.96156692504883
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "triangles": 1616,
+      "vertices": 884,
+      "materials": [
+        "morpho armor - silver",
+        "morpho black",
+        "morpho armor - dark silver"
+      ],
+      "uvLayers": [
+        "UVMap"
+      ],
+      "vertexGroups": 8
+    },
+    {
+      "name": "cannon holder for elevation",
+      "type": "MESH",
+      "parent": "morpho arma",
+      "dimensions": [
+        38.83724594116211,
+        97.05693054199219,
+        92.37216186523438
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "triangles": 240,
+      "vertices": 124,
+      "materials": [
+        "morpho armor - dark stone silver"
+      ],
+      "uvLayers": [
+        "UVMap"
+      ],
+      "vertexGroups": 1
+    },
+    {
+      "name": "middle body rock protrusions wall",
+      "type": "MESH",
+      "parent": "morpho arma",
+      "dimensions": [
+        119.33924865722656,
+        347.02532958984375,
+        51.497337341308594
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "triangles": 136,
+      "vertices": 72,
+      "materials": [
+        "morpho black"
+      ],
+      "uvLayers": [
+        "UVMap"
+      ],
+      "vertexGroups": 1
+    },
+    {
+      "name": "front composite sensor side armor pcs",
+      "type": "MESH",
+      "parent": "morpho arma",
+      "dimensions": [
+        77.46640014648438,
+        197.513427734375,
+        76.2157974243164
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "triangles": 288,
+      "vertices": 152,
+      "materials": [
+        "morpho armor - silver"
+      ],
+      "uvLayers": [
+        "UVMap"
+      ],
+      "vertexGroups": 1
+    },
+    {
+      "name": "big leg outer connector.006",
+      "type": "MESH",
+      "parent": "morpho arma",
+      "dimensions": [
+        241.08029174804688,
+        308.0127258300781,
+        98.30632019042969
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "triangles": 976,
+      "vertices": 548,
+      "materials": [
+        "morpho armor - silver",
+        "morpho black",
+        "morpho armor - dark silver"
+      ],
+      "uvLayers": [
+        "UVMap"
+      ],
+      "vertexGroups": 2
+    },
+    {
+      "name": "big leg outer connector.002",
+      "type": "MESH",
+      "parent": "morpho arma",
+      "dimensions": [
+        37.34854507446289,
+        630.8958740234375,
+        93.10797882080078
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "triangles": 976,
+      "vertices": 548,
+      "materials": [
+        "morpho armor - silver",
+        "morpho black",
+        "morpho armor - dark silver"
+      ],
+      "uvLayers": [
+        "UVMap"
+      ],
+      "vertexGroups": 2
+    },
+    {
+      "name": "tail end part 2",
+      "type": "MESH",
+      "parent": "morpho arma",
+      "dimensions": [
+        273.7184143066406,
+        44.545894622802734,
+        12.591795921325684
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "triangles": 288,
+      "vertices": 160,
+      "materials": [
+        "morpho armor - dark silver"
+      ],
+      "uvLayers": [
+        "UVMap"
+      ],
+      "vertexGroups": 2
+    },
+    {
+      "name": "grauwolf leg inner connector 2.018",
+      "type": "MESH",
+      "parent": "morpho arma",
+      "dimensions": [
+        318.48577880859375,
+        103.85552978515625,
+        32.116817474365234
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        0.9999999403953552
+      ],
+      "triangles": 128,
+      "vertices": 72,
+      "materials": [
+        "morpho black",
+        "morpho armor - dark silver"
+      ],
+      "uvLayers": [
+        "UVMap"
+      ],
+      "vertexGroups": 2
+    },
+    {
+      "name": "grauwolf leg inner connector 2.021",
+      "type": "MESH",
+      "parent": "morpho arma",
+      "dimensions": [
+        144.88473510742188,
+        57.06482696533203,
+        46.87799072265625
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        0.9999999403953552
+      ],
+      "triangles": 128,
+      "vertices": 72,
+      "materials": [
+        "morpho black",
+        "morpho armor - dark silver"
+      ],
+      "uvLayers": [
+        "UVMap"
+      ],
+      "vertexGroups": 2
+    },
+    {
+      "name": "smol leg outer connector.011",
+      "type": "MESH",
+      "parent": "morpho arma",
+      "dimensions": [
+        22.43951416015625,
+        367.53680419921875,
+        31.19760513305664
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "triangles": 1616,
+      "vertices": 884,
+      "materials": [
+        "morpho armor - silver",
+        "morpho black",
+        "morpho armor - dark silver"
+      ],
+      "uvLayers": [
+        "UVMap"
+      ],
+      "vertexGroups": 8
+    },
+    {
+      "name": "smol leg outer connector.028",
+      "type": "MESH",
+      "parent": "morpho arma",
+      "dimensions": [
+        47.38140869140625,
+        215.99708557128906,
+        34.06452941894531
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "triangles": 1616,
+      "vertices": 884,
+      "materials": [
+        "morpho armor - silver",
+        "morpho black",
+        "morpho armor - dark silver"
+      ],
+      "uvLayers": [
+        "UVMap"
+      ],
+      "vertexGroups": 8
+    },
+    {
+      "name": "railgun rails heat fins themselves right",
+      "type": "MESH",
+      "parent": "morpho arma",
+      "dimensions": [
+        67.76460266113281,
+        59.77159881591797,
+        15.257034301757812
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "triangles": 1080,
+      "vertices": 720,
+      "materials": [
+        "morpho grey"
+      ],
+      "uvLayers": [
+        "UVMap"
+      ],
+      "vertexGroups": 1
+    },
+    {
+      "name": "upper body rock protrusions base",
+      "type": "MESH",
+      "parent": "morpho arma",
+      "dimensions": [
+        149.6874542236328,
+        370.8274230957031,
+        76.86407470703125
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "triangles": 180,
+      "vertices": 121,
+      "materials": [
+        "morpho black"
+      ],
+      "uvLayers": [
+        "UVMap"
+      ],
+      "vertexGroups": 1
+    },
+    {
+      "name": "front armor mustache for distant renders",
+      "type": "MESH",
+      "parent": "morpho arma",
+      "dimensions": [
+        53.843528747558594,
+        55.1495361328125,
+        33.44081115722656
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "triangles": 220,
+      "vertices": 264,
+      "materials": [
+        "morpho black"
+      ],
+      "uvLayers": [
+        "UVMap"
+      ],
+      "vertexGroups": 1
+    },
+    {
+      "name": "big leg inner connector.006",
+      "type": "MESH",
+      "parent": "morpho arma",
+      "dimensions": [
+        140.69110107421875,
+        168.66741943359375,
+        70.29781341552734
+      ],
+      "scale": [
+        1.0,
+        0.9999999403953552,
+        0.9999999403953552
+      ],
+      "triangles": 640,
+      "vertices": 336,
+      "materials": [
+        "morpho armor - silver",
+        "morpho armor - dark silver"
+      ],
+      "uvLayers": [
+        "UVMap"
+      ],
+      "vertexGroups": 6
+    },
+    {
+      "name": "big leg inner connector.002",
+      "type": "MESH",
+      "parent": "morpho arma",
+      "dimensions": [
+        28.444324493408203,
+        392.1478271484375,
+        96.22874450683594
+      ],
+      "scale": [
+        1.0,
+        0.9999999403953552,
+        0.9999999403953552
+      ],
+      "triangles": 640,
+      "vertices": 336,
+      "materials": [
+        "morpho armor - silver",
+        "morpho armor - dark silver"
+      ],
+      "uvLayers": [
+        "UVMap"
+      ],
+      "vertexGroups": 6
+    },
+    {
+      "name": "tail end part underside",
+      "type": "MESH",
+      "parent": "morpho arma",
+      "dimensions": [
+        275.40643310546875,
+        116.7723388671875,
+        22.417631149291992
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "triangles": 416,
+      "vertices": 248,
+      "materials": [
+        "morpho armor - silver",
+        "morpho armor - dark silver",
+        "morpho grey"
+      ],
+      "uvLayers": [
+        "UVMap"
+      ],
+      "vertexGroups": 2
+    },
+    {
+      "name": "big leg outer connector.018",
+      "type": "MESH",
+      "parent": "morpho arma",
+      "dimensions": [
+        378.0014953613281,
+        179.03465270996094,
+        75.10993957519531
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        0.9999999403953552
+      ],
+      "triangles": 848,
+      "vertices": 476,
+      "materials": [
+        "morpho armor - silver",
+        "morpho armor - dark silver"
+      ],
+      "uvLayers": [
+        "UVMap"
+      ],
+      "vertexGroups": 2
+    },
+    {
+      "name": "big leg outer connector.021",
+      "type": "MESH",
+      "parent": "morpho arma",
+      "dimensions": [
+        147.6442413330078,
+        146.77081298828125,
+        75.9218521118164
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        0.9999999403953552
+      ],
+      "triangles": 848,
+      "vertices": 476,
+      "materials": [
+        "morpho armor - silver",
+        "morpho armor - dark silver"
+      ],
+      "uvLayers": [
+        "UVMap"
+      ],
+      "vertexGroups": 2
+    },
+    {
+      "name": "smol leg outer connector.012",
+      "type": "MESH",
+      "parent": "morpho arma",
+      "dimensions": [
+        31.72833251953125,
+        378.7662353515625,
+        39.27406692504883
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "triangles": 1616,
+      "vertices": 884,
+      "materials": [
+        "morpho armor - silver",
+        "morpho black",
+        "morpho armor - dark silver"
+      ],
+      "uvLayers": [
+        "UVMap"
+      ],
+      "vertexGroups": 8
+    },
+    {
+      "name": "twisted railgun grills",
+      "type": "MESH",
+      "parent": "morpho arma",
+      "dimensions": [
+        66.15499114990234,
+        26.52054214477539,
+        66.15501403808594
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "triangles": 720,
+      "vertices": 400,
+      "materials": [
+        "morpho armor - dark stone silver"
+      ],
+      "uvLayers": [
+        "UVMap"
+      ],
+      "vertexGroups": 1
+    },
+    {
+      "name": "middle body inner rock lining R",
+      "type": "MESH",
+      "parent": "morpho arma",
+      "dimensions": [
+        86.16732025146484,
+        306.3848876953125,
+        44.10736083984375
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "triangles": 800,
+      "vertices": 460,
+      "materials": [
+        "morpho armor - dark stone silver"
+      ],
+      "uvLayers": [
+        "UVMap"
+      ],
+      "vertexGroups": 1
+    },
+    {
+      "name": "upper body armor outline lower half",
+      "type": "MESH",
+      "parent": "morpho arma",
+      "dimensions": [
+        161.4354705810547,
+        397.8343811035156,
+        65.8072509765625
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "triangles": 392,
+      "vertices": 200,
+      "materials": [
+        "morpho armor - silver"
+      ],
+      "uvLayers": [
+        "UVMap"
+      ],
+      "vertexGroups": 1
+    },
+    {
+      "name": "big leg outer connector.007",
+      "type": "MESH",
+      "parent": "morpho arma",
+      "dimensions": [
+        238.3030548095703,
+        370.215576171875,
+        94.47268676757812
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "triangles": 976,
+      "vertices": 548,
+      "materials": [
+        "morpho armor - silver",
+        "morpho black",
+        "morpho armor - dark silver"
+      ],
+      "uvLayers": [
+        "UVMap"
+      ],
+      "vertexGroups": 2
+    },
+    {
+      "name": "big leg outer connector.003",
+      "type": "MESH",
+      "parent": "morpho arma",
+      "dimensions": [
+        22.190200805664062,
+        630.982666015625,
+        100.41008758544922
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "triangles": 976,
+      "vertices": 548,
+      "materials": [
+        "morpho armor - silver",
+        "morpho black",
+        "morpho armor - dark silver"
+      ],
+      "uvLayers": [
+        "UVMap"
+      ],
+      "vertexGroups": 2
+    },
+    {
+      "name": "bigger tail pieces",
+      "type": "MESH",
+      "parent": "morpho arma",
+      "dimensions": [
+        195.67279052734375,
+        214.44235229492188,
+        60.154624938964844
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "triangles": 900,
+      "vertices": 520,
+      "materials": [
+        "morpho armor - silver",
+        "morpho black",
+        "morpho armor - dark silver",
+        "morpho grey"
+      ],
+      "uvLayers": [
+        "UVMap"
+      ],
+      "vertexGroups": 10
+    },
+    {
+      "name": "inner big leg piece.018",
+      "type": "MESH",
+      "parent": "morpho arma",
+      "dimensions": [
+        272.18328857421875,
+        110.9281005859375,
+        63.600189208984375
+      ],
+      "scale": [
+        1.0,
+        0.9999999403953552,
+        0.9999999403953552
+      ],
+      "triangles": 184,
+      "vertices": 96,
+      "materials": [
+        "morpho armor - silver"
+      ],
+      "uvLayers": [
+        "UVMap"
+      ],
+      "vertexGroups": 2
+    },
+    {
+      "name": "inner big leg piece.021",
+      "type": "MESH",
+      "parent": "morpho arma",
+      "dimensions": [
+        178.27708435058594,
+        89.06958770751953,
+        43.32168197631836
+      ],
+      "scale": [
+        0.9999998807907104,
+        0.9999999403953552,
+        1.0
+      ],
+      "triangles": 184,
+      "vertices": 96,
+      "materials": [
+        "morpho armor - silver"
+      ],
+      "uvLayers": [
+        "UVMap"
+      ],
+      "vertexGroups": 2
+    },
+    {
+      "name": "smol leg outer connector.013",
+      "type": "MESH",
+      "parent": "morpho arma",
+      "dimensions": [
+        18.32196044921875,
+        384.9641418457031,
+        49.8512077331543
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "triangles": 1616,
+      "vertices": 884,
+      "materials": [
+        "morpho armor - silver",
+        "morpho black",
+        "morpho armor - dark silver"
+      ],
+      "uvLayers": [
+        "UVMap"
+      ],
+      "vertexGroups": 8
+    },
+    {
+      "name": "railgun side",
+      "type": "MESH",
+      "parent": "morpho arma",
+      "dimensions": [
+        206.21340942382812,
+        26.7381591796875,
+        29.62542724609375
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "triangles": 176,
+      "vertices": 96,
+      "materials": [
+        "morpho armor - silver"
+      ],
+      "uvLayers": [
+        "UVMap"
+      ],
+      "vertexGroups": 1
+    },
+    {
+      "name": "weird cylinder all the rocks point to",
+      "type": "MESH",
+      "parent": "morpho arma",
+      "dimensions": [
+        138.3973846435547,
+        38.82136535644531,
+        32.88505554199219
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "triangles": 556,
+      "vertices": 304,
+      "materials": [
+        "morpho armor - stone silver",
+        "morpho armor - dark stone silver"
+      ],
+      "uvLayers": [
+        "UVMap"
+      ],
+      "vertexGroups": 1
+    },
+    {
+      "name": "big leg inner connector.007",
+      "type": "MESH",
+      "parent": "morpho arma",
+      "dimensions": [
+        137.23703002929688,
+        205.3315887451172,
+        70.71817779541016
+      ],
+      "scale": [
+        1.0,
+        0.9999999403953552,
+        0.9999998807907104
+      ],
+      "triangles": 640,
+      "vertices": 336,
+      "materials": [
+        "morpho armor - silver",
+        "morpho armor - dark silver"
+      ],
+      "uvLayers": [
+        "UVMap"
+      ],
+      "vertexGroups": 6
+    },
+    {
+      "name": "big leg inner connector.003",
+      "type": "MESH",
+      "parent": "morpho arma",
+      "dimensions": [
+        17.918804168701172,
+        392.43646240234375,
+        99.10774230957031
+      ],
+      "scale": [
+        1.0,
+        0.9999999403953552,
+        0.9999999403953552
+      ],
+      "triangles": 640,
+      "vertices": 336,
+      "materials": [
+        "morpho armor - silver",
+        "morpho armor - dark silver"
+      ],
+      "uvLayers": [
+        "UVMap"
+      ],
+      "vertexGroups": 6
+    },
+    {
+      "name": "small tail pieces",
+      "type": "MESH",
+      "parent": "morpho arma",
+      "dimensions": [
+        260.6895446777344,
+        360.03662109375,
+        59.798919677734375
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "triangles": 1620,
+      "vertices": 936,
+      "materials": [
+        "morpho armor - silver",
+        "morpho black",
+        "morpho armor - dark silver",
+        "morpho grey"
+      ],
+      "uvLayers": [
+        "UVMap"
+      ],
+      "vertexGroups": 17
+    },
+    {
+      "name": "big leg inner connector.018",
+      "type": "MESH",
+      "parent": "morpho arma",
+      "dimensions": [
+        304.91455078125,
+        134.81932067871094,
+        37.65775680541992
+      ],
+      "scale": [
+        1.0,
+        0.9999999403953552,
+        1.0
+      ],
+      "triangles": 400,
+      "vertices": 208,
+      "materials": [
+        "morpho armor - silver",
+        "morpho armor - dark silver"
+      ],
+      "uvLayers": [
+        "UVMap"
+      ],
+      "vertexGroups": 2
+    },
+    {
+      "name": "big leg inner connector.021",
+      "type": "MESH",
+      "parent": "morpho arma",
+      "dimensions": [
+        165.7389373779297,
+        98.5911865234375,
+        49.01548385620117
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "triangles": 400,
+      "vertices": 208,
+      "materials": [
+        "morpho armor - silver",
+        "morpho armor - dark silver"
+      ],
+      "uvLayers": [
+        "UVMap"
+      ],
+      "vertexGroups": 2
+    },
+    {
+      "name": "smol leg outer connector.015",
+      "type": "MESH",
+      "parent": "morpho arma",
+      "dimensions": [
+        26.9840087890625,
+        134.96896362304688,
+        37.78624725341797
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "triangles": 1616,
+      "vertices": 884,
+      "materials": [
+        "morpho armor - silver",
+        "morpho black",
+        "morpho armor - dark silver"
+      ],
+      "uvLayers": [
+        "UVMap"
+      ],
+      "vertexGroups": 8
+    },
+    {
+      "name": "railgun rails heat fins themselves left",
+      "type": "MESH",
+      "parent": "morpho arma",
+      "dimensions": [
+        67.76460266113281,
+        59.77159881591797,
+        15.257034301757812
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "triangles": 1080,
+      "vertices": 720,
+      "materials": [
+        "morpho grey"
+      ],
+      "uvLayers": [
+        "UVMap"
+      ],
+      "vertexGroups": 1
+    },
+    {
+      "name": "sensor supports",
+      "type": "MESH",
+      "parent": "morpho arma",
+      "dimensions": [
+        87.84788513183594,
+        169.0691375732422,
+        79.04505920410156
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "triangles": 432,
+      "vertices": 302,
+      "materials": [
+        "morpho black",
+        "morpho armor - dark stone silver"
+      ],
+      "uvLayers": [
+        "UVMap"
+      ],
+      "vertexGroups": 1
+    },
+    {
+      "name": "big leg outer connector.008",
+      "type": "MESH",
+      "parent": "morpho arma",
+      "dimensions": [
+        213.88363647460938,
+        417.63189697265625,
+        100.20304870605469
+      ],
+      "scale": [
+        0.9999998807907104,
+        0.9999998807907104,
+        1.0
+      ],
+      "triangles": 976,
+      "vertices": 548,
+      "materials": [
+        "morpho armor - silver",
+        "morpho black",
+        "morpho armor - dark silver"
+      ],
+      "uvLayers": [
+        "UVMap"
+      ],
+      "vertexGroups": 2
+    },
+    {
+      "name": "big leg outer connector.014",
+      "type": "MESH",
+      "parent": "morpho arma",
+      "dimensions": [
+        188.17919921875,
+        572.6004638671875,
+        87.85868072509766
+      ],
+      "scale": [
+        1.0,
+        0.9999998807907104,
+        1.0
+      ],
+      "triangles": 976,
+      "vertices": 548,
+      "materials": [
+        "morpho armor - silver",
+        "morpho black",
+        "morpho armor - dark silver"
+      ],
+      "uvLayers": [
+        "UVMap"
+      ],
+      "vertexGroups": 2
+    },
+    {
+      "name": "autogun strcuture base.002",
+      "type": "MESH",
+      "parent": "morpho arma",
+      "dimensions": [
+        24.9794921875,
+        24.9794921875,
+        13.03609561920166
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "triangles": 208,
+      "vertices": 113,
+      "materials": [
+        "morpho armor - dark stone silver"
+      ],
+      "uvLayers": [
+        "UVMap"
+      ],
+      "vertexGroups": 1
+    },
+    {
+      "name": "big leg inner to main body connect.018",
+      "type": "MESH",
+      "parent": "morpho arma",
+      "dimensions": [
+        245.45135498046875,
+        102.593994140625,
+        14.290776252746582
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "triangles": 56,
+      "vertices": 32,
+      "materials": [
+        "morpho armor - silver"
+      ],
+      "uvLayers": [
+        "UVMap"
+      ],
+      "vertexGroups": 2
+    },
+    {
+      "name": "big leg inner to main body connect.021",
+      "type": "MESH",
+      "parent": "morpho arma",
+      "dimensions": [
+        181.96746826171875,
+        83.75836181640625,
+        14.51749324798584
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "triangles": 56,
+      "vertices": 32,
+      "materials": [
+        "morpho armor - silver"
+      ],
+      "uvLayers": [
+        "UVMap"
+      ],
+      "vertexGroups": 2
+    },
+    {
+      "name": "smol leg outer connector.016",
+      "type": "MESH",
+      "parent": "morpho arma",
+      "dimensions": [
+        40.885894775390625,
+        137.07838439941406,
+        33.819725036621094
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "triangles": 1616,
+      "vertices": 884,
+      "materials": [
+        "morpho armor - silver",
+        "morpho black",
+        "morpho armor - dark silver"
+      ],
+      "uvLayers": [
+        "UVMap"
+      ],
+      "vertexGroups": 8
+    },
+    {
+      "name": "railgun rails heat fins base",
+      "type": "MESH",
+      "parent": "morpho arma",
+      "dimensions": [
+        194.72097778320312,
+        63.783145904541016,
+        20.8150634765625
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "triangles": 656,
+      "vertices": 368,
+      "materials": [
+        "morpho armor - dark silver"
+      ],
+      "uvLayers": [
+        "UVMap"
+      ],
+      "vertexGroups": 1
+    },
+    {
+      "name": "cylinder side supports",
+      "type": "MESH",
+      "parent": "morpho arma",
+      "dimensions": [
+        27.94771957397461,
+        52.148651123046875,
+        15.841897964477539
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "triangles": 92,
+      "vertices": 64,
+      "materials": [
+        "morpho armor - dark stone silver"
+      ],
+      "uvLayers": [
+        "UVMap"
+      ],
+      "vertexGroups": 1
+    },
+    {
+      "name": "middle body end cover",
+      "type": "MESH",
+      "parent": "morpho arma",
+      "dimensions": [
+        206.45852661132812,
+        143.60284423828125,
+        43.32003402709961
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "triangles": 96,
+      "vertices": 72,
+      "materials": [
+        "morpho armor - dark stone silver"
+      ],
+      "uvLayers": [
+        "UVMap"
+      ],
+      "vertexGroups": 1
+    },
+    {
+      "name": "big leg inner connector.008",
+      "type": "MESH",
+      "parent": "morpho arma",
+      "dimensions": [
+        127.3808822631836,
+        235.7858428955078,
+        73.2721176147461
+      ],
+      "scale": [
+        0.9999998807907104,
+        1.0,
+        0.9999998807907104
+      ],
+      "triangles": 640,
+      "vertices": 336,
+      "materials": [
+        "morpho armor - silver",
+        "morpho armor - dark silver"
+      ],
+      "uvLayers": [
+        "UVMap"
+      ],
+      "vertexGroups": 6
+    },
+    {
+      "name": "big leg inner connector.014",
+      "type": "MESH",
+      "parent": "morpho arma",
+      "dimensions": [
+        127.32876586914062,
+        350.8506774902344,
+        88.2868881225586
+      ],
+      "scale": [
+        1.0,
+        0.9999999403953552,
+        0.9999998807907104
+      ],
+      "triangles": 640,
+      "vertices": 336,
+      "materials": [
+        "morpho armor - silver",
+        "morpho armor - dark silver"
+      ],
+      "uvLayers": [
+        "UVMap"
+      ],
+      "vertexGroups": 6
+    },
+    {
+      "name": "autogun turret base.002",
+      "type": "MESH",
+      "parent": "morpho arma",
+      "dimensions": [
+        21.445457458496094,
+        52.0152587890625,
+        20.033096313476562
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "triangles": 1460,
+      "vertices": 770,
+      "materials": [
+        "morpho black",
+        "morpho armor - dark stone silver"
+      ],
+      "uvLayers": [
+        "UVMap"
+      ],
+      "vertexGroups": 1
+    },
+    {
+      "name": "grauwolf leg inner connector 2.019",
+      "type": "MESH",
+      "parent": "morpho arma",
+      "dimensions": [
+        336.16357421875,
+        109.35693359375,
+        34.352291107177734
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        0.9999999403953552
+      ],
+      "triangles": 128,
+      "vertices": 72,
+      "materials": [
+        "morpho black",
+        "morpho armor - dark silver"
+      ],
+      "uvLayers": [
+        "UVMap"
+      ],
+      "vertexGroups": 2
+    },
+    {
+      "name": "smol leg outer connector",
+      "type": "MESH",
+      "parent": "morpho arma",
+      "dimensions": [
+        33.19769287109375,
+        302.23455810546875,
+        39.40435791015625
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "triangles": 1616,
+      "vertices": 884,
+      "materials": [
+        "morpho armor - silver",
+        "morpho black",
+        "morpho armor - dark silver"
+      ],
+      "uvLayers": [
+        "UVMap"
+      ],
+      "vertexGroups": 8
+    },
+    {
+      "name": "smol leg outer connector.017",
+      "type": "MESH",
+      "parent": "morpho arma",
+      "dimensions": [
+        33.49761962890625,
+        140.54486083984375,
+        37.79801940917969
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "triangles": 1616,
+      "vertices": 884,
+      "materials": [
+        "morpho armor - silver",
+        "morpho black",
+        "morpho armor - dark silver"
+      ],
+      "uvLayers": [
+        "UVMap"
+      ],
+      "vertexGroups": 8
+    },
+    {
+      "name": "railgun rails",
+      "type": "MESH",
+      "parent": "morpho arma",
+      "dimensions": [
+        297.8435974121094,
+        984.869140625,
+        28.020660400390625
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "triangles": 1160,
+      "vertices": 584,
+      "materials": [
+        "morpho armor - silver",
+        "morpho armor - dark stone silver"
+      ],
+      "uvLayers": [
+        "UVMap"
+      ],
+      "vertexGroups": 1
+    },
+    {
+      "name": "middle body rock protrusions base",
+      "type": "MESH",
+      "parent": "morpho arma",
+      "dimensions": [
+        219.15829467773438,
+        383.67236328125,
+        31.25482177734375
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "triangles": 368,
+      "vertices": 220,
+      "materials": [
+        "morpho armor - dark stone silver"
+      ],
+      "uvLayers": [
+        "UVMap"
+      ],
+      "vertexGroups": 1
+    },
+    {
+      "name": "center oval",
+      "type": "MESH",
+      "parent": "morpho arma",
+      "dimensions": [
+        26.327024459838867,
+        109.76359558105469,
+        13.27591609954834
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "triangles": 848,
+      "vertices": 426,
+      "materials": [
+        "morpho armor - stone silver"
+      ],
+      "uvLayers": [
+        "UVMap"
+      ],
+      "vertexGroups": 1
+    },
+    {
+      "name": "big leg outer connector.009",
+      "type": "MESH",
+      "parent": "morpho arma",
+      "dimensions": [
+        225.45840454101562,
+        450.29046630859375,
+        98.01921844482422
+      ],
+      "scale": [
+        0.9999998807907104,
+        0.9999998807907104,
+        1.0
+      ],
+      "triangles": 976,
+      "vertices": 548,
+      "materials": [
+        "morpho armor - silver",
+        "morpho black",
+        "morpho armor - dark silver"
+      ],
+      "uvLayers": [
+        "UVMap"
+      ],
+      "vertexGroups": 2
+    },
+    {
+      "name": "big leg outer connector.015",
+      "type": "MESH",
+      "parent": "morpho arma",
+      "dimensions": [
+        175.00344848632812,
+        550.3831787109375,
+        97.0150375366211
+      ],
+      "scale": [
+        1.0,
+        0.9999998807907104,
+        1.0
+      ],
+      "triangles": 976,
+      "vertices": 548,
+      "materials": [
+        "morpho armor - silver",
+        "morpho black",
+        "morpho armor - dark silver"
+      ],
+      "uvLayers": [
+        "UVMap"
+      ],
+      "vertexGroups": 2
+    },
+    {
+      "name": "autogun strcuture base",
+      "type": "MESH",
+      "parent": "morpho arma",
+      "dimensions": [
+        24.9794921875,
+        24.9794921875,
+        13.03609561920166
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "triangles": 208,
+      "vertices": 113,
+      "materials": [
+        "morpho armor - dark stone silver"
+      ],
+      "uvLayers": [
+        "UVMap"
+      ],
+      "vertexGroups": 1
+    },
+    {
+      "name": "big leg outer connector.019",
+      "type": "MESH",
+      "parent": "morpho arma",
+      "dimensions": [
+        395.67950439453125,
+        184.9595184326172,
+        75.110107421875
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        0.9999999403953552
+      ],
+      "triangles": 848,
+      "vertices": 476,
+      "materials": [
+        "morpho armor - silver",
+        "morpho armor - dark silver"
+      ],
+      "uvLayers": [
+        "UVMap"
+      ],
+      "vertexGroups": 2
+    },
+    {
+      "name": "smol leg outer connector.001",
+      "type": "MESH",
+      "parent": "morpho arma",
+      "dimensions": [
+        22.977935791015625,
+        302.6728210449219,
+        48.83295440673828
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "triangles": 1616,
+      "vertices": 884,
+      "materials": [
+        "morpho armor - silver",
+        "morpho black",
+        "morpho armor - dark silver"
+      ],
+      "uvLayers": [
+        "UVMap"
+      ],
+      "vertexGroups": 8
+    },
+    {
+      "name": "smol leg outer connector.018",
+      "type": "MESH",
+      "parent": "morpho arma",
+      "dimensions": [
+        38.824066162109375,
+        144.77996826171875,
+        32.372867584228516
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "triangles": 1616,
+      "vertices": 884,
+      "materials": [
+        "morpho armor - silver",
+        "morpho black",
+        "morpho armor - dark silver"
+      ],
+      "uvLayers": [
+        "UVMap"
+      ],
+      "vertexGroups": 8
+    },
+    {
+      "name": "railgun gun barrel internal",
+      "type": "MESH",
+      "parent": "morpho arma",
+      "dimensions": [
+        48.778968811035156,
+        48.778961181640625,
+        85.22740173339844
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "triangles": 764,
+      "vertices": 384,
+      "materials": [
+        "morpho black",
+        "morpho railgun cannon color"
+      ],
+      "uvLayers": [
+        "UVMap"
+      ],
+      "vertexGroups": 1
+    },
+    {
+      "name": "middle body rock protrusions",
+      "type": "MESH",
+      "parent": "morpho arma",
+      "dimensions": [
+        214.27032470703125,
+        335.55010986328125,
+        50.47858428955078
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "triangles": 1676,
+      "vertices": 972,
+      "materials": [
+        "morpho armor - dark stone silver"
+      ],
+      "uvLayers": [
+        "UVMap"
+      ],
+      "vertexGroups": 1
+    },
+    {
+      "name": "back of morpho big cylinder cap",
+      "type": "MESH",
+      "parent": "morpho arma",
+      "dimensions": [
+        54.48215103149414,
+        51.96868896484375,
+        39.16578674316406
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "triangles": 478,
+      "vertices": 274,
+      "materials": [
+        "morpho armor - dark stone silver",
+        "morpho armor - dark silver"
+      ],
+      "uvLayers": [
+        "UVMap"
+      ],
+      "vertexGroups": 1
+    },
+    {
+      "name": "big leg inner connector.009",
+      "type": "MESH",
+      "parent": "morpho arma",
+      "dimensions": [
+        138.38916015625,
+        264.2361755371094,
+        77.12999725341797
+      ],
+      "scale": [
+        0.9999998807907104,
+        1.0,
+        0.9999998807907104
+      ],
+      "triangles": 640,
+      "vertices": 336,
+      "materials": [
+        "morpho armor - silver",
+        "morpho armor - dark silver"
+      ],
+      "uvLayers": [
+        "UVMap"
+      ],
+      "vertexGroups": 6
+    },
+    {
+      "name": "big leg inner connector.015",
+      "type": "MESH",
+      "parent": "morpho arma",
+      "dimensions": [
+        112.7004165649414,
+        332.7331237792969,
+        88.63008117675781
+      ],
+      "scale": [
+        1.0,
+        0.9999999403953552,
+        0.9999998807907104
+      ],
+      "triangles": 640,
+      "vertices": 336,
+      "materials": [
+        "morpho armor - silver",
+        "morpho armor - dark silver"
+      ],
+      "uvLayers": [
+        "UVMap"
+      ],
+      "vertexGroups": 6
+    },
+    {
+      "name": "autogun turret base",
+      "type": "MESH",
+      "parent": "morpho arma",
+      "dimensions": [
+        21.445457458496094,
+        52.0152587890625,
+        20.033092498779297
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "triangles": 1460,
+      "vertices": 770,
+      "materials": [
+        "morpho black",
+        "morpho armor - dark stone silver"
+      ],
+      "uvLayers": [
+        "UVMap"
+      ],
+      "vertexGroups": 1
+    },
+    {
+      "name": "inner big leg piece.019",
+      "type": "MESH",
+      "parent": "morpho arma",
+      "dimensions": [
+        289.8612060546875,
+        116.01953125,
+        66.65679931640625
+      ],
+      "scale": [
+        1.0,
+        0.9999999403953552,
+        0.9999999403953552
+      ],
+      "triangles": 184,
+      "vertices": 96,
+      "materials": [
+        "morpho armor - silver"
+      ],
+      "uvLayers": [
+        "UVMap"
+      ],
+      "vertexGroups": 2
+    },
+    {
+      "name": "smol leg outer connector.002",
+      "type": "MESH",
+      "parent": "morpho arma",
+      "dimensions": [
+        35.00115966796875,
+        305.90667724609375,
+        40.66981506347656
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "triangles": 1616,
+      "vertices": 884,
+      "materials": [
+        "morpho armor - silver",
+        "morpho black",
+        "morpho armor - dark silver"
+      ],
+      "uvLayers": [
+        "UVMap"
+      ],
+      "vertexGroups": 8
+    },
+    {
+      "name": "smol leg outer connector.019",
+      "type": "MESH",
+      "parent": "morpho arma",
+      "dimensions": [
+        31.670379638671875,
+        150.08154296875,
+        37.103065490722656
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "triangles": 1616,
+      "vertices": 884,
+      "materials": [
+        "morpho armor - silver",
+        "morpho black",
+        "morpho armor - dark silver"
+      ],
+      "uvLayers": [
+        "UVMap"
+      ],
+      "vertexGroups": 8
+    },
+    {
+      "name": "rail gun gun reinforcement around edge",
+      "type": "MESH",
+      "parent": "morpho arma",
+      "dimensions": [
+        73.21621704101562,
+        76.65948486328125,
+        29.03005599975586
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "triangles": 452,
+      "vertices": 226,
+      "materials": [
+        "morpho armor - silver"
+      ],
+      "uvLayers": [
+        "UVMap"
+      ],
+      "vertexGroups": 1
+    },
+    {
+      "name": "bottom of upper body pattern",
+      "type": "MESH",
+      "parent": "morpho arma",
+      "dimensions": [
+        103.58583068847656,
+        288.91839599609375,
+        41.92747497558594
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "triangles": 900,
+      "vertices": 700,
+      "materials": [
+        "morpho armor - dark stone silver"
+      ],
+      "uvLayers": [
+        "UVMap"
+      ],
+      "vertexGroups": 1
+    },
+    {
+      "name": "reinforcement in front armor crack",
+      "type": "MESH",
+      "parent": "morpho arma",
+      "dimensions": [
+        122.1586685180664,
+        20.989013671875,
+        14.991693496704102
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "triangles": 160,
+      "vertices": 84,
+      "materials": [
+        "morpho armor - dark silver"
+      ],
+      "uvLayers": [
+        "UVMap"
+      ],
+      "vertexGroups": 1
+    },
+    {
+      "name": "big leg outer connector.010",
+      "type": "MESH",
+      "parent": "morpho arma",
+      "dimensions": [
+        206.65951538085938,
+        497.1786193847656,
+        100.22599029541016
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "triangles": 976,
+      "vertices": 548,
+      "materials": [
+        "morpho armor - silver",
+        "morpho black",
+        "morpho armor - dark silver"
+      ],
+      "uvLayers": [
+        "UVMap"
+      ],
+      "vertexGroups": 2
+    },
+    {
+      "name": "big leg outer connector.016",
+      "type": "MESH",
+      "parent": "morpho arma",
+      "dimensions": [
+        264.5591735839844,
+        428.015625,
+        90.2132339477539
+      ],
+      "scale": [
+        0.9999998807907104,
+        0.9999998807907104,
+        1.0
+      ],
+      "triangles": 976,
+      "vertices": 548,
+      "materials": [
+        "morpho armor - silver",
+        "morpho black",
+        "morpho armor - dark silver"
+      ],
+      "uvLayers": [
+        "UVMap"
+      ],
+      "vertexGroups": 2
+    },
+    {
+      "name": "autogun strcuture base.004",
+      "type": "MESH",
+      "parent": "morpho arma",
+      "dimensions": [
+        24.97948455810547,
+        24.979488372802734,
+        12.085369110107422
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "triangles": 192,
+      "vertices": 112,
+      "materials": [
+        "morpho armor - dark stone silver"
+      ],
+      "uvLayers": [
+        "UVMap"
+      ],
+      "vertexGroups": 1
+    },
+    {
+      "name": "smol leg outer connector.003",
+      "type": "MESH",
+      "parent": "morpho arma",
+      "dimensions": [
+        25.28131103515625,
+        310.556640625,
+        32.726768493652344
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "triangles": 1616,
+      "vertices": 884,
+      "materials": [
+        "morpho armor - silver",
+        "morpho black",
+        "morpho armor - dark silver"
+      ],
+      "uvLayers": [
+        "UVMap"
+      ],
+      "vertexGroups": 8
+    },
+    {
+      "name": "smol leg outer connector.020",
+      "type": "MESH",
+      "parent": "morpho arma",
+      "dimensions": [
+        44.595611572265625,
+        155.53936767578125,
+        34.00764465332031
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "triangles": 1616,
+      "vertices": 884,
+      "materials": [
+        "morpho armor - silver",
+        "morpho black",
+        "morpho armor - dark silver"
+      ],
+      "uvLayers": [
+        "UVMap"
+      ],
+      "vertexGroups": 8
+    }
+  ],
+  "actions": [
+    {
+      "name": "morpho arma|morpho arma|Action",
+      "range": [
+        1.0,
+        1.0
+      ]
+    },
+    {
+      "name": "morpho arma|morpho arma|morpho move forward",
+      "range": [
+        1.0,
+        109.0
+      ]
+    },
+    {
+      "name": "morpho arma|morpho arma|Morpho no anim",
+      "range": [
+        1.0,
+        1.0
+      ]
+    }
+  ],
+  "materials": [
+    {
+      "name": "composite sensor morpho",
+      "color": [
+        0.800000011920929,
+        0.800000011920929,
+        0.800000011920929,
+        1.0
+      ],
+      "metallic": 0.0,
+      "roughness": 0.4000000059604645
+    },
+    {
+      "name": "morpho armor - dark silver",
+      "color": [
+        0.800000011920929,
+        0.800000011920929,
+        0.800000011920929,
+        1.0
+      ],
+      "metallic": 0.0,
+      "roughness": 0.4000000059604645
+    },
+    {
+      "name": "morpho armor - dark stone silver",
+      "color": [
+        0.800000011920929,
+        0.800000011920929,
+        0.800000011920929,
+        1.0
+      ],
+      "metallic": 0.0,
+      "roughness": 0.5
+    },
+    {
+      "name": "morpho armor - silver",
+      "color": [
+        0.800000011920929,
+        0.800000011920929,
+        0.800000011920929,
+        1.0
+      ],
+      "metallic": 0.0,
+      "roughness": 0.4000000059604645
+    },
+    {
+      "name": "morpho armor - stone silver",
+      "color": [
+        0.800000011920929,
+        0.800000011920929,
+        0.800000011920929,
+        1.0
+      ],
+      "metallic": 0.0,
+      "roughness": 0.5
+    },
+    {
+      "name": "morpho black",
+      "color": [
+        0.800000011920929,
+        0.800000011920929,
+        0.800000011920929,
+        1.0
+      ],
+      "metallic": 0.6681817770004272,
+      "roughness": 1.0
+    },
+    {
+      "name": "morpho grey",
+      "color": [
+        0.800000011920929,
+        0.800000011920929,
+        0.800000011920929,
+        1.0
+      ],
+      "metallic": 0.6681817770004272,
+      "roughness": 1.0
+    },
+    {
+      "name": "morpho railgun cannon color",
+      "color": [
+        0.1842956393957138,
+        0.21132613718509674,
+        0.26955240964889526,
+        1.0
+      ],
+      "metallic": 0.6363636255264282,
+      "roughness": 0.15454545617103577
+    }
+  ],
+  "images": [],
+  "bounds": {
+    "min": [
+      -319.62139892578125,
+      -936.4921875,
+      -0.19576382637023926
+    ],
+    "max": [
+      316.197265625,
+      1102.5048828125,
+      343.2271423339844
+    ],
+    "size": [
+      635.8186645507812,
+      2038.9970703125,
+      343.42291259765625
+    ]
+  },
+  "triangles": 126688
+}

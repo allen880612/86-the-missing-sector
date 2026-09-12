@@ -1,0 +1,106 @@
+[
+  {
+    "name": "composite sensor morpho",
+    "source": "/Users/wei/Documents/ChatGPT/遊戲練習/assets/model/project86-source/Morpho Materials/composite sensor morpho.mat",
+    "color": [
+      0.0,
+      0.6436324,
+      1.0,
+      1.0
+    ],
+    "metallic": 0.239,
+    "roughness": 0.40000004,
+    "texture": "none in Unity material"
+  },
+  {
+    "name": "morpho armor - dark silver",
+    "source": "/Users/wei/Documents/ChatGPT/遊戲練習/assets/model/project86-source/Morpho Materials/morpho armor - dark silver.mat",
+    "color": [
+      0.319,
+      0.316177,
+      0.310531,
+      1.0
+    ],
+    "metallic": 0.5,
+    "roughness": 0.40000004,
+    "texture": "none in Unity material"
+  },
+  {
+    "name": "morpho armor - dark stone silver",
+    "source": "/Users/wei/Documents/ChatGPT/遊戲練習/assets/model/project86-source/Morpho Materials/morpho armor - dark stone silver.mat",
+    "color": [
+      0.213,
+      0.213,
+      0.20882353,
+      1.0
+    ],
+    "metallic": 0.8,
+    "roughness": 0.5,
+    "texture": "none in Unity material"
+  },
+  {
+    "name": "morpho armor - silver",
+    "source": "/Users/wei/Documents/ChatGPT/遊戲練習/assets/model/project86-source/Morpho Materials/morpho armor - silver.mat",
+    "color": [
+      0.7529412,
+      0.7529412,
+      0.7529412,
+      1.0
+    ],
+    "metallic": 0.8,
+    "roughness": 0.5,
+    "texture": "none in Unity material"
+  },
+  {
+    "name": "morpho armor - stone silver",
+    "source": "/Users/wei/Documents/ChatGPT/遊戲練習/assets/model/project86-source/Morpho Materials/morpho armor - stone silver.mat",
+    "color": [
+      0.54509807,
+      0.65882355,
+      0.68235296,
+      1.0
+    ],
+    "metallic": 1.0,
+    "roughness": 0.5,
+    "texture": "none in Unity material"
+  },
+  {
+    "name": "morpho black",
+    "source": "/Users/wei/Documents/ChatGPT/遊戲練習/assets/model/project86-source/Morpho Materials/morpho black.mat",
+    "color": [
+      0.0,
+      0.0,
+      0.0,
+      1.0
+    ],
+    "metallic": 0.8,
+    "roughness": 0.5,
+    "texture": "none in Unity material"
+  },
+  {
+    "name": "morpho grey",
+    "source": "/Users/wei/Documents/ChatGPT/遊戲練習/assets/model/project86-source/Morpho Materials/morpho grey.mat",
+    "color": [
+      0.3301887,
+      0.3301887,
+      0.3301887,
+      1.0
+    ],
+    "metallic": 1.0,
+    "roughness": 0.5,
+    "texture": "none in Unity material"
+  },
+  {
+    "name": "morpho railgun cannon color",
+    "source": "/Users/wei/Documents/ChatGPT/遊戲練習/assets/model/project86-source/Morpho Materials/morpho railgun cannon color.mat",
+    "color": [
+      0.46645522,
+      0.4970557,
+      0.5559708,
+      1.0
+    ],
+    "metallic": 0.482,
+    "roughness": 0.1545455,
+    "texture": "none in Unity material"
+  }
+]

@@ -2,6 +2,32 @@
 
 2026-09-13。先收集與驗證整場交戰所需素材，再做場景。這是研究紀錄，沒有把正式 2D 或被否決的 3D 試驗場改成新版本。
 
+## S55：實際匯入與整場診斷，尚未通過美術驗收
+
+2026-09-13。兩個新模型已經在 Blender 匯入並轉成內嵌貼圖／材質的 GLB，再於 Godot 4.7.2、Apple M3 Metal Forward+ 實際渲染。下面是引擎截圖，不是生成概念圖，也不是新遊戲版本。
+
+![S55 全場診斷：XM2、24台Ameise與Morpho；環境仍未驗收](images/s55-encounter-cinematic.png)
+
+|資產|實檔結果|尚未通過的項目|
+|---|---|---|
+|XM2／Reginleif|445,798三角面、59網格、54骨、0內建動作；1K PBR內嵌|即時負擔過高、需LOD／動作；法線G方向未獲作者資料確認。|
+|Morpho|126,688三角面、774骨；GLB含前進與兩個單幀動作|40.2m長度校正後，目前姿勢高度約5.44m，與官網11.4m未對齊；不拉伸模型假裝符合。|
+|軍團群|24台既有Ameise共用模型／材質資源入鏡|這不是24台完成步態、AI與效能的遊戲驗收。3.8m長度是構圖假設，非官方尺寸。|
+
+匯入修正證據：Godot的未蒙皮mesh AABB會重複套根位移／縮放。Ameise一開始被錯量成約0.598m長，變形後實際界線約3.603m；改用骨架初始化後的姿勢烘焙界線，修正誤放大與接地基準。原始模型未修改。[Godot官方方法說明](https://docs.godotengine.org/en/stable/classes/class_meshinstance3d.html#class-meshinstance3d-method-bake-mesh-from-current-skeleton-pose)
+
+已在引擎對Morpho前進clip取1.2與2.4秒姿勢；圖像不同且可見足部姿勢改變。這能證明clip可求值，不能替代連續步態、腳滑、射擊協同或3–5分鐘效能驗收。
+
+![Morpho 原始動作1.2秒採樣](images/s55-morpho-motion-1.png)
+
+![Morpho 原始動作2.4秒採樣](images/s55-morpho-motion-2.png)
+
+美術總監第二次審查：**整體不通過**。XM2和兩翼群體已有對峙關係，但重複牆片、無起伏鋪面、空白天空仍像展示走道；Morpho像側向停放，尚無施壓事件。主Agent同意，不發布為可玩增量。
+
+下一個最高優先項：沿用此機體與固定鏡頭，收斂到一套能組成完整鐵道廢墟的場景資產。驗收時先隱藏機甲，仍須看懂前景位置、兩翼進入路線與Boss後方深度；不能有裸露地面邊界、孤立立面，也不靠濃霧掩飾缺件。之後才做10–15秒完整交火節奏，接回遊戲。
+
+技術證據保存在 `probe-assets/s55-reginleif-import.json`、`s55-morpho-inspection.json`、`s55-glb-verification.json`、`s55-skin-bounds.json`、`s55-encounter-run.json`；可重現腳本與衍生GLB同目錄。此頁僅同步研究，不改已認可2D平衡。
+
 ## 先看這三組參考
 
 影片保留官方來源、精確採樣位置與觀察筆記；未下載影片。以下是實際播放器畫面採樣，沒有完整連續看片或音訊驗收。畫面觀察與我們的實作建議分開，不能從截圖推定原遊戲底層技術。
