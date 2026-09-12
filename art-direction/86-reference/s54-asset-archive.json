@@ -766,5 +766,28 @@
     "runtime_socket_check": "probe-assets/s60-xm2-godot-sockets.json",
     "correction": "Use weighted jointWorld * inverseBindMatrix instead of nodeWorld * POSITION; max original error 0.626m",
     "next": "XM2 planted walk/turn before mass enemy approach, not root translation choreography"
+  },
+  "s61": {
+    "status": "actual 4-leg world-anchor IK in Godot; flat numeric validation, full animation acceptance pending",
+    "controller": "probe-assets/s61-xm2-gait.gd",
+    "harness": "probe-assets/s53-godot/locomotion.gd",
+    "raw_observations": "probe-assets/s61-locomotion-run.json",
+    "video": "s61-locomotion.mp4",
+    "source_model_unchanged": true,
+    "downloaded_assets": 0,
+    "next": "support-driven body motion, contact plane consistency, then live input/enemy approach",
+    "playable_mission": {
+      "script": "probe-assets/s53-godot/mission.gd",
+      "ui": "probe-assets/s61-mission-ui.gd",
+      "launcher": "play-3d-local.command",
+      "state_flow_qa": "probe-assets/s61-mission-flow-qa.json",
+      "status": "local native playable test; full manual E2E and180sec notaccepted",
+      "limitations": [
+        "shared Ameise model roles, not finalscout/hunter art",
+        "fixed Morpho bombardment, notkillable matureBoss",
+        "fullgait andvisuals notaccepted",
+        "local enginepath dependent; notwebexport orrelease"
+      ]
+    }
   }
 }

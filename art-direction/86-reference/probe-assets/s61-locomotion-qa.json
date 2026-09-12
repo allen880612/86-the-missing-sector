@@ -1,0 +1,202 @@
+{
+  "scope": "Independent static recomputation from the 768 recorded 48 Hz states. This is not a new render or runtime test.",
+  "input": {
+    "path": "/Users/wei/Documents/ChatGPT/遊戲練習/.worktrees/s45-3d-sortie/art-direction/86-reference/probe-assets/s61-locomotion-run.json",
+    "sha256": "c0255d678a183942d7ac93338cdb9debb09e38b1301e131a5639c1b386dfe18b",
+    "sourceGlbSha256": "798623aca1de8524a078e559d8519a535486f7c090fe6050d3c73a80d9549b94",
+    "frames": 768,
+    "dtSeconds": 0.0208333333333333,
+    "durationSeconds": 16
+  },
+  "overall": {
+    "stanceFkToStoredAnchorMaxM": 2.137174066475029e-06,
+    "stanceGroundGapRangeM": [
+      -5.96046447753906e-07,
+      1.07288360595703e-06
+    ],
+    "stanceWindowMaxCumulativePlanarPathM": 3.232280916167282e-05,
+    "stanceWindowMaxPlanarDisplacementM": 3.4385216887876408e-06,
+    "maxInnerLengthRelativeError": 1.5882963132485273e-06,
+    "maxOuterLengthRelativeError": 5.406990726264382e-07,
+    "requestedHipTargetDistanceRangeM": [
+      2.2721093391076748,
+      3.049380137353566
+    ],
+    "measuredMaximumReachM": 3.3308733769105663
+  },
+  "rootAndBody": {
+    "restRootPlanarDisplacementM": 0.0,
+    "restRootYRangeM": [
+      0.0,
+      0.0
+    ],
+    "restRootYawRangeDeg": 0.0,
+    "bodyBalanceSolvedEveryFrame": false,
+    "bodyBonePoseRecorded": false
+  },
+  "turn": {
+    "intervalSeconds": [
+      6.0,
+      12.0
+    ],
+    "commandedYawDeg": 90.0,
+    "observedAccumulatedYawDeg": 89.9985203534286,
+    "absoluteYawErrorDeg": 0.0014796465713970974,
+    "maximumYawObservedInsideOneStanceWindowDeg": 5.937415143600486
+  },
+  "stop": {
+    "commandStopsAtSeconds": 14.0,
+    "lastRecordedSwingAtSeconds": 14.0833333333333,
+    "allFeetStanceBySeconds": 14.1041666666667,
+    "rootDisplacementAfter14sM": 0.0,
+    "phaseChangeAfter14s": 0.0,
+    "allMovingFlagsFalseAfter14_5s": true,
+    "minimumStanceCountAfter14_5s": 4,
+    "maximumFootPlanarDisplacementAfter14_5sM": 0.0
+  },
+  "groundAndReach": {
+    "groundQueryMissTotal": 0,
+    "unreachableFrameCount": 0,
+    "unreachableLegSampleCount": 0,
+    "maximumReachExcessM": 0.0,
+    "unreachablePathExercised": false
+  },
+  "renderGeometrySampling": {
+    "sampleCount": 32,
+    "sampleIntervalSeconds": 0.5,
+    "overallPosedMeshMinYAgainstColliderRangeM": [
+      -0.00548458099365234,
+      0.00150233507156372
+    ],
+    "restPosedMeshMinYAgainstColliderRangeM": [
+      -2.98023223876953e-07,
+      -2.98023223876953e-07
+    ],
+    "maximumColliderPenetrationM": 0.00548458099365234,
+    "overallLowestGeometryGapAboveVisibleTerrainRangeM": [
+      0.034515419006347664,
+      0.04150233507156372
+    ],
+    "colliderY": 0.0,
+    "visibleTerrainY": -0.04,
+    "perLegRenderContactMeasured": false
+  },
+  "perLeg": {
+    "Outer leg": {
+      "expectedRestLengthsM": {
+        "inner": 1.5528085426305358,
+        "outerToSocket": 1.7780647702051409
+      },
+      "maxInnerLengthRelativeError": 1.5228750289697501e-06,
+      "maxOuterLengthRelativeError": 4.931693015075567e-07,
+      "requestedHipTargetDistanceRangeM": [
+        2.286222284356041,
+        3.049380137353566
+      ],
+      "stanceFkToStoredAnchorMaxM": 1.911200968056769e-06,
+      "stanceGroundGapRangeM": [
+        -3.57627868652344e-07,
+        9.5367431640625e-07
+      ],
+      "stanceWindowCount": 17,
+      "stanceWindowMaxCumulativePlanarPathM": 2.6677525649060533e-05,
+      "stanceWindowMaxPlanarDisplacementM": 2.249236385390311e-06,
+      "stanceWindowMaxStoredAnchorChangeM": 0.0,
+      "turnStanceWindowMaxYawDeg": 5.93740148322207,
+      "turnStanceWindowMaxCumulativePlanarPathM": 2.2862092597379684e-05,
+      "stopAfter14_5sMaxPlanarDisplacementM": 0.0,
+      "stopAfter14_5sCumulativePlanarPathM": 0.0
+    },
+    "Outer leg.001": {
+      "expectedRestLengthsM": {
+        "inner": 1.552808605312493,
+        "outerToSocket": 1.7780647715980733
+      },
+      "maxInnerLengthRelativeError": 1.5882963132485273e-06,
+      "maxOuterLengthRelativeError": 3.776245260933564e-07,
+      "requestedHipTargetDistanceRangeM": [
+        2.293945308708558,
+        2.812582722681024
+      ],
+      "stanceFkToStoredAnchorMaxM": 2.137174066475029e-06,
+      "stanceGroundGapRangeM": [
+        -5.96046447753906e-07,
+        9.5367431640625e-07
+      ],
+      "stanceWindowCount": 18,
+      "stanceWindowMaxCumulativePlanarPathM": 3.0705585198437145e-05,
+      "stanceWindowMaxPlanarDisplacementM": 3.4385216887876408e-06,
+      "stanceWindowMaxStoredAnchorChangeM": 0.0,
+      "turnStanceWindowMaxYawDeg": 5.937401483222095,
+      "turnStanceWindowMaxCumulativePlanarPathM": 2.9831634538282066e-05,
+      "stopAfter14_5sMaxPlanarDisplacementM": 0.0,
+      "stopAfter14_5sCumulativePlanarPathM": 0.0
+    },
+    "Outer leg.002": {
+      "expectedRestLengthsM": {
+        "inner": 1.552807527182827,
+        "outerToSocket": 1.7780646894150625
+      },
+      "maxInnerLengthRelativeError": 1.3323472787263313e-06,
+      "maxOuterLengthRelativeError": 3.568006221588149e-07,
+      "requestedHipTargetDistanceRangeM": [
+        2.341096312305673,
+        2.767128113044819
+      ],
+      "stanceFkToStoredAnchorMaxM": 1.9832683900713507e-06,
+      "stanceGroundGapRangeM": [
+        -3.57627868652344e-07,
+        9.5367431640625e-07
+      ],
+      "stanceWindowCount": 18,
+      "stanceWindowMaxCumulativePlanarPathM": 2.9924608761508322e-05,
+      "stanceWindowMaxPlanarDisplacementM": 2.3841858452833268e-06,
+      "stanceWindowMaxStoredAnchorChangeM": 0.0,
+      "turnStanceWindowMaxYawDeg": 5.937415143600486,
+      "turnStanceWindowMaxCumulativePlanarPathM": 2.075812778676711e-05,
+      "stopAfter14_5sMaxPlanarDisplacementM": 0.0,
+      "stopAfter14_5sCumulativePlanarPathM": 0.0
+    },
+    "Outer leg.003": {
+      "expectedRestLengthsM": {
+        "inner": 1.5528076595114038,
+        "outerToSocket": 1.778064720059575
+      },
+      "maxInnerLengthRelativeError": 1.4398272831783743e-06,
+      "maxOuterLengthRelativeError": 5.406990726264382e-07,
+      "requestedHipTargetDistanceRangeM": [
+        2.2721093391076748,
+        2.850409526532552
+      ],
+      "stanceFkToStoredAnchorMaxM": 1.9832684896365703e-06,
+      "stanceGroundGapRangeM": [
+        -2.38418579101562e-07,
+        1.07288360595703e-06
+      ],
+      "stanceWindowCount": 18,
+      "stanceWindowMaxCumulativePlanarPathM": 3.232280916167282e-05,
+      "stanceWindowMaxPlanarDisplacementM": 3.0157830361229704e-06,
+      "stanceWindowMaxStoredAnchorChangeM": 0.0,
+      "turnStanceWindowMaxYawDeg": 5.937415143600461,
+      "turnStanceWindowMaxCumulativePlanarPathM": 2.3486603492145368e-05,
+      "stopAfter14_5sMaxPlanarDisplacementM": 0.0,
+      "stopAfter14_5sCumulativePlanarPathM": 0.0
+    }
+  },
+  "assessment": {
+    "flatStanceSocketLock": "pass for recorded FK socket: maximum 0.00000214 m from stored stance anchor; this does not independently validate each render foot surface",
+    "chainLengthPreservation": "pass for recorded FK: maximum relative error below 0.00000159",
+    "restRoot": "mount rest position passes; body rest and balance are untested because no body bone pose was recorded and body_balance_solved is false",
+    "turn": "90-degree root yaw and short-window stance locking pass; each stance window spans at most 5.94 degrees, so long planted-foot rotation is not exercised",
+    "stop": "pass for this sequence: the only post-command swing ends by 14.0833 s and all observed feet are motionless after 14.5 s",
+    "groundQueries": "pass on the flat collider with zero misses",
+    "unreachableHandling": "not tested: every requested target stayed within reach and no unreachable sample occurred",
+    "visibleGroundContact": "fail against the visible terrain height supplied by the harness review: overall lowest geometry remains 0.0345-0.0415 m above it because the test collider is at Y=0 while visible terrain is at Y=-0.04"
+  },
+  "limits": [
+    "observed_fk is recomputed from the output bone transforms and measured socket, but it still uses the same socket definition as the controller; only posed_mesh_min_y samples render geometry independently.",
+    "posed_mesh_min_y is one whole-model minimum every 24 simulation frames. It cannot prove contact or absence of penetration for each individual leg.",
+    "The scenario uses one flat collider. It does not exercise slope normals, missing ground, unreachable targets, joint limits, body balance, collisions, or moving platforms.",
+    "The root is moved by the harness before the controller step. This QA measures the recorded result rather than a CharacterBody or gameplay integration."
+  ]
+}

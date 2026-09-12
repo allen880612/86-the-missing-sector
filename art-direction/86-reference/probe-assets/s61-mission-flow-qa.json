@@ -1,0 +1,32 @@
+{
+  "events": [
+    {
+      "at_ms": 8480,
+      "event": "start"
+    },
+    {
+      "elapsed": 1.75,
+      "event": "loss",
+      "kills": 0
+    },
+    {
+      "at_ms": 10922,
+      "event": "start"
+    },
+    {
+      "elapsed": 181.016666666667,
+      "event": "win",
+      "kills": 0
+    }
+  ],
+  "limits": [
+    "automated state transition test; time and HP injected",
+    "not manual gameplay, full180s survival or combat balance acceptance"
+  ],
+  "loss": true,
+  "retry": true,
+  "return_to_prep": true,
+  "right_click_down_up_same_frame_once": true,
+  "start": true,
+  "win": true
+}
