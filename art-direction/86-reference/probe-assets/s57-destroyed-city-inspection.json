@@ -1,0 +1,1190 @@
+{
+  "source": "https://opengameart.org/content/destroyed-city-assets",
+  "author": "Fleurman",
+  "license": "CC0",
+  "original_modified": false,
+  "objects": [
+    {
+      "name": "Débri_3",
+      "triangles": 184,
+      "vertices": 94,
+      "dimensions": [
+        0.1856195479631424,
+        1.0,
+        0.16570556163787842
+      ],
+      "uv_layers": [
+        "UVW"
+      ],
+      "materials": [
+        "Ciment_Brisé2"
+      ]
+    },
+    {
+      "name": "Débri_2",
+      "triangles": 84,
+      "vertices": 44,
+      "dimensions": [
+        0.36880478262901306,
+        1.7568082809448242,
+        0.20852412283420563
+      ],
+      "uv_layers": [
+        "UVW"
+      ],
+      "materials": [
+        "Ciment_Brisé2"
+      ]
+    },
+    {
+      "name": "Débri_1",
+      "triangles": 300,
+      "vertices": 136,
+      "dimensions": [
+        1.8328588008880615,
+        0.609366774559021,
+        2.03598952293396
+      ],
+      "uv_layers": [
+        "UVW"
+      ],
+      "materials": [
+        "Ciment_Brisé",
+        "Métal_Rouillé"
+      ]
+    },
+    {
+      "name": "Route_3",
+      "triangles": 192,
+      "vertices": 98,
+      "dimensions": [
+        0.80030357837677,
+        0.12099573761224747,
+        2.421459674835205
+      ],
+      "uv_layers": [
+        "UVW"
+      ],
+      "materials": [
+        "Route_Brisée"
+      ]
+    },
+    {
+      "name": "Route_2",
+      "triangles": 262,
+      "vertices": 133,
+      "dimensions": [
+        0.8003933429718018,
+        0.13459201157093048,
+        2.375840663909912
+      ],
+      "uv_layers": [
+        "UVW"
+      ],
+      "materials": [
+        "Route_Brisée"
+      ]
+    },
+    {
+      "name": "Route_1",
+      "triangles": 244,
+      "vertices": 124,
+      "dimensions": [
+        0.7999999523162842,
+        0.04999999701976776,
+        4.95100736618042
+      ],
+      "uv_layers": [
+        "UVW"
+      ],
+      "materials": [
+        "Route_Brisée"
+      ]
+    },
+    {
+      "name": "Rock_3",
+      "triangles": 552,
+      "vertices": 278,
+      "dimensions": [
+        0.6709709167480469,
+        1.1224445104599,
+        0.3375801146030426
+      ],
+      "uv_layers": [
+        "UVW"
+      ],
+      "materials": [
+        "Ciment_Brisé3",
+        "Rock_Apo"
+      ]
+    },
+    {
+      "name": "Rock_2",
+      "triangles": 272,
+      "vertices": 138,
+      "dimensions": [
+        0.8868476748466492,
+        1.1741986274719238,
+        0.29158565402030945
+      ],
+      "uv_layers": [
+        "UVW"
+      ],
+      "materials": [
+        "Ciment_Brisé3",
+        "Rock_Apo"
+      ]
+    },
+    {
+      "name": "Rock_1",
+      "triangles": 34,
+      "vertices": 19,
+      "dimensions": [
+        0.8503727316856384,
+        0.3300187587738037,
+        0.7752242684364319
+      ],
+      "uv_layers": [
+        "UVW"
+      ],
+      "materials": [
+        "Rock_Apo"
+      ]
+    },
+    {
+      "name": "Face_3",
+      "triangles": 304,
+      "vertices": 146,
+      "dimensions": [
+        0.8810908794403076,
+        1.1900126934051514,
+        0.04999999701976776
+      ],
+      "uv_layers": [
+        "UVW"
+      ],
+      "materials": [
+        "Ciment_Brisé3"
+      ]
+    },
+    {
+      "name": "Face_2",
+      "triangles": 333,
+      "vertices": 161,
+      "dimensions": [
+        1.1620553731918335,
+        1.1313846111297607,
+        0.050276197493076324
+      ],
+      "uv_layers": [
+        "UVW"
+      ],
+      "materials": [
+        "Ciment_Brisé3"
+      ]
+    },
+    {
+      "name": "Face_1",
+      "triangles": 682,
+      "vertices": 330,
+      "dimensions": [
+        1.999999761581421,
+        1.2176761627197266,
+        0.04999999701976776
+      ],
+      "uv_layers": [
+        "UVW"
+      ],
+      "materials": [
+        "Ciment_Brisé3"
+      ]
+    },
+    {
+      "name": "Face_pleine_3",
+      "triangles": 352,
+      "vertices": 176,
+      "dimensions": [
+        1.08700430393219,
+        1.1999999284744263,
+        0.04999999329447746
+      ],
+      "uv_layers": [
+        "UVW"
+      ],
+      "materials": [
+        "Ciment_Brisé3"
+      ]
+    },
+    {
+      "name": "Face_pleine_1",
+      "triangles": 510,
+      "vertices": 253,
+      "dimensions": [
+        2.0,
+        1.1999999284744263,
+        0.04999999701976776
+      ],
+      "uv_layers": [
+        "UVW"
+      ],
+      "materials": [
+        "Ciment_Brisé3"
+      ]
+    },
+    {
+      "name": "Face_pleine_2",
+      "triangles": 94,
+      "vertices": 49,
+      "dimensions": [
+        1.109738826751709,
+        1.1999999284744263,
+        0.04999999701976776
+      ],
+      "uv_layers": [
+        "UVW"
+      ],
+      "materials": [
+        "Ciment_Brisé3"
+      ]
+    },
+    {
+      "name": "Étage_2",
+      "triangles": 280,
+      "vertices": 142,
+      "dimensions": [
+        2.0,
+        0.11338439583778381,
+        1.999999761581421
+      ],
+      "uv_layers": [
+        "UVW"
+      ],
+      "materials": [
+        "Ciment_Brisé",
+        "Métal_Rouillé"
+      ]
+    },
+    {
+      "name": "Étage_5",
+      "triangles": 172,
+      "vertices": 86,
+      "dimensions": [
+        1.159806489944458,
+        0.04999999329447746,
+        2.0
+      ],
+      "uv_layers": [
+        "UVW"
+      ],
+      "materials": [
+        "Ciment_Brisé",
+        "Métal_Rouillé"
+      ]
+    },
+    {
+      "name": "Étage_4",
+      "triangles": 264,
+      "vertices": 118,
+      "dimensions": [
+        2.0,
+        0.04999999701976776,
+        1.999999761581421
+      ],
+      "uv_layers": [
+        "UVW"
+      ],
+      "materials": [
+        "Ciment_Brisé",
+        "Métal_Rouillé"
+      ]
+    },
+    {
+      "name": "Étage_1",
+      "triangles": 44,
+      "vertices": 24,
+      "dimensions": [
+        2.0,
+        0.04999999329447746,
+        2.0
+      ],
+      "uv_layers": [
+        "UVW"
+      ],
+      "materials": [
+        "Ciment_Brisé"
+      ]
+    },
+    {
+      "name": "Étage_3",
+      "triangles": 370,
+      "vertices": 173,
+      "dimensions": [
+        2.0,
+        0.29724910855293274,
+        2.0
+      ],
+      "uv_layers": [
+        "UVW"
+      ],
+      "materials": [
+        "Ciment_Brisé",
+        "Métal_Rouillé"
+      ]
+    },
+    {
+      "name": "Étage_5_2",
+      "triangles": 172,
+      "vertices": 86,
+      "dimensions": [
+        1.1598066091537476,
+        0.04999999701976776,
+        2.0
+      ],
+      "uv_layers": [
+        "UVW"
+      ],
+      "materials": [
+        "Ciment_Brisé",
+        "Métal_Rouillé"
+      ]
+    },
+    {
+      "name": "Étage_4_2",
+      "triangles": 264,
+      "vertices": 118,
+      "dimensions": [
+        2.0,
+        0.04999999701976776,
+        2.0
+      ],
+      "uv_layers": [
+        "UVW"
+      ],
+      "materials": [
+        "Ciment_Brisé",
+        "Métal_Rouillé"
+      ]
+    },
+    {
+      "name": "Étage_3_2",
+      "triangles": 370,
+      "vertices": 173,
+      "dimensions": [
+        2.0,
+        0.29724910855293274,
+        2.0
+      ],
+      "uv_layers": [
+        "UVW"
+      ],
+      "materials": [
+        "Ciment_Brisé",
+        "Métal_Rouillé"
+      ]
+    },
+    {
+      "name": "Étage_2_2",
+      "triangles": 280,
+      "vertices": 142,
+      "dimensions": [
+        2.0,
+        0.11338439583778381,
+        2.0
+      ],
+      "uv_layers": [
+        "UVW"
+      ],
+      "materials": [
+        "Ciment_Brisé",
+        "Métal_Rouillé"
+      ]
+    },
+    {
+      "name": "Étage_1_2",
+      "triangles": 44,
+      "vertices": 24,
+      "dimensions": [
+        1.999999761581421,
+        0.04999999701976776,
+        2.0
+      ],
+      "uv_layers": [
+        "UVW"
+      ],
+      "materials": [
+        "Ciment_Brisé"
+      ]
+    },
+    {
+      "name": "Colonne_3",
+      "triangles": 144,
+      "vertices": 80,
+      "dimensions": [
+        2.4659383296966553,
+        5.447566986083984,
+        1.5913946628570557
+      ],
+      "uv_layers": [
+        "UVW"
+      ],
+      "materials": [
+        "Ciment_Brisé2"
+      ]
+    },
+    {
+      "name": "Face_3_2",
+      "triangles": 304,
+      "vertices": 146,
+      "dimensions": [
+        0.8810908794403076,
+        1.1900125741958618,
+        0.04999999329447746
+      ],
+      "uv_layers": [
+        "UVW"
+      ],
+      "materials": [
+        "Ciment_Brisé3"
+      ]
+    },
+    {
+      "name": "Face_2_2",
+      "triangles": 333,
+      "vertices": 161,
+      "dimensions": [
+        1.1620553731918335,
+        1.1313846111297607,
+        0.05027620121836662
+      ],
+      "uv_layers": [
+        "UVW"
+      ],
+      "materials": [
+        "Ciment_Brisé3"
+      ]
+    },
+    {
+      "name": "Face_1_2",
+      "triangles": 682,
+      "vertices": 330,
+      "dimensions": [
+        2.0,
+        1.2176761627197266,
+        0.04999999701976776
+      ],
+      "uv_layers": [
+        "UVW"
+      ],
+      "materials": [
+        "Ciment_Brisé3"
+      ]
+    },
+    {
+      "name": "Face_pleine_3_2",
+      "triangles": 352,
+      "vertices": 176,
+      "dimensions": [
+        1.0870044231414795,
+        1.1999999284744263,
+        0.04999999701976776
+      ],
+      "uv_layers": [
+        "UVW"
+      ],
+      "materials": [
+        "Ciment_Brisé3"
+      ]
+    },
+    {
+      "name": "Face_pleine_1_2",
+      "triangles": 510,
+      "vertices": 253,
+      "dimensions": [
+        2.0,
+        1.1999999284744263,
+        0.04999999701976776
+      ],
+      "uv_layers": [
+        "UVW"
+      ],
+      "materials": [
+        "Ciment_Brisé3"
+      ]
+    },
+    {
+      "name": "Face_pleine_2_2",
+      "triangles": 94,
+      "vertices": 49,
+      "dimensions": [
+        1.109738826751709,
+        1.1999999284744263,
+        0.04999999701976776
+      ],
+      "uv_layers": [
+        "UVW"
+      ],
+      "materials": [
+        "Ciment_Brisé3"
+      ]
+    },
+    {
+      "name": "Étage_1_1",
+      "triangles": 44,
+      "vertices": 24,
+      "dimensions": [
+        2.0,
+        0.04999999701976776,
+        2.0
+      ],
+      "uv_layers": [
+        "UVW"
+      ],
+      "materials": [
+        "Ciment_Brisé"
+      ]
+    },
+    {
+      "name": "Étage_4_3",
+      "triangles": 264,
+      "vertices": 118,
+      "dimensions": [
+        2.0,
+        0.04999999329447746,
+        2.0
+      ],
+      "uv_layers": [
+        "UVW"
+      ],
+      "materials": [
+        "Ciment_Brisé",
+        "Métal_Rouillé"
+      ]
+    },
+    {
+      "name": "Étage_3_3",
+      "triangles": 370,
+      "vertices": 173,
+      "dimensions": [
+        1.999999761581421,
+        0.29724907875061035,
+        2.0
+      ],
+      "uv_layers": [
+        "UVW"
+      ],
+      "materials": [
+        "Ciment_Brisé",
+        "Métal_Rouillé"
+      ]
+    },
+    {
+      "name": "Étage_2_3",
+      "triangles": 280,
+      "vertices": 142,
+      "dimensions": [
+        2.0,
+        0.11338439583778381,
+        2.0
+      ],
+      "uv_layers": [
+        "UVW"
+      ],
+      "materials": [
+        "Ciment_Brisé",
+        "Métal_Rouillé"
+      ]
+    },
+    {
+      "name": "Étage_1_3",
+      "triangles": 44,
+      "vertices": 24,
+      "dimensions": [
+        1.999999761581421,
+        0.04999999329447746,
+        2.0
+      ],
+      "uv_layers": [
+        "UVW"
+      ],
+      "materials": [
+        "Ciment_Brisé"
+      ]
+    },
+    {
+      "name": "Étage_5_3",
+      "triangles": 172,
+      "vertices": 86,
+      "dimensions": [
+        1.159806489944458,
+        0.04999999329447746,
+        2.0
+      ],
+      "uv_layers": [
+        "UVW"
+      ],
+      "materials": [
+        "Ciment_Brisé",
+        "Métal_Rouillé"
+      ]
+    },
+    {
+      "name": "Étage_4_4",
+      "triangles": 264,
+      "vertices": 118,
+      "dimensions": [
+        2.0,
+        0.04999999701976776,
+        2.0
+      ],
+      "uv_layers": [
+        "UVW"
+      ],
+      "materials": [
+        "Ciment_Brisé",
+        "Métal_Rouillé"
+      ]
+    },
+    {
+      "name": "Étage_3_4",
+      "triangles": 370,
+      "vertices": 173,
+      "dimensions": [
+        2.0,
+        0.29724910855293274,
+        2.0
+      ],
+      "uv_layers": [
+        "UVW"
+      ],
+      "materials": [
+        "Ciment_Brisé",
+        "Métal_Rouillé"
+      ]
+    },
+    {
+      "name": "Étage_2_4",
+      "triangles": 280,
+      "vertices": 142,
+      "dimensions": [
+        2.0,
+        0.11338439583778381,
+        2.0
+      ],
+      "uv_layers": [
+        "UVW"
+      ],
+      "materials": [
+        "Ciment_Brisé",
+        "Métal_Rouillé"
+      ]
+    },
+    {
+      "name": "Étage_1_4",
+      "triangles": 44,
+      "vertices": 24,
+      "dimensions": [
+        2.0,
+        0.04999999701976776,
+        2.0
+      ],
+      "uv_layers": [
+        "UVW"
+      ],
+      "materials": [
+        "Ciment_Brisé"
+      ]
+    },
+    {
+      "name": "Colonne_2",
+      "triangles": 148,
+      "vertices": 84,
+      "dimensions": [
+        1.8562685251235962,
+        5.1698713302612305,
+        1.149999976158142
+      ],
+      "uv_layers": [
+        "UVW"
+      ],
+      "materials": [
+        "Ciment_Brisé2"
+      ]
+    },
+    {
+      "name": "Face_3_3",
+      "triangles": 304,
+      "vertices": 146,
+      "dimensions": [
+        0.8810908794403076,
+        1.1900126934051514,
+        0.05000000819563866
+      ],
+      "uv_layers": [
+        "UVW"
+      ],
+      "materials": [
+        "Ciment_Brisé3"
+      ]
+    },
+    {
+      "name": "Face_2_3",
+      "triangles": 333,
+      "vertices": 161,
+      "dimensions": [
+        1.1620553731918335,
+        1.1313846111297607,
+        0.05027620121836662
+      ],
+      "uv_layers": [
+        "UVW"
+      ],
+      "materials": [
+        "Ciment_Brisé3"
+      ]
+    },
+    {
+      "name": "Face_1_3",
+      "triangles": 682,
+      "vertices": 330,
+      "dimensions": [
+        2.0,
+        1.2176761627197266,
+        0.04999999701976776
+      ],
+      "uv_layers": [
+        "UVW"
+      ],
+      "materials": [
+        "Ciment_Brisé3"
+      ]
+    },
+    {
+      "name": "Face_pleine_3_3",
+      "triangles": 352,
+      "vertices": 176,
+      "dimensions": [
+        1.0870044231414795,
+        1.1999999284744263,
+        0.05000000819563866
+      ],
+      "uv_layers": [
+        "UVW"
+      ],
+      "materials": [
+        "Ciment_Brisé3"
+      ]
+    },
+    {
+      "name": "Face_pleine_1_3",
+      "triangles": 510,
+      "vertices": 253,
+      "dimensions": [
+        2.0,
+        1.1999999284744263,
+        0.04999999701976776
+      ],
+      "uv_layers": [
+        "UVW"
+      ],
+      "materials": [
+        "Ciment_Brisé3"
+      ]
+    },
+    {
+      "name": "Face_pleine_2_3",
+      "triangles": 94,
+      "vertices": 49,
+      "dimensions": [
+        1.109738826751709,
+        1.1999999284744263,
+        0.04999999701976776
+      ],
+      "uv_layers": [
+        "UVW"
+      ],
+      "materials": [
+        "Ciment_Brisé3"
+      ]
+    },
+    {
+      "name": "Étage_1_2_2",
+      "triangles": 44,
+      "vertices": 24,
+      "dimensions": [
+        2.0,
+        0.04999999701976776,
+        1.999999761581421
+      ],
+      "uv_layers": [
+        "UVW"
+      ],
+      "materials": [
+        "Ciment_Brisé"
+      ]
+    },
+    {
+      "name": "Étage_3_5",
+      "triangles": 370,
+      "vertices": 173,
+      "dimensions": [
+        2.0,
+        0.29724910855293274,
+        2.0
+      ],
+      "uv_layers": [
+        "UVW"
+      ],
+      "materials": [
+        "Ciment_Brisé",
+        "Métal_Rouillé"
+      ]
+    },
+    {
+      "name": "Étage_5_4",
+      "triangles": 172,
+      "vertices": 86,
+      "dimensions": [
+        1.1598066091537476,
+        0.04999999701976776,
+        2.0
+      ],
+      "uv_layers": [
+        "UVW"
+      ],
+      "materials": [
+        "Ciment_Brisé",
+        "Métal_Rouillé"
+      ]
+    },
+    {
+      "name": "Étage_4_5",
+      "triangles": 264,
+      "vertices": 118,
+      "dimensions": [
+        2.0,
+        0.05000000819563866,
+        2.0
+      ],
+      "uv_layers": [
+        "UVW"
+      ],
+      "materials": [
+        "Ciment_Brisé",
+        "Métal_Rouillé"
+      ]
+    },
+    {
+      "name": "Étage_2_5",
+      "triangles": 280,
+      "vertices": 142,
+      "dimensions": [
+        2.0,
+        0.11338438838720322,
+        2.0
+      ],
+      "uv_layers": [
+        "UVW"
+      ],
+      "materials": [
+        "Ciment_Brisé",
+        "Métal_Rouillé"
+      ]
+    },
+    {
+      "name": "Étage_1_1_2",
+      "triangles": 44,
+      "vertices": 24,
+      "dimensions": [
+        2.0,
+        0.04999999701976776,
+        2.0
+      ],
+      "uv_layers": [
+        "UVW"
+      ],
+      "materials": [
+        "Ciment_Brisé"
+      ]
+    },
+    {
+      "name": "Étage_1_5",
+      "triangles": 44,
+      "vertices": 24,
+      "dimensions": [
+        2.0,
+        0.04999999701976776,
+        2.0
+      ],
+      "uv_layers": [
+        "UVW"
+      ],
+      "materials": [
+        "Ciment_Brisé"
+      ]
+    },
+    {
+      "name": "Étage_4_6",
+      "triangles": 264,
+      "vertices": 118,
+      "dimensions": [
+        2.0,
+        0.04999999701976776,
+        2.0
+      ],
+      "uv_layers": [
+        "UVW"
+      ],
+      "materials": [
+        "Ciment_Brisé",
+        "Métal_Rouillé"
+      ]
+    },
+    {
+      "name": "Étage_3_6",
+      "triangles": 370,
+      "vertices": 173,
+      "dimensions": [
+        2.0,
+        0.29724910855293274,
+        2.0
+      ],
+      "uv_layers": [
+        "UVW"
+      ],
+      "materials": [
+        "Ciment_Brisé",
+        "Métal_Rouillé"
+      ]
+    },
+    {
+      "name": "Étage_2_6",
+      "triangles": 280,
+      "vertices": 142,
+      "dimensions": [
+        2.0,
+        0.11338439583778381,
+        2.0
+      ],
+      "uv_layers": [
+        "UVW"
+      ],
+      "materials": [
+        "Ciment_Brisé",
+        "Métal_Rouillé"
+      ]
+    },
+    {
+      "name": "Étage_1_6",
+      "triangles": 44,
+      "vertices": 24,
+      "dimensions": [
+        2.0,
+        0.050000086426734924,
+        2.0
+      ],
+      "uv_layers": [
+        "UVW"
+      ],
+      "materials": [
+        "Ciment_Brisé"
+      ]
+    },
+    {
+      "name": "Colonne_1",
+      "triangles": 48,
+      "vertices": 32,
+      "dimensions": [
+        1.149999976158142,
+        5.0,
+        1.149999976158142
+      ],
+      "uv_layers": [
+        "UVW"
+      ],
+      "materials": [
+        "Ciment_Brisé2"
+      ]
+    }
+  ],
+  "materials": [
+    {
+      "name": "Ciment_Brisé",
+      "color": [
+        1.0,
+        1.0,
+        1.0,
+        1.0
+      ],
+      "metallic": 0.0,
+      "roughness": 0.5527864098548889,
+      "textures": []
+    },
+    {
+      "name": "Ciment_Brisé2",
+      "color": [
+        1.0,
+        1.0,
+        1.0,
+        1.0
+      ],
+      "metallic": 0.0,
+      "roughness": 0.5527864098548889,
+      "textures": []
+    },
+    {
+      "name": "Ciment_Brisé3",
+      "color": [
+        1.0,
+        1.0,
+        1.0,
+        1.0
+      ],
+      "metallic": 0.0,
+      "roughness": 0.5527864098548889,
+      "textures": []
+    },
+    {
+      "name": "Métal_Rouillé",
+      "color": [
+        0.5764706134796143,
+        0.47843137383461,
+        0.3843137323856354,
+        1.0
+      ],
+      "metallic": 0.0,
+      "roughness": 0.5527864098548889,
+      "textures": []
+    },
+    {
+      "name": "Rock_Apo",
+      "color": [
+        1.0,
+        1.0,
+        1.0,
+        1.0
+      ],
+      "metallic": 0.0,
+      "roughness": 0.5527864098548889,
+      "textures": []
+    },
+    {
+      "name": "Route_Brisée",
+      "color": [
+        1.0,
+        1.0,
+        1.0,
+        1.0
+      ],
+      "metallic": 0.0,
+      "roughness": 0.5527864098548889,
+      "textures": []
+    }
+  ],
+  "images": [
+    {
+      "name": "Ciment_brisé.png",
+      "size": [
+        1024,
+        1024
+      ],
+      "path": "/Users/wei/Documents/ChatGPT/遊戲練習/assets/model/oga-destroyed-city/source/Audio et Video/Modèles 3D/Débris_de_Ville/tex/Ciment_brisé.png",
+      "packed": true
+    },
+    {
+      "name": "Ciment_brisé2.png",
+      "size": [
+        1024,
+        1024
+      ],
+      "path": "/Users/wei/Documents/ChatGPT/遊戲練習/assets/model/oga-destroyed-city/source/Audio et Video/Modèles 3D/Débris_de_Ville/tex/Ciment_brisé2.png",
+      "packed": true
+    },
+    {
+      "name": "Ciment_brisé3.png",
+      "size": [
+        1024,
+        1024
+      ],
+      "path": "/Users/wei/Documents/ChatGPT/遊戲練習/assets/model/oga-destroyed-city/source/Audio et Video/Modèles 3D/Débris_de_Ville/tex/Ciment_brisé3.png",
+      "packed": true
+    },
+    {
+      "name": "Métal_Rouillé.png",
+      "size": [
+        512,
+        512
+      ],
+      "path": "/Users/wei/Documents/ChatGPT/遊戲練習/assets/model/oga-destroyed-city/source/Audio et Video/Modèles 3D/Débris_de_Ville/tex/Métal_Rouillé.png",
+      "packed": true
+    },
+    {
+      "name": "Rock_Apo.png",
+      "size": [
+        512,
+        512
+      ],
+      "path": "/Users/wei/Documents/ChatGPT/遊戲練習/assets/model/oga-destroyed-city/source/Audio et Video/Modèles 3D/Débris_de_Ville/tex/Rock_Apo.png",
+      "packed": true
+    },
+    {
+      "name": "Route_Brisée.png",
+      "size": [
+        1024,
+        1024
+      ],
+      "path": "/Users/wei/Documents/ChatGPT/遊戲練習/assets/model/oga-destroyed-city/source/Audio et Video/Modèles 3D/Débris_de_Ville/tex/Route_Brisée.png",
+      "packed": true
+    }
+  ],
+  "triangles": 15857,
+  "bounds": {
+    "min": [
+      -5.572163105010986,
+      -3.5550358295440674,
+      -0.13840799033641815
+    ],
+    "max": [
+      5.086794376373291,
+      1.3338162899017334,
+      5.522359371185303
+    ],
+    "size": [
+      10.658957481384277,
+      4.888852119445801,
+      5.660767555236816
+    ]
+  },
+  "material_repair": [
+    {
+      "material": "Ciment_Brisé",
+      "image": "Ciment_brisé.png",
+      "basis": "Unique case-insensitive material/image filename match; original embedded images preserved, base-color connection reconstructed"
+    },
+    {
+      "material": "Ciment_Brisé2",
+      "image": "Ciment_brisé2.png",
+      "basis": "Unique case-insensitive material/image filename match; original embedded images preserved, base-color connection reconstructed"
+    },
+    {
+      "material": "Ciment_Brisé3",
+      "image": "Ciment_brisé3.png",
+      "basis": "Unique case-insensitive material/image filename match; original embedded images preserved, base-color connection reconstructed"
+    },
+    {
+      "material": "Métal_Rouillé",
+      "image": "Métal_Rouillé.png",
+      "basis": "Unique case-insensitive material/image filename match; original embedded images preserved, base-color connection reconstructed"
+    },
+    {
+      "material": "Rock_Apo",
+      "image": "Rock_Apo.png",
+      "basis": "Unique case-insensitive material/image filename match; original embedded images preserved, base-color connection reconstructed"
+    },
+    {
+      "material": "Route_Brisée",
+      "image": "Route_Brisée.png",
+      "basis": "Unique case-insensitive material/image filename match; original embedded images preserved, base-color connection reconstructed"
+    }
+  ],
+  "import_warning": "Blender reported excess FBX layer data; UV/topology need visual inspection, import success is not proof of fidelity."
+}

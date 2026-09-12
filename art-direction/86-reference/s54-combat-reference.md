@@ -2,6 +2,14 @@
 
 2026-09-13。先收集與驗證整場交戰所需素材，再做場景。這是研究紀錄，沒有把正式 2D 或被否決的 3D 試驗場改成新版本。
 
+## S57：已取得有體積的戰損素材
+
+Fleurman的CC0 Destroyed City Assets已下載、解壓、Blender匯入及渲染：61網格／15,857三角面／6張內嵌色彩圖。匯入需重接材質色彩圖，原始單位與FBX多餘layer警告尚有保真限制。美術總監同意作側後景廢墟與局部坍落掩體，**不適合直接替換整個工業場景**。
+
+![已入庫的戰損模型，非遊戲最終畫面](images/s57-destroyed-city-intake.png)
+
+原始檔：`assets/model/oga-destroyed-city/`；衍生GLB與檢查報告：工作目錄 `art-direction/86-reference/probe-assets/s57-destroyed-city-*`。新素材來源、限制及其他候選見 [環境管線S57實檔紀錄](s53-environment-pipeline.md)。下一步用已取得斷片建立局部坍落帶，接回同場移動與砲火，不再繼續排完好牆片。
+
 ## 收藏入口與使用規則（S56 更新）
 
 先查這份索引，再搜尋。原始模型／貼圖已留在 `assets/model/`，匯入與場景衍生物在 `.worktrees/s45-3d-sortie/art-direction/86-reference/probe-assets/`。影片保存官方連結、時間碼與實看筆記，未下載影片，也不把影片當成可使用的遊戲素材。

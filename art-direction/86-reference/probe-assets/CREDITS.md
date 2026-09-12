@@ -28,3 +28,7 @@
 - `s56-rail-environment.glb`：沿用CC0 modular_factory_facade、rough_concrete、rusty_metal，另製屋頂、月台等封閉結構。不是官方86場景，也不是已驗收遊戲環境。
 - S56構建腳本依賴**工作目錄根** `probe-assets/s54-build-maintenance-bay.py` 與 `probe-assets/s54-structure-textures/`；這與本CREDITS所在的研究子目錄不同，素材總索引有完整路徑。
 - 新GLB檔不放進Pages部署；索引和實測圖可查驗，取得素材不代表即時效能合格。
+
+## S57 戰損模型
+
+Fleurman，Destroyed City Assets，CC0，https://opengameart.org/content/destroyed-city-assets 。原始ZIP／FBX保存在根 assets/model/oga-destroyed-city/；s57-destroyed-city-reuse.glb 為本地轉換，重接六張原始嵌入色彩圖，沒有補造normal／roughness；匯入layer警告與尺寸限制見inspection。

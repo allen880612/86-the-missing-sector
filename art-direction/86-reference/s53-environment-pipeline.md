@@ -64,6 +64,20 @@ macOS 本機桌面可行，但硬體仍需實測。Godot stable 文件列 Intel�
 
 2026-09-13：已下載 Poly Haven 1K 工廠組至本地 assets/model/polyhaven/modular_factory_facade。17 個檔案合計 17,626,179 bytes；逐檔比對官方大小與 MD5 通過，另保存 SHA-256 清單。glTF 共 192 meshes、6 materials，buffer 與 texture 相對引用全部可解析。來源與授權連結記錄在 intake-manifest.json。**這只是檔案完整性通過，尚未驗證引擎匯入外觀、破損構圖、效能或 Godot 對照。** 資產未加入正式部署。
 
+## S57：有體積戰損工業結構候選
+
+2026-09-13。已排除 S53／S54 已收的完好工廠立面、Poly Haven 純地表 rubble，以及本輪另行核對的 Fleurman Destroyed City Assets。下列三件皆是資產作者在 Sketchfab 公開的可下載 3D 幾何，不是純貼圖或 viewer-only 頁面。
+
+| 優先 | 候選／可補缺口 | 授權與可取得證據 | 格式／大小與風險 |
+|---|---|---|---|
+| 1 | [Destroyed Warehouse In Kaarina, Finland](https://sketchfab.com/3d-models/destroyed-warehouse-in-kaarina-finland-12d2dfd3d2cb4c8e80f3f223c649be32)（Lassi Kaukonen）：作者頁預覽可見有厚度的磚柱、暴露木屋架、大面積缺頂與地面殘骸；能直接補完整廠房輪廓與破頂透光。 | 頁面明列 **Download 3D Model**、CC BY。PO另以實際瀏覽器查核：同頁還有NoAI標記，未登入且viewer顯示模型過重；故暫列授權／取得待確認，不當成已可直接使用。 | 951.8k tris／475.6k vertices，來自 A7R IV、20 mm 鏡頭與 Parrot Anafi 影像的 Metashape／Blender 掃描。Sketchfab 官方 Download API 可交付 glTF、GLB、USDZ；作者原始檔格、貼圖集與壓縮檔 bytes **公開頁未列**。面數過高，不能原樣當多座近景建築。 |
+| 2 | [Destroyed abandoned manufactory – small 02](https://sketchfab.com/3d-models/destroyed-abandoned-manufactory-small-02-fe8ebf2e49344750a0f0a28e3efa6e94)（archiwum_xyz）：作者定義為被毀工廠小片段；頁面標籤明列 columns、hall、rubble、depot，適合作為斷柱與結構瓦礫的中景鎖點。 | 頁面明列 **Download 3D Model**、Free Standard、NoAI，並記錄 3,958 次下載。Fab Standard License 允許商用、修改及整合進專案，禁止單獨再散布來源資產。 | 195k tris／103.8k vertices；RealityCapture 來自 702 張 Sony a6000 照片加 Leica P40 雷射掃描。官方轉換格式同上；原始檔格、貼圖通道與壓縮檔 bytes **未公開**。它是單一掃描片段，不是可無縫重複的 modular kit。 |
+| 3 | [Construction rubble](https://sketchfab.com/3d-models/construction-rubble-d5603cfcc8d0427a912520077dbda3b4)（Exploring Europe and Beyond）：真實建築破碎堆的實體 photoscan，可補現有地表貼圖做不出的輪廓、接地高差與斷片陰影。 | 頁面明列 **Download 3D Model**、Free Standard、NoAI，並記錄 9,503 次下載；重用限制同上。 | 作者明列原始 FBX 約 80k vertices；頁面統計 159.4k tris／80.2k vertices；JPG 貼圖為 8K diffuse、8K normal、4K AO、4K roughness。壓縮檔 bytes **未公開**，需取得後降至 1K／2K，不應直接將 8K 全數佈署。 |
+
+[Sketchfab 官方下載文件](https://sketchfab.com/developers/download-api/downloading-models) 說明下載必須先用 Sketchfab 帳號驗證，而有效期下載連結與 archive `size` 只在授權後的 `/download` 回應中提供；[Download API 總覽](https://sketchfab.com/developers/download-api) 明列官方轉換交付為 glTF、GLB、USDZ，不是作者上傳的 FBX／OBJ 原檔。本輪沒有登入或下載，因此三件的實際 archive bytes 均保留為未確認，不把預覽成功等同已取得。Free Standard 的可用與禁止再散布範圍依 [Fab Standard License](https://www.fab.com/eula)；取得時仍要保存當下授權頁。
+
+建議先只取 Kaarina 的最低可用轉換檔，以單座遠／中景廠房測破頂構圖；若 archive 過大或網格無法分段，改取 manufactory fragment 作斷柱鎖點，再以 construction rubble 只補近景輪廓。這三件都不含已確認的軌道、道岔或斷裂月台；本輪沒有找到同時免費、寫實、可下載、帶破頂工廠與鐵道出口的完整套件。
+
 ## Modular Factory Facade 可直接選用的節點
 
 以下直接讀取 `modular_factory_facade_1k.gltf` 的 192 個 node／mesh 與 POSITION accessor。全檔 node transform 只有 `translation`，沒有 rotation、scale 或 matrix；尺寸及 AABB 依 glTF 的 X／Y／Z 公尺座標列出。`T` 是資產原始展示排列的位置，搬入場景時同一組牆體與嵌件要指定相同的新 pivot，不能只搬其中一件。
@@ -91,3 +105,19 @@ macOS 本機桌面可行，但硬體仍需實測。Godot stable 文件列 Intel�
 實際使用 Metal 3.2／Apple M3／Forward+ 渲染三張圖；最後日誌沒有 warning/error。引擎可行性只證明本機圖形路徑及素材渲染，未證明發行、多人效能或較佳美術。Godot UI／reimport 尚未驗證；這轮用可重跑的 GDScript 診斷，不能宣稱已證明編輯器省工。
 
 重現：先執行 probe-assets/s53-godot/normalize_model.py 產生可刪除的衍生 GLB，再以 Godot --path probe-assets/s53-godot --script study.gd --rendering-driver metal 執行。腳本引用本機既有來源資產，沒有把 24MB 模型與引擎 binary 加入公開部署。使用者的原始模型是 leoxx300 的 Juggernaut 86 Eighty-Six（CC BY 4.0），署名與來源沿用 probe-assets/CREDITS.md；Poly Haven factory 是 CC0。
+
+## S57 實檔結果與採用邊界
+
+[Fleurman — Destroyed City Assets](https://opengameart.org/content/destroyed-city-assets) 作者頁列CC0，已下載12,930,328B原始ZIP並安全解壓；裡面是一個FBX，色彩貼圖內嵌，不必另外尋找素材。保存位置為專案根 `assets/model/oga-destroyed-city/`，有來源與雜湊manifest。
+
+Blender實檔檢查：61個mesh、15,857三角面、6個材質、6張內嵌色彩圖（512／1024）。FBX匯入時六張圖未連到材質；依唯一的材質名與圖片檔名對應重建Base Color連線。這是明列的轉換修復，不宣稱原始PBR還原；未找到normal／roughness圖片。匯入另有excess layer data警告，因此保留UV與幾何保真度限制。
+
+![S57 已取得戰損幾何的Blender素材檢查](images/s57-destroyed-city-intake.png)
+
+GLB為13,330,104B、6張圖全部內嵌、無外部圖片URI，通過檔頭／長度／圖片引用檢查。這不是遊戲效能或最終美術驗收。原始場景尺寸約10.66×4.89×5.66單位，尚無作者公尺基準；接入前應以樓層尺度建立明示的場景比例，不能直接當成真實尺寸。
+
+Astra美術驗收：**可納入素材庫，適合中遠景破壞輪廓及局部掩體，不適合整片替換廠房。** 裸露樓板／斷梁／鋼筋確能改善戰損輪廓；選一至兩座側後景即可。碎片要位於實際坍落位置，不平均撒滿地面。表面和樓層仍重複，近景材質需另驗。
+
+其他三個Sketchfab候選只保留來源與使用缺口。PO已於實際IAB頁確認Kaarina顯示LOGIN及NoAI，viewer有模型過重提示；沒有取得下載檔，不擷取viewer幾何，也不把公開瀏覽成功說成匯入完成。其餘兩件尚未實際下載。暫時不為這些候選反覆登入或阻塞開發。
+
+下一個實作依據：先用已取得CC0斷片組成一處可繞行坍落帶，與既有軍勢做同場移動／砲火／彈著的10–15秒驗證。整場事件是下一個驗收重點；不再用新增一套完整建築搜尋拖延交火。新掃描倉庫待能正式取得後，再比較是否值得替換。

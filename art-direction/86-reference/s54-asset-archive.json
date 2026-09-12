@@ -428,5 +428,40 @@
       "status": "Used in S56 candidate, art not accepted"
     }
   ],
-  "next_missing_asset": "A cohesive war-damaged rail/industrial site: broken roof volumes, broken platform/trackbed, structural rubble and plausible rail entrance. Stop adding intact facades; require inspected downloadable files, sources and rights."
+  "next_missing_asset": "A cohesive war-damaged rail/industrial site: broken roof volumes, broken platform/trackbed, structural rubble and plausible rail entrance. Stop adding intact facades; require inspected downloadable files, sources and rights.",
+  "oga_destroyed_city": {
+    "author": "Fleurman",
+    "source": "https://opengameart.org/content/destroyed-city-assets",
+    "download": "https://opengameart.org/sites/default/files/Destroyed_City_Assets.zip",
+    "license": "CC0 as specified on author submission",
+    "date": "2026-09-13",
+    "bytes": 12930328,
+    "sha256": "3aea810178fdf6235f82fc61c4569a7742e08588ae4390357eb991726f5610ac",
+    "stage": "Blender inspected and rendered; six embedded base colors reconnected; GLB verified; not accepted as complete battlefield",
+    "derivative": ".worktrees/s45-3d-sortie/art-direction/86-reference/probe-assets/s57-destroyed-city-reuse.glb",
+    "inspection": ".worktrees/s45-3d-sortie/art-direction/86-reference/probe-assets/s57-destroyed-city-inspection.json",
+    "files": [
+      {
+        "path": "assets/model/oga-destroyed-city/source/Destroyed_City_Assets.fbx",
+        "bytes": 13110096,
+        "sha256": "6fa9604c9b3832b3bbc3b3004bb255fc023055941bd257c63a655a0a664cbc10"
+      }
+    ],
+    "derivative_verification": {
+      "file": "s57-destroyed-city-reuse.glb",
+      "bytes": 13330104,
+      "sha256": "4caa2e6962b04dd976987535ebb530d408adb93c1ee668a4f620410a91adc866",
+      "meshes": 61,
+      "materials": 6,
+      "embedded_images": 6,
+      "external_uris": [],
+      "texture_reconstruction": "Base color reconnected by unique embedded filename/material name matching",
+      "visual_stage": "Blender asset preview inspected; no final game or art acceptance",
+      "source_warnings": [
+        "FBX excess layer data during import",
+        "No author unit scale established",
+        "No normal or roughness maps found in embedded images"
+      ]
+    }
+  }
 }

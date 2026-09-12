@@ -1,0 +1,16 @@
+{
+  "file": "s57-destroyed-city-reuse.glb",
+  "bytes": 13330104,
+  "sha256": "4caa2e6962b04dd976987535ebb530d408adb93c1ee668a4f620410a91adc866",
+  "meshes": 61,
+  "materials": 6,
+  "embedded_images": 6,
+  "external_uris": [],
+  "texture_reconstruction": "Base color reconnected by unique embedded filename/material name matching",
+  "visual_stage": "Blender asset preview inspected; no final game or art acceptance",
+  "source_warnings": [
+    "FBX excess layer data during import",
+    "No author unit scale established",
+    "No normal or roughness maps found in embedded images"
+  ]
+}
