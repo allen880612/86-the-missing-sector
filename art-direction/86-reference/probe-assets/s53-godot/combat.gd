@@ -132,8 +132,9 @@ func capture_scene(boss: Node3D):
     var manifest = JSON.parse_string(FileAccess.get_file_as_string(INPUT+"vfx/lava-blast/manifest.json"))
     for name in manifest.files:
         explosion_frames.append(image_texture(INPUT+"vfx/lava-blast/"+name))
-    assert(FileAccess.file_exists(PROBE+"s58-collapse-band.glb"),"Collapse asset must be verified before capture")
-    world.add_child(read_gltf(PROBE+"s58-collapse-band.glb"))
+    if not "--collapse" in OS.get_cmdline_user_args():
+        assert(FileAccess.file_exists(PROBE+"s58-collapse-band.glb"),"Collapse asset must be verified before capture")
+        world.add_child(read_gltf(PROBE+"s58-collapse-band.glb"))
     var units := get_nodes_in_group("encounter_units")
     var player: Node3D = units[-1]
     var boss_mount: Node3D = boss.get_parent()
@@ -148,6 +149,9 @@ func capture_scene(boss: Node3D):
         var column := int(i/2)%3
         units[i+1].position = Vector3(flank*(7.0+column*5.2),0,1-rank*8.0-column*1.5)
         units[i+1].rotation.y = atan2(-4-units[i+1].position.x,11-units[i+1].position.z)
+    if "--environment-review" in OS.get_cmdline_user_args():
+        await review_environment(units)
+        return
     var animations := boss.find_children("*","AnimationPlayer",true,false)
     var clips := []
     for anim in animations:
@@ -273,6 +277,52 @@ func capture_scene(boss: Node3D):
             camera.look_at(Vector3(0,1,-19))
         if frame%72==0:print("S58 FRAME ",frame)
     FileAccess.open(PROBE+"s58-combat-v3-run.json",FileAccess.WRITE).store_string(JSON.stringify({"revision":3,"active_fx_end":particles.size()+flashes.size(),"frames":288,"fps":24,"duration":12,"capture":"fixed-step offline rendering; not measured realtime FPS","events":events,"assets":asset_bounds,"limitations":["choreographed aiming and evasion; not interactive mission","scouts stationary; full multi-leg gait pending","Morpho original clip sampled continuously; foot contact unverified","no collision/LOS/damage simulation or audio verification","Morpho socket derived from rail geometry; turret aims after clip evaluation, separate joint limits and barrel recoil pending","player socket, recoil and evade are provisional root choreography","overall environment art rejected"]},"  "))
+    world.queue_free()
+    await process_frame
+    quit()
+
+func review_environment(units: Array):
+    for unit in units:unit.visible = false
+    await take_frame("s59-environment-only.png")
+    for unit in units:unit.visible = true
+    await take_frame("s59-encounter.png")
+    var original_background := environment.background_mode
+    environment.background_mode = Environment.BG_SKY
+    await take_frame("s59-existing-hdri-background.png")
+    environment.background_mode = original_background
+    var material_copies := {}
+    var original_overrides := []
+    for unit in units:
+        for mesh in all_meshes(unit):
+            for surface in range(mesh.mesh.get_surface_count()):
+                var material = mesh.get_active_material(surface)
+                if not material is StandardMaterial3D:continue
+                if not material_copies.has(material):
+                    var albedo = material.duplicate()
+                    albedo.shading_mode = BaseMaterial3D.SHADING_MODE_UNSHADED
+                    albedo.emission_enabled = false
+                    material_copies[material] = albedo
+                original_overrides.append({"mesh":mesh,"surface":surface,"material":mesh.get_surface_override_material(surface)})
+                mesh.set_surface_override_material(surface,material_copies[material])
+    await take_frame("s59-units-albedo-only.png")
+    for entry in original_overrides:entry.mesh.set_surface_override_material(entry.surface,entry.material)
+    var samples := []
+    for i in range(60):await process_frame
+    var last := Time.get_ticks_usec()
+    for i in range(300):
+        await process_frame
+        await RenderingServer.frame_post_draw
+        var now := Time.get_ticks_usec()
+        samples.append(float(now-last)/1000.0)
+        last = now
+    var chronological := samples.duplicate()
+    samples.sort()
+    var original_camera := camera.position
+    camera.position = Vector3(0,66,4)
+    camera.look_at(Vector3(0,0,-22))
+    await take_frame("s59-route-overview.png")
+    var report := {"stage":"environment silhouette and static render pacing; no gameplay acceptance","environment":asset_bounds,"camera":str(original_camera),"look_at":"(0,1,-19)","resolution":"1280x720","effects":false,"renderer":RenderingServer.get_current_rendering_method(),"driver":RenderingServer.get_current_rendering_driver_name(),"sample_frames":samples.size(),"frame_interval_ms":chronological,"median_ms":samples[150],"p95_ms":samples[284],"p99_ms":samples[296],"limitations":["static enemies, no AI or input; not combat FPS","capture includes viewport presentation; no separate GPU timing","route screenshot does not prove collision or navigation"]}
+    FileAccess.open(PROBE+"s59-environment-run.json",FileAccess.WRITE).store_string(JSON.stringify(report,"  "))
     world.queue_free()
     await process_frame
     quit()

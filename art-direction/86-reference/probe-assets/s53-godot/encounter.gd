@@ -180,7 +180,10 @@ func build():
     sun.directional_shadow_max_distance = 140
     world.add_child(sun)
     build_ground()
-    var factory := read_gltf(PROBE+"s56-rail-environment.glb")
+    var environment_file := "s59-rail-collapse.glb" if "--collapse" in OS.get_cmdline_user_args() else "s56-rail-environment.glb"
+    assert(FileAccess.file_exists(PROBE+environment_file),"Environment asset missing: "+environment_file)
+    var factory := read_gltf(PROBE+environment_file)
+    asset_bounds["environment_file"] = environment_file
     world.add_child(factory)
     batch_static_environment(factory)
     var boss := read_gltf(PROBE + "s55-morpho.glb")

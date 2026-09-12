@@ -435,7 +435,7 @@
       "status": "Used in S56 candidate, art not accepted"
     }
   ],
-  "next_missing_asset": "A cohesive war-damaged rail/industrial site: broken roof volumes, broken platform/trackbed, structural rubble and plausible rail entrance. Stop adding intact facades; require inspected downloadable files, sources and rights.",
+  "next_missing_asset": "Morpho differentiated surface materials and continuous XM2/Ameise gait. Existing collapse layout accepted for this scene; do not search another complete environment pack.",
   "oga_destroyed_city": {
     "author": "Fleurman",
     "source": "https://opengameart.org/content/destroyed-city-assets",
@@ -724,5 +724,35 @@
     "socket_measurement": "art-direction/86-reference/probe-assets/s58-morpho-muzzle.json",
     "status": "Offline choreography; overall art rejected; no gameplay/continuous independent QA",
     "next_action": "Replace left hall middle/back with coherent collapse from existing kit, not more VFX"
+  },
+  "s59_environment": {
+    "path": ".worktrees/s45-3d-sortie/art-direction/86-reference/probe-assets/s59-rail-collapse.glb",
+    "verification": {
+      "bytes": 66329616,
+      "sha256": "d6dec71fe41a2e9e8ccd4e6895a066dd3e3ba533440111fa892fbc600e7d9cd8",
+      "previous_sha256": "d9acd06383926216f0db169b5bdda63b33bac2120fa5507a8b6acafedb617a08",
+      "mesh_nodes": 1672,
+      "unique_meshes": 1269,
+      "unique_triangles": 1620776,
+      "scene_triangles": 2032642,
+      "materials": 10,
+      "embedded_images": 18,
+      "image_bytes": 20383864,
+      "normals_uv_materials": true
+    },
+    "stage": "local collapse arrangement accepted; overall art and gameplay not accepted",
+    "recipe": "s56-build-rail-environment.py -- --s59",
+    "sources": [
+      "https://polyhaven.com/a/modular_factory_facade",
+      "https://polyhaven.com/a/rough_concrete",
+      "https://polyhaven.com/a/rusty_metal",
+      "https://opengameart.org/content/destroyed-city-assets"
+    ]
+  },
+  "unit_material_diagnosis": {
+    "date": "2026-09-13",
+    "Ameise": "Existing basecolor and normal preserved; original metallic/roughness dependencies absent, constants 0.48/0.42 used.",
+    "Morpho": "Source .mat texture slots empty; imported GLB has 0 images and 8 constant materials.",
+    "evidence": "s59-units-albedo-only.png and existing source/glb inspection; not a final material approval"
   }
 }

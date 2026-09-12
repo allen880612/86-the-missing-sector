@@ -1,0 +1,684 @@
+{
+  "units": "metres",
+  "gltf_bounds_min": [
+    -35.349998474121094,
+    0.0,
+    -120.3499984741211
+  ],
+  "gltf_bounds_max": [
+    37.349998474121094,
+    12.623979568481445,
+    30.0
+  ],
+  "clear_corridor": "X[-8,8] remains empty through the entire yard and rear rail exit; no central rear wall.",
+  "objects": 1672,
+  "source": [
+    "https://polyhaven.com/a/modular_factory_facade",
+    "https://polyhaven.com/a/rough_concrete",
+    "https://polyhaven.com/a/rusty_metal"
+  ],
+  "license": "All source textures and factory mesh CC0; new geometry original project derivation",
+  "art_status": "Requires independent Godot fixed-camera review; procedural assembly alone is not art acceptance.",
+  "contents": "Complete S59 environment: retained west front half/rear bay joined by open collapse floors/columns; intact east and rear factories; no isolated water towers; rear centre rail exit open.",
+  "revision": "S59 grounded collapse final pass",
+  "revision_changes": "Lowered the exposed front floor; added 27 overlapping original rubble/slab pieces in a descending breach-to-apron heap, covering the straight plinth edge locally. No new buildings or central-route pieces.",
+  "collapse_fragments": [
+    {
+      "source": "\u00c9tage_2_2",
+      "bounds_min_godot": [
+        -26.600000381469727,
+        1.350000023841858,
+        -13.36332893371582
+      ],
+      "bounds_max_godot": [
+        -20.399999618530273,
+        4.138852596282959,
+        -7.63667106628418
+      ],
+      "uniform_scale_after_world_bake": 3.0384259862940266
+    },
+    {
+      "source": "\u00c9tage_4_2",
+      "bounds_min_godot": [
+        -26.599998474121094,
+        0.550000011920929,
+        -18.692279815673828
+      ],
+      "bounds_max_godot": [
+        -20.0,
+        2.4952292442321777,
+        -12.307721138000488
+      ],
+      "uniform_scale_after_world_bake": 2.8114261130954246
+    },
+    {
+      "source": "\u00c9tage_1",
+      "bounds_min_godot": [
+        -31.25,
+        0.5,
+        -24.94888687133789
+      ],
+      "bounds_max_godot": [
+        -24.75,
+        2.764209032058716,
+        -18.651111602783203
+      ],
+      "uniform_scale_after_world_bake": 2.907830553632738
+    },
+    {
+      "source": "\u00c9tage_1_2",
+      "bounds_min_godot": [
+        -28.350000381469727,
+        0.8999999761581421,
+        -30.2734317779541
+      ],
+      "bounds_max_godot": [
+        -21.649999618530273,
+        2.5304675102233887,
+        -23.7265682220459
+      ],
+      "uniform_scale_after_world_bake": 2.582420398648187
+    },
+    {
+      "source": "\u00c9tage_2_2",
+      "bounds_min_godot": [
+        -22.52147102355957,
+        0.6000000238418579,
+        -22.599998474121094
+      ],
+      "bounds_max_godot": [
+        -18.478527069091797,
+        1.5138418674468994,
+        -17.999998092651367
+      ],
+      "uniform_scale_after_world_bake": 1.6589332433610162
+    },
+    {
+      "source": "D\u00e9bri_1",
+      "bounds_min_godot": [
+        -23.999998092651367,
+        0.5,
+        -14.060799598693848
+      ],
+      "bounds_max_godot": [
+        -20.799999237060547,
+        4.226037979125977,
+        -11.939200401306152
+      ],
+      "uniform_scale_after_world_bake": 1.8207500512950954
+    },
+    {
+      "source": "D\u00e9bri_2",
+      "bounds_min_godot": [
+        -21.835397720336914,
+        0.7500000596046448,
+        -9.800000190734863
+      ],
+      "bounds_max_godot": [
+        -18.76460075378418,
+        1.7956628799438477,
+        -6.600000381469727
+      ],
+      "uniform_scale_after_world_bake": 2.35317402474083
+    },
+    {
+      "source": "Rock_1",
+      "bounds_min_godot": [
+        -19.41862678527832,
+        0.7299999594688416,
+        -16.649999618530273
+      ],
+      "bounds_max_godot": [
+        -17.7813720703125,
+        1.3932538032531738,
+        -14.949999809265137
+      ],
+      "uniform_scale_after_world_bake": 2.079442034373866
+    },
+    {
+      "source": "Rock_2",
+      "bounds_min_godot": [
+        -20.200000762939453,
+        0.7200000286102295,
+        -23.474063873291016
+      ],
+      "bounds_max_godot": [
+        -18.399999618530273,
+        3.039433479309082,
+        -22.125934600830078
+      ],
+      "uniform_scale_after_world_bake": 1.9636494724108415
+    },
+    {
+      "source": "Rock_3",
+      "bounds_min_godot": [
+        -18.792118072509766,
+        0.7200000286102295,
+        -12.300000190734863
+      ],
+      "bounds_max_godot": [
+        -17.60788345336914,
+        3.0783400535583496,
+        -10.899999618530273
+      ],
+      "uniform_scale_after_world_bake": 2.1010746312982542
+    },
+    {
+      "source": "Rock_1",
+      "bounds_min_godot": [
+        -20.772579193115234,
+        0.050000011920928955,
+        -5.350000381469727
+      ],
+      "bounds_max_godot": [
+        -20.2274227142334,
+        1.05519437789917,
+        -4.250000476837158
+      ],
+      "uniform_scale_after_world_bake": 1.3150634453453367
+    },
+    {
+      "source": "Rock_3",
+      "bounds_min_godot": [
+        -19.3681583404541,
+        0.050000011920928955,
+        -2.174999952316284
+      ],
+      "bounds_max_godot": [
+        -18.83184242248535,
+        1.1735811233520508,
+        -1.4249999523162842
+      ],
+      "uniform_scale_after_world_bake": 1.0010123955206391
+    },
+    {
+      "source": "Rock_1",
+      "bounds_min_godot": [
+        -25.294998168945312,
+        0.47999995946884155,
+        -10.24008560180664
+      ],
+      "bounds_max_godot": [
+        -22.14499855041504,
+        1.661501169204712,
+        -7.359914779663086
+      ],
+      "uniform_scale_after_world_bake": 3.704257747029345
+    },
+    {
+      "source": "Rock_2",
+      "bounds_min_godot": [
+        -24.083337783813477,
+        0.48000001907348633,
+        -11.985121726989746
+      ],
+      "bounds_max_godot": [
+        -22.416662216186523,
+        2.7299997806549072,
+        -10.414878845214844
+      ],
+      "uniform_scale_after_world_bake": 1.904866711382492
+    },
+    {
+      "source": "Rock_3",
+      "bounds_min_godot": [
+        -25.294998168945312,
+        0.48000001907348633,
+        -14.613093376159668
+      ],
+      "bounds_max_godot": [
+        -22.14499855041504,
+        1.6178820133209229,
+        -12.586906433105469
+      ],
+      "uniform_scale_after_world_bake": 2.7269412447033132
+    },
+    {
+      "source": "Rock_1",
+      "bounds_min_godot": [
+        -24.82499885559082,
+        0.48000001907348633,
+        -17.487529754638672
+      ],
+      "bounds_max_godot": [
+        -21.674999237060547,
+        1.686011552810669,
+        -14.512470245361328
+      ],
+      "uniform_scale_after_world_bake": 3.781102696613907
+    },
+    {
+      "source": "Rock_2",
+      "bounds_min_godot": [
+        -24.605344772338867,
+        0.48000001907348633,
+        -18.80752944946289
+      ],
+      "bounds_max_godot": [
+        -22.83465576171875,
+        2.7299997806549072,
+        -17.992469787597656
+      ],
+      "uniform_scale_after_world_bake": 1.904866711382492
+    },
+    {
+      "source": "Rock_3",
+      "bounds_min_godot": [
+        -24.82499885559082,
+        0.48000001907348633,
+        -22.175642013549805
+      ],
+      "bounds_max_godot": [
+        -21.674999237060547,
+        1.496533989906311,
+        -19.424358367919922
+      ],
+      "uniform_scale_after_world_bake": 2.436130242787753
+    },
+    {
+      "source": "Rock_1",
+      "bounds_min_godot": [
+        -25.293975830078125,
+        0.48000001907348633,
+        -24.775001525878906
+      ],
+      "bounds_max_godot": [
+        -22.146024703979492,
+        1.738112449645996,
+        -21.625
+      ],
+      "uniform_scale_after_world_bake": 3.9444500140467427
+    },
+    {
+      "source": "Rock_2",
+      "bounds_min_godot": [
+        -21.483793258666992,
+        0.6800000071525574,
+        -8.923498153686523
+      ],
+      "bounds_max_godot": [
+        -20.156204223632812,
+        2.3299999237060547,
+        -7.976501941680908
+      ],
+      "uniform_scale_after_world_bake": 1.3969022550138275
+    },
+    {
+      "source": "Rock_3",
+      "bounds_min_godot": [
+        -21.80000114440918,
+        0.6799999475479126,
+        -11.853155136108398
+      ],
+      "bounds_max_godot": [
+        -18.900001525878906,
+        1.6529730558395386,
+        -9.846845626831055
+      ],
+      "uniform_scale_after_world_bake": 2.3317363338688786
+    },
+    {
+      "source": "Rock_1",
+      "bounds_min_godot": [
+        -22.270000457763672,
+        0.6800000667572021,
+        -14.565238952636719
+      ],
+      "bounds_max_godot": [
+        -19.369998931884766,
+        1.787137746810913,
+        -11.934762001037598
+      ],
+      "uniform_scale_after_world_bake": 3.4711118996878962
+    },
+    {
+      "source": "Rock_2",
+      "bounds_min_godot": [
+        -20.988008499145508,
+        0.6800000071525574,
+        -15.991707801818848
+      ],
+      "bounds_max_godot": [
+        -19.711992263793945,
+        2.3299999237060547,
+        -15.308290481567383
+      ],
+      "uniform_scale_after_world_bake": 1.3969022550138275
+    },
+    {
+      "source": "Rock_3",
+      "bounds_min_godot": [
+        -22.239246368408203,
+        0.6799999475479126,
+        -19.5
+      ],
+      "bounds_max_godot": [
+        -19.4007511138916,
+        1.6624647378921509,
+        -16.599998474121094
+      ],
+      "uniform_scale_after_world_bake": 2.354483440921075
+    },
+    {
+      "source": "Rock_1",
+      "bounds_min_godot": [
+        -21.664451599121094,
+        0.6800000071525574,
+        -21.899999618530273
+      ],
+      "bounds_max_godot": [
+        -19.03554916381836,
+        1.7532765865325928,
+        -19.0
+      ],
+      "uniform_scale_after_world_bake": 3.3649504614140144
+    },
+    {
+      "source": "Rock_2",
+      "bounds_min_godot": [
+        -21.37411880493164,
+        0.6800000071525574,
+        -23.47894859313965
+      ],
+      "bounds_max_godot": [
+        -20.265880584716797,
+        2.3299999237060547,
+        -22.221052169799805
+      ],
+      "uniform_scale_after_world_bake": 1.3969022550138275
+    },
+    {
+      "source": "Rock_3",
+      "bounds_min_godot": [
+        -19.145000457763672,
+        0.02000001072883606,
+        -9.717971801757812
+      ],
+      "bounds_max_godot": [
+        -16.895000457763672,
+        0.7421653270721436,
+        -7.882029056549072
+      ],
+      "uniform_scale_after_world_bake": 1.7306737557437368
+    },
+    {
+      "source": "Rock_1",
+      "bounds_min_godot": [
+        -18.674999237060547,
+        0.02000001072883606,
+        -12.267082214355469
+      ],
+      "bounds_max_godot": [
+        -16.424999237060547,
+        0.8913906812667847,
+        -10.132918357849121
+      ],
+      "uniform_scale_after_world_bake": 2.7319951151015416
+    },
+    {
+      "source": "Rock_2",
+      "bounds_min_godot": [
+        -18.407167434692383,
+        0.019999980926513672,
+        -13.895536422729492
+      ],
+      "bounds_max_godot": [
+        -17.632835388183594,
+        1.0199999809265137,
+        -13.304464340209961
+      ],
+      "uniform_scale_after_world_bake": 0.8466074272811076
+    },
+    {
+      "source": "Rock_3",
+      "bounds_min_godot": [
+        -18.484769821166992,
+        0.02000001072883606,
+        -17.125
+      ],
+      "bounds_max_godot": [
+        -16.61522674560547,
+        0.7731014490127563,
+        -14.875
+      ],
+      "uniform_scale_after_world_bake": 1.804812484461359
+    },
+    {
+      "source": "Rock_1",
+      "bounds_min_godot": [
+        -19.04906463623047,
+        0.02000001072883606,
+        -19.524999618530273
+      ],
+      "bounds_max_godot": [
+        -16.990936279296875,
+        0.8492765426635742,
+        -17.274999618530273
+      ],
+      "uniform_scale_after_world_bake": 2.599958206424722
+    },
+    {
+      "source": "Rock_2",
+      "bounds_min_godot": [
+        -17.817771911621094,
+        0.019999980926513672,
+        -21.205455780029297
+      ],
+      "bounds_max_godot": [
+        -17.282228469848633,
+        1.0199999809265137,
+        -20.39454460144043
+      ],
+      "uniform_scale_after_world_bake": 0.8466074272811076
+    },
+    {
+      "source": "Rock_3",
+      "bounds_min_godot": [
+        -18.83294105529785,
+        0.02000001072883606,
+        -24.325000762939453
+      ],
+      "bounds_max_godot": [
+        -17.207059860229492,
+        0.7609361410140991,
+        -22.075000762939453
+      ],
+      "uniform_scale_after_world_bake": 1.7756582267941923
+    },
+    {
+      "source": "\u00c9tage_4_2",
+      "bounds_min_godot": [
+        -25.400001525878906,
+        1.0199999809265137,
+        -14.622276306152344
+      ],
+      "bounds_max_godot": [
+        -21.0,
+        2.4587340354919434,
+        -10.377723693847656
+      ],
+      "uniform_scale_after_world_bake": 1.7552538763850076
+    },
+    {
+      "source": "\u00c9tage_2_2",
+      "bounds_min_godot": [
+        -23.799999237060547,
+        0.8199999928474426,
+        -19.53880500793457
+      ],
+      "bounds_max_godot": [
+        -19.799999237060547,
+        1.829721450805664,
+        -16.061195373535156
+      ],
+      "uniform_scale_after_world_bake": 1.5262999742632948
+    },
+    {
+      "source": "\u00c9tage_1",
+      "bounds_min_godot": [
+        -22.899999618530273,
+        0.7599999904632568,
+        -24.345060348510742
+      ],
+      "bounds_max_godot": [
+        -19.100000381469727,
+        1.768973708152771,
+        -20.65494155883789
+      ],
+      "uniform_scale_after_world_bake": 1.3704945244211384
+    },
+    {
+      "source": "D\u00e9bri_2",
+      "bounds_min_godot": [
+        -19.649999618530273,
+        0.03999999165534973,
+        -11.472748756408691
+      ],
+      "bounds_max_godot": [
+        -16.350000381469727,
+        0.6669041514396667,
+        -9.127251625061035
+      ],
+      "uniform_scale_after_world_bake": 2.179778656735257
+    },
+    {
+      "source": "D\u00e9bri_2",
+      "bounds_min_godot": [
+        -18.752702713012695,
+        0.019999980926513672,
+        -16.5
+      ],
+      "bounds_max_godot": [
+        -16.84729766845703,
+        0.9623292684555054,
+        -13.5
+      ],
+      "uniform_scale_after_world_bake": 1.889838879708053
+    },
+    {
+      "source": "D\u00e9bri_1",
+      "bounds_min_godot": [
+        -19.200000762939453,
+        0.03999999165534973,
+        -21.069381713867188
+      ],
+      "bounds_max_godot": [
+        -17.0,
+        0.8538221120834351,
+        -18.930620193481445
+      ],
+      "uniform_scale_after_world_bake": 0.9034967080884551
+    },
+    {
+      "source": "D\u00e9bri_3",
+      "bounds_min_godot": [
+        -25.969974517822266,
+        0.46000003814697266,
+        -9.250373840332031
+      ],
+      "bounds_max_godot": [
+        -25.430025100708008,
+        3.2100000381469727,
+        -8.749626159667969
+      ],
+      "uniform_scale_after_world_bake": 2.749999672174493
+    },
+    {
+      "source": "D\u00e9bri_3",
+      "bounds_min_godot": [
+        -21.860157012939453,
+        0.46000003814697266,
+        -11.2412691116333
+      ],
+      "bounds_max_godot": [
+        -21.33984375,
+        3.109999895095825,
+        -10.758729934692383
+      ],
+      "uniform_scale_after_world_bake": 2.64999968409542
+    },
+    {
+      "source": "D\u00e9bri_3",
+      "bounds_min_godot": [
+        -29.43195915222168,
+        0.46000003814697266,
+        -18.400598526000977
+      ],
+      "bounds_max_godot": [
+        -28.568042755126953,
+        4.860000133514404,
+        -17.599401473999023
+      ],
+      "uniform_scale_after_world_bake": 4.399999475479189
+    },
+    {
+      "source": "D\u00e9bri_3",
+      "bounds_min_godot": [
+        -27.814151763916016,
+        0.4599999189376831,
+        -25.291343688964844
+      ],
+      "bounds_max_godot": [
+        -27.185848236083984,
+        3.6599998474121094,
+        -24.708656311035156
+      ],
+      "uniform_scale_after_world_bake": 3.199999618530319
+    },
+    {
+      "source": "D\u00e9bri_3",
+      "bounds_min_godot": [
+        -20.937440872192383,
+        0.4599999785423279,
+        -18.12746238708496
+      ],
+      "bounds_max_godot": [
+        -20.66255760192871,
+        1.8599998950958252,
+        -17.872535705566406
+      ],
+      "uniform_scale_after_world_bake": 1.3999998331070145
+    }
+  ],
+  "source_geometry": "Fleurman original floor/column/debris meshes; imported world transforms baked before uniform metric layout. No separate full ruined tower added.",
+  "additional_source": "https://opengameart.org/content/destroyed-city-assets",
+  "reproduce": "Blender --background --python s56-build-rail-environment.py -- --s59",
+  "fixed_review_camera_godot": {
+    "position": [
+      4,
+      11,
+      32
+    ],
+    "target": [
+      0,
+      1,
+      -19
+    ]
+  },
+  "verification": {
+    "bytes": 66329616,
+    "sha256": "d6dec71fe41a2e9e8ccd4e6895a066dd3e3ba533440111fa892fbc600e7d9cd8",
+    "previous_sha256": "d9acd06383926216f0db169b5bdda63b33bac2120fa5507a8b6acafedb617a08",
+    "mesh_nodes": 1672,
+    "unique_meshes": 1269,
+    "unique_triangles": 1620776,
+    "scene_triangles": 2032642,
+    "materials": 10,
+    "embedded_images": 18,
+    "image_bytes": 20383864,
+    "normals_uv_materials": true
+  },
+  "collapse_bounds_min": [
+    -31.25,
+    0.019999980926513672,
+    -30.2734317779541
+  ],
+  "collapse_bounds_max": [
+    -16.350000381469727,
+    4.860000133514404,
+    -1.4249999523162842
+  ],
+  "grounding_pass_added_fragment_count": 27,
+  "grounding_pass_added_triangles": 7062,
+  "visual_status": "Awaiting root final Godot re-render. Prior s59 screenshots show previous SHA, not this grounding revision."
+}
