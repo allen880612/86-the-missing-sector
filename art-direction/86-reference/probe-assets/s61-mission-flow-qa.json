@@ -1,7 +1,7 @@
 {
   "events": [
     {
-      "at_ms": 3918,
+      "at_ms": 2967,
       "event": "start"
     },
     {
@@ -10,7 +10,7 @@
       "kills": 0
     },
     {
-      "at_ms": 6172,
+      "at_ms": 5194,
       "event": "start"
     },
     {

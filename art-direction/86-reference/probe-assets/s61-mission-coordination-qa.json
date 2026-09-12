@@ -1,0 +1,19 @@
+{
+  "frontal_guard": true,
+  "heavy_keeps_warning_time": true,
+  "heavy_uses_old_locked_position": true,
+  "high_cover_cancels_designation": true,
+  "high_cover_stops_hunter": true,
+  "hunter_warns_before_charge": true,
+  "kill_cancels_designation": true,
+  "limits": [
+    "controlled positions and cooldowns with actual Godot physics; not manual balance or visual acceptance",
+    "does not prove enemy animation, three distinct models, or heavy unit destructibility"
+  ],
+  "retry_clears_coordination": true,
+  "scout_acquires": true,
+  "scout_confirms_after_visible_lock": true,
+  "side_shot_bypasses_guard": true,
+  "sidestep_avoids_locked_charge": true,
+  "support_bypasses_guard": true
+}

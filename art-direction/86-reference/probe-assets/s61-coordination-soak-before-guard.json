@@ -1,0 +1,429 @@
+{
+  "elapsed_simulation_seconds": 195.650000000048,
+  "events": [
+    {
+      "at_ms": 2935,
+      "event": "start"
+    },
+    {
+      "at": "(11.53186, 0.05, 8.743212)",
+      "elapsed": 14.0000000000003,
+      "event": "heavy_target_locked",
+      "from_scout": false
+    },
+    {
+      "elapsed": 17.6333333333336,
+      "event": "designation_start"
+    },
+    {
+      "elapsed": 18.4333333333336,
+      "event": "designation_cancelled"
+    },
+    {
+      "elapsed": 23.4833333333333,
+      "event": "designation_start"
+    },
+    {
+      "elapsed": 24.0666666666666,
+      "event": "designation_cancelled"
+    },
+    {
+      "elapsed": 28.4666666666663,
+      "event": "designation_start"
+    },
+    {
+      "at": "(1.205337, 0.05, -7.53337)",
+      "elapsed": 28.9999999999996,
+      "event": "heavy_target_locked",
+      "from_scout": false
+    },
+    {
+      "elapsed": 29.6999999999996,
+      "event": "designation_cancelled"
+    },
+    {
+      "elapsed": 39.7333333333324,
+      "event": "designation_start"
+    },
+    {
+      "elapsed": 40.3166666666657,
+      "event": "designation_cancelled"
+    },
+    {
+      "at": "(-11.85094, 0.05, 6.216977)",
+      "elapsed": 43.9999999999988,
+      "event": "heavy_target_locked",
+      "from_scout": false
+    },
+    {
+      "elapsed": 52.7333333333316,
+      "event": "designation_start"
+    },
+    {
+      "elapsed": 53.3166666666649,
+      "event": "designation_cancelled"
+    },
+    {
+      "at": "(7.478627, 0.05, 13.52156)",
+      "elapsed": 58.9999999999979,
+      "event": "heavy_target_locked",
+      "from_scout": false
+    },
+    {
+      "elapsed": 66.7999999999975,
+      "event": "designation_start"
+    },
+    {
+      "elapsed": 66.9666666666642,
+      "event": "designation_cancelled"
+    },
+    {
+      "at": "(12.4662, 0.05, -5.81582)",
+      "elapsed": 73.9999999999971,
+      "event": "heavy_target_locked",
+      "from_scout": false
+    },
+    {
+      "elapsed": 75.9166666666636,
+      "event": "designation_start"
+    },
+    {
+      "elapsed": 76.4999999999969,
+      "event": "designation_cancelled"
+    },
+    {
+      "elapsed": 83.3666666666632,
+      "event": "designation_start"
+    },
+    {
+      "elapsed": 83.8666666666632,
+      "event": "designation_cancelled"
+    },
+    {
+      "elapsed": 88.2666666666629,
+      "event": "designation_start"
+    },
+    {
+      "elapsed": 88.8499999999962,
+      "event": "designation_cancelled"
+    },
+    {
+      "at": "(-10.35705, 0.05, -8.468987)",
+      "elapsed": 88.9999999999962,
+      "event": "heavy_target_locked",
+      "from_scout": false
+    },
+    {
+      "elapsed": 93.899999999996,
+      "event": "designation_start"
+    },
+    {
+      "elapsed": 94.4833333333293,
+      "event": "designation_cancelled"
+    },
+    {
+      "elapsed": 98.883333333329,
+      "event": "designation_start"
+    },
+    {
+      "elapsed": 99.4666666666623,
+      "event": "designation_cancelled"
+    },
+    {
+      "at": "(-10.87869, 0.05, 13.53208)",
+      "elapsed": 103.999999999995,
+      "event": "heavy_target_locked",
+      "from_scout": false
+    },
+    {
+      "elapsed": 104.516666666662,
+      "event": "designation_start"
+    },
+    {
+      "elapsed": 105.099999999995,
+      "event": "designation_cancelled"
+    },
+    {
+      "at": "(11.53014, 0.05, 9.348266)",
+      "elapsed": 118.999999999995,
+      "event": "heavy_target_locked",
+      "from_scout": false
+    },
+    {
+      "elapsed": 122.066666666661,
+      "event": "designation_start"
+    },
+    {
+      "elapsed": 122.649999999994,
+      "event": "designation_cancelled"
+    },
+    {
+      "elapsed": 128.983333333328,
+      "event": "designation_start"
+    },
+    {
+      "elapsed": 129.583333333329,
+      "event": "designation_cancelled"
+    },
+    {
+      "elapsed": 133.599999999998,
+      "event": "designation_start"
+    },
+    {
+      "at": "(1.803617, 0.05, -7.528306)",
+      "elapsed": 133.999999999999,
+      "event": "heavy_target_locked",
+      "from_scout": false
+    },
+    {
+      "elapsed": 134.133333333332,
+      "event": "designation_cancelled"
+    },
+    {
+      "elapsed": 144.800000000007,
+      "event": "designation_start"
+    },
+    {
+      "elapsed": 145.400000000008,
+      "event": "designation_cancelled"
+    },
+    {
+      "at": "(-11.85094, 0.05, 5.62347)",
+      "elapsed": 149.000000000011,
+      "event": "heavy_target_locked",
+      "from_scout": false
+    },
+    {
+      "elapsed": 156.28333333335,
+      "event": "designation_start"
+    },
+    {
+      "elapsed": 156.88333333335,
+      "event": "designation_cancelled"
+    },
+    {
+      "at": "(6.878628, 0.05, 13.52804)",
+      "elapsed": 164.000000000023,
+      "event": "heavy_target_locked",
+      "from_scout": false
+    },
+    {
+      "elapsed": 169.500000000027,
+      "event": "designation_start"
+    },
+    {
+      "elapsed": 170.100000000028,
+      "event": "designation_cancelled"
+    },
+    {
+      "elapsed": 176.016666666699,
+      "event": "designation_start"
+    },
+    {
+      "elapsed": 176.600000000033,
+      "event": "designation_cancelled"
+    },
+    {
+      "at": "(12.47457, 0.05, -6.025977)",
+      "elapsed": 179.000000000035,
+      "event": "heavy_target_locked",
+      "from_scout": false
+    },
+    {
+      "elapsed": 180.616666666703,
+      "event": "designation_start"
+    },
+    {
+      "elapsed": 181.366666666703,
+      "event": "designation_cancelled"
+    },
+    {
+      "elapsed": 189.983333333377,
+      "event": "designation_start"
+    },
+    {
+      "elapsed": 191.333333333378,
+      "event": "designation_cancelled"
+    },
+    {
+      "at": "(0.471421, 0.05, 12.30684)",
+      "elapsed": 194.000000000047,
+      "event": "heavy_target_locked",
+      "from_scout": false
+    },
+    {
+      "elapsed": 195.650000000048,
+      "event": "win",
+      "kills": 132
+    }
+  ],
+  "hp": 120.0,
+  "kills": 132,
+  "limits": [
+    "scripted keyboard and pointer input, not independent human or OS UI acceptance",
+    "no HP, damage, clock, spawn or cooldown overrides",
+    "aim selects visible unobstructed enemies using engine state; more accurate than a human",
+    "physics dt is fixed, not a measured render frame-time benchmark"
+  ],
+  "movement_frames": 11737,
+  "phase": "result",
+  "samples": [
+    {
+      "alive": 1,
+      "effects": 2,
+      "elapsed": 10.0000000000001,
+      "hp": 120.0,
+      "kills": 3,
+      "position": "(10.70103, -0.04, 14.39897)"
+    },
+    {
+      "alive": 1,
+      "effects": 1,
+      "elapsed": 20.0000000000001,
+      "hp": 120.0,
+      "kills": 6,
+      "position": "(11.53186, -0.04, -3.831792)"
+    },
+    {
+      "alive": 1,
+      "effects": 2,
+      "elapsed": 30.0166666666662,
+      "hp": 120.0,
+      "kills": 10,
+      "position": "(-0.319663, -0.04, -7.53337)"
+    },
+    {
+      "alive": 2,
+      "effects": 1,
+      "elapsed": 40.0166666666657,
+      "hp": 114.0,
+      "kills": 13,
+      "position": "(-11.85094, -0.04, 0.241962)"
+    },
+    {
+      "alive": 0,
+      "effects": 0,
+      "elapsed": 50.0166666666651,
+      "hp": 120.0,
+      "kills": 19,
+      "position": "(-5.996406, -0.04, 13.52156)"
+    },
+    {
+      "alive": 0,
+      "effects": 1,
+      "elapsed": 60.0166666666645,
+      "hp": 120.0,
+      "kills": 25,
+      "position": "(9.003613, -0.04, 13.52156)"
+    },
+    {
+      "alive": 1,
+      "effects": 1,
+      "elapsed": 70.016666666664,
+      "hp": 120.0,
+      "kills": 31,
+      "position": "(12.4662, -0.04, 0.159193)"
+    },
+    {
+      "alive": 1,
+      "effects": 1,
+      "elapsed": 80.0166666666634,
+      "hp": 120.0,
+      "kills": 37,
+      "position": "(3.117936, -0.04, -8.468987)"
+    },
+    {
+      "alive": 2,
+      "effects": 2,
+      "elapsed": 90.0166666666628,
+      "hp": 120.0,
+      "kills": 43,
+      "position": "(-11.51591, -0.04, -7.58511)"
+    },
+    {
+      "alive": 1,
+      "effects": 1,
+      "elapsed": 100.016666666662,
+      "hp": 120.0,
+      "kills": 50,
+      "position": "(-11.85094, -0.04, 7.959898)"
+    },
+    {
+      "alive": 2,
+      "effects": 0,
+      "elapsed": 110.016666666662,
+      "hp": 120.0,
+      "kills": 57,
+      "position": "(1.721295, -0.04, 13.53208)"
+    },
+    {
+      "alive": 1,
+      "effects": 0,
+      "elapsed": 120.016666666661,
+      "hp": 120.0,
+      "kills": 65,
+      "position": "(11.53014, -0.04, 7.823285)"
+    },
+    {
+      "alive": 1,
+      "effects": 3,
+      "elapsed": 130.016666666662,
+      "hp": 120.0,
+      "kills": 73,
+      "position": "(7.778639, -0.04, -7.528306)"
+    },
+    {
+      "alive": 2,
+      "effects": 1,
+      "elapsed": 140.000000000004,
+      "hp": 120.0,
+      "kills": 81,
+      "position": "(-10.73474, -0.04, -7.439918)"
+    },
+    {
+      "alive": 1,
+      "effects": 2,
+      "elapsed": 150.000000000012,
+      "hp": 120.0,
+      "kills": 90,
+      "position": "(-11.85094, -0.04, 7.123476)"
+    },
+    {
+      "alive": 2,
+      "effects": 1,
+      "elapsed": 160.000000000019,
+      "hp": 120.0,
+      "kills": 99,
+      "position": "(0.87861, -0.04, 13.52804)"
+    },
+    {
+      "alive": 3,
+      "effects": 2,
+      "elapsed": 170.000000000027,
+      "hp": 120.0,
+      "kills": 107,
+      "position": "(12.47457, -0.04, 7.474056)"
+    },
+    {
+      "alive": 3,
+      "effects": 0,
+      "elapsed": 180.000000000035,
+      "hp": 120.0,
+      "kills": 116,
+      "position": "(11.85586, -0.04, -7.269702)"
+    },
+    {
+      "alive": 2,
+      "effects": 1,
+      "elapsed": 190.000000000043,
+      "hp": 120.0,
+      "kills": 126,
+      "position": "(0.471421, -0.04, 6.306904)"
+    }
+  ],
+  "shots": 903,
+  "supports": 1,
+  "vaults": 13,
+  "wall_seconds": 199.865,
+  "won": true
+}

@@ -30,6 +30,10 @@ var space_was := false
 var elapsed := 0.0
 var heavy_timer := 12.0
 var danger: Dictionary = {}
+var designation: Dictionary = {}
+var designation_cd := 5.0
+var marked_time := 0.0
+var marked_position := Vector3.ZERO
 var aim := Vector3.ZERO
 var exit_marker: MeshInstance3D
 var ready_to_tick := false
@@ -92,7 +96,7 @@ func capture_scene(boss: Node3D):
     for i in range(24):
         var model: Node3D = units[i+1]
         var body := body_for(model,0.65,4)
-        foes.append({"body":body,"model":model,"hp":0.0,"active":false,"role":"hunter" if i%3==0 else "scout","cooldown":0.0,"respawn":float(i)*2.0,"tell":0.0,"dash":Vector3.ZERO,"heading":0.0})
+        foes.append({"body":body,"model":model,"hp":0.0,"active":false,"role":"hunter" if i%3==0 else "scout","cooldown":0.0,"respawn":float(i)*2.0,"tell":0.0,"dash":Vector3.ZERO,"charge":0.0,"charge_hit":false,"heading":0.0})
         model.visible = false
         body.collision_layer = 0
         body.collision_mask = 0
@@ -141,6 +145,9 @@ func begin_run():
     vault_requested = false
     support_requested = false
     heavy_timer = 14
+    designation.clear()
+    designation_cd=5
+    marked_time=0
     if not danger.is_empty() and is_instance_valid(danger.node):danger.node.queue_free()
     danger.clear()
     for effect in effects:
@@ -213,6 +220,41 @@ func clear_line(from: Vector3,to: Vector3) -> bool:
     var q := PhysicsRayQueryParameters3D.create(from,to,1)
     return world.get_world_3d().direct_space_state.intersect_ray(q).is_empty()
 
+func update_designation(dt: float):
+    designation_cd=maxf(0,designation_cd-dt)
+    marked_time=maxf(0,marked_time-dt)
+    if designation.is_empty():
+        if designation_cd>0 or marked_time>0:return
+        for foe in foes:
+            if not foe.active or foe.role!="scout":continue
+            if foe.body.position.distance_to(pilot.position)>22:continue
+            if not clear_line(foe.body.position+Vector3.UP,pilot.position+Vector3.UP):continue
+            designation={"source":foe,"progress":0.0,"beam_cd":0.0}
+            ui.announce("辛：斥候正在標定。切斷視線，或先擊毀它。")
+            run_events.append({"event":"designation_start","elapsed":elapsed})
+            break
+        return
+    var source: Dictionary=designation.source
+    if not source.active or source.body.position.distance_to(pilot.position)>24 or not clear_line(source.body.position+Vector3.UP,pilot.position+Vector3.UP):
+        designation.clear()
+        designation_cd=4
+        ui.announce("辛：標定中斷。趁現在換位。")
+        run_events.append({"event":"designation_cancelled","elapsed":elapsed})
+        return
+    designation.progress+=dt
+    designation.beam_cd-=dt
+    if designation.beam_cd<=0:
+        designation.beam_cd=0.15
+        streak(source.body.position+Vector3(0,1.4,0),pilot.position+Vector3(0,1.4,0),Color(1,0.66,0.22),0.16)
+    if designation.progress>=1.8:
+        marked_position=pilot.position
+        marked_time=6
+        heavy_timer=minf(heavy_timer,0.8)
+        designation.clear()
+        designation_cd=10
+        ui.announce("辛：位置暴露！重砲接收標定，獵兵正切入。")
+        run_events.append({"event":"designation_confirmed","elapsed":elapsed})
+
 func shoot():
     shots += 1
     var from := pilot.position+Vector3(0,1.6,0)
@@ -226,11 +268,20 @@ func shoot():
         to = hit.position
         for foe in foes:
             if foe.active and foe.body == hit.collider:
-                hurt_foe(foe,28)
+                hurt_foe(foe,28,from)
                 break
     streak(from,to,Color(1,0.79,0.4))
 
-func hurt_foe(foe: Dictionary,damage: float):
+func hurt_foe(foe: Dictionary,damage: float,from: Vector3=Vector3.INF):
+    if foe.role=="hunter" and (foe.tell>0 or foe.charge>0) and from!=Vector3.INF:
+        var facing: Vector3=foe.dash-foe.body.position
+        var incoming: Vector3=from-foe.body.position
+        facing.y=0
+        incoming.y=0
+        if facing.normalized().dot(incoming.normalized())>0.45:
+            damage*=0.4
+            var spark_at: Vector3=foe.body.position+Vector3(0,1.4,0)
+            streak(spark_at-Vector3(0.45,0.2,0),spark_at+Vector3(0.45,0.2,0),Color(1,0.86,0.5),0.12)
     foe.hp -= damage
     if foe.hp<=0:
         foe.active = false
@@ -322,6 +373,7 @@ func tick(dt: float):
     if fire_cd<=0:
         fire_cd=0.20
         shoot()
+    update_designation(dt)
     var active_limit := mini(12,4+int(elapsed/22))
     for i in range(foes.size()):
         var foe: Dictionary = foes[i]
@@ -332,8 +384,10 @@ func tick(dt: float):
                 foe.model.visible=true
                 foe.active=true
                 foe.hp=110.0 if foe.role=="hunter" else 70.0
-                foe.cooldown=2.0+float(i%3)
+                foe.cooldown=0.0 if foe.role=="hunter" else 2.0+float(i%3)
                 foe.tell=0.0
+                foe.charge=0.0
+                foe.charge_hit=false
                 foe.body.collision_layer=4
                 foe.body.collision_mask=1|2|4
             continue
@@ -343,30 +397,49 @@ func tick(dt: float):
         var direction:=toward.normalized()
         foe.model.rotation.y=atan2(direction.x,direction.z)
         foe.cooldown-=dt
-        var speed:=0.95 if foe.role=="hunter" else 0.65
+        var speed: float=(1.3 if marked_time>0 else 0.95) if foe.role=="hunter" else 0.65
+        var enemy_velocity:=direction*speed if distance>3 else Vector3.ZERO
         if foe.role=="hunter":
-            if foe.tell>0:
+            if foe.charge>0:
+                foe.charge=maxf(0,foe.charge-dt)
+                var to_locked: Vector3=foe.dash-foe.body.position
+                to_locked.y=0
+                enemy_velocity=to_locked.normalized()*minf(7.0,to_locked.length()/maxf(dt,0.001))
+                foe.model.rotation.y=atan2(to_locked.x,to_locked.z)
+                if to_locked.length()<0.25:foe.charge=0
+                if not foe.charge_hit and distance<2.5 and clear_line(foe.body.position+Vector3.UP,pilot.position+Vector3.UP):
+                    foe.charge_hit=true
+                    hurt_player(14)
+                    run_events.append({"event":"hunter_hit","elapsed":elapsed})
+            elif foe.tell>0:
+                enemy_velocity=Vector3.ZERO
                 foe.tell-=dt
                 if foe.tell<=0:
-                    streak(foe.body.position+Vector3.UP,pilot.position+Vector3.UP,Color(1,0.25,0.17),0.22)
-                    if distance<5 and clear_line(foe.body.position+Vector3.UP,pilot.position+Vector3.UP):hurt_player(14)
-            elif distance<5 and foe.cooldown<=0:
-                foe.tell=0.9
-                foe.cooldown=3.5
-                var ring:=marker(foe.body.position+Vector3(0,0.03,0),5,Color(0.9,0.26,0.15,0.15))
-                effects.append({"node":ring,"life":0.9})
+                    foe.charge=0.7
+                    foe.charge_hit=false
+            elif distance<15 and foe.cooldown<=0 and clear_line(foe.body.position+Vector3.UP,pilot.position+Vector3.UP):
+                foe.tell=1.0
+                foe.cooldown=4.2
+                foe.dash=pilot.position
+                enemy_velocity=Vector3.ZERO
+                streak(foe.body.position+Vector3(0,0.15,0),foe.dash+Vector3(0,0.15,0),Color(1,0.43,0.20),1.0)
+                var ring:=marker(foe.dash+Vector3(0,0.05,0),2.5,Color(0.9,0.26,0.15,0.18))
+                effects.append({"node":ring,"life":1.0})
+                run_events.append({"event":"hunter_charge_locked","elapsed":elapsed,"at":str(foe.dash)})
         elif distance<18 and foe.cooldown<=0 and clear_line(foe.body.position+Vector3.UP,pilot.position+Vector3.UP):
             foe.cooldown=3.8
             streak(foe.body.position+Vector3.UP,pilot.position+Vector3.UP,Color(1,0.32,0.20),0.18)
             hurt_player(6)
-        foe.body.velocity=direction*speed if distance>3 else Vector3.ZERO
+        foe.body.velocity=enemy_velocity
         foe.body.move_and_slide()
     heavy_timer-=dt
     if heavy_timer<=0 and danger.is_empty():
         heavy_timer=15
-        var at:=pilot.position;at.y=0.05
+        var at:=marked_position if marked_time>0 else pilot.position
+        at.y=0.05
         var warning:=marker(at,4.3,Color(1,0.22,0.10,0.28))
         danger={"at":at,"node":warning,"remaining":2.8}
+        run_events.append({"event":"heavy_target_locked","elapsed":elapsed,"from_scout":marked_time>0,"at":str(at)})
         ui.announce("辛：重砲標定，離開紅色落點。")
     if not danger.is_empty():
         danger.remaining-=dt

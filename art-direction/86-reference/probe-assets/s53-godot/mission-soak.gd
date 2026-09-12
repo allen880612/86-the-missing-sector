@@ -7,6 +7,7 @@ var started_at := 0
 var finished := false
 var held: Dictionary = {}
 var frame_times: Array = []
+var output_name := "s61-coordination-soak" if "--coordination" in OS.get_cmdline_user_args() else "s61-mission-soak"
 
 func capture_scene(boss: Node3D):
     super.capture_scene(boss)
@@ -74,13 +75,13 @@ func tick(dt: float):
 
 func save_frame(index: int):
     await process_frame
-    root.get_texture().get_image().save_png(PROBE+"s61-mission-soak-%02d.png"%index)
+    root.get_texture().get_image().save_png(PROBE+output_name+"-%02d.png"%index)
 
 func finish_soak():
     await create_timer(0.4).timeout
     var won: bool=not run_events.is_empty() and run_events[-1].event=="win"
     var report: Dictionary={"won":won,"phase":phase,"elapsed_simulation_seconds":elapsed,"wall_seconds":(Time.get_ticks_msec()-started_at)/1000.0,"hp":health,"kills":kills,"shots":shots,"vaults":vaults,"supports":supports,"movement_frames":movement_frames,"samples":samples,"events":run_events,"limits":["scripted keyboard and pointer input, not independent human or OS UI acceptance","no HP, damage, clock, spawn or cooldown overrides","aim selects visible unobstructed enemies using engine state; more accurate than a human","physics dt is fixed, not a measured render frame-time benchmark"]}
-    FileAccess.open(PROBE+"s61-mission-soak.json",FileAccess.WRITE).store_string(JSON.stringify(report,"  "))
-    root.get_texture().get_image().save_png(PROBE+"s61-mission-soak-result.png")
+    FileAccess.open(PROBE+output_name+".json",FileAccess.WRITE).store_string(JSON.stringify(report,"  "))
+    root.get_texture().get_image().save_png(PROBE+output_name+"-result.png")
     print("SOAK_COMPLETE ",JSON.stringify(report))
     quit(0 if won else 1)
