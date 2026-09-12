@@ -376,7 +376,14 @@
         "assets/model/polyhaven/rubble/rubble_arm_1k.jpg",
         "assets/model/polyhaven/rubble/rubble_disp_1k.png"
       ]
-    }
+    },
+    "vfx_verification": {
+      "date": "2026-09-13",
+      "files": 41,
+      "method": "read existing files, byte count and SHA-256",
+      "original_zip_status": "Historical /tmp/free-explosion-animations-2.zip and /tmp/Explosions.zip no longer exist; retained PNG files verified; no re-download needed to reuse them."
+    },
+    "search_gate": "Read this index and the referenced inspection first; only search for a stated missing dependency. Do not repeat rejected candidate searches without new availability or requirements."
   },
   "structure_texture_catalog": [
     {
@@ -463,5 +470,251 @@
         "No normal or roughness maps found in embedded images"
       ]
     }
-  }
+  },
+  "vfx_catalog": [
+    {
+      "id": "Sinestesia explosion atlas",
+      "author": "Sinestesia",
+      "license": "CC0",
+      "source": "https://opengameart.org/content/2d-explosion-animations-2-frame-by-frame",
+      "license_evidence": "assets/vfx/CREDITS.md",
+      "license_check": "existing local credits; not re-fetched this audit",
+      "stage": "files verified; 3D art acceptance pending",
+      "files": [
+        {
+          "local_path": "assets/vfx/sinestesia-explosion-2-full.png",
+          "bytes": 4034333,
+          "sha256": "31a3f4746b280feb914455ff3689b016860ff6263fb444ebf239b10482eaeb06"
+        },
+        {
+          "local_path": "assets/vfx/sinestesia-explosion-2-half-2.png",
+          "bytes": 1398978,
+          "sha256": "d29887e280fa8648b422432f6e3c04c8fce9bd50893fd199aa35fbb6efddc001"
+        },
+        {
+          "local_path": "assets/vfx/sinestesia-explosion-2-half-3.png",
+          "bytes": 954487,
+          "sha256": "cb9f24ebc3dc9b214e52275700506fc801f4988c81638cebd4c98306e475c9d2"
+        },
+        {
+          "local_path": "assets/vfx/sinestesia-explosion-2-half-4.png",
+          "bytes": 842204,
+          "sha256": "b05ab70118ac5e809f2ee15c1f7d304b3024eafbab64d0a96e61f72864222cfc"
+        },
+        {
+          "local_path": "assets/vfx/sinestesia-explosion-2-half.png",
+          "bytes": 1249586,
+          "sha256": "945a598fe23288b0b903791dcf6de3a700ddddd65fe2d69b29e6f5f3cd7d140b"
+        }
+      ],
+      "working_copy_root": ".worktrees/s45-3d-sortie/",
+      "version_status": "Kenney and lava-blast already tracked; Sinestesia five PNGs added to local research change; not deployed."
+    },
+    {
+      "id": "Kenney smoke",
+      "author": "Kenney",
+      "license": "CC0",
+      "source": "https://kenney.nl/assets/smoke-particles",
+      "license_evidence": "assets/vfx/CREDITS.md",
+      "license_check": "existing local credits; not re-fetched this audit",
+      "stage": "files verified; 3D art acceptance pending",
+      "files": [
+        {
+          "local_path": "assets/vfx/kenney-smoke/blackSmoke05.png",
+          "bytes": 113088,
+          "sha256": "00c0854d410e0e38efa0ba96725c89f3d14eedda669392a24cfc9a6cee05cf64"
+        },
+        {
+          "local_path": "assets/vfx/kenney-smoke/blackSmoke15.png",
+          "bytes": 118133,
+          "sha256": "12a3074bb5a55080c30806c783a0f70010aeab4305957cfaddcb3f01f3c845cd"
+        },
+        {
+          "local_path": "assets/vfx/kenney-smoke/whitePuff03.png",
+          "bytes": 126303,
+          "sha256": "8da251b3cff719ee51d794ff5b5c62fd38e5e55056cd5b91ab55f6108d5ff048"
+        },
+        {
+          "local_path": "assets/vfx/kenney-smoke/whitePuff14.png",
+          "bytes": 130334,
+          "sha256": "4c953cdd8e2df3bee9419feb46e65e62521097fc4106f66598650681707f8a9e"
+        }
+      ],
+      "working_copy_root": ".worktrees/s45-3d-sortie/",
+      "version_status": "Kenney and lava-blast already tracked; Sinestesia five PNGs added to local research change; not deployed."
+    },
+    {
+      "id": "Lave Blob sampled sequence",
+      "author": "fscopel",
+      "license": "CC-BY 3.0",
+      "source": "https://opengameart.org/content/photo-realistic-explosions",
+      "license_evidence": "assets/vfx/lava-blast/CREDITS.md",
+      "license_check": "existing local credits; not re-fetched this audit",
+      "stage": "files verified; 3D art acceptance pending",
+      "files": [
+        {
+          "local_path": "assets/vfx/lava-blast/000060.png",
+          "bytes": 44046,
+          "sha256": "0f325ca50b369457dc3b6b91c5f006162061437707153c66d78dc7fd661e94bb"
+        },
+        {
+          "local_path": "assets/vfx/lava-blast/000062.png",
+          "bytes": 42604,
+          "sha256": "01915f490e34375a54072fb14ec95fc66782d9119c65e8dbe847a682e9bde22d"
+        },
+        {
+          "local_path": "assets/vfx/lava-blast/000064.png",
+          "bytes": 42833,
+          "sha256": "4f0fed03725b96ada7f3078107d1a59cfa36a92debb20c8efbb88167b9621cc9"
+        },
+        {
+          "local_path": "assets/vfx/lava-blast/000066.png",
+          "bytes": 40455,
+          "sha256": "84ef819c0ab6fc3c9a6c348f732c8689eb9691b0ddaeeac8c1a7eae9ac6c79e2"
+        },
+        {
+          "local_path": "assets/vfx/lava-blast/000068.png",
+          "bytes": 40832,
+          "sha256": "cc10aa9760b8997744ae23c587f6e5b3c64b5e3dcfa1fc54ec1ef7486ed3829c"
+        },
+        {
+          "local_path": "assets/vfx/lava-blast/000070.png",
+          "bytes": 42833,
+          "sha256": "c967ea61378cd147319369a3409fc79c948db459dd5642ecfeab01e9c1ea0151"
+        },
+        {
+          "local_path": "assets/vfx/lava-blast/000072.png",
+          "bytes": 41442,
+          "sha256": "0b4a7f10df63a99727f7ae7f4680d8b8fc6bc558f35f11b01c6d2023a0968ac1"
+        },
+        {
+          "local_path": "assets/vfx/lava-blast/000074.png",
+          "bytes": 38222,
+          "sha256": "15b2a73f1d17b271e86dcb4fbe8668a042920bb5debb7dbd2e9b820c6a929ca5"
+        },
+        {
+          "local_path": "assets/vfx/lava-blast/000076.png",
+          "bytes": 40135,
+          "sha256": "61bf8ff835b795c6839e66864f5552058588879e4046305587728d74ed877313"
+        },
+        {
+          "local_path": "assets/vfx/lava-blast/000078.png",
+          "bytes": 41127,
+          "sha256": "e5fac44b5f35a25cadbdc5504ec77fcca0371345cc45f2833ba803f498f7f68f"
+        },
+        {
+          "local_path": "assets/vfx/lava-blast/000080.png",
+          "bytes": 42967,
+          "sha256": "4d295a8591e08d45d346c39136accc081ef6089e5511a093a72b1ab42713c2ef"
+        },
+        {
+          "local_path": "assets/vfx/lava-blast/000082.png",
+          "bytes": 43272,
+          "sha256": "96afc7ea262ce3a91a124b6dc96874b3c8d453f894130840175c8ba17f2a54cb"
+        },
+        {
+          "local_path": "assets/vfx/lava-blast/000084.png",
+          "bytes": 41676,
+          "sha256": "4ec83019232c47db3e8efbc922564d8e0c9d6d63061caa7b4e9064795b9390ff"
+        },
+        {
+          "local_path": "assets/vfx/lava-blast/000086.png",
+          "bytes": 40832,
+          "sha256": "df7b2d9e8c73cb57312de8b7f78c9685937154a73d0ef9a39e17bcfd1060f900"
+        },
+        {
+          "local_path": "assets/vfx/lava-blast/000088.png",
+          "bytes": 40842,
+          "sha256": "281181a22f8a6c31a62ce54602118282ede830cb8f9960c3993e743eb3590cf2"
+        },
+        {
+          "local_path": "assets/vfx/lava-blast/000090.png",
+          "bytes": 41782,
+          "sha256": "b81ce4db4bf14f3d5b61e97bb9d59ea4849401366d8c4b35a1d79ff8ecc76a51"
+        },
+        {
+          "local_path": "assets/vfx/lava-blast/000092.png",
+          "bytes": 39492,
+          "sha256": "2497d5a8267266ebb654fce8bc7ec39aaecbafce528df025db6317aef58bad70"
+        },
+        {
+          "local_path": "assets/vfx/lava-blast/000094.png",
+          "bytes": 37947,
+          "sha256": "7ef5373411b03345916fabe5a31da4db5dc71f00a6be7c734f1bbf25bd847963"
+        },
+        {
+          "local_path": "assets/vfx/lava-blast/000096.png",
+          "bytes": 38457,
+          "sha256": "7dab83c7be97e60cf03bce40423939caf8ff3299715c9d5da9f09e4517d553b9"
+        },
+        {
+          "local_path": "assets/vfx/lava-blast/000098.png",
+          "bytes": 39976,
+          "sha256": "11bf7c37e5eada65381371b4c9a410f9c5bfc045d12964dbc2d5f1d102e9c7b7"
+        },
+        {
+          "local_path": "assets/vfx/lava-blast/000100.png",
+          "bytes": 40758,
+          "sha256": "14ee2840c36c21f9428e5691086eb740e3bda1d128523a663f1cffe956848cad"
+        },
+        {
+          "local_path": "assets/vfx/lava-blast/000102.png",
+          "bytes": 41109,
+          "sha256": "ee9ea5ffe270f73737298e2a36cbabdb7ab5a25c2612ed3db6b37d87e53945d4"
+        },
+        {
+          "local_path": "assets/vfx/lava-blast/000104.png",
+          "bytes": 42877,
+          "sha256": "978ba333ab2488f4cb2184b2325416a71e5efdbb2f06de03d20df5f94336f962"
+        },
+        {
+          "local_path": "assets/vfx/lava-blast/000106.png",
+          "bytes": 43552,
+          "sha256": "b05df26d0d96096d14ce65c16a26f4369b3b529280353aad23fc4dcbb60f8d44"
+        },
+        {
+          "local_path": "assets/vfx/lava-blast/000108.png",
+          "bytes": 45191,
+          "sha256": "903d4a58a522fc33da8751dbbc93f2ebfa1b5c7c4655fd60183c5a8bb483d94e"
+        },
+        {
+          "local_path": "assets/vfx/lava-blast/000110.png",
+          "bytes": 46735,
+          "sha256": "fde78ab224f735426a1cd116315c09a17b186f772644b9fa7e575e0aa30ec956"
+        },
+        {
+          "local_path": "assets/vfx/lava-blast/000112.png",
+          "bytes": 41213,
+          "sha256": "af85bdc413b5890b333836e793800a10f4dc7dd7bdecd76ba416556fdd3c25b7"
+        },
+        {
+          "local_path": "assets/vfx/lava-blast/000114.png",
+          "bytes": 36624,
+          "sha256": "85a37e45dec620dba02b65aea452ad5d127aec407dd269ce9b8da8494cb2fd08"
+        },
+        {
+          "local_path": "assets/vfx/lava-blast/000116.png",
+          "bytes": 40081,
+          "sha256": "1ec0301e48b33270a856f3146aa9dcf4fa0bfcb5df136842cd314f0c1466a70b"
+        },
+        {
+          "local_path": "assets/vfx/lava-blast/000118.png",
+          "bytes": 40520,
+          "sha256": "ca35dfaf178c5a76a7f1b7ad8969628119d641a8d25d69f08720f5ecdfe8729a"
+        },
+        {
+          "local_path": "assets/vfx/lava-blast/000120.png",
+          "bytes": 41797,
+          "sha256": "ad11ab693fb20fd95adc79f71cf185edccc5745dbc1a9d1e0842ac87221d12a8"
+        },
+        {
+          "local_path": "assets/vfx/lava-blast/000122.png",
+          "bytes": 42494,
+          "sha256": "3b71983ba07be584b9f54af95df491f6e32cb5209d171a7e451e10752ebf29dd"
+        }
+      ],
+      "working_copy_root": ".worktrees/s45-3d-sortie/",
+      "version_status": "Kenney and lava-blast already tracked; Sinestesia five PNGs added to local research change; not deployed."
+    }
+  ]
 }
