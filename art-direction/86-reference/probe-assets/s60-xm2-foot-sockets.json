@@ -1,0 +1,330 @@
+{
+  "purpose": "Runtime IK input measurement only; no gait or ground contact has been tested.",
+  "source": "/Users/wei/Documents/ChatGPT/遊戲練習/.worktrees/s45-3d-sortie/art-direction/86-reference/probe-assets/s55-reginleif-import.glb",
+  "sourceBytes": 34221152,
+  "sourceSha256": "798623aca1de8524a078e559d8519a535486f7c090fe6050d3c73a80d9549b94",
+  "coordinateSystem": "glTF model coordinates: +Y up. Forward sign is intentionally not inferred.",
+  "method": [
+    "Parse GLB JSON/BIN directly and compose joint rest-world transforms.",
+    "Evaluate each render vertex in the skin bind pose as the weighted sum of jointWorld * inverseBindMatrix * POSITION. meshNodeWorld * POSITION was measured only as an audit comparator and is not used for sockets or bounds.",
+    "Assign each skinned render vertex to its highest-weight skin joint; the selected distal branch vertices are rigid at weight 1.0.",
+    "For each Outer-leg branch, find the minimum model-space Y and average X/Z across vertices within 0.03 source units of that minimum; project the socket Y to the exact minimum.",
+    "Transform that render-geometry contact point into the corresponding Outer leg rest-bone local space. Rest lengths and bend vectors use hip, knee, and measured contact rather than a bone origin as the foot."
+  ],
+  "skin": {
+    "skinIndex": 0,
+    "jointCount": 54,
+    "restVertexCount": 517799,
+    "selectedDistalVertexCount": 302777,
+    "selectedNonRigidDominantWeights": 0,
+    "meshNodePositionVsWeightedBindMaxErrorSourceUnits": 4.49377003,
+    "selectedMeshNodePositionVsWeightedBindMaxErrorSourceUnits": 4.49377003,
+    "meshNodePositionVsWeightedBindMaxErrorAt6_3mScaleMetres": 0.62595167,
+    "equivalent": false
+  },
+  "restRenderBoundsModel": {
+    "min": [
+      -21.40549962,
+      -0.20164645,
+      -22.06161247
+    ],
+    "max": [
+      21.40539253,
+      17.42808476,
+      23.16672126
+    ],
+    "extent": [
+      42.81089216,
+      17.62973121,
+      45.22833373
+    ]
+  },
+  "encounterNormalization": {
+    "targetLengthMetres": 6.3,
+    "lengthAxis": "model Z",
+    "uniformScaleMetresPerSourceUnit": 0.139293214676
+  },
+  "legs": [
+    {
+      "suffix": ".000",
+      "restQuadrantByModelXZ": "X-/Z-",
+      "inner": {
+        "name": "Inner leg",
+        "skinJointIndex": 18,
+        "nodeIndex": 25
+      },
+      "outer": {
+        "name": "Outer leg",
+        "skinJointIndex": 19,
+        "nodeIndex": 22
+      },
+      "hipModel": [
+        -4.00599003,
+        8.07520325,
+        -9.29402929
+      ],
+      "kneeModel": [
+        -12.47284207,
+        11.28705527,
+        -15.79550052
+      ],
+      "footSocketModel": [
+        -16.88550011,
+        -0.20164469,
+        -19.18386116
+      ],
+      "footSocketOuterBoneLocal": [
+        3.7e-07,
+        12.72785189,
+        -0.97185983
+      ],
+      "restLengthsSourceUnits": {
+        "innerHipToKnee": 11.14776682,
+        "outerKneeToSocket": 12.76490366
+      },
+      "restLengthsAt6_3mScaleMetres": {
+        "innerHipToKnee": 1.55280828,
+        "outerKneeToSocket": 1.77806447
+      },
+      "bendPlaneNormalModel": [
+        -0.60903418,
+        1.5e-07,
+        0.79314398
+      ],
+      "preferredKneeBendDirectionModel": [
+        -0.36017968,
+        0.89094232,
+        -0.27657257
+      ],
+      "contactEvidence": {
+        "branchBones": [
+          "Outer leg",
+          "outer hyd pump",
+          "outer armor",
+          "pile driv"
+        ],
+        "weightedVertexCount": 75714,
+        "minimumModelY": -0.20164469,
+        "bandSourceUnits": 0.03,
+        "candidateVertexCount": 8,
+        "candidateMeshes": {
+          "OUTER LEG.004": 8
+        },
+        "minimumDominantWeight": 1.0
+      }
+    },
+    {
+      "suffix": ".001",
+      "restQuadrantByModelXZ": "X+/Z-",
+      "inner": {
+        "name": "Inner leg.001",
+        "skinJointIndex": 27,
+        "nodeIndex": 34
+      },
+      "outer": {
+        "name": "Outer leg.001",
+        "skinJointIndex": 28,
+        "nodeIndex": 31
+      },
+      "hipModel": [
+        4.00599003,
+        8.07520299,
+        -9.29402929
+      ],
+      "kneeModel": [
+        12.4728423,
+        11.28705625,
+        -15.79550038
+      ],
+      "footSocketModel": [
+        16.88550168,
+        -0.2016425,
+        -19.18386341
+      ],
+      "footSocketOuterBoneLocal": [
+        -7.3e-07,
+        12.72785158,
+        -0.97185646
+      ],
+      "restLengthsSourceUnits": {
+        "innerHipToKnee": 11.14776727,
+        "outerKneeToSocket": 12.76490367
+      },
+      "restLengthsAt6_3mScaleMetres": {
+        "innerHipToKnee": 1.55280834,
+        "outerKneeToSocket": 1.77806447
+      },
+      "bendPlaneNormalModel": [
+        -0.60903418,
+        -6e-08,
+        -0.79314398
+      ],
+      "preferredKneeBendDirectionModel": [
+        0.3601796,
+        0.8909424,
+        -0.27657241
+      ],
+      "contactEvidence": {
+        "branchBones": [
+          "Outer leg.001",
+          "outer hyd pump.001",
+          "outer armor.001",
+          "pile driv.001"
+        ],
+        "weightedVertexCount": 75703,
+        "minimumModelY": -0.2016425,
+        "bandSourceUnits": 0.03,
+        "candidateVertexCount": 8,
+        "candidateMeshes": {
+          "OUTER LEG.005": 8
+        },
+        "minimumDominantWeight": 1.0
+      }
+    },
+    {
+      "suffix": ".002",
+      "restQuadrantByModelXZ": "X-/Z+",
+      "inner": {
+        "name": "Inner leg.002",
+        "skinJointIndex": 36,
+        "nodeIndex": 43
+      },
+      "outer": {
+        "name": "Outer leg.002",
+        "skinJointIndex": 37,
+        "nodeIndex": 40
+      },
+      "hipModel": [
+        -4.00599003,
+        8.07520303,
+        -2.09855068
+      ],
+      "kneeModel": [
+        -13.03834678,
+        11.2870507,
+        3.59118643
+      ],
+      "footSocketModel": [
+        -17.74573083,
+        -0.20164645,
+        6.55650661
+      ],
+      "footSocketOuterBoneLocal": [
+        -4.7e-06,
+        12.72785368,
+        -0.97185206
+      ],
+      "restLengthsSourceUnits": {
+        "innerHipToKnee": 11.14775953,
+        "outerKneeToSocket": 12.76490308
+      },
+      "restLengthsAt6_3mScaleMetres": {
+        "innerHipToKnee": 1.55280726,
+        "outerKneeToSocket": 1.77806438
+      },
+      "bendPlaneNormalModel": [
+        0.53299432,
+        3.7e-07,
+        0.84611882
+      ],
+      "preferredKneeBendDirectionModel": [
+        -0.38423678,
+        0.89094226,
+        0.24204129
+      ],
+      "contactEvidence": {
+        "branchBones": [
+          "Outer leg.002",
+          "outer hyd pump.002",
+          "outer armor.002",
+          "pile driv.002"
+        ],
+        "weightedVertexCount": 75679,
+        "minimumModelY": -0.20164645,
+        "bandSourceUnits": 0.03,
+        "candidateVertexCount": 8,
+        "candidateMeshes": {
+          "OUTER LEG.006": 8
+        },
+        "minimumDominantWeight": 1.0
+      }
+    },
+    {
+      "suffix": ".003",
+      "restQuadrantByModelXZ": "X+/Z+",
+      "inner": {
+        "name": "Inner leg.003",
+        "skinJointIndex": 45,
+        "nodeIndex": 52
+      },
+      "outer": {
+        "name": "Outer leg.003",
+        "skinJointIndex": 46,
+        "nodeIndex": 49
+      },
+      "hipModel": [
+        4.00599003,
+        8.07520279,
+        -2.09855068
+      ],
+      "kneeModel": [
+        13.0383478,
+        11.28705097,
+        3.5911864
+      ],
+      "footSocketModel": [
+        17.74573249,
+        -0.20164568,
+        6.55650846
+      ],
+      "footSocketOuterBoneLocal": [
+        4.86e-06,
+        12.72785237,
+        -0.97185211
+      ],
+      "restLengthsSourceUnits": {
+        "innerHipToKnee": 11.14776048,
+        "outerKneeToSocket": 12.7649033
+      },
+      "restLengthsAt6_3mScaleMetres": {
+        "innerHipToKnee": 1.55280739,
+        "outerKneeToSocket": 1.77806442
+      },
+      "bendPlaneNormalModel": [
+        0.5329943,
+        -4.9e-07,
+        -0.84611883
+      ],
+      "preferredKneeBendDirectionModel": [
+        0.38423676,
+        0.89094231,
+        0.24204114
+      ],
+      "contactEvidence": {
+        "branchBones": [
+          "Outer leg.003",
+          "outer hyd pump.003",
+          "outer armor.003",
+          "pile driv.003"
+        ],
+        "weightedVertexCount": 75681,
+        "minimumModelY": -0.20164568,
+        "bandSourceUnits": 0.03,
+        "candidateVertexCount": 8,
+        "candidateMeshes": {
+          "OUTER LEG.007": 8
+        },
+        "minimumDominantWeight": 1.0
+      }
+    }
+  ],
+  "qualityRisks": [
+    "The source has no semantic foot bone or collider. Each socket is a reproducible lowest render-surface patch, not an authored sole pivot.",
+    "meshNodeWorld * POSITION is not the bind-pose result in this file; using it would add about 4.49376 source units of vertical offset. The reported positions use weighted skin bind transforms.",
+    "The 0.03-source-unit contact band samples a small bevel patch. Collision shape, desired stance orientation, or a different tolerance may justify moving the socket after visual ground-contact QA.",
+    "Suffixes are identified only by their rest X/Z quadrants because the archived bone names do not label front/back/left/right and forward sign remains unverified.",
+    "Godot Skeleton3D bone ordering should be resolved by name at runtime; glTF skinJointIndex is evidence, not a promise that Godot exposes the same integer index.",
+    "Apply the encounter's uniform model scale exactly once when converting these model/local coordinates to world metres.",
+    "No joint limits, slope reach, self-collision, foot locking, turning, or animated-pose deformation was tested by this measurement."
+  ]
+}

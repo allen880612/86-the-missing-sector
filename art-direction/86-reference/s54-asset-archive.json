@@ -754,5 +754,17 @@
     "Ameise": "Existing basecolor and normal preserved; original metallic/roughness dependencies absent, constants 0.48/0.42 used.",
     "Morpho": "Source .mat texture slots empty; imported GLB has 0 images and 8 constant materials.",
     "evidence": "s59-units-albedo-only.png and existing source/glb inspection; not a final material approval"
+  },
+  "s60": {
+    "status": "material region improvement only; overall art not accepted; rest socket conversion verified, gait pending",
+    "material_script": "probe-assets/s60-legion-materials.gd",
+    "material_report": "probe-assets/s60-material-run.json",
+    "source_glb_unchanged": true,
+    "new_external_downloads": 0,
+    "foot_socket_script": "probe-assets/s60-xm2-foot-sockets.py",
+    "foot_socket_data": "probe-assets/s60-xm2-foot-sockets.json",
+    "runtime_socket_check": "probe-assets/s60-xm2-godot-sockets.json",
+    "correction": "Use weighted jointWorld * inverseBindMatrix instead of nodeWorld * POSITION; max original error 0.626m",
+    "next": "XM2 planted walk/turn before mass enemy approach, not root translation choreography"
   }
 }

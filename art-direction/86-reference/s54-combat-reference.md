@@ -19,6 +19,28 @@
 
 狀態分開記錄：已收藏連結 → 已下載 → 引擎可讀 → 用途驗收 → 遊戲驗收。素材可讀不代表完成度合格；目前 3D 場景與交火仍在試驗，不影響已認可的 2D 版本。
 
+## S60：軍團材質分區與真正步態的輸入驗證
+
+本輪沒有再下載同類素材。Morpho原檔無貼圖，新增的是專案材質設計，不能稱為找回原作貼圖。151個網格／246個表面共用11個材質與3張256px細節圖；裝甲為非金屬塗層，腹部機械與砲軌分別指定裸金屬，感測器保留。原GLB不改。Godot實際渲染前檢查原生紋理已產生，所有比較固定S59光照／曝光。
+
+![原材質近景](images/s60-morpho-original-hull.png)
+
+![材質分區後近景](images/s60-morpho-surfaces-hull.png)
+
+![材質分區後全場](images/s60-morpho-surfaces-wide.png)
+
+獨立Astra Review：分區改善成立，長砲與機械沒有一起糊黑；但主要差別仍是色塊，寬大裝甲缺乏可信的反射層次，**材質完成度與整體美術皆未通過**。乾淨不是錯，不能用亂加髒污替代材質設計。後續只以一組代表裝甲板驗證貼合零件的粗糙度／接縫，不全面堆噪點；目前分區僅由 `--material-review` 載入，尚未指定為正式材質。
+
+另一條工作線直接檢查動作：XM2有54關節但無動畫；Ameise只有兩前足近端13.75度的同相測試，不是walk。原有M1A4的S52解析式兩節IK可重用方法，無法直接搬clip。S58玩家的跳躍與移動僅是整機根節點編舞，不是多足動作完成。
+
+![Godot實際XM2足端對齊，綠點只作驗證](images/s60-xm2-foot-sockets.png)
+
+Sol以GLB幾何／權重量測四腳尖；PO實際Godot驗證抓到第一版錯誤：只用nodeWorld乘頂點，漏了inverse-bind。兩種轉換在6.3m正規化後最大相差0.626m。腳本改用完整加權jointWorld × inverseBindMatrix，並重新量測接觸面及腿長；Godot四腳距實際posed最低面最大約0.00000042m，通過2cm靜態門檻。這只證明rest座標可用，沒有證明行走、轉向、坡面或關節限位。
+
+可重現資料：`probe-assets/s60-xm2-foot-sockets.py`／JSON、`s60-xm2-godot-sockets.json`、`s60-material-run.json`。Godot腳本沿用 `combat.gd -- --collapse --material-review` 或 `--socket-review`。原模型沒有被覆寫。[NoiseTexture2D官方文件](https://docs.godotengine.org/en/stable/classes/class_noisetexture2d.html)與[材質API](https://docs.godotengine.org/en/stable/classes/class_basematerial3d.html)為本次原生細節的依據，不宣稱取得新PBR素材。
+
+下一個可玩方向保持原Goal：先以實測socket做XM2世界空間落足與轉彎，驗證後擴展Ameise接敵；不再用更多靜圖替代行走／射擊／掩體互動。3–5分鐘任務、完整流程與獨立實機QA仍待完成。
+
 ## S59：連續坍塌區通過局部用途驗收
 
 本輪從同一份環境製作腳本延伸，使用已收藏的 Fleurman 破板／斷柱，替換左廠房一段結構，保留右側廠房作尺度對照，後景中央開出鐵道路徑。第二次修訂降低懸板，增加 27 塊來源碎片形成廠內→月台→地面的集中瓦礫；沒有向全場撒碎片。

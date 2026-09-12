@@ -1,0 +1,1727 @@
+{
+  "camera_detail": "[X: (0.563337, 0.0, -0.826227), Y: (-0.36249, 0.89862, -0.247152), Z: (0.742464, 0.438729, 0.506225), O: (26.59171, 15.71843, -12.78291)]",
+  "camera_hull": "[X: (0.624695, 0.0, -0.780869), Y: (-0.23281, 0.954521, -0.186248), Z: (0.745356, 0.298142, 0.596285), O: (14.59171, 7.718429, -24.78291)]",
+  "camera_wide": "[X: (0.996938, 0.0, -0.078191), Y: (-0.015001, 0.981425, -0.19126), Z: (0.076739, 0.191847, 0.97842), O: (4.0, 11.0, 32.0)]",
+  "environment": {
+    "Ameise_0": {
+      "length_axis": 2,
+      "length_target": 3.8,
+      "scaled_height": 2.56020299566952,
+      "source_size": "(4.800001, 2.427788, 3.603462)",
+      "uniform_scale": 1.05454130427404
+    },
+    "Ameise_1": {
+      "length_axis": 2,
+      "length_target": 3.8,
+      "scaled_height": 2.56020299566952,
+      "source_size": "(4.800001, 2.427788, 3.603462)",
+      "uniform_scale": 1.05454130427404
+    },
+    "Ameise_10": {
+      "length_axis": 2,
+      "length_target": 3.8,
+      "scaled_height": 2.56020299566952,
+      "source_size": "(4.800001, 2.427788, 3.603462)",
+      "uniform_scale": 1.05454130427404
+    },
+    "Ameise_11": {
+      "length_axis": 2,
+      "length_target": 3.8,
+      "scaled_height": 2.56020299566952,
+      "source_size": "(4.800001, 2.427788, 3.603462)",
+      "uniform_scale": 1.05454130427404
+    },
+    "Ameise_12": {
+      "length_axis": 2,
+      "length_target": 3.8,
+      "scaled_height": 2.56020299566952,
+      "source_size": "(4.800001, 2.427788, 3.603462)",
+      "uniform_scale": 1.05454130427404
+    },
+    "Ameise_13": {
+      "length_axis": 2,
+      "length_target": 3.8,
+      "scaled_height": 2.56020299566952,
+      "source_size": "(4.800001, 2.427788, 3.603462)",
+      "uniform_scale": 1.05454130427404
+    },
+    "Ameise_14": {
+      "length_axis": 2,
+      "length_target": 3.8,
+      "scaled_height": 2.56020299566952,
+      "source_size": "(4.800001, 2.427788, 3.603462)",
+      "uniform_scale": 1.05454130427404
+    },
+    "Ameise_15": {
+      "length_axis": 2,
+      "length_target": 3.8,
+      "scaled_height": 2.56020299566952,
+      "source_size": "(4.800001, 2.427788, 3.603462)",
+      "uniform_scale": 1.05454130427404
+    },
+    "Ameise_16": {
+      "length_axis": 2,
+      "length_target": 3.8,
+      "scaled_height": 2.56020299566952,
+      "source_size": "(4.800001, 2.427788, 3.603462)",
+      "uniform_scale": 1.05454130427404
+    },
+    "Ameise_17": {
+      "length_axis": 2,
+      "length_target": 3.8,
+      "scaled_height": 2.56020299566952,
+      "source_size": "(4.800001, 2.427788, 3.603462)",
+      "uniform_scale": 1.05454130427404
+    },
+    "Ameise_18": {
+      "length_axis": 2,
+      "length_target": 3.8,
+      "scaled_height": 2.56020299566952,
+      "source_size": "(4.800001, 2.427788, 3.603462)",
+      "uniform_scale": 1.05454130427404
+    },
+    "Ameise_19": {
+      "length_axis": 2,
+      "length_target": 3.8,
+      "scaled_height": 2.56020299566952,
+      "source_size": "(4.800001, 2.427788, 3.603462)",
+      "uniform_scale": 1.05454130427404
+    },
+    "Ameise_2": {
+      "length_axis": 2,
+      "length_target": 3.8,
+      "scaled_height": 2.56020299566952,
+      "source_size": "(4.800001, 2.427788, 3.603462)",
+      "uniform_scale": 1.05454130427404
+    },
+    "Ameise_20": {
+      "length_axis": 2,
+      "length_target": 3.8,
+      "scaled_height": 2.56020299566952,
+      "source_size": "(4.800001, 2.427788, 3.603462)",
+      "uniform_scale": 1.05454130427404
+    },
+    "Ameise_21": {
+      "length_axis": 2,
+      "length_target": 3.8,
+      "scaled_height": 2.56020299566952,
+      "source_size": "(4.800001, 2.427788, 3.603462)",
+      "uniform_scale": 1.05454130427404
+    },
+    "Ameise_22": {
+      "length_axis": 2,
+      "length_target": 3.8,
+      "scaled_height": 2.56020299566952,
+      "source_size": "(4.800001, 2.427788, 3.603462)",
+      "uniform_scale": 1.05454130427404
+    },
+    "Ameise_23": {
+      "length_axis": 2,
+      "length_target": 3.8,
+      "scaled_height": 2.56020299566952,
+      "source_size": "(4.800001, 2.427788, 3.603462)",
+      "uniform_scale": 1.05454130427404
+    },
+    "Ameise_3": {
+      "length_axis": 2,
+      "length_target": 3.8,
+      "scaled_height": 2.56020299566952,
+      "source_size": "(4.800001, 2.427788, 3.603462)",
+      "uniform_scale": 1.05454130427404
+    },
+    "Ameise_4": {
+      "length_axis": 2,
+      "length_target": 3.8,
+      "scaled_height": 2.56020299566952,
+      "source_size": "(4.800001, 2.427788, 3.603462)",
+      "uniform_scale": 1.05454130427404
+    },
+    "Ameise_5": {
+      "length_axis": 2,
+      "length_target": 3.8,
+      "scaled_height": 2.56020299566952,
+      "source_size": "(4.800001, 2.427788, 3.603462)",
+      "uniform_scale": 1.05454130427404
+    },
+    "Ameise_6": {
+      "length_axis": 2,
+      "length_target": 3.8,
+      "scaled_height": 2.56020299566952,
+      "source_size": "(4.800001, 2.427788, 3.603462)",
+      "uniform_scale": 1.05454130427404
+    },
+    "Ameise_7": {
+      "length_axis": 2,
+      "length_target": 3.8,
+      "scaled_height": 2.56020299566952,
+      "source_size": "(4.800001, 2.427788, 3.603462)",
+      "uniform_scale": 1.05454130427404
+    },
+    "Ameise_8": {
+      "length_axis": 2,
+      "length_target": 3.8,
+      "scaled_height": 2.56020299566952,
+      "source_size": "(4.800001, 2.427788, 3.603462)",
+      "uniform_scale": 1.05454130427404
+    },
+    "Ameise_9": {
+      "length_axis": 2,
+      "length_target": 3.8,
+      "scaled_height": 2.56020299566952,
+      "source_size": "(4.800001, 2.427788, 3.603462)",
+      "uniform_scale": 1.05454130427404
+    },
+    "Morpho": {
+      "length_axis": 2,
+      "length_target": 40.2,
+      "scaled_height": 5.4368574050739,
+      "source_size": "(631.9469, 271.9915, 2011.099)",
+      "uniform_scale": 0.01998907430203
+    },
+    "XM2_forward_pending_visual_check": {
+      "length_axis": 2,
+      "length_target": 6.3,
+      "scaled_height": 2.45570280830483,
+      "source_size": "(42.81089, 17.62973, 45.22832)",
+      "uniform_scale": 0.139293241907659
+    },
+    "environment_batches": {
+      "batched_instances": 404,
+      "multimesh_groups": 10,
+      "note": "static shared meshes only; does not batch rigged enemies or prove FPS",
+      "original_mesh_nodes": 1672,
+      "partition_metres": 35
+    },
+    "environment_file": "s59-rail-collapse.glb",
+    "environment_ground": {
+      "corridor": "level inside |X| <=35, Z >= -100",
+      "first_normal": "(0.413303, 0.9066, 0.085182)",
+      "materials": "CC0 rocks_ground_08 + rubble; authored terrain grade",
+      "size": "400 x 480m",
+      "terrain_triangles": 24000
+    }
+  },
+  "limitations": [
+    "New art direction, not restored original textures.",
+    "Microdetail follows existing UVs; no verified physical texel density or edge wear.",
+    "NoiseTexture2D builds asynchronously; allow generation before fixed-camera A/B capture.",
+    "Shared scalar/material hierarchy has not yet passed the root visual A/B."
+  ],
+  "limits": [
+    "static surface comparison, not gameplay QA",
+    "same S59 lighting and exposure",
+    "original source GLB remains unchanged",
+    "new authored material interpretation, not restored source textures"
+  ],
+  "mapping": [
+    {
+      "mesh": "autogun strcuture base",
+      "role": "mechanical_dark",
+      "source": "morpho armor - dark stone silver",
+      "surface": 0
+    },
+    {
+      "mesh": "autogun strcuture base_002",
+      "role": "mechanical_dark",
+      "source": "morpho armor - dark stone silver",
+      "surface": 0
+    },
+    {
+      "mesh": "autogun strcuture base_003",
+      "role": "mechanical_dark",
+      "source": "morpho armor - dark stone silver",
+      "surface": 0
+    },
+    {
+      "mesh": "autogun strcuture base_004",
+      "role": "mechanical_dark",
+      "source": "morpho armor - dark stone silver",
+      "surface": 0
+    },
+    {
+      "mesh": "autogun strcuture base_005",
+      "role": "mechanical_dark",
+      "source": "morpho armor - dark stone silver",
+      "surface": 0
+    },
+    {
+      "mesh": "autogun strcuture base_006",
+      "role": "mechanical_dark",
+      "source": "morpho armor - dark stone silver",
+      "surface": 0
+    },
+    {
+      "mesh": "autogun turret base",
+      "role": "seals_and_recesses",
+      "source": "morpho black",
+      "surface": 0
+    },
+    {
+      "mesh": "autogun turret base",
+      "role": "mechanical_dark",
+      "source": "morpho armor - dark stone silver",
+      "surface": 1
+    },
+    {
+      "mesh": "autogun turret base_002",
+      "role": "seals_and_recesses",
+      "source": "morpho black",
+      "surface": 0
+    },
+    {
+      "mesh": "autogun turret base_002",
+      "role": "mechanical_dark",
+      "source": "morpho armor - dark stone silver",
+      "surface": 1
+    },
+    {
+      "mesh": "autogun turret base_003",
+      "role": "seals_and_recesses",
+      "source": "morpho black",
+      "surface": 0
+    },
+    {
+      "mesh": "autogun turret base_003",
+      "role": "mechanical_dark",
+      "source": "morpho armor - dark stone silver",
+      "surface": 1
+    },
+    {
+      "mesh": "autogun turret base_004",
+      "role": "seals_and_recesses",
+      "source": "morpho black",
+      "surface": 0
+    },
+    {
+      "mesh": "autogun turret base_004",
+      "role": "mechanical_dark",
+      "source": "morpho armor - dark stone silver",
+      "surface": 1
+    },
+    {
+      "mesh": "autogun turret base_005",
+      "role": "seals_and_recesses",
+      "source": "morpho black",
+      "surface": 0
+    },
+    {
+      "mesh": "autogun turret base_005",
+      "role": "mechanical_dark",
+      "source": "morpho armor - dark stone silver",
+      "surface": 1
+    },
+    {
+      "mesh": "autogun turret base_006",
+      "role": "seals_and_recesses",
+      "source": "morpho black",
+      "surface": 0
+    },
+    {
+      "mesh": "autogun turret base_006",
+      "role": "mechanical_dark",
+      "source": "morpho armor - dark stone silver",
+      "surface": 1
+    },
+    {
+      "mesh": "back armor",
+      "role": "painted_armor",
+      "source": "morpho armor - silver",
+      "surface": 0
+    },
+    {
+      "mesh": "back armor",
+      "role": "seals_and_recesses",
+      "source": "morpho black",
+      "surface": 1
+    },
+    {
+      "mesh": "back of body underside",
+      "role": "seals_and_recesses",
+      "source": "morpho black",
+      "surface": 0
+    },
+    {
+      "mesh": "back of body underside",
+      "role": "mechanical_dark",
+      "source": "morpho armor - dark stone silver",
+      "surface": 1
+    },
+    {
+      "mesh": "back of body underside for wings",
+      "role": "seals_and_recesses",
+      "source": "morpho black",
+      "surface": 0
+    },
+    {
+      "mesh": "back of body underside for wings",
+      "role": "mechanical_dark",
+      "source": "morpho armor - dark silver",
+      "surface": 1
+    },
+    {
+      "mesh": "back of morpho big cylinder cap",
+      "role": "mechanical_dark",
+      "source": "morpho armor - dark stone silver",
+      "surface": 0
+    },
+    {
+      "mesh": "back of morpho big cylinder cap",
+      "role": "mechanical_dark",
+      "source": "morpho armor - dark silver",
+      "surface": 1
+    },
+    {
+      "mesh": "big leg inner connector_002",
+      "role": "mechanical_light",
+      "source": "morpho armor - silver",
+      "surface": 0
+    },
+    {
+      "mesh": "big leg inner connector_002",
+      "role": "mechanical_dark",
+      "source": "morpho armor - dark silver",
+      "surface": 1
+    },
+    {
+      "mesh": "big leg inner connector_003",
+      "role": "mechanical_light",
+      "source": "morpho armor - silver",
+      "surface": 0
+    },
+    {
+      "mesh": "big leg inner connector_003",
+      "role": "mechanical_dark",
+      "source": "morpho armor - dark silver",
+      "surface": 1
+    },
+    {
+      "mesh": "big leg inner connector_004",
+      "role": "mechanical_light",
+      "source": "morpho armor - silver",
+      "surface": 0
+    },
+    {
+      "mesh": "big leg inner connector_004",
+      "role": "mechanical_dark",
+      "source": "morpho armor - dark silver",
+      "surface": 1
+    },
+    {
+      "mesh": "big leg inner connector_005",
+      "role": "mechanical_light",
+      "source": "morpho armor - silver",
+      "surface": 0
+    },
+    {
+      "mesh": "big leg inner connector_005",
+      "role": "mechanical_dark",
+      "source": "morpho armor - dark silver",
+      "surface": 1
+    },
+    {
+      "mesh": "big leg inner connector_006",
+      "role": "mechanical_light",
+      "source": "morpho armor - silver",
+      "surface": 0
+    },
+    {
+      "mesh": "big leg inner connector_006",
+      "role": "mechanical_dark",
+      "source": "morpho armor - dark silver",
+      "surface": 1
+    },
+    {
+      "mesh": "big leg inner connector_007",
+      "role": "mechanical_light",
+      "source": "morpho armor - silver",
+      "surface": 0
+    },
+    {
+      "mesh": "big leg inner connector_007",
+      "role": "mechanical_dark",
+      "source": "morpho armor - dark silver",
+      "surface": 1
+    },
+    {
+      "mesh": "big leg inner connector_008",
+      "role": "mechanical_light",
+      "source": "morpho armor - silver",
+      "surface": 0
+    },
+    {
+      "mesh": "big leg inner connector_008",
+      "role": "mechanical_dark",
+      "source": "morpho armor - dark silver",
+      "surface": 1
+    },
+    {
+      "mesh": "big leg inner connector_009",
+      "role": "mechanical_light",
+      "source": "morpho armor - silver",
+      "surface": 0
+    },
+    {
+      "mesh": "big leg inner connector_009",
+      "role": "mechanical_dark",
+      "source": "morpho armor - dark silver",
+      "surface": 1
+    },
+    {
+      "mesh": "big leg inner connector_010",
+      "role": "mechanical_light",
+      "source": "morpho armor - silver",
+      "surface": 0
+    },
+    {
+      "mesh": "big leg inner connector_010",
+      "role": "mechanical_dark",
+      "source": "morpho armor - dark silver",
+      "surface": 1
+    },
+    {
+      "mesh": "big leg inner connector_011",
+      "role": "mechanical_light",
+      "source": "morpho armor - silver",
+      "surface": 0
+    },
+    {
+      "mesh": "big leg inner connector_011",
+      "role": "mechanical_dark",
+      "source": "morpho armor - dark silver",
+      "surface": 1
+    },
+    {
+      "mesh": "big leg inner connector_012",
+      "role": "mechanical_light",
+      "source": "morpho armor - silver",
+      "surface": 0
+    },
+    {
+      "mesh": "big leg inner connector_012",
+      "role": "mechanical_dark",
+      "source": "morpho armor - dark silver",
+      "surface": 1
+    },
+    {
+      "mesh": "big leg inner connector_013",
+      "role": "mechanical_light",
+      "source": "morpho armor - silver",
+      "surface": 0
+    },
+    {
+      "mesh": "big leg inner connector_013",
+      "role": "mechanical_dark",
+      "source": "morpho armor - dark silver",
+      "surface": 1
+    },
+    {
+      "mesh": "big leg inner connector_014",
+      "role": "mechanical_light",
+      "source": "morpho armor - silver",
+      "surface": 0
+    },
+    {
+      "mesh": "big leg inner connector_014",
+      "role": "mechanical_dark",
+      "source": "morpho armor - dark silver",
+      "surface": 1
+    },
+    {
+      "mesh": "big leg inner connector_015",
+      "role": "mechanical_light",
+      "source": "morpho armor - silver",
+      "surface": 0
+    },
+    {
+      "mesh": "big leg inner connector_015",
+      "role": "mechanical_dark",
+      "source": "morpho armor - dark silver",
+      "surface": 1
+    },
+    {
+      "mesh": "big leg inner connector_016",
+      "role": "mechanical_light",
+      "source": "morpho armor - silver",
+      "surface": 0
+    },
+    {
+      "mesh": "big leg inner connector_016",
+      "role": "mechanical_dark",
+      "source": "morpho armor - dark silver",
+      "surface": 1
+    },
+    {
+      "mesh": "big leg inner connector_017",
+      "role": "mechanical_light",
+      "source": "morpho armor - silver",
+      "surface": 0
+    },
+    {
+      "mesh": "big leg inner connector_017",
+      "role": "mechanical_dark",
+      "source": "morpho armor - dark silver",
+      "surface": 1
+    },
+    {
+      "mesh": "big leg inner connector_018",
+      "role": "mechanical_light",
+      "source": "morpho armor - silver",
+      "surface": 0
+    },
+    {
+      "mesh": "big leg inner connector_018",
+      "role": "mechanical_dark",
+      "source": "morpho armor - dark silver",
+      "surface": 1
+    },
+    {
+      "mesh": "big leg inner connector_019",
+      "role": "mechanical_light",
+      "source": "morpho armor - silver",
+      "surface": 0
+    },
+    {
+      "mesh": "big leg inner connector_019",
+      "role": "mechanical_dark",
+      "source": "morpho armor - dark silver",
+      "surface": 1
+    },
+    {
+      "mesh": "big leg inner connector_020",
+      "role": "mechanical_light",
+      "source": "morpho armor - silver",
+      "surface": 0
+    },
+    {
+      "mesh": "big leg inner connector_020",
+      "role": "mechanical_dark",
+      "source": "morpho armor - dark silver",
+      "surface": 1
+    },
+    {
+      "mesh": "big leg inner connector_021",
+      "role": "mechanical_light",
+      "source": "morpho armor - silver",
+      "surface": 0
+    },
+    {
+      "mesh": "big leg inner connector_021",
+      "role": "mechanical_dark",
+      "source": "morpho armor - dark silver",
+      "surface": 1
+    },
+    {
+      "mesh": "big leg inner to main body connect_018",
+      "role": "painted_armor",
+      "source": "morpho armor - silver",
+      "surface": 0
+    },
+    {
+      "mesh": "big leg inner to main body connect_019",
+      "role": "painted_armor",
+      "source": "morpho armor - silver",
+      "surface": 0
+    },
+    {
+      "mesh": "big leg inner to main body connect_020",
+      "role": "painted_armor",
+      "source": "morpho armor - silver",
+      "surface": 0
+    },
+    {
+      "mesh": "big leg inner to main body connect_021",
+      "role": "painted_armor",
+      "source": "morpho armor - silver",
+      "surface": 0
+    },
+    {
+      "mesh": "big leg outer connector_002",
+      "role": "mechanical_light",
+      "source": "morpho armor - silver",
+      "surface": 0
+    },
+    {
+      "mesh": "big leg outer connector_002",
+      "role": "mechanical_dark",
+      "source": "morpho armor - dark silver",
+      "surface": 1
+    },
+    {
+      "mesh": "big leg outer connector_003",
+      "role": "mechanical_light",
+      "source": "morpho armor - silver",
+      "surface": 0
+    },
+    {
+      "mesh": "big leg outer connector_003",
+      "role": "mechanical_dark",
+      "source": "morpho armor - dark silver",
+      "surface": 1
+    },
+    {
+      "mesh": "big leg outer connector_004",
+      "role": "mechanical_light",
+      "source": "morpho armor - silver",
+      "surface": 0
+    },
+    {
+      "mesh": "big leg outer connector_004",
+      "role": "mechanical_dark",
+      "source": "morpho armor - dark silver",
+      "surface": 1
+    },
+    {
+      "mesh": "big leg outer connector_005",
+      "role": "mechanical_light",
+      "source": "morpho armor - silver",
+      "surface": 0
+    },
+    {
+      "mesh": "big leg outer connector_005",
+      "role": "mechanical_dark",
+      "source": "morpho armor - dark silver",
+      "surface": 1
+    },
+    {
+      "mesh": "big leg outer connector_006",
+      "role": "mechanical_light",
+      "source": "morpho armor - silver",
+      "surface": 0
+    },
+    {
+      "mesh": "big leg outer connector_006",
+      "role": "mechanical_dark",
+      "source": "morpho armor - dark silver",
+      "surface": 1
+    },
+    {
+      "mesh": "big leg outer connector_007",
+      "role": "mechanical_light",
+      "source": "morpho armor - silver",
+      "surface": 0
+    },
+    {
+      "mesh": "big leg outer connector_007",
+      "role": "mechanical_dark",
+      "source": "morpho armor - dark silver",
+      "surface": 1
+    },
+    {
+      "mesh": "big leg outer connector_008",
+      "role": "mechanical_light",
+      "source": "morpho armor - silver",
+      "surface": 0
+    },
+    {
+      "mesh": "big leg outer connector_008",
+      "role": "mechanical_dark",
+      "source": "morpho armor - dark silver",
+      "surface": 1
+    },
+    {
+      "mesh": "big leg outer connector_009",
+      "role": "mechanical_light",
+      "source": "morpho armor - silver",
+      "surface": 0
+    },
+    {
+      "mesh": "big leg outer connector_009",
+      "role": "mechanical_dark",
+      "source": "morpho armor - dark silver",
+      "surface": 1
+    },
+    {
+      "mesh": "big leg outer connector_010",
+      "role": "mechanical_light",
+      "source": "morpho armor - silver",
+      "surface": 0
+    },
+    {
+      "mesh": "big leg outer connector_010",
+      "role": "mechanical_dark",
+      "source": "morpho armor - dark silver",
+      "surface": 1
+    },
+    {
+      "mesh": "big leg outer connector_011",
+      "role": "mechanical_light",
+      "source": "morpho armor - silver",
+      "surface": 0
+    },
+    {
+      "mesh": "big leg outer connector_011",
+      "role": "mechanical_dark",
+      "source": "morpho armor - dark silver",
+      "surface": 1
+    },
+    {
+      "mesh": "big leg outer connector_012",
+      "role": "mechanical_light",
+      "source": "morpho armor - silver",
+      "surface": 0
+    },
+    {
+      "mesh": "big leg outer connector_012",
+      "role": "mechanical_dark",
+      "source": "morpho armor - dark silver",
+      "surface": 1
+    },
+    {
+      "mesh": "big leg outer connector_013",
+      "role": "mechanical_light",
+      "source": "morpho armor - silver",
+      "surface": 0
+    },
+    {
+      "mesh": "big leg outer connector_013",
+      "role": "mechanical_dark",
+      "source": "morpho armor - dark silver",
+      "surface": 1
+    },
+    {
+      "mesh": "big leg outer connector_014",
+      "role": "mechanical_light",
+      "source": "morpho armor - silver",
+      "surface": 0
+    },
+    {
+      "mesh": "big leg outer connector_014",
+      "role": "mechanical_dark",
+      "source": "morpho armor - dark silver",
+      "surface": 1
+    },
+    {
+      "mesh": "big leg outer connector_015",
+      "role": "mechanical_light",
+      "source": "morpho armor - silver",
+      "surface": 0
+    },
+    {
+      "mesh": "big leg outer connector_015",
+      "role": "mechanical_dark",
+      "source": "morpho armor - dark silver",
+      "surface": 1
+    },
+    {
+      "mesh": "big leg outer connector_016",
+      "role": "mechanical_light",
+      "source": "morpho armor - silver",
+      "surface": 0
+    },
+    {
+      "mesh": "big leg outer connector_016",
+      "role": "mechanical_dark",
+      "source": "morpho armor - dark silver",
+      "surface": 1
+    },
+    {
+      "mesh": "big leg outer connector_017",
+      "role": "mechanical_light",
+      "source": "morpho armor - silver",
+      "surface": 0
+    },
+    {
+      "mesh": "big leg outer connector_017",
+      "role": "mechanical_dark",
+      "source": "morpho armor - dark silver",
+      "surface": 1
+    },
+    {
+      "mesh": "big leg outer connector_018",
+      "role": "mechanical_light",
+      "source": "morpho armor - silver",
+      "surface": 0
+    },
+    {
+      "mesh": "big leg outer connector_018",
+      "role": "mechanical_dark",
+      "source": "morpho armor - dark silver",
+      "surface": 1
+    },
+    {
+      "mesh": "big leg outer connector_019",
+      "role": "mechanical_light",
+      "source": "morpho armor - silver",
+      "surface": 0
+    },
+    {
+      "mesh": "big leg outer connector_019",
+      "role": "mechanical_dark",
+      "source": "morpho armor - dark silver",
+      "surface": 1
+    },
+    {
+      "mesh": "big leg outer connector_020",
+      "role": "mechanical_light",
+      "source": "morpho armor - silver",
+      "surface": 0
+    },
+    {
+      "mesh": "big leg outer connector_020",
+      "role": "mechanical_dark",
+      "source": "morpho armor - dark silver",
+      "surface": 1
+    },
+    {
+      "mesh": "big leg outer connector_021",
+      "role": "mechanical_light",
+      "source": "morpho armor - silver",
+      "surface": 0
+    },
+    {
+      "mesh": "big leg outer connector_021",
+      "role": "mechanical_dark",
+      "source": "morpho armor - dark silver",
+      "surface": 1
+    },
+    {
+      "mesh": "big stone piece left",
+      "role": "ceramic_shell",
+      "source": "morpho armor - stone silver",
+      "surface": 0
+    },
+    {
+      "mesh": "big stone piece left front pc",
+      "role": "ceramic_shell",
+      "source": "morpho armor - stone silver",
+      "surface": 0
+    },
+    {
+      "mesh": "big stone piece right",
+      "role": "ceramic_shell",
+      "source": "morpho armor - stone silver",
+      "surface": 0
+    },
+    {
+      "mesh": "big stone piece right front pc",
+      "role": "ceramic_shell",
+      "source": "morpho armor - stone silver",
+      "surface": 0
+    },
+    {
+      "mesh": "big tail",
+      "role": "painted_armor",
+      "source": "morpho armor - silver",
+      "surface": 0
+    },
+    {
+      "mesh": "big tail",
+      "role": "painted_secondary",
+      "source": "morpho armor - dark silver",
+      "surface": 1
+    },
+    {
+      "mesh": "bigger tail pieces",
+      "role": "seals_and_recesses",
+      "source": "morpho black",
+      "surface": 0
+    },
+    {
+      "mesh": "bigger tail pieces",
+      "role": "mechanical_light",
+      "source": "morpho grey",
+      "surface": 1
+    },
+    {
+      "mesh": "bottom of upper body pattern",
+      "role": "mechanical_dark",
+      "source": "morpho armor - dark stone silver",
+      "surface": 0
+    },
+    {
+      "mesh": "cannon blocking",
+      "role": "painted_armor",
+      "source": "morpho armor - silver",
+      "surface": 0
+    },
+    {
+      "mesh": "cannon holder for elevation",
+      "role": "mechanical_dark",
+      "source": "morpho armor - dark stone silver",
+      "surface": 0
+    },
+    {
+      "mesh": "center oval",
+      "role": "ceramic_shell",
+      "source": "morpho armor - stone silver",
+      "surface": 0
+    },
+    {
+      "mesh": "command area (where kiri resides)",
+      "role": "painted_armor",
+      "source": "morpho armor - silver",
+      "surface": 0
+    },
+    {
+      "mesh": "command area (where kiri resides)",
+      "role": "seals_and_recesses",
+      "source": "morpho black",
+      "surface": 1
+    },
+    {
+      "mesh": "Cylinder in front",
+      "role": "mechanical_dark",
+      "source": "morpho armor - dark stone silver",
+      "surface": 0
+    },
+    {
+      "mesh": "Cylinder in front",
+      "role": "mechanical_light",
+      "source": "morpho grey",
+      "surface": 1
+    },
+    {
+      "mesh": "cylinder side supports",
+      "role": "mechanical_dark",
+      "source": "morpho armor - dark stone silver",
+      "surface": 0
+    },
+    {
+      "mesh": "front armor mustache",
+      "role": "seals_and_recesses",
+      "source": "morpho black",
+      "surface": 0
+    },
+    {
+      "mesh": "front armor mustache for distant renders",
+      "role": "seals_and_recesses",
+      "source": "morpho black",
+      "surface": 0
+    },
+    {
+      "mesh": "front composite sensor side armor pcs",
+      "role": "painted_armor",
+      "source": "morpho armor - silver",
+      "surface": 0
+    },
+    {
+      "mesh": "grauwolf leg inner connector 2_018",
+      "role": "mechanical_dark",
+      "source": "morpho armor - dark silver",
+      "surface": 0
+    },
+    {
+      "mesh": "grauwolf leg inner connector 2_019",
+      "role": "mechanical_dark",
+      "source": "morpho armor - dark silver",
+      "surface": 0
+    },
+    {
+      "mesh": "grauwolf leg inner connector 2_020",
+      "role": "mechanical_dark",
+      "source": "morpho armor - dark silver",
+      "surface": 0
+    },
+    {
+      "mesh": "grauwolf leg inner connector 2_021",
+      "role": "mechanical_dark",
+      "source": "morpho armor - dark silver",
+      "surface": 0
+    },
+    {
+      "mesh": "grills",
+      "role": "mechanical_dark",
+      "source": "morpho armor - dark stone silver",
+      "surface": 0
+    },
+    {
+      "mesh": "inner big leg piece_018",
+      "role": "mechanical_light",
+      "source": "morpho armor - silver",
+      "surface": 0
+    },
+    {
+      "mesh": "inner big leg piece_019",
+      "role": "mechanical_light",
+      "source": "morpho armor - silver",
+      "surface": 0
+    },
+    {
+      "mesh": "inner big leg piece_020",
+      "role": "mechanical_light",
+      "source": "morpho armor - silver",
+      "surface": 0
+    },
+    {
+      "mesh": "inner big leg piece_021",
+      "role": "mechanical_light",
+      "source": "morpho armor - silver",
+      "surface": 0
+    },
+    {
+      "mesh": "medium tail armor",
+      "role": "painted_armor",
+      "source": "morpho armor - silver",
+      "surface": 0
+    },
+    {
+      "mesh": "medium tail armor",
+      "role": "painted_secondary",
+      "source": "morpho armor - dark silver",
+      "surface": 1
+    },
+    {
+      "mesh": "middle body end cover",
+      "role": "mechanical_dark",
+      "source": "morpho armor - dark stone silver",
+      "surface": 0
+    },
+    {
+      "mesh": "middle body inner rock lining L",
+      "role": "ceramic_dark",
+      "source": "morpho armor - dark stone silver",
+      "surface": 0
+    },
+    {
+      "mesh": "middle body inner rock lining R",
+      "role": "ceramic_dark",
+      "source": "morpho armor - dark stone silver",
+      "surface": 0
+    },
+    {
+      "mesh": "middle body rock protrusions",
+      "role": "ceramic_dark",
+      "source": "morpho armor - dark stone silver",
+      "surface": 0
+    },
+    {
+      "mesh": "middle body rock protrusions base",
+      "role": "ceramic_dark",
+      "source": "morpho armor - dark stone silver",
+      "surface": 0
+    },
+    {
+      "mesh": "middle body rock protrusions wall",
+      "role": "seals_and_recesses",
+      "source": "morpho black",
+      "surface": 0
+    },
+    {
+      "mesh": "optical sensor",
+      "role": "mechanical_dark",
+      "source": "morpho armor - dark stone silver",
+      "surface": 0
+    },
+    {
+      "mesh": "outer engine armor plate",
+      "role": "painted_armor",
+      "source": "morpho armor - silver",
+      "surface": 0
+    },
+    {
+      "mesh": "outer engine armor plate smaller",
+      "role": "painted_armor",
+      "source": "morpho armor - silver",
+      "surface": 0
+    },
+    {
+      "mesh": "outmost plates",
+      "role": "painted_armor",
+      "source": "morpho armor - silver",
+      "surface": 0
+    },
+    {
+      "mesh": "rail gun gun inner cover",
+      "role": "seals_and_recesses",
+      "source": "morpho black",
+      "surface": 0
+    },
+    {
+      "mesh": "rail gun gun reinforcement around edge",
+      "role": "mechanical_light",
+      "source": "morpho armor - silver",
+      "surface": 0
+    },
+    {
+      "mesh": "railgun gun barrel internal",
+      "role": "seals_and_recesses",
+      "source": "morpho black",
+      "surface": 0
+    },
+    {
+      "mesh": "railgun gun barrel internal",
+      "role": "bore_metal",
+      "source": "morpho railgun cannon color",
+      "surface": 1
+    },
+    {
+      "mesh": "railgun rails",
+      "role": "bare_rail_faces",
+      "source": "morpho armor - silver",
+      "surface": 0
+    },
+    {
+      "mesh": "railgun rails",
+      "role": "rail_supports",
+      "source": "morpho armor - dark stone silver",
+      "surface": 1
+    },
+    {
+      "mesh": "railgun rails heat fins base",
+      "role": "heat_fins",
+      "source": "morpho armor - dark silver",
+      "surface": 0
+    },
+    {
+      "mesh": "railgun rails heat fins themselves left",
+      "role": "heat_fins",
+      "source": "morpho grey",
+      "surface": 0
+    },
+    {
+      "mesh": "railgun rails heat fins themselves right",
+      "role": "heat_fins",
+      "source": "morpho grey",
+      "surface": 0
+    },
+    {
+      "mesh": "railgun side",
+      "role": "painted_armor",
+      "source": "morpho armor - silver",
+      "surface": 0
+    },
+    {
+      "mesh": "rear triple plate",
+      "role": "painted_armor",
+      "source": "morpho armor - silver",
+      "surface": 0
+    },
+    {
+      "mesh": "reinforcement in front armor crack",
+      "role": "mechanical_dark",
+      "source": "morpho armor - dark silver",
+      "surface": 0
+    },
+    {
+      "mesh": "sensor supports",
+      "role": "seals_and_recesses",
+      "source": "morpho black",
+      "surface": 0
+    },
+    {
+      "mesh": "sensor supports",
+      "role": "mechanical_dark",
+      "source": "morpho armor - dark stone silver",
+      "surface": 1
+    },
+    {
+      "mesh": "small tail armor",
+      "role": "painted_armor",
+      "source": "morpho armor - silver",
+      "surface": 0
+    },
+    {
+      "mesh": "small tail armor",
+      "role": "painted_secondary",
+      "source": "morpho armor - dark silver",
+      "surface": 1
+    },
+    {
+      "mesh": "small tail pieces",
+      "role": "seals_and_recesses",
+      "source": "morpho black",
+      "surface": 0
+    },
+    {
+      "mesh": "small tail pieces",
+      "role": "mechanical_light",
+      "source": "morpho grey",
+      "surface": 1
+    },
+    {
+      "mesh": "smol leg outer connector",
+      "role": "mechanical_light",
+      "source": "morpho armor - silver",
+      "surface": 0
+    },
+    {
+      "mesh": "smol leg outer connector",
+      "role": "mechanical_dark",
+      "source": "morpho armor - dark silver",
+      "surface": 1
+    },
+    {
+      "mesh": "smol leg outer connector_001",
+      "role": "mechanical_light",
+      "source": "morpho armor - silver",
+      "surface": 0
+    },
+    {
+      "mesh": "smol leg outer connector_001",
+      "role": "mechanical_dark",
+      "source": "morpho armor - dark silver",
+      "surface": 1
+    },
+    {
+      "mesh": "smol leg outer connector_002",
+      "role": "mechanical_light",
+      "source": "morpho armor - silver",
+      "surface": 0
+    },
+    {
+      "mesh": "smol leg outer connector_002",
+      "role": "mechanical_dark",
+      "source": "morpho armor - dark silver",
+      "surface": 1
+    },
+    {
+      "mesh": "smol leg outer connector_003",
+      "role": "mechanical_light",
+      "source": "morpho armor - silver",
+      "surface": 0
+    },
+    {
+      "mesh": "smol leg outer connector_003",
+      "role": "mechanical_dark",
+      "source": "morpho armor - dark silver",
+      "surface": 1
+    },
+    {
+      "mesh": "smol leg outer connector_004",
+      "role": "mechanical_light",
+      "source": "morpho armor - silver",
+      "surface": 0
+    },
+    {
+      "mesh": "smol leg outer connector_004",
+      "role": "mechanical_dark",
+      "source": "morpho armor - dark silver",
+      "surface": 1
+    },
+    {
+      "mesh": "smol leg outer connector_005",
+      "role": "mechanical_light",
+      "source": "morpho armor - silver",
+      "surface": 0
+    },
+    {
+      "mesh": "smol leg outer connector_005",
+      "role": "mechanical_dark",
+      "source": "morpho armor - dark silver",
+      "surface": 1
+    },
+    {
+      "mesh": "smol leg outer connector_006",
+      "role": "mechanical_light",
+      "source": "morpho armor - silver",
+      "surface": 0
+    },
+    {
+      "mesh": "smol leg outer connector_006",
+      "role": "mechanical_dark",
+      "source": "morpho armor - dark silver",
+      "surface": 1
+    },
+    {
+      "mesh": "smol leg outer connector_007",
+      "role": "mechanical_light",
+      "source": "morpho armor - silver",
+      "surface": 0
+    },
+    {
+      "mesh": "smol leg outer connector_007",
+      "role": "mechanical_dark",
+      "source": "morpho armor - dark silver",
+      "surface": 1
+    },
+    {
+      "mesh": "smol leg outer connector_008",
+      "role": "mechanical_light",
+      "source": "morpho armor - silver",
+      "surface": 0
+    },
+    {
+      "mesh": "smol leg outer connector_008",
+      "role": "mechanical_dark",
+      "source": "morpho armor - dark silver",
+      "surface": 1
+    },
+    {
+      "mesh": "smol leg outer connector_009",
+      "role": "mechanical_light",
+      "source": "morpho armor - silver",
+      "surface": 0
+    },
+    {
+      "mesh": "smol leg outer connector_009",
+      "role": "mechanical_dark",
+      "source": "morpho armor - dark silver",
+      "surface": 1
+    },
+    {
+      "mesh": "smol leg outer connector_010",
+      "role": "mechanical_light",
+      "source": "morpho armor - silver",
+      "surface": 0
+    },
+    {
+      "mesh": "smol leg outer connector_010",
+      "role": "mechanical_dark",
+      "source": "morpho armor - dark silver",
+      "surface": 1
+    },
+    {
+      "mesh": "smol leg outer connector_011",
+      "role": "mechanical_light",
+      "source": "morpho armor - silver",
+      "surface": 0
+    },
+    {
+      "mesh": "smol leg outer connector_011",
+      "role": "mechanical_dark",
+      "source": "morpho armor - dark silver",
+      "surface": 1
+    },
+    {
+      "mesh": "smol leg outer connector_012",
+      "role": "mechanical_light",
+      "source": "morpho armor - silver",
+      "surface": 0
+    },
+    {
+      "mesh": "smol leg outer connector_012",
+      "role": "mechanical_dark",
+      "source": "morpho armor - dark silver",
+      "surface": 1
+    },
+    {
+      "mesh": "smol leg outer connector_013",
+      "role": "mechanical_light",
+      "source": "morpho armor - silver",
+      "surface": 0
+    },
+    {
+      "mesh": "smol leg outer connector_013",
+      "role": "mechanical_dark",
+      "source": "morpho armor - dark silver",
+      "surface": 1
+    },
+    {
+      "mesh": "smol leg outer connector_015",
+      "role": "mechanical_light",
+      "source": "morpho armor - silver",
+      "surface": 0
+    },
+    {
+      "mesh": "smol leg outer connector_015",
+      "role": "mechanical_dark",
+      "source": "morpho armor - dark silver",
+      "surface": 1
+    },
+    {
+      "mesh": "smol leg outer connector_016",
+      "role": "mechanical_light",
+      "source": "morpho armor - silver",
+      "surface": 0
+    },
+    {
+      "mesh": "smol leg outer connector_016",
+      "role": "mechanical_dark",
+      "source": "morpho armor - dark silver",
+      "surface": 1
+    },
+    {
+      "mesh": "smol leg outer connector_017",
+      "role": "mechanical_light",
+      "source": "morpho armor - silver",
+      "surface": 0
+    },
+    {
+      "mesh": "smol leg outer connector_017",
+      "role": "mechanical_dark",
+      "source": "morpho armor - dark silver",
+      "surface": 1
+    },
+    {
+      "mesh": "smol leg outer connector_018",
+      "role": "mechanical_light",
+      "source": "morpho armor - silver",
+      "surface": 0
+    },
+    {
+      "mesh": "smol leg outer connector_018",
+      "role": "mechanical_dark",
+      "source": "morpho armor - dark silver",
+      "surface": 1
+    },
+    {
+      "mesh": "smol leg outer connector_019",
+      "role": "mechanical_light",
+      "source": "morpho armor - silver",
+      "surface": 0
+    },
+    {
+      "mesh": "smol leg outer connector_019",
+      "role": "mechanical_dark",
+      "source": "morpho armor - dark silver",
+      "surface": 1
+    },
+    {
+      "mesh": "smol leg outer connector_020",
+      "role": "mechanical_light",
+      "source": "morpho armor - silver",
+      "surface": 0
+    },
+    {
+      "mesh": "smol leg outer connector_020",
+      "role": "mechanical_dark",
+      "source": "morpho armor - dark silver",
+      "surface": 1
+    },
+    {
+      "mesh": "smol leg outer connector_021",
+      "role": "mechanical_light",
+      "source": "morpho armor - silver",
+      "surface": 0
+    },
+    {
+      "mesh": "smol leg outer connector_021",
+      "role": "mechanical_dark",
+      "source": "morpho armor - dark silver",
+      "surface": 1
+    },
+    {
+      "mesh": "smol leg outer connector_022",
+      "role": "mechanical_light",
+      "source": "morpho armor - silver",
+      "surface": 0
+    },
+    {
+      "mesh": "smol leg outer connector_022",
+      "role": "mechanical_dark",
+      "source": "morpho armor - dark silver",
+      "surface": 1
+    },
+    {
+      "mesh": "smol leg outer connector_023",
+      "role": "mechanical_light",
+      "source": "morpho armor - silver",
+      "surface": 0
+    },
+    {
+      "mesh": "smol leg outer connector_023",
+      "role": "mechanical_dark",
+      "source": "morpho armor - dark silver",
+      "surface": 1
+    },
+    {
+      "mesh": "smol leg outer connector_024",
+      "role": "mechanical_light",
+      "source": "morpho armor - silver",
+      "surface": 0
+    },
+    {
+      "mesh": "smol leg outer connector_024",
+      "role": "mechanical_dark",
+      "source": "morpho armor - dark silver",
+      "surface": 1
+    },
+    {
+      "mesh": "smol leg outer connector_025",
+      "role": "mechanical_light",
+      "source": "morpho armor - silver",
+      "surface": 0
+    },
+    {
+      "mesh": "smol leg outer connector_025",
+      "role": "mechanical_dark",
+      "source": "morpho armor - dark silver",
+      "surface": 1
+    },
+    {
+      "mesh": "smol leg outer connector_026",
+      "role": "mechanical_light",
+      "source": "morpho armor - silver",
+      "surface": 0
+    },
+    {
+      "mesh": "smol leg outer connector_026",
+      "role": "mechanical_dark",
+      "source": "morpho armor - dark silver",
+      "surface": 1
+    },
+    {
+      "mesh": "smol leg outer connector_027",
+      "role": "mechanical_light",
+      "source": "morpho armor - silver",
+      "surface": 0
+    },
+    {
+      "mesh": "smol leg outer connector_027",
+      "role": "mechanical_dark",
+      "source": "morpho armor - dark silver",
+      "surface": 1
+    },
+    {
+      "mesh": "smol leg outer connector_028",
+      "role": "mechanical_light",
+      "source": "morpho armor - silver",
+      "surface": 0
+    },
+    {
+      "mesh": "smol leg outer connector_028",
+      "role": "mechanical_dark",
+      "source": "morpho armor - dark silver",
+      "surface": 1
+    },
+    {
+      "mesh": "tail end part",
+      "role": "painted_armor",
+      "source": "morpho armor - silver",
+      "surface": 0
+    },
+    {
+      "mesh": "tail end part",
+      "role": "painted_secondary",
+      "source": "morpho armor - dark silver",
+      "surface": 1
+    },
+    {
+      "mesh": "tail end part",
+      "role": "mechanical_light",
+      "source": "morpho grey",
+      "surface": 2
+    },
+    {
+      "mesh": "tail end part 2",
+      "role": "painted_secondary",
+      "source": "morpho armor - dark silver",
+      "surface": 0
+    },
+    {
+      "mesh": "tail end part underside",
+      "role": "mechanical_light",
+      "source": "morpho armor - silver",
+      "surface": 0
+    },
+    {
+      "mesh": "tail end part underside",
+      "role": "mechanical_dark",
+      "source": "morpho armor - dark silver",
+      "surface": 1
+    },
+    {
+      "mesh": "tail end part underside",
+      "role": "mechanical_light",
+      "source": "morpho grey",
+      "surface": 2
+    },
+    {
+      "mesh": "tail to main body connectors",
+      "role": "seals_and_recesses",
+      "source": "morpho black",
+      "surface": 0
+    },
+    {
+      "mesh": "twisted railgun grills",
+      "role": "heat_fins",
+      "source": "morpho armor - dark stone silver",
+      "surface": 0
+    },
+    {
+      "mesh": "underbody hull",
+      "role": "seals_and_recesses",
+      "source": "morpho black",
+      "surface": 0
+    },
+    {
+      "mesh": "underbody hull",
+      "role": "mechanical_light",
+      "source": "morpho grey",
+      "surface": 1
+    },
+    {
+      "mesh": "underside cover piece",
+      "role": "seals_and_recesses",
+      "source": "morpho black",
+      "surface": 0
+    },
+    {
+      "mesh": "upper body armor outline",
+      "role": "painted_armor",
+      "source": "morpho armor - silver",
+      "surface": 0
+    },
+    {
+      "mesh": "upper body armor outline",
+      "role": "mechanical_light",
+      "source": "morpho grey",
+      "surface": 1
+    },
+    {
+      "mesh": "upper body armor outline lower half",
+      "role": "painted_armor",
+      "source": "morpho armor - silver",
+      "surface": 0
+    },
+    {
+      "mesh": "upper body rock protrusion front",
+      "role": "ceramic_dark",
+      "source": "morpho armor - dark stone silver",
+      "surface": 0
+    },
+    {
+      "mesh": "upper body rock protrusions",
+      "role": "ceramic_dark",
+      "source": "morpho armor - dark stone silver",
+      "surface": 0
+    },
+    {
+      "mesh": "upper body rock protrusions base",
+      "role": "seals_and_recesses",
+      "source": "morpho black",
+      "surface": 0
+    },
+    {
+      "mesh": "weird cylinder all the rocks point to",
+      "role": "mechanical_dark",
+      "source": "morpho armor - stone silver",
+      "surface": 0
+    },
+    {
+      "mesh": "weird cylinder all the rocks point to",
+      "role": "mechanical_dark",
+      "source": "morpho armor - dark stone silver",
+      "surface": 1
+    },
+    {
+      "mesh": "wrench thing right",
+      "role": "mechanical_dark",
+      "source": "morpho armor - dark stone silver",
+      "surface": 0
+    }
+  ],
+  "meshes": 151,
+  "preserved_surfaces": 1,
+  "roles": {
+    "bare_rail_faces": 1,
+    "bore_metal": 1,
+    "ceramic_dark": 6,
+    "ceramic_shell": 5,
+    "heat_fins": 4,
+    "mechanical_dark": 101,
+    "mechanical_light": 81,
+    "painted_armor": 19,
+    "painted_secondary": 5,
+    "rail_supports": 1,
+    "seals_and_recesses": 22
+  },
+  "scope": "Morpho source material names only",
+  "shared_material_count": 11,
+  "shared_texture_count": 3,
+  "skipped_global_overrides": 0,
+  "sources": {
+    "geometry_and_original_materials": "s55-morpho.glb; s55-morpho-materials.json; Project-86 Morpho Materials, unchanged",
+    "material_api": "https://docs.godotengine.org/en/stable/classes/class_basematerial3d.html",
+    "new_surface_design": "S60 project-authored material overrides and deterministic native microdetail; not recovered source textures",
+    "noise_api": "https://docs.godotengine.org/en/stable/classes/class_noisetexture2d.html",
+    "noise_generator_api": "https://docs.godotengine.org/en/stable/classes/class_fastnoiselite.html"
+  },
+  "surfaces": 246,
+  "textures": {
+    "metal_roughness": "256x256 seamless multiplier, 0.90..1.0",
+    "paint_micro_normal": "256x256 seamless noise bump 0.16, normal_scale 0.22; no albedo noise",
+    "paint_roughness": "256x256 seamless scalar, 0.68..0.77"
+  },
+  "textures_ready": true
+}

@@ -152,6 +152,12 @@ func capture_scene(boss: Node3D):
     if "--environment-review" in OS.get_cmdline_user_args():
         await review_environment(units)
         return
+    if "--material-review" in OS.get_cmdline_user_args():
+        await review_materials(boss)
+        return
+    if "--socket-review" in OS.get_cmdline_user_args():
+        await review_foot_sockets(player,units)
+        return
     var animations := boss.find_children("*","AnimationPlayer",true,false)
     var clips := []
     for anim in animations:
@@ -277,6 +283,74 @@ func capture_scene(boss: Node3D):
             camera.look_at(Vector3(0,1,-19))
         if frame%72==0:print("S58 FRAME ",frame)
     FileAccess.open(PROBE+"s58-combat-v3-run.json",FileAccess.WRITE).store_string(JSON.stringify({"revision":3,"active_fx_end":particles.size()+flashes.size(),"frames":288,"fps":24,"duration":12,"capture":"fixed-step offline rendering; not measured realtime FPS","events":events,"assets":asset_bounds,"limitations":["choreographed aiming and evasion; not interactive mission","scouts stationary; full multi-leg gait pending","Morpho original clip sampled continuously; foot contact unverified","no collision/LOS/damage simulation or audio verification","Morpho socket derived from rail geometry; turret aims after clip evaluation, separate joint limits and barrel recoil pending","player socket, recoil and evade are provisional root choreography","overall environment art rejected"]},"  "))
+    world.queue_free()
+    await process_frame
+    quit()
+
+func review_foot_sockets(player: Node3D, units: Array):
+    for unit in units:unit.visible = unit == player
+    var data = JSON.parse_string(FileAccess.get_file_as_string(PROBE+"s60-xm2-foot-sockets.json"))
+    var skeleton: Skeleton3D = player.find_children("*","Skeleton3D",true,false)[0]
+    var box := bounds_of(player)
+    var results := []
+    var max_error := 0.0
+    for leg in data.legs:
+        var index := skeleton.find_bone(leg.outer.name)
+        assert(index >= 0,"Measured leg must exist in imported Godot skeleton")
+        var local = leg.footSocketOuterBoneLocal
+        var point := skeleton.global_transform*skeleton.get_bone_global_pose(index)*Vector3(local[0],local[1],local[2])
+        var marker := MeshInstance3D.new()
+        var sphere := SphereMesh.new()
+        sphere.radius = 0.065
+        sphere.height = 0.13
+        var material := StandardMaterial3D.new()
+        material.shading_mode = BaseMaterial3D.SHADING_MODE_UNSHADED
+        material.albedo_color = Color(0.2,1,0.6)
+        sphere.material = material
+        marker.mesh = sphere
+        world.add_child(marker)
+        marker.position = point
+        results.append({"bone":leg.outer.name,"bone_index":index,"world_position":[point.x,point.y,point.z],"height_above_posed_min_m":point.y-box.position.y})
+        max_error = maxf(max_error,absf(point.y-box.position.y))
+        print("SOCKET ",leg.outer.name," position=",point," posed_min=",box.position.y)
+    camera.position = player.position+Vector3(5,3.5,5)
+    camera.look_at(player.position+Vector3(0,0.6,0))
+    await take_frame("s60-xm2-foot-sockets.png")
+    FileAccess.open(PROBE+"s60-xm2-godot-sockets.json",FileAccess.WRITE).store_string(JSON.stringify({"source_sha256":data.sourceSha256,"posed_bounds":str(box),"measurements":results,"maximum_height_error_m":max_error,"tolerance_m":0.02,"passed":max_error<0.02,"limits":["rest socket alignment only; no walk, turning or slope test","markers are debug evidence, not gameplay UI"]},"  "))
+    world.queue_free()
+    await process_frame
+    quit(0 if max_error<0.02 else 1)
+
+func review_materials(boss: Node3D):
+    var wide := camera.transform
+    var center := bounds_of(boss).get_center()
+    await take_frame("s60-morpho-original-wide.png")
+    camera.position = center+Vector3(22,13,20)
+    camera.look_at(center+Vector3(0,0,5))
+    var detail := camera.transform
+    await take_frame("s60-morpho-original-detail.png")
+    camera.position = center+Vector3(10,5,8)
+    camera.look_at(center+Vector3(0,1,0))
+    var hull := camera.transform
+    await take_frame("s60-morpho-original-hull.png")
+    var surface_study = load(PROBE+"s60-legion-materials.gd")
+    assert(surface_study != null,"Material study script must load")
+    var report: Dictionary = surface_study.apply(boss)
+    for i in range(90):await process_frame
+    report = surface_study.apply(boss)
+    assert(report.textures_ready,"Microdetail textures must finish before A/B capture")
+    camera.transform = hull
+    await take_frame("s60-morpho-surfaces-hull.png")
+    camera.transform = detail
+    await take_frame("s60-morpho-surfaces-detail.png")
+    camera.transform = wide
+    await take_frame("s60-morpho-surfaces-wide.png")
+    report["camera_wide"] = str(wide)
+    report["camera_detail"] = str(detail)
+    report["camera_hull"] = str(hull)
+    report["environment"] = asset_bounds
+    report["limits"] = ["static surface comparison, not gameplay QA", "same S59 lighting and exposure", "original source GLB remains unchanged", "new authored material interpretation, not restored source textures"]
+    FileAccess.open(PROBE+"s60-material-run.json",FileAccess.WRITE).store_string(JSON.stringify(report,"  "))
     world.queue_free()
     await process_frame
     quit()

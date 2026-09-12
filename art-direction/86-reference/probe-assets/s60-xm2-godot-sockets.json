@@ -1,0 +1,53 @@
+{
+  "limits": [
+    "rest socket alignment only; no walk, turning or slope test",
+    "markers are debug evidence, not gameplay UI"
+  ],
+  "maximum_height_error_m": 0.000000417232513427734,
+  "measurements": [
+    {
+      "bone": "Outer leg",
+      "bone_index": 19,
+      "height_above_posed_min_m": 0.000000417232513427734,
+      "world_position": [
+        -1.64797139167786,
+        0.000000357627868652344,
+        13.7491474151611
+      ]
+    },
+    {
+      "bone": "Outer leg.001",
+      "bone_index": 28,
+      "height_above_posed_min_m": 0.0000000596046447753906,
+      "world_position": [
+        -6.35204362869263,
+        0.0,
+        13.7491493225098
+      ]
+    },
+    {
+      "bone": "Outer leg.002",
+      "bone_index": 37,
+      "height_above_posed_min_m": 0.0000000596046447753906,
+      "world_position": [
+        -1.52814733982086,
+        0.0,
+        10.163688659668
+      ]
+    },
+    {
+      "bone": "Outer leg.003",
+      "bone_index": 46,
+      "height_above_posed_min_m": 0.0000000596046447753906,
+      "world_position": [
+        -6.47186756134033,
+        0.0,
+        10.1636896133423
+      ]
+    }
+  ],
+  "passed": true,
+  "posed_bounds": "[P: (-6.981634, -0.0, 7.849999), S: (5.963268, 2.455703, 6.3)]",
+  "source_sha256": "798623aca1de8524a078e559d8519a535486f7c090fe6050d3c73a80d9549b94",
+  "tolerance_m": 0.02
+}
