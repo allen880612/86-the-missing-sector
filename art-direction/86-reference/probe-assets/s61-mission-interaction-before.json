@@ -1,0 +1,14 @@
+{
+  "high_cover_blocks_shot": true,
+  "high_cover_blocks_walk": true,
+  "kill_deactivates_collider": true,
+  "limits": [
+    "real Godot physics queries with controlled positions/input; not OS UI or full180sec gameplay",
+    "collision uses prototype core capsules and four cover boxes"
+  ],
+  "low_cover_allows_cannon_height": true,
+  "open_shot_damages": true,
+  "retry_clears_warning_and_enemies": true,
+  "vault_end_position": "(8.0, -0.04, 3.650884)",
+  "vault_landing_clear": false
+}

@@ -24,6 +24,7 @@ var support_cd := 0.0
 var vault_cd := 0.0
 var vault_time := 0.0
 var vault_direction := Vector3.ZERO
+var vault_safe_landing := Vector3.ZERO
 var right_was := false
 var space_was := false
 var elapsed := 0.0
@@ -40,6 +41,7 @@ var supports := 0
 var movement_frames := 0
 var vault_requested := false
 var support_requested := false
+var driver_node: Node
 
 func collider_box(size: Vector3, at: Vector3, layer: int = 1) -> StaticBody3D:
     var body := StaticBody3D.new()
@@ -112,11 +114,13 @@ func capture_scene(boss: Node3D):
     camera.position = pilot.position+Vector3(0,24,21)
     camera.look_at(pilot.position+Vector3(0,0,-8))
     var driver := Driver.new()
+    driver_node = driver
     driver.mission = self
     world.add_child(driver)
     phase = "prep"
     ready_to_tick = true
     if "--qa" in OS.get_cmdline_user_args():call_deferred("qa_flow")
+    if "--qa-interactions" in OS.get_cmdline_user_args():call_deferred("qa_interactions")
 
 func begin_run():
     phase = "playing"
@@ -276,6 +280,7 @@ func tick(dt: float):
         vault_direction = axis if axis.length()>0.1 else (aim-pilot.position).normalized()
         vault_direction.y = 0
         vault_direction = vault_direction.normalized()
+        vault_safe_landing = pilot.position
         pilot.collision_mask = 1
         ui.announce("辛：躍進。")
     right_was = right
@@ -294,7 +299,8 @@ func tick(dt: float):
     var velocity := axis*1.5
     var old_yaw := rig.rotation.y
     if axis.length()>0.1:rig.rotation.y=rotate_toward(rig.rotation.y,atan2(axis.x,axis.z),dt*0.55)
-    if vault_time>0:
+    var was_vaulting := vault_time>0
+    if was_vaulting:
         vault_time = maxf(0,vault_time-dt)
         velocity = vault_direction*7.0
         pilot.position.y = -0.04+sin((0.65-vault_time)/0.65*PI)*2.5
@@ -305,6 +311,10 @@ func tick(dt: float):
     pilot.move_and_slide()
     pilot.position.x=clampf(pilot.position.x,-19,19)
     pilot.position.z=clampf(pilot.position.z,-55,24)
+    if was_vaulting:
+        var landing := Vector3(pilot.position.x,-0.04,pilot.position.z)
+        if landing_clear(landing):vault_safe_landing=landing
+        elif vault_time<=0:pilot.position=vault_safe_landing
     if vault_time<=0:gait.step(dt,pilot.velocity,angle_difference(old_yaw,rig.rotation.y)/maxf(0.001,dt),Callable(self,"ground_at"))
     else:
         var skel: Skeleton3D = rig.find_children("*","Skeleton3D",true,false)[0]
@@ -403,3 +413,76 @@ func qa_flow():
     FileAccess.open(PROBE+"s61-mission-flow-qa.json",FileAccess.WRITE).store_string(JSON.stringify({"start":started,"loss":lost,"retry":run_events.filter(func(e):return e.event=="start").size()==2,"win":won,"right_click_down_up_same_frame_once":vault_once,"return_to_prep":phase=="prep","events":run_events,"limits":["automated state transition test; time and HP injected","not manual gameplay, full180s survival or combat balance acceptance"]},"  "))
     await take_frame("s61-mission-prep.png")
     quit(0 if started and lost and won and vault_once else 1)
+
+func landing_clear(at: Vector3) -> bool:
+    var collision: CollisionShape3D = pilot.find_children("*","CollisionShape3D",true,false)[0]
+    var query := PhysicsShapeQueryParameters3D.new()
+    query.shape = collision.shape
+    query.transform = Transform3D(pilot.global_basis,at+collision.position)
+    query.collision_mask = 1|4
+    query.exclude = [pilot.get_rid()]
+    query.margin = 0.01
+    return world.get_world_3d().direct_space_state.intersect_shape(query,1).is_empty()
+
+func qa_interactions():
+    driver_node.set_physics_process(false)
+    begin_run()
+    for foe in foes:foe.respawn=99999
+    var target: Dictionary = foes[0]
+    target.active=true
+    target.hp=70
+    target.body.collision_layer=4
+    target.body.collision_mask=1|2|4
+    target.body.position=Vector3(-4,-0.04,6)
+    target.model.visible=true
+    target.cooldown=9999
+    pilot.position=Vector3(-4,-0.04,14)
+    aim=target.body.position
+    await physics_frame
+    await physics_frame
+    shoot()
+    var hit_open: bool = target.hp==42
+    shoot()
+    shoot()
+    var kill_clears: bool = not target.active and target.body.collision_layer==0 and kills==1
+    target.active=true
+    target.hp=70
+    target.body.collision_layer=4
+    target.body.position=Vector3(-8,-0.04,-10)
+    pilot.position=Vector3(-8,-0.04,3)
+    aim=target.body.position
+    await physics_frame
+    await physics_frame
+    shoot()
+    var high_blocks: bool = target.hp==70
+    var low_passes := clear_line(Vector3(8,1.56,6),Vector3(8,1.56,-3))
+    for i in range(240):
+        await physics_frame
+        pilot.velocity=Vector3(0,0,-1.5)
+        pilot.move_and_slide()
+    var walking_blocked := pilot.position.z>-2.3
+    target.active=false
+    target.body.collision_layer=0
+    target.body.collision_mask=0
+    pilot.position=Vector3(8,-0.04,7)
+    vault_time=0.65
+    vault_safe_landing=pilot.position
+    vault_direction=Vector3(0,0,-1)
+    vault_cd=3.5
+    pilot.collision_mask=1
+    heavy_timer=999
+    fire_cd=999
+    for i in range(45):
+        await physics_frame
+        tick(1.0/60.0)
+    var vault_safe := landing_clear(pilot.position)
+    var vault_position := pilot.position
+    var old_warning := marker(Vector3(4,0.1,4),2,Color.RED)
+    danger={"node":old_warning,"at":Vector3(4,0.1,4),"remaining":2}
+    begin_run()
+    await process_frame
+    var retry_clean: bool = not is_instance_valid(old_warning) and danger.is_empty() and health==120 and support_cd==0 and foes.filter(func(e):return e.active).is_empty()
+    var report := {"open_shot_damages":hit_open,"kill_deactivates_collider":kill_clears,"high_cover_blocks_shot":high_blocks,"low_cover_allows_cannon_height":low_passes,"high_cover_blocks_walk":walking_blocked,"vault_landing_clear":vault_safe,"vault_end_position":str(vault_position),"retry_clears_warning_and_enemies":retry_clean,"limits":["real Godot physics queries with controlled positions/input; not OS UI or full180sec gameplay","collision uses prototype core capsules and four cover boxes"]}
+    FileAccess.open(PROBE+"s61-mission-interaction-qa.json",FileAccess.WRITE).store_string(JSON.stringify(report,"  "))
+    print("INTERACTION_QA ",JSON.stringify(report))
+    quit(0 if hit_open and kill_clears and high_blocks and low_passes and walking_blocked and vault_safe and retry_clean else 1)

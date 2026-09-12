@@ -1,16 +1,16 @@
 {
   "events": [
     {
-      "at_ms": 8480,
+      "at_ms": 3918,
       "event": "start"
     },
     {
-      "elapsed": 1.75,
+      "elapsed": 1.73333333333333,
       "event": "loss",
       "kills": 0
     },
     {
-      "at_ms": 10922,
+      "at_ms": 6172,
       "event": "start"
     },
     {
