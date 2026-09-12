@@ -1,0 +1,216 @@
+{
+  "intake-manifest.json": {
+    "source": "https://github.com/Taliayaya/Project-86",
+    "observed_tree": "add48d122750cf21d3eb596847e300b260dee873",
+    "date": "2026-09-13",
+    "usage": "Local research; individual asset redistribution rights unresolved",
+    "files": [
+      {
+        "file": "Reginleif_Model.fbx",
+        "repo_path": "Assets/PermResources/Models/Reginleif_Model.fbx",
+        "pointer_git_blob": "e1fa1a9378da1462aff4b11ebf10f4c48ce9360f",
+        "source_url": "https://media.githubusercontent.com/media/Taliayaya/Project-86/main/Assets/PermResources/Models/Reginleif_Model.fbx",
+        "bytes": 14005052,
+        "sha256": "20003daf0d92d7d3397c8da1dbbf8a44521392803998bc654dad29f8e38a160e",
+        "verified": "LFS size and SHA-256 match",
+        "import_status": "not inspected"
+      },
+      {
+        "file": "morpho walk forward anim.fbx",
+        "repo_path": "Assets/PermResources/Models/morpho walk forward anim.fbx",
+        "pointer_git_blob": "4891644abf4a6d232c54d121778120e4d1f13e21",
+        "source_url": "https://media.githubusercontent.com/media/Taliayaya/Project-86/main/Assets/PermResources/Models/morpho%20walk%20forward%20anim.fbx",
+        "bytes": 91856124,
+        "sha256": "fe6c559387de0be7261cb4b7afe5d96a27c3834e8d377e6eea64822bbd2a3f13",
+        "verified": "LFS size and SHA-256 match",
+        "import_status": "not inspected"
+      }
+    ]
+  },
+  "dependency-manifest.json": [
+    {
+      "file": "Morpho Materials/composite sensor morpho.mat",
+      "repo_path": "Assets/PermResources/Models/Morpho Materials/composite sensor morpho.mat",
+      "git_blob": "b48198081a1e8cbc991e6c6de3adbf68c98a71e9",
+      "bytes": 3884,
+      "sha256": "f16fbaac4dae2e920e8a469781d584dcc66b39b510df7cfc8d40145ff5a9352d"
+    },
+    {
+      "file": "Morpho Materials/morpho armor - dark silver.mat",
+      "repo_path": "Assets/PermResources/Models/Morpho Materials/morpho armor - dark silver.mat",
+      "git_blob": "72f30b3c880f7b77392316bece6ee154fce0f50c",
+      "bytes": 3913,
+      "sha256": "fd48fa9fc0b4cda46b09b1d22872a9938c85ef0da8a9b2e2c884494f4cdbd14d"
+    },
+    {
+      "file": "Morpho Materials/morpho armor - dark stone silver.mat",
+      "repo_path": "Assets/PermResources/Models/Morpho Materials/morpho armor - dark stone silver.mat",
+      "git_blob": "077f739c83dbe5d3596dbccdf2652079d64c9453",
+      "bytes": 3903,
+      "sha256": "26a5b8ba7f5e9332428eebbb70377ddd8799d3c4d344c86ed34a231d7b0a5e30"
+    },
+    {
+      "file": "Morpho Materials/morpho armor - silver.mat",
+      "repo_path": "Assets/PermResources/Models/Morpho Materials/morpho armor - silver.mat",
+      "git_blob": "a47fba0cf8c09e08d17c83172c1d162b85c61031",
+      "bytes": 3903,
+      "sha256": "8b064d9bafda557da92aad04d06d45e9e35d80f75c23210ded41de721f193ff9"
+    },
+    {
+      "file": "Morpho Materials/morpho armor - stone silver.mat",
+      "repo_path": "Assets/PermResources/Models/Morpho Materials/morpho armor - stone silver.mat",
+      "git_blob": "228858693e24f00570c14e3396058524bd18ea16",
+      "bytes": 3905,
+      "sha256": "452b22664cbccc7a6a499efa3be57908f7a9330c809a64788088dbb1272c7756"
+    },
+    {
+      "file": "Morpho Materials/morpho black.mat",
+      "repo_path": "Assets/PermResources/Models/Morpho Materials/morpho black.mat",
+      "git_blob": "f102036b42af6159938280f92b9f0c707d5e329d",
+      "bytes": 3838,
+      "sha256": "496303d030aeb3acad293582a7bb5a66ce3b37297bd249ba3a471a0401d7ee7e"
+    },
+    {
+      "file": "Morpho Materials/morpho grey.mat",
+      "repo_path": "Assets/PermResources/Models/Morpho Materials/morpho grey.mat",
+      "git_blob": "3c00e72c60655bc25a5718e971c82fdfef0cca81",
+      "bytes": 3886,
+      "sha256": "0c8e892cca0ca1dec5780b0ee63590a2bed8f9750a1c7308a1657cdd5cc98dd8"
+    },
+    {
+      "file": "Morpho Materials/morpho railgun cannon color.mat",
+      "repo_path": "Assets/PermResources/Models/Morpho Materials/morpho railgun cannon color.mat",
+      "git_blob": "a2cd19568cb851f7e8c0fb7eabe9dac91f2615b2",
+      "bytes": 3919,
+      "sha256": "d9c334c5158c7cd017429ffe5fac57376ce8ac3c4b2e33a195d08e0647ec84d1"
+    },
+    {
+      "file": "Reginleif Textures/Reginleif_standard.mat",
+      "repo_path": "Assets/PermResources/Models/Reginleif Textures/Reginleif_standard.mat",
+      "git_blob": "c0f5f48d4cb50fe9a302d41d9b9eb1bdcc2c4535",
+      "bytes": 3935,
+      "sha256": "73f5ab33694bdbef02e47f964390844b7a32f6c71e65d8849ecfb5951dadf368"
+    },
+    {
+      "file": "Reginleif Textures/reginleif 4k color.png",
+      "repo_path": "Assets/PermResources/Models/Reginleif Textures/reginleif 4k color.png",
+      "git_blob": "ca71e691f2c05405400c94dcce2317803e09c49b",
+      "bytes": 15134778,
+      "sha256": "d0d02b961da6179e10ff012051c7a9c101d99e0d1ba200fae1e5f620d5940d2c"
+    },
+    {
+      "file": "Reginleif Textures/reginleif 4k metallic.png",
+      "repo_path": "Assets/PermResources/Models/Reginleif Textures/reginleif 4k metallic.png",
+      "git_blob": "ec5848b95f1537e65391159c861077b1e8b460ff",
+      "bytes": 6603530,
+      "sha256": "4dbdf409192c7420e28bd61a8786d8351b01f2d6ac4e61bb6db232676cdbffad"
+    },
+    {
+      "file": "Reginleif Textures/reginleif 4k normal.png",
+      "repo_path": "Assets/PermResources/Models/Reginleif Textures/reginleif 4k normal.png",
+      "git_blob": "c951c0ada5d0e722dfba3a8ce6909e1047bbfb33",
+      "bytes": 6554082,
+      "sha256": "d69bcca5513f1924240f44a6b3f3ed2c3010f269eb54b99df4b64724979c96c2"
+    },
+    {
+      "file": "Reginleif_Model.fbx.meta",
+      "repo_path": "Assets/PermResources/Models/Reginleif_Model.fbx.meta",
+      "git_blob": "2f73c15424ef9715dc572f7a12a84ce915ae2fbf",
+      "bytes": 2784,
+      "sha256": "33bae83a70644999b8ec973cb75d3f9f0be6d3563c5374c75144c2a2e9ee3350"
+    },
+    {
+      "file": "morpho walk forward anim.fbx.meta",
+      "repo_path": "Assets/PermResources/Models/morpho walk forward anim.fbx.meta",
+      "git_blob": "e9238f0a502c17d0d6e0765e65b2bdb7f8a06022",
+      "bytes": 6995,
+      "sha256": "95e0aa10a9e4bcbcf6e736bd5cc5ef19c34d7fa69e117404d2fffe324fc4540e"
+    }
+  ],
+  "s51-archive-manifest.json": [
+    {
+      "file": "ameise/ameise 4k color.png",
+      "bytes": 4117279,
+      "sha256": "2b8f3d3b6db0c74a7289cb065b4b24031d607a8e12a8c8d25a4743f839dbc18a",
+      "origin": "Previously verified S51 intake; project-86-reuse-audit.md",
+      "status": "local archive, not game publication"
+    },
+    {
+      "file": "ameise/ameise 4k normal.png",
+      "bytes": 868934,
+      "sha256": "d99b3652b4a49a9db127a252b627f6ef709b3cfdd33ff67ae38d8f46bd08a521",
+      "origin": "Previously verified S51 intake; project-86-reuse-audit.md",
+      "status": "local archive, not game publication"
+    },
+    {
+      "file": "ameise/Ameise asurada model.fbx",
+      "bytes": 1348940,
+      "sha256": "38bc6be984b968fbb2f7b731455dbf148cd118d18d084d6808dfbee18f90b186",
+      "origin": "Previously verified S51 intake; project-86-reuse-audit.md",
+      "status": "local archive, not game publication"
+    },
+    {
+      "file": "ameise/2k-ameise 4k normal.png",
+      "bytes": 535937,
+      "sha256": "ca5b755e6877442dac0b650a937f84452bf570e54774e3ee48a7191a49953259",
+      "origin": "Previously verified S51 intake; project-86-reuse-audit.md",
+      "status": "local archive, not game publication"
+    },
+    {
+      "file": "ameise/inspection.json",
+      "bytes": 31834,
+      "sha256": "9f7256df4ebe27857994e567724423126773c57af68202526f1cd7d034eb47ff",
+      "origin": "Previously verified S51 intake; project-86-reuse-audit.md",
+      "status": "local archive, not game publication"
+    },
+    {
+      "file": "ameise/2k-ameise 4k color.png",
+      "bytes": 1801641,
+      "sha256": "84cac4d12d4d72501c6b1c0ce5a3b1fdf4cead9dada5971fed03dd2dadaa8f08",
+      "origin": "Previously verified S51 intake; project-86-reuse-audit.md",
+      "status": "local archive, not game publication"
+    },
+    {
+      "file": "juggernaut/Robot_2_Base_Color.png",
+      "bytes": 2359566,
+      "sha256": "0ae4fbca0a77348142e0b1617052340ac4ec951be3cc642ea9424639ee892dd6",
+      "origin": "Previously verified S51 intake; project-86-reuse-audit.md",
+      "status": "local archive, not game publication"
+    },
+    {
+      "file": "juggernaut/2k-Robot_2_Base_Color.png",
+      "bytes": 2491793,
+      "sha256": "b554418831b2908bd1706165f7074eb5be423883da6590fb683d74aad40d8c17",
+      "origin": "Previously verified S51 intake; project-86-reuse-audit.md",
+      "status": "local archive, not game publication"
+    },
+    {
+      "file": "juggernaut/2k-Robot_2_Normal_OpenGL.png",
+      "bytes": 7654184,
+      "sha256": "cd8f02f336fb9470b2750b246235d9ab53f504a9a86e0039efef51d583be294f",
+      "origin": "Previously verified S51 intake; project-86-reuse-audit.md",
+      "status": "local archive, not game publication"
+    },
+    {
+      "file": "juggernaut/Robot_2_Normal_OpenGL.png",
+      "bytes": 6333950,
+      "sha256": "e712a4bd003083608fe4b197b29c0fe5d7f14914d54c48ce786bfd6b5bf22d20",
+      "origin": "Previously verified S51 intake; project-86-reuse-audit.md",
+      "status": "local archive, not game publication"
+    },
+    {
+      "file": "juggernaut/inspection.json",
+      "bytes": 43330,
+      "sha256": "24a79ad014879aa175c3fe1a24649d217365c496e29fc96df404a61e5dafaeb7",
+      "origin": "Previously verified S51 intake; project-86-reuse-audit.md",
+      "status": "local archive, not game publication"
+    },
+    {
+      "file": "juggernaut/NewTexturedJuggernaut.fbx",
+      "bytes": 4381500,
+      "sha256": "e405d5221c513a593f3763a90681bcf963c0906a47e705efa3384667061f88a1",
+      "origin": "Previously verified S51 intake; project-86-reuse-audit.md",
+      "status": "local archive, not game publication"
+    }
+  ]
+}

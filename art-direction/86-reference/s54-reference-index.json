@@ -1,0 +1,30 @@
+{
+  "date": "2026-09-13",
+  "inspection": "Muted visual samples; no continuous-playback or audio review",
+  "references": [
+    {
+      "id": "ac6-industrial",
+      "url": "https://www.youtube.com/watch?v=DcDjyestr4Y&t=225s",
+      "observed": "sampled approx 3:50–4:00",
+      "purpose": "industrial combat, muzzle/environment separation"
+    },
+    {
+      "id": "ac6-strider",
+      "url": "https://www.youtube.com/watch?v=DcDjyestr4Y&t=429s",
+      "observed": "7:09 and 7:54 frames",
+      "purpose": "giant scale and approach"
+    },
+    {
+      "id": "ascent-space",
+      "url": "https://www.youtube.com/watch?v=Xf6iELuLqM4&t=384s",
+      "observed": "6:24 frame; environment, not gunfire",
+      "purpose": "oblique industrial layering"
+    },
+    {
+      "id": "hd2-automatons",
+      "url": "https://www.youtube.com/watch?v=B9VdtdWRcZs&t=30s",
+      "observed": "0:30 combat frame",
+      "purpose": "mechanical army, fire lines, smoke"
+    }
+  ]
+}
