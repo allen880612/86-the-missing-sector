@@ -1,0 +1,891 @@
+{
+  "armature": "morpho arma",
+  "armature_matrix": [
+    [
+      1.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    [
+      0.0,
+      1.0,
+      1.6292068494294654e-07,
+      0.0
+    ],
+    [
+      0.0,
+      -1.6292068494294654e-07,
+      1.0,
+      129.48326110839844
+    ],
+    [
+      0.0,
+      0.0,
+      0.0,
+      1.0
+    ]
+  ],
+  "bones": {
+    "railgun_base": {
+      "parent": "base",
+      "head_gltf": [
+        4.547473508864641e-13,
+        251.51419067382812,
+        -63.39688491821289
+      ],
+      "tail_gltf": [
+        7.893369118050497e-13,
+        301.5141906738281,
+        -63.39688491821289
+      ],
+      "matrix_blender": [
+        [
+          1.0,
+          6.691790676270626e-15,
+          0.0,
+          4.547473508864641e-13
+        ],
+        [
+          -1.281107888646614e-21,
+          1.6459864582429873e-09,
+          -1.0,
+          63.39688491821289
+        ],
+        [
+          -7.863383779023198e-15,
+          1.0,
+          -3.258256242588686e-08,
+          251.51419067382812
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
+      ],
+      "rest_local_matrix_blender": [
+        [
+          1.0,
+          2.6114301049557937e-15,
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          -4.2065394723067584e-08,
+          -1.0,
+          63.396881103515625
+        ],
+        [
+          -3.783023207708366e-15,
+          1.0,
+          -7.629393650177008e-08,
+          122.03093719482422
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
+      ],
+      "world_axes_gltf": [
+        [
+          1.0,
+          -7.863383779023198e-15,
+          1.281107888646614e-21
+        ],
+        [
+          6.691790676270626e-15,
+          1.0,
+          -1.6459864582429873e-09
+        ],
+        [
+          0.0,
+          -3.258256242588686e-08,
+          1.0
+        ]
+      ]
+    },
+    "railgun_turret": {
+      "parent": "railgun_base",
+      "head_gltf": [
+        1.3417961403430767e-12,
+        301.5141906738281,
+        -63.39688491821289
+      ],
+      "tail_gltf": [
+        1.3184017245981838e-11,
+        301.51422119140625,
+        36.60310745239258
+      ],
+      "matrix_blender": [
+        [
+          -1.0,
+          1.1842221268269087e-13,
+          4.529873081082769e-07,
+          1.3417961403430767e-12
+        ],
+        [
+          3.892426067879026e-14,
+          -1.0,
+          3.3304780799880973e-07,
+          63.39688491821289
+        ],
+        [
+          4.529873081082769e-07,
+          3.417346192691184e-07,
+          1.0,
+          301.5141906738281
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
+      ],
+      "rest_local_matrix_blender": [
+        [
+          -1.0,
+          1.9923628794442918e-22,
+          1.5099580252808664e-07,
+          6.313564715519984e-14
+        ],
+        [
+          5.168365921733508e-15,
+          -1.0,
+          -8.686811270308681e-09,
+          63.39687728881836
+        ],
+        [
+          1.5099580252808664e-07,
+          0.0,
+          1.0,
+          172.03094482421875
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
+      ],
+      "world_axes_gltf": [
+        [
+          -1.0,
+          4.529873081082769e-07,
+          -3.892426067879026e-14
+        ],
+        [
+          1.1842221268269087e-13,
+          3.417346192691184e-07,
+          1.0
+        ],
+        [
+          4.529873081082769e-07,
+          1.0,
+          -3.3304780799880973e-07
+        ]
+      ]
+    },
+    "railgun_turret_end": {
+      "parent": "railgun_turret",
+      "head_gltf": [
+        1.8785721242475795e-11,
+        301.5142517089844,
+        36.60307693481445
+      ],
+      "tail_gltf": [
+        3.0627941155492167e-11,
+        301.5142822265625,
+        136.60305786132812
+      ],
+      "matrix_blender": [
+        [
+          -1.0,
+          1.1842221268269087e-13,
+          3.8941428215366614e-07,
+          1.8785721242475795e-11
+        ],
+        [
+          1.7751401612748144e-14,
+          -1.0,
+          3.3304780799880973e-07,
+          -36.60307693481445
+        ],
+        [
+          3.8941428215366614e-07,
+          3.417346192691184e-07,
+          1.0,
+          301.5142517089844
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
+      ],
+      "rest_local_matrix_blender": [
+        [
+          -1.0,
+          1.9923628794442918e-22,
+          8.742278367890322e-08,
+          -7.644260658495883e-13
+        ],
+        [
+          5.720612768618473e-15,
+          -1.0,
+          -8.686811270308681e-09,
+          -36.603084564208984
+        ],
+        [
+          8.742278367890322e-08,
+          0.0,
+          1.0,
+          172.0309600830078
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
+      ]
+    }
+  },
+  "meshes": {
+    "railgun gun barrel internal": {
+      "aabb_min": [
+        -24.389482498168945,
+        277.1575622558594,
+        -30.834901809692383
+      ],
+      "aabb_max": [
+        24.389482498168945,
+        325.9365234375,
+        54.39251708984375
+      ],
+      "centroid": [
+        -1.5372245541030956e-06,
+        301.54703915637475,
+        34.73926568031311
+      ],
+      "pca_axis_sign_ambiguous": [
+        -6.172363568924509e-10,
+        6.754128298470247e-07,
+        0.999999999999772
+      ],
+      "pca_singular_values": [
+        810.3544137136249,
+        321.16885848710575,
+        321.1687577896815
+      ],
+      "end_centroids": [
+        [
+          -4.979938239557669e-07,
+          301.54699897766113,
+          -30.834895431995392
+        ],
+        [
+          -1.581778027078447e-08,
+          301.54704761505127,
+          54.39250640074412
+        ]
+      ],
+      "weight_sums": {
+        "railgun_turret": 736.0
+      }
+    },
+    "railgun rails": {
+      "aabb_min": [
+        -148.92178344726562,
+        287.37567138671875,
+        -48.37693405151367
+      ],
+      "aabb_max": [
+        148.92178344726562,
+        315.3966064453125,
+        936.4921875
+      ],
+      "centroid": [
+        -1.420113156517718e-06,
+        300.4128087123978,
+        398.4130977022685
+      ],
+      "pca_axis_sign_ambiguous": [
+        2.0796582031872192e-09,
+        -0.005199262041018421,
+        0.9999864837457699
+      ],
+      "pca_singular_values": [
+        10774.80570798695,
+        2381.239174025225,
+        411.5761909122268
+      ],
+      "end_centroids": [
+        [
+          0.0,
+          301.3863830566406,
+          -48.37693405151367
+        ],
+        [
+          -2.7247837611607143e-06,
+          290.45212173461914,
+          935.6180725097656
+        ]
+      ],
+      "weight_sums": {
+        "railgun_turret": 1284.0
+      }
+    },
+    "railgun rails heat fins base": {
+      "aabb_min": [
+        -97.36048126220703,
+        290.97845458984375,
+        -49.170326232910156
+      ],
+      "aabb_max": [
+        97.3604736328125,
+        311.7935485839844,
+        14.612822532653809
+      ],
+      "centroid": [
+        -1.7468291934173887e-06,
+        301.3859981121403,
+        -18.176354989335678
+      ],
+      "pca_axis_sign_ambiguous": [
+        -0.9999999999999536,
+        3.04800629440547e-07,
+        -6.089649745540956e-10
+      ],
+      "pca_singular_values": [
+        1978.953273584275,
+        503.8976835137591,
+        188.19021746071238
+      ],
+      "end_centroids": [
+        [
+          97.34157339132057,
+          301.38598258540316,
+          2.2501613171595447
+        ],
+        [
+          -97.34157699009158,
+          301.3860436205594,
+          2.2501613171595447
+        ]
+      ],
+      "weight_sums": {
+        "railgun_turret": 808.0
+      }
+    },
+    "railgun side": {
+      "aabb_min": [
+        -103.10669708251953,
+        286.5732727050781,
+        -16.337329864501953
+      ],
+      "aabb_max": [
+        103.106689453125,
+        316.19873046875,
+        10.400834083557129
+      ],
+      "centroid": [
+        -3.814697265625e-06,
+        301.3859932309105,
+        -1.8512128179981595
+      ],
+      "pca_axis_sign_ambiguous": [
+        -0.9999999999999452,
+        3.3139971048045686e-07,
+        6.186744904753622e-15
+      ],
+      "pca_singular_values": [
+        1683.331918017639,
+        234.11202111960668,
+        168.45158420858647
+      ],
+      "end_centroids": [
+        [
+          102.72025403109464,
+          301.38596482710403,
+          -1.3765071576291865
+        ],
+        [
+          -102.72026166048917,
+          301.3860258622603,
+          -1.3765071576291865
+        ]
+      ],
+      "weight_sums": {
+        "railgun_turret": 336.0
+      }
+    }
+  },
+  "actions": [
+    {
+      "name": "morpho arma|morpho arma|Action",
+      "frames": [
+        1.0,
+        1.0
+      ]
+    },
+    {
+      "name": "morpho arma|morpho arma|morpho move forward",
+      "frames": [
+        1.0,
+        109.0
+      ]
+    },
+    {
+      "name": "morpho arma|morpho arma|Morpho no anim",
+      "frames": [
+        1.0,
+        1.0
+      ]
+    }
+  ],
+  "scene_bounds": {
+    "min": [
+      -315.94500732421875,
+      -1.0,
+      -1073.6220703125
+    ],
+    "max": [
+      315.8974609375,
+      341.5984191894531,
+      936.4921875
+    ],
+    "size": [
+      631.8424682617188,
+      342.5984191894531,
+      2010.1142578125
+    ]
+  },
+  "tip_5_source_units": {
+    "min": [
+      -26.259342193603516,
+      287.3760681152344,
+      934.721923828125
+    ],
+    "max": [
+      26.25933837890625,
+      294.2608947753906,
+      936.4921875
+    ],
+    "centroid": [
+      -2.7247837611607143e-06,
+      290.45212173461914,
+      935.6180725097656
+    ],
+    "count": 56
+  },
+  "candidate_muzzle": {
+    "definition": "Center bore axis of internal barrel intersected with furthest rail tip plane. Derived socket candidate, not an authored socket.",
+    "rest_gltf_source_units": [
+      0.0,
+      301.5470275878906,
+      936.4921875
+    ],
+    "railgun_turret_bone_local_xyz": [
+      1.4837988615568065e-08,
+      999.8890991210938,
+      0.032486364245414734
+    ],
+    "forward_bone_local": [
+      0,
+      1,
+      0
+    ]
+  },
+  "import_animation_state": {
+    "active": "morpho arma|morpho arma|Action",
+    "nla_tracks": [
+      "morpho arma|morpho arma|Morpho no anim",
+      "morpho arma|morpho arma|morpho move forward",
+      "morpho arma|morpho arma|Action"
+    ]
+  },
+  "animation_pose_samples": [
+    {
+      "action": "morpho arma|morpho arma|Action",
+      "frame": 1,
+      "muzzle_gltf": [
+        -2.327477186675475e-12,
+        301.5470275878906,
+        936.4921875
+      ],
+      "forward_gltf": [
+        1.1842221268269087e-13,
+        3.417346192691184e-07,
+        1.0
+      ],
+      "base_head_gltf": [
+        4.547473508864641e-13,
+        251.51419067382812,
+        -63.39688491821289
+      ]
+    },
+    {
+      "action": "morpho arma|morpho arma|morpho move forward",
+      "frame": 1,
+      "muzzle_gltf": [
+        -2.327477186675475e-12,
+        301.5470275878906,
+        936.4921875
+      ],
+      "forward_gltf": [
+        1.1842221268269087e-13,
+        3.417346192691184e-07,
+        1.0
+      ],
+      "base_head_gltf": [
+        4.547473508864641e-13,
+        251.51419067382812,
+        -63.39688491821289
+      ]
+    },
+    {
+      "action": "morpho arma|morpho arma|morpho move forward",
+      "frame": 55,
+      "muzzle_gltf": [
+        -2.327477186675475e-12,
+        301.5470275878906,
+        936.4921875
+      ],
+      "forward_gltf": [
+        1.1842221268269087e-13,
+        3.417346192691184e-07,
+        1.0
+      ],
+      "base_head_gltf": [
+        4.547473508864641e-13,
+        251.51419067382812,
+        -63.39688491821289
+      ]
+    },
+    {
+      "action": "morpho arma|morpho arma|morpho move forward",
+      "frame": 109,
+      "muzzle_gltf": [
+        -2.327477186675475e-12,
+        301.5470275878906,
+        936.4921875
+      ],
+      "forward_gltf": [
+        1.1842221268269087e-13,
+        3.417346192691184e-07,
+        1.0
+      ],
+      "base_head_gltf": [
+        4.547473508864641e-13,
+        251.51419067382812,
+        -63.39688491821289
+      ]
+    },
+    {
+      "action": "morpho arma|morpho arma|Morpho no anim",
+      "frame": 1,
+      "muzzle_gltf": [
+        -2.327477186675475e-12,
+        301.5470275878906,
+        936.4921875
+      ],
+      "forward_gltf": [
+        1.1842221268269087e-13,
+        3.417346192691184e-07,
+        1.0
+      ],
+      "base_head_gltf": [
+        4.547473508864641e-13,
+        251.51419067382812,
+        -63.39688491821289
+      ]
+    }
+  ],
+  "godot_socket": {
+    "basis_source": "Direct original glTF node TRS composition, not Blender display-bone axes",
+    "bone_name": "railgun_turret",
+    "gltf_node_index": 36,
+    "local_position": [
+      4.950087006960757e-09,
+      999.8892211914062,
+      0.032804857939481735
+    ],
+    "local_forward": [
+      -5.168365498217035e-15,
+      1.0000001192092896,
+      -3.4228538225988814e-08
+    ],
+    "near_rail_station_local": [
+      4.955177157484059e-09,
+      15.019951820373535,
+      0.03283856809139252
+    ],
+    "rest_world_matrix_gltf": [
+      [
+        -0.9999999403953552,
+        0.0,
+        1.5099578831723193e-07,
+        6.743576915413038e-14
+      ],
+      [
+        1.5099578831723193e-07,
+        3.4228534673275135e-08,
+        0.9999999403953552,
+        301.51422119140625
+      ],
+      [
+        0.0,
+        0.9999999403953552,
+        3.4228534673275135e-08,
+        -63.396888732910156
+      ],
+      [
+        0.0,
+        0.0,
+        0.0,
+        1.0
+      ]
+    ],
+    "usage": "bone_world = skeleton.global_transform * skeleton.get_bone_global_pose(skeleton.find_bone(\"railgun_turret\")); muzzle_world = bone_world * Vector3(local_position); forward_world = (bone_world.basis * Vector3(local_forward)).normalized(); do not apply 0.019989 scale again, since skeleton.global_transform already carries model scale. Sample after current animation/aim pose updates."
+  },
+  "scale_and_axis": {
+    "author_units": "Not established. Exported glTF has source values about 2010 units along Z; they are not physical metres for this model.",
+    "godot_existing_fit": "encounter.gd uses posed AABB Z length 2011.099 and fits it to 40.2 m",
+    "existing_uniform_scale_metres_per_source_unit": 0.01998907430203,
+    "rest_measured_z_span": 2010.1142578125,
+    "rest_z_fit_factor_if_refitted": 0.01999886317096597,
+    "warning": "Existing Godot fit measures a different posed AABB than this Blender rest pose; preserve existing mount/model centering and use skeleton transform instead of recentering from this report.",
+    "long_axis": "glTF +Z forward for gun. Body and full assembly longest AABB axis also Z; direction sign established by turret->far rails geometry.",
+    "forward_world_at_yaw_minus28": [
+      -0.4694715627858908,
+      0,
+      0.882947592858927
+    ],
+    "rail_station_length_metres_existing_fit": 19.686622048468223,
+    "pivot_to_socket_metres_existing_fit": 19.986859775477978,
+    "existing_height_mismatch": "s55 encounter records 5.4369m scaled posed height; whole length fit does not independently establish official 11.4m height. Do not stretch height based only on that mismatch."
+  },
+  "source_sha256": "ab10fb642a77d5edb43dca832bfd60d67eaa0ab973641923f75ed48f2fb9d455",
+  "railgun_animation_tracks": [
+    {
+      "animation": "morpho arma|morpho arma|Action",
+      "bone": "railgun_base",
+      "property": "translation",
+      "key_count": 1,
+      "component_ranges": [
+        0.0,
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "animation": "morpho arma|morpho arma|Action",
+      "bone": "railgun_base",
+      "property": "rotation",
+      "key_count": 1,
+      "component_ranges": [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "animation": "morpho arma|morpho arma|Action",
+      "bone": "railgun_base",
+      "property": "scale",
+      "key_count": 1,
+      "component_ranges": [
+        0.0,
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "animation": "morpho arma|morpho arma|Action",
+      "bone": "railgun_turret",
+      "property": "translation",
+      "key_count": 1,
+      "component_ranges": [
+        0.0,
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "animation": "morpho arma|morpho arma|Action",
+      "bone": "railgun_turret",
+      "property": "rotation",
+      "key_count": 1,
+      "component_ranges": [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "animation": "morpho arma|morpho arma|Action",
+      "bone": "railgun_turret",
+      "property": "scale",
+      "key_count": 1,
+      "component_ranges": [
+        0.0,
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "animation": "morpho arma|morpho arma|morpho move forward",
+      "bone": "railgun_base",
+      "property": "translation",
+      "key_count": 2,
+      "component_ranges": [
+        0.0,
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "animation": "morpho arma|morpho arma|morpho move forward",
+      "bone": "railgun_base",
+      "property": "rotation",
+      "key_count": 2,
+      "component_ranges": [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "animation": "morpho arma|morpho arma|morpho move forward",
+      "bone": "railgun_base",
+      "property": "scale",
+      "key_count": 2,
+      "component_ranges": [
+        0.0,
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "animation": "morpho arma|morpho arma|morpho move forward",
+      "bone": "railgun_turret",
+      "property": "translation",
+      "key_count": 2,
+      "component_ranges": [
+        0.0,
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "animation": "morpho arma|morpho arma|morpho move forward",
+      "bone": "railgun_turret",
+      "property": "rotation",
+      "key_count": 2,
+      "component_ranges": [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "animation": "morpho arma|morpho arma|morpho move forward",
+      "bone": "railgun_turret",
+      "property": "scale",
+      "key_count": 2,
+      "component_ranges": [
+        0.0,
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "animation": "morpho arma|morpho arma|Morpho no anim",
+      "bone": "railgun_base",
+      "property": "translation",
+      "key_count": 1,
+      "component_ranges": [
+        0.0,
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "animation": "morpho arma|morpho arma|Morpho no anim",
+      "bone": "railgun_base",
+      "property": "rotation",
+      "key_count": 1,
+      "component_ranges": [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "animation": "morpho arma|morpho arma|Morpho no anim",
+      "bone": "railgun_base",
+      "property": "scale",
+      "key_count": 1,
+      "component_ranges": [
+        0.0,
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "animation": "morpho arma|morpho arma|Morpho no anim",
+      "bone": "railgun_turret",
+      "property": "translation",
+      "key_count": 1,
+      "component_ranges": [
+        0.0,
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "animation": "morpho arma|morpho arma|Morpho no anim",
+      "bone": "railgun_turret",
+      "property": "rotation",
+      "key_count": 1,
+      "component_ranges": [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "animation": "morpho arma|morpho arma|Morpho no anim",
+      "bone": "railgun_turret",
+      "property": "scale",
+      "key_count": 1,
+      "component_ranges": [
+        0.0,
+        0.0,
+        0.0
+      ]
+    }
+  ],
+  "minimum_aim_animation_plan": [
+    "Use existing railgun_base for yaw about its local +Y (rest world up), and railgun_turret for pitch about its local X; turret local +Y is barrel forward, not Godot conventional -Z.",
+    "All inspected main railgun meshes are rigidly weighted to railgun_turret, so pose those bones rather than independently rotating mesh nodes. No mesh separation or new skin is needed.",
+    "Existing clips contain keyed translation/rotation/scale for these bones, including constant channels. Apply aiming/recoil after AnimationPlayer evaluation or exclude these bone tracks from the locomotion blend to prevent overwrite.",
+    "Create a logical/socket marker at the measured local point; charge, flash and projectile must read the same current bone-world transform. For aiming, transform target into current base-parent space, solve yaw then pitch with joint limits, and derive the shot ray from socket forward; do not draw a target beam from a stale world point.",
+    "If animating recoil, a short translation along turret local -Y retracts the entire turret-weighted assembly. This is a minimal visual approximation; a true barrel-only recoil would require an additional parent/bone or mesh subset because the existing inspected parts share one bone."
+  ],
+  "audit_scope": "Read-only source GLB/inspection plus in-memory Blender evaluation; no Godot or model mutation. Source SHA256 verified unchanged after measurements.",
+  "socket_tolerance": "Socket is derived by intersecting the internal bore centerline with rail forward extent, not an authored muzzle node. Rail tip vertices occupy Y287.376..294.261, while bore axis Y301.547; about 0.15..0.28 m vertical separation at existing scale, so independent Godot close visual check remains required."
+}

@@ -206,6 +206,9 @@ func build():
     camera.fov = 54
     camera.look_at(Vector3(0,1,-19))
     camera.current = true
+    await capture_scene(boss)
+
+func capture_scene(boss: Node3D):
     for unit in get_nodes_in_group("encounter_units"):
         unit.visible = false
     await take_frame("s56-environment-only.png")

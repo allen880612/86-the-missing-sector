@@ -716,5 +716,13 @@
       "working_copy_root": ".worktrees/s45-3d-sortie/",
       "version_status": "Kenney and lava-blast already tracked; Sinestesia five PNGs added to local research change; not deployed."
     }
-  ]
+  ],
+  "s58_combat_diagnostic": {
+    "date": "2026-09-13",
+    "video": "art-direction/86-reference/s58-combat-v3.mp4",
+    "report": "art-direction/86-reference/probe-assets/s58-combat-v3-run.json",
+    "socket_measurement": "art-direction/86-reference/probe-assets/s58-morpho-muzzle.json",
+    "status": "Offline choreography; overall art rejected; no gameplay/continuous independent QA",
+    "next_action": "Replace left hall middle/back with coherent collapse from existing kit, not more VFX"
+  }
 }

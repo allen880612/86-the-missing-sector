@@ -1,0 +1,323 @@
+{
+  "active_fx_end": 0,
+  "assets": {
+    "Ameise_0": {
+      "length_axis": 2,
+      "length_target": 3.8,
+      "scaled_height": 2.56020299566952,
+      "source_size": "(4.800001, 2.427788, 3.603462)",
+      "uniform_scale": 1.05454130427404
+    },
+    "Ameise_1": {
+      "length_axis": 2,
+      "length_target": 3.8,
+      "scaled_height": 2.56020299566952,
+      "source_size": "(4.800001, 2.427788, 3.603462)",
+      "uniform_scale": 1.05454130427404
+    },
+    "Ameise_10": {
+      "length_axis": 2,
+      "length_target": 3.8,
+      "scaled_height": 2.56020299566952,
+      "source_size": "(4.800001, 2.427788, 3.603462)",
+      "uniform_scale": 1.05454130427404
+    },
+    "Ameise_11": {
+      "length_axis": 2,
+      "length_target": 3.8,
+      "scaled_height": 2.56020299566952,
+      "source_size": "(4.800001, 2.427788, 3.603462)",
+      "uniform_scale": 1.05454130427404
+    },
+    "Ameise_12": {
+      "length_axis": 2,
+      "length_target": 3.8,
+      "scaled_height": 2.56020299566952,
+      "source_size": "(4.800001, 2.427788, 3.603462)",
+      "uniform_scale": 1.05454130427404
+    },
+    "Ameise_13": {
+      "length_axis": 2,
+      "length_target": 3.8,
+      "scaled_height": 2.56020299566952,
+      "source_size": "(4.800001, 2.427788, 3.603462)",
+      "uniform_scale": 1.05454130427404
+    },
+    "Ameise_14": {
+      "length_axis": 2,
+      "length_target": 3.8,
+      "scaled_height": 2.56020299566952,
+      "source_size": "(4.800001, 2.427788, 3.603462)",
+      "uniform_scale": 1.05454130427404
+    },
+    "Ameise_15": {
+      "length_axis": 2,
+      "length_target": 3.8,
+      "scaled_height": 2.56020299566952,
+      "source_size": "(4.800001, 2.427788, 3.603462)",
+      "uniform_scale": 1.05454130427404
+    },
+    "Ameise_16": {
+      "length_axis": 2,
+      "length_target": 3.8,
+      "scaled_height": 2.56020299566952,
+      "source_size": "(4.800001, 2.427788, 3.603462)",
+      "uniform_scale": 1.05454130427404
+    },
+    "Ameise_17": {
+      "length_axis": 2,
+      "length_target": 3.8,
+      "scaled_height": 2.56020299566952,
+      "source_size": "(4.800001, 2.427788, 3.603462)",
+      "uniform_scale": 1.05454130427404
+    },
+    "Ameise_18": {
+      "length_axis": 2,
+      "length_target": 3.8,
+      "scaled_height": 2.56020299566952,
+      "source_size": "(4.800001, 2.427788, 3.603462)",
+      "uniform_scale": 1.05454130427404
+    },
+    "Ameise_19": {
+      "length_axis": 2,
+      "length_target": 3.8,
+      "scaled_height": 2.56020299566952,
+      "source_size": "(4.800001, 2.427788, 3.603462)",
+      "uniform_scale": 1.05454130427404
+    },
+    "Ameise_2": {
+      "length_axis": 2,
+      "length_target": 3.8,
+      "scaled_height": 2.56020299566952,
+      "source_size": "(4.800001, 2.427788, 3.603462)",
+      "uniform_scale": 1.05454130427404
+    },
+    "Ameise_20": {
+      "length_axis": 2,
+      "length_target": 3.8,
+      "scaled_height": 2.56020299566952,
+      "source_size": "(4.800001, 2.427788, 3.603462)",
+      "uniform_scale": 1.05454130427404
+    },
+    "Ameise_21": {
+      "length_axis": 2,
+      "length_target": 3.8,
+      "scaled_height": 2.56020299566952,
+      "source_size": "(4.800001, 2.427788, 3.603462)",
+      "uniform_scale": 1.05454130427404
+    },
+    "Ameise_22": {
+      "length_axis": 2,
+      "length_target": 3.8,
+      "scaled_height": 2.56020299566952,
+      "source_size": "(4.800001, 2.427788, 3.603462)",
+      "uniform_scale": 1.05454130427404
+    },
+    "Ameise_23": {
+      "length_axis": 2,
+      "length_target": 3.8,
+      "scaled_height": 2.56020299566952,
+      "source_size": "(4.800001, 2.427788, 3.603462)",
+      "uniform_scale": 1.05454130427404
+    },
+    "Ameise_3": {
+      "length_axis": 2,
+      "length_target": 3.8,
+      "scaled_height": 2.56020299566952,
+      "source_size": "(4.800001, 2.427788, 3.603462)",
+      "uniform_scale": 1.05454130427404
+    },
+    "Ameise_4": {
+      "length_axis": 2,
+      "length_target": 3.8,
+      "scaled_height": 2.56020299566952,
+      "source_size": "(4.800001, 2.427788, 3.603462)",
+      "uniform_scale": 1.05454130427404
+    },
+    "Ameise_5": {
+      "length_axis": 2,
+      "length_target": 3.8,
+      "scaled_height": 2.56020299566952,
+      "source_size": "(4.800001, 2.427788, 3.603462)",
+      "uniform_scale": 1.05454130427404
+    },
+    "Ameise_6": {
+      "length_axis": 2,
+      "length_target": 3.8,
+      "scaled_height": 2.56020299566952,
+      "source_size": "(4.800001, 2.427788, 3.603462)",
+      "uniform_scale": 1.05454130427404
+    },
+    "Ameise_7": {
+      "length_axis": 2,
+      "length_target": 3.8,
+      "scaled_height": 2.56020299566952,
+      "source_size": "(4.800001, 2.427788, 3.603462)",
+      "uniform_scale": 1.05454130427404
+    },
+    "Ameise_8": {
+      "length_axis": 2,
+      "length_target": 3.8,
+      "scaled_height": 2.56020299566952,
+      "source_size": "(4.800001, 2.427788, 3.603462)",
+      "uniform_scale": 1.05454130427404
+    },
+    "Ameise_9": {
+      "length_axis": 2,
+      "length_target": 3.8,
+      "scaled_height": 2.56020299566952,
+      "source_size": "(4.800001, 2.427788, 3.603462)",
+      "uniform_scale": 1.05454130427404
+    },
+    "Morpho": {
+      "length_axis": 2,
+      "length_target": 40.2,
+      "scaled_height": 5.4368574050739,
+      "source_size": "(631.9469, 271.9915, 2011.099)",
+      "uniform_scale": 0.01998907430203
+    },
+    "XM2_forward_pending_visual_check": {
+      "length_axis": 2,
+      "length_target": 6.3,
+      "scaled_height": 2.45570280830483,
+      "source_size": "(42.81089, 17.62973, 45.22832)",
+      "uniform_scale": 0.139293241907659
+    },
+    "environment_batches": {
+      "batched_instances": 363,
+      "multimesh_groups": 10,
+      "note": "static shared meshes only; does not batch rigged enemies or prove FPS",
+      "original_mesh_nodes": 1472,
+      "partition_metres": 35
+    },
+    "environment_ground": {
+      "corridor": "level inside |X| <=35, Z >= -100",
+      "first_normal": "(0.413303, 0.9066, 0.085182)",
+      "materials": "CC0 rocks_ground_08 + rubble; authored terrain grade",
+      "size": "400 x 480m",
+      "terrain_triangles": 24000
+    }
+  },
+  "capture": "fixed-step offline rendering; not measured realtime FPS",
+  "duration": 12,
+  "events": [
+    {
+      "event": "fire",
+      "from": "(-4.0, 1.7, 7.8)",
+      "time": 1.20833333333333,
+      "to": "(-7.0, 1.2, 1.0)"
+    },
+    {
+      "at": "(-7.0, 1.2, 1.0)",
+      "event": "impact",
+      "time": 1.41666666666667
+    },
+    {
+      "event": "fire",
+      "from": "(-4.0, 1.7, 7.8)",
+      "time": 2.08333333333333,
+      "to": "(-12.2, 1.2, -0.5)"
+    },
+    {
+      "at": "(-12.2, 1.2, -0.5)",
+      "event": "impact",
+      "time": 2.25
+    },
+    {
+      "event": "fire",
+      "from": "(-4.0, 1.7, 7.8)",
+      "time": 2.91666666666667,
+      "to": "(-17.4, 1.2, -2.0)"
+    },
+    {
+      "at": "(-17.4, 1.2, -2.0)",
+      "event": "impact",
+      "time": 3.125
+    },
+    {
+      "event": "fire",
+      "from": "(-4.0, 1.7, 7.8)",
+      "time": 3.75,
+      "to": "(-7.0, 1.2, -7.0)"
+    },
+    {
+      "at": "(-7.0, 1.2, -7.0)",
+      "event": "impact",
+      "time": 3.95833333333333
+    },
+    {
+      "event": "fire",
+      "from": "(-4.113719, 2.182034, 7.8)",
+      "time": 4.625,
+      "to": "(-12.2, 1.2, -8.5)"
+    },
+    {
+      "at": "(-12.2, 1.2, -8.5)",
+      "event": "impact",
+      "time": 4.83333333333333
+    },
+    {
+      "event": "fire",
+      "from": "(-6.4, 1.7, 7.8)",
+      "time": 5.45833333333333,
+      "to": "(-17.4, 1.2, -10.0)"
+    },
+    {
+      "at": "(-17.4, 1.2, -10.0)",
+      "event": "impact",
+      "time": 5.66666666666667
+    },
+    {
+      "event": "bone_socket",
+      "forward": "(-0.047123, -0.109782, 0.992838)",
+      "target_error_metres": 0.0497254841029644,
+      "time": 5.70833333333333,
+      "world": "(4.005023, 2.442078, -11.13143)"
+    },
+    {
+      "event": "fire",
+      "from": "(4.005023, 2.442078, -11.13143)",
+      "time": 5.70833333333333,
+      "to": "(2.9997, 0.1, 10.04972)"
+    },
+    {
+      "at": "(2.9997, 0.1, 10.04972)",
+      "event": "impact",
+      "time": 5.91666666666667
+    },
+    {
+      "event": "fire",
+      "from": "(-6.4, 1.7, 7.8)",
+      "time": 6.33333333333333,
+      "to": "(-7.0, 1.2, -15.0)"
+    },
+    {
+      "at": "(-7.0, 1.2, -15.0)",
+      "event": "impact",
+      "time": 6.5
+    },
+    {
+      "event": "fire",
+      "from": "(-6.4, 1.7, 7.8)",
+      "time": 7.16666666666667,
+      "to": "(-12.2, 1.2, -16.5)"
+    },
+    {
+      "at": "(-12.2, 1.2, -16.5)",
+      "event": "impact",
+      "time": 7.375
+    }
+  ],
+  "fps": 24,
+  "frames": 288,
+  "limitations": [
+    "choreographed aiming and evasion; not interactive mission",
+    "scouts stationary; full multi-leg gait pending",
+    "Morpho original clip sampled continuously; foot contact unverified",
+    "no collision/LOS/damage simulation or audio verification",
+    "Morpho socket derived from rail geometry; turret aims after clip evaluation, separate joint limits and barrel recoil pending",
+    "player socket, recoil and evade are provisional root choreography",
+    "overall environment art rejected"
+  ],
+  "revision": 3
+}
