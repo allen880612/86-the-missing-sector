@@ -45,7 +45,7 @@
     '<path d="M25 76h150m-10-8 10 8-10 8"/><circle cx="45" cy="76" r="17"/><circle cx="100" cy="76" r="17"/><circle cx="155" cy="76" r="17"/><path class="unit" d="m38 76 5 6 11-14"/>'
   ];
   document.querySelectorAll('.guide-open').forEach(button => button.onclick = () => {
-    const endless = document.getElementById('gameMode').value === 'endless';
+    const endless = document.getElementById('gameMode').value !== 'frontline';
     const items = endless ? [['移動與自動射擊', 'WASD／方向鍵走位；游標瞄準，主砲自動開火。'], ['短躍進脫離包圍', '右鍵越過敵機與低掩體；高牆需繞行。小雷達顯示道路與補給。'], ['支援打開缺口', 'Space 指定落點清路；30 秒回充，間隔 6 秒。飛群干擾時先擊落來源或離開範圍。']] : [['帶領編隊換線', 'A／D、左右鍵或拖曳移動。保持射角，編隊自動開火。'], ['走位選擇補給', '靠向需要的補給路線，補充裝甲、僚機或火力。'], ['擊破作戰目標', '避開預警射界，等核心開放反擊；結算後推進下一場。']];
     const content = document.createElement('div');
     content.className = 'command-diagrams';
@@ -72,7 +72,7 @@
   function updateCommandSummary() {
     const summary = document.querySelector('.command-summary');
     const machine = document.getElementById('machine').value;
-    summary.textContent = document.getElementById('gameMode').value === 'endless' ? ({m1a4:'保留反擊，替撤離打開缺口。',m4a3:'先找安全射角，再超頻集火。',xm2:'刃擊打斷後，利用躍進脫離。'})[machine] : ({m1a4:'先避開射界，再近距反擊。',m4a3:'移到安全位置後，停穩開砲。',xm2:'保持橫移，累積動能反攻。'})[machine];
+    summary.textContent = document.getElementById('gameMode').value !== 'frontline' ? ({m1a4:'保留反擊，替撤離打開缺口。',m4a3:'先找安全射角，再超頻集火。',xm2:'刃擊打斷後，利用躍進脫離。'})[machine] : ({m1a4:'先避開射界，再近距反擊。',m4a3:'移到安全位置後，停穩開砲。',xm2:'保持橫移，累積動能反攻。'})[machine];
   }
   function refreshBriefing() {
     updateCommandSummary();
@@ -82,8 +82,13 @@
       card.querySelector('svg').innerHTML = '<rect width="160" height="160" fill="#15232b"/>' + map.walls.map(([,x,y,w,h]) => `<rect x="${(x-w/2)/10}" y="${(y-h/2)/10}" width="${w/10}" height="${h/10}" fill="#88928a"/>`).join('') + map.covers.map(([,x,y,w,h]) => `<rect x="${(x-w/2)/10}" y="${(y-h/2)/10}" width="${w/10}" height="${h/10}" fill="#bdab80"/>`).join('') + '<circle cx="80" cy="80" r="3" fill="#d8f2e9"/>';
       card.dataset.mapped = 'true';
     }
-    const endless = document.getElementById('gameMode').value === 'endless';
+    const endless = document.getElementById('gameMode').value !== 'frontline';
     document.body.classList.toggle('endless-mode', endless);
+    const campaign=document.getElementById('gameMode').value==='campaign';
+    document.body.classList.toggle('campaign-mode',campaign);
+    document.querySelectorAll('[data-choice="machine"]').forEach(button=>button.disabled=campaign&&button.dataset.value!=='m1a4');
+    if(campaign&&document.getElementById('machine').value!=='m1a4'){document.getElementById('machine').value='m1a4';document.getElementById('machine').dispatchEvent(new Event('change',{bubbles:true}));return;}
+
     const tacticInput = document.getElementById('tactic');
     if (endless && tacticInput.value !== 'support') {
       tacticInput.value = 'support';
@@ -114,6 +119,21 @@
       'fire-support': '優先擊破斥候，切斷落點修正；離開干擾雲，恢復遠距鎖定。',
       mines: '提前射爆地雷，利用連鎖爆破清出路線。'
     })[encounter] || '';
+    if(campaign){
+      document.getElementById('description').textContent='灰燼歸路 · 回收物資並撤回防線。';
+      document.querySelector('.command-summary').textContent='先切斷斥候觀測，回收物資後向北撤離。';
+      document.getElementById('briefingMachine').textContent='M1A4 薄甲機動。保留躍進，讓每個交戰區都有退路。';
+      document.getElementById('briefingEnemy').textContent='斥候提供射擊情報，Löwe 封鎖主要道路。先處理觀測機，或從東側繞行。';
+      document.getElementById('enemyModel').textContent='LÖWE / 封鎖部隊';
+      document.getElementById('enemyRole').textContent='突破封鎖 · 擊毀重型為可選目標';
+      document.getElementById('enemyPreview').src=window.previewSource?.('lowe')||'art-direction/86-reference/images/official-lowe.jpg';
+      document.getElementById('enemySecond').hidden=true;
+      document.getElementById('enemyStats').innerHTML='<div><span>偵察</span><strong>Ameise 指示火力</strong></div><div><span>側襲</span><strong>Grauwolf 逼離掩體</strong></div>';
+      document.getElementById('encounterBrief').innerHTML='<span class="skill-name">回收 → 撤離</span><strong>主目標完成即可離開，不必清空敵人。</strong><small>西側可選救援能取得修復補給。按 E 開始／取消工作，離開範圍也會取消。</small>';
+      document.getElementById('titleControl').textContent='WASD 移動 · 自動開砲 · E 回收／取消';
+      document.getElementById('hint').textContent='固定 M1A4 · 右鍵躍進 · E 回收／取消 · Space 支援';
+      return;
+    }
     if (!endless) return;
     const firstBoss = document.getElementById('arenaBoss').value;
     const bosses = {
