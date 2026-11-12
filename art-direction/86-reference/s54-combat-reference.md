@@ -19,6 +19,25 @@
 
 狀態分開記錄：已收藏連結 → 已下載 → 引擎可讀 → 用途驗收 → 遊戲驗收。素材可讀不代表完成度合格；目前 3D 場景與交火仍在試驗，不影響已認可的 2D 版本。
 
+## 階段性否決後的方法論盤點（2026-09-13，僅研究）
+
+玩家結論：操作卡頓不可玩、整體素材粗糙、敵我動畫粗糙。這是產品驗收不通過；先前自動撤離成功不推翻此回饋。本次未修改遊戲，未恢復Goal或派工。
+
+根因判斷：把匯入／IK／射線等技術可行性，誤作製作流程成熟；資產按題材相似選取，未以材質完整、動作覆蓋、即時成本、風格一致作准入門檻；在實機美術多次被否決後仍增加局部改動；補E2E時又把任務計時與狀態流程優先於操作品質。不是換引擎或多派Agent就能修正。
+
+可查證：mission.gd移速1.5、轉向0.55rad/s，180度轉向約5.71秒；與玩家期待輕巧機動相衝突。XM2約44.58萬面／54骨／無內建動作，Morpho774骨且原材質無貼圖；這些是負擔與製作缺口，沒有CPU/GPU完整戰鬥剖析就不能宣稱它們是掉幀主因。敵人主要是move_and_slide移動；玩家躍進重設骨姿勢，砲線仍有固定位置，缺動作、實際砲口與命中時間整合。固定physics dt與靜態場景P95不能證明實戰流暢。
+
+查證案例：
+
+- [KartoonDevelop 的 Rellana Boss 復刻](https://kartoondevelop.itch.io/kartoons-ring)：作者搜尋索引寫明UE5、約四個月製作。完整頁本輪讀取失敗，未實際試玩；不能據此推論素材來源、動畫皆原創或完整工時。
+- [Gerardo Guarino 的神獸舞獅](https://www.therookies.co/projects/69670)：作者記錄參考板、高低模／拓樸、骨架權重、貼圖烘焙、Substance材質、Maya動畫及UE布料；自述五個月。成果包含角色展示與轉階段動畫，不是完整Boss戰。
+- [Epic Game Animation Sample](https://dev.epicgames.com/documentation/en-us/unreal-engine/game-animation-sample-project-in-unreal-engine)：既有角色、動畫資料庫與Motion Matching／IK／調試工具協同工作。是動作系統範例，不是完整Souls戰鬥；人形資產不自動適配86多足機。
+- [The Ascent 開發者訪談](https://www.unrealengine.com/developer-interviews/11-person-studio-neon-giant-delivering-next-gen-passion-project-the-ascent?lang=en-US)：資深團隊建立可重用環境、主材質、Blueprint與燈光／VFX流程；不是把零散模型加入引擎即可獲得成品品質。
+- [Guerrilla 機械資產製作流程](https://www.guerrilla-games.com/read/building-machines-for-a-better-future-in-horizon)：官方介紹從概念到遊戲交付及內外團隊協作，支持把多足機視作專項內容製作，而非簡單套人形動作。
+- [Godot 效能方法](https://docs.godotengine.org/en/stable/tutorials/performance/general_optimization.html)：先區分持續低幀、尖峰與載入，利用CPU／GPU量測定位，再做改善。
+
+建議策略：先選一套真正可用的角色／骨架／動作與同風格環境，完成30–60秒可操作、可死可重試的代表性交戰，檢查操控、鏡頭、攻擊時序、聲畫與實戰效能；合格後再擴充原3–5分鐘任務。這是先建立品質基準，不是縮小最終Goal或回到不可玩的展示。採用成熟內容／控制器降低自製範圍，Blender處理缺口，IK修正而不單獨承擔表演。引擎以本機實機品質、素材適配、修改成本和部署限制決定，尚無證據直接判定Godot做不到或改UE必然變好。PO應把不通過的實機畫面當停止擴充條件；獨立QA必須能直接操作，無法操作即不算產品驗收。
+
 ## S61 玩家 Review 後：改交可操作任務流程，尚未通過完整驗收
 
 玩家指出「Sprint目標應該E2E有價值」，這個回饋改變了本輪方向。步態是實作Task，不能再單獨冒充Sprint交付。新增原生Godot本地測試任務：整備出擊→WASD移動／滑鼠瞄準與自動射擊→右鍵躍進／Space範圍支援→存活180秒後前往青色撤離圈→勝敗結算／重試／返回整備。

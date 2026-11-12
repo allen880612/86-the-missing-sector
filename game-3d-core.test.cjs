@@ -21,6 +21,22 @@ function relay(id, x, z, hp = 100) {
     speed: 0, jumpHeight: 0, recoil: 0, hp, maxHp: hp, phase: 'idle', radius: 1.1 };
 }
 
+test('M1A4 preserves its configuration on retry and fires from the rotating measured turret', () => {
+  const state = Core.create({ seed: 5, playerModel: 'm1a4' });
+  Core.start(state); stepFor(state, 1.25);
+  assert.equal(state.player.id, 'm1a4');
+  state.player.x = 0; state.player.z = 0; state.player.angle = 0;
+  state.obstacles = []; state.enemies = [relay('target', 12, 0)];
+  Core.step(state, { aimX: 12, aimZ: 0 }, .01);
+  const shot = state.events.find(e => e.type === 'mainFire');
+  assert.ok(shot);
+  assert.ok(Math.abs(shot.x - 3.971993) < .01, 'barrel offset must rotate around rear turret pivot');
+  assert.ok(Math.abs(shot.z - 1.031729) < .01, 'turret pivot must stay aligned with the hull');
+  assert.ok(Math.abs(shot.height - 1.715746) < .001);
+  Core.start(state);
+  assert.equal(state.player.id, 'm1a4');
+});
+
 test('exports the renderer-facing state contract and start is reusable', () => {
   const state = Core.create({ seed: 31 });
   assert.deepEqual(Object.keys(state).sort(), [

@@ -69,3 +69,18 @@ bpy.ops.export_scene.gltf(
 已用上述官方 4.5.13 LTS（SHA 相符）唯讀掛載 DMG，背景匯入兩個 FBX、重建材質、縮 2K、保存 blend 並匯出 GLB。沒有安裝 MCP、沒有 Unity。兩台模型都能在 Babylon 真實畫面顯示，並通過前足診斷姿態切換；原檔均無步行 Action，不能稱動畫流程已完整完成。首次根節點座標錯誤需要一輪檢查修正，證明仍需視覺驗收。GLB 資料與作者來源見素材盤點及 probe-assets/CREDITS.md。
 
 本輪大量額外往返花在瀏覽器登入／個人資料與視窗控制，不應把這些成本都算在 Blender 建模，也不能據此次試驗預測精準 Token 成本。下輪以已取得的檔案、小段腳本與固定姿態比較推進，降低對 GUI 往返的依賴。
+
+## 2026-09-13：macOS 已開 GUI 的控制路線
+
+目前應先區分「執行 Blender 腳本」與「接管使用者已開的場景」。兩者都用 `bpy`，但連線方式不同：
+
+|路線|能否直接改目前已開 GUI 的場景|前置與限制|適合本專案的用途|
+|---|---|---|---|
+|Blender CLI：`Blender --background --python script.py`|否。從 shell 呼叫 Blender 可執行檔會啟動另一個 Blender process；`--background` 令該 process 無 UI。它可以明確載入某個 `.blend`，但不會自動附加到另一個已在執行的 GUI process。這是由官方 CLI 的「啟動 Blender 並依序處理參數」語意作出的直接推論，不是官方提供的 remote-attach 功能。|需以檔案作交接；同一 `.blend` 不宜讓 GUI 與背景 process 同時各自覆寫。優點是可重跑、可用 `--python-exit-code` 判失敗。官方見[命令列參數](https://docs.blender.org/manual/en/4.5/advanced/command_line/arguments.html)與[命令列渲染](https://docs.blender.org/manual/en/4.5/advanced/command_line/render.html)。|批次匯入、清理、動作、render、GLB 匯出。這條路已在本機 4.5.13 實跑成功，仍是預設。|
+|已開 GUI 的 Python Console／Text Editor|可以，因為程式碼就在該 Blender process 內執行，作用於當前 `bpy.context`／資料。官方 [Python API quickstart](https://docs.blender.org/api/current/info_quickstart.html)把兩者列為常見執行方式：Console 適合短片段，Text Editor 可開啟或貼入 `.py` 後 Run Script。|Blender 原生沒有在這兩個 editor 上另附 agent 遠端通道；若 agent 只靠畫面操作代貼程式，仍受焦點、區域、剪貼與 UI 狀態影響。長腳本宜存成檔案，由使用者在 Text Editor 開啟執行，並先存 `.blend`。|已開場景的一次性診斷或小幅互動修改；目前不需安裝任何東西，但也不能宣稱 agent 已建立穩定雙向控制。|
+|`ahujasid/blender-mcp`|可以附加「已開的 GUI」，但前提是先在該 GUI 安裝並啟用 add-on，再於 3D View 的側欄啟動 server；不是因 Blender 已開就會自動連上。[README](https://github.com/ahujasid/blender-mcp/blob/main/README.md#quickstart)描述 add-on 在 Blender 內開 socket、外部 MCP server 再連入；[add-on 原始碼](https://github.com/ahujasid/blender-mcp/blob/main/addon.py)預設綁 `localhost:9876`，把命令排入 Blender main thread 執行。|macOS 前置是 Blender 3.0+、Python 3.10+、`uv`；專案建議 `brew install uv`，GUI 啟動的 Codex 若找不到 `uvx`，需填 `which uvx` 得到的絕對路徑並重啟 Codex。另需 `uvx blender-mcp install-addon`、在 Blender 啟用 add-on、按下連線，Codex 端註冊 MCP 後也要重啟才出現工具。README 明列複雜操作應拆小、可能 timeout；預設允許任意 Python，並預設同意匿名 telemetry，可另行關閉。它是第三方整合，不是 Blender 官方功能。[安裝與限制](https://github.com/ahujasid/blender-mcp/blob/main/README.md#installation)|需要 agent 反覆讀取當前場景、截 viewport、做多輪局部修正時才有明顯價值。|
+|Blender／`bpy` skill|不會。skill 是給 agent 的流程、命令與驗證指示；除非它同時要求並配置 CLI、computer-use 或 MCP 工具，單獨放一份 `SKILL.md` 不會在 Blender process 內開 socket，也不會取得目前場景。OpenAI 的[模型指引](https://developers.openai.com/api/docs/guides/latest-model)也把 skill／`AGENTS.md`描述為會影響模型行為的 instructions。|可固化版本、腳本模板、checkpoint 與驗收規則，但不能取代 transport。|在本專案流程已穩定後再寫，避免把尚未驗證的操作包成規範。|
+
+**建議：現在不要為了「Blender 已經打開」就先裝 MCP 或新 skill。** 既有 CLI＋`bpy` 已通過匯入、動作與 GLB 實跑，批次工作繼續走它；若此刻只需對已開場景做一兩次檢查，使用 GUI 的 Scripting workspace 執行短而可審查的腳本即可。只有接下來確定需要多輪「讀場景 → 改物件 → 截 viewport → 再修」且 GUI 交互成本成為瓶頸，再評估 `blender-mcp`。屆時它能連到現有 GUI 的理由是 add-on server 已在那個 process 裡運行，不是 MCP client 能自行附加 Blender。
+
+沒有 primary source 證明上述任何 agent 控制路線是 Blender 社群的「主流」；GitHub stars、影片或個別案例只能證明關注與可用性，不能代表使用占比或 production 標準。

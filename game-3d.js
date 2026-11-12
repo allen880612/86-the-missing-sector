@@ -26,7 +26,16 @@
   shadow.usePercentageCloserFiltering = true; shadow.filteringQuality = B.ShadowGenerator.QUALITY_LOW;
   shadow.bias = 0.002; shadow.normalBias = 0.04; shadow.setDarkness(0.3);
   const art = window.SortieModels.create(scene);
-  let state = Core.create({ seed: 86 }), environment = art.createEnvironment(state.obstacles);
+  const useM1A4 = new URLSearchParams(location.search).get('model') === 'm1a4';
+  const inspectMotion = new URLSearchParams(location.search).has('inspect');
+  let modelReady = !useM1A4;
+  const createState = () => Core.create({ seed: 86, playerModel: useM1A4 ? 'm1a4' : 'xm2' });
+  let state = createState(), environment = art.createEnvironment(state.obstacles);
+  if (useM1A4) {
+    $('machineCode').textContent = 'M1A4 / JUGGERNAUT'; $('machineName').textContent = '破壞神';
+    $('hudMachine').textContent = 'M1A4'; $('machineRole').textContent = '機動試驗配置 · 自動主砲 · 翻越躍進';
+    $('prototypeNote').textContent = '本地動作試驗 · Project-86 M1A4 真模型；敵機仍為程序原型。性能採樣板測試值。';
+  }
   function cast(root) { root.getChildMeshes().forEach(mesh => { if (mesh.isVisible) shadow.addShadowCaster(mesh); }); }
   cast(environment.root);
   const rigs = new Map(), shots = new Map(), visualEffects = new Map();
@@ -122,7 +131,7 @@
   }
   function reset(launch) {
     disposeTransient(); environment.dispose();
-    state = Core.create({ seed: 86 }); environment = art.createEnvironment(state.obstacles); cast(environment.root);
+    state = createState(); environment = art.createEnvironment(state.obstacles); cast(environment.root);
     pause = false; clearInput(); accumulator = 0;
     lastPhase = ''; lastObjective = ''; radioUntil = 0; $('radio').hidden = true;
     $('resultScreen').hidden = true; $('pauseScreen').hidden = true; $('briefing').hidden = launch;
@@ -146,12 +155,13 @@
     return { root, dispose: () => root.dispose(false) };
   }
   function syncEntities(dt) {
+    if (!modelReady) return;
     const all = [state.player].concat(state.enemies.filter(e => e.hp > 0));
     const ids = new Set(all.map(e => e.id));
     for (const [id, rig] of rigs) if (!ids.has(id)) { rig.root.getChildMeshes().forEach(m => shadow.removeShadowCaster(m)); rig.dispose(); rigs.delete(id); }
     for (const e of all) {
       let rig = rigs.get(e.id);
-      if (!rig) { rig = ['relay', 'supply'].includes(e.kind) ? createUtility(e) : art.createMech(e.kind === 'raider' ? 'scout' : e.kind, e.id); rigs.set(e.id, rig); cast(rig.root); }
+      if (!rig) { rig = ['relay', 'supply'].includes(e.kind) ? createUtility(e) : useM1A4 && e.kind === 'player' ? art.createPlayerMotion(e.id) : art.createMech(e.kind === 'raider' ? 'scout' : e.kind, e.id); rigs.set(e.id, rig); cast(rig.root); }
       if (['relay', 'supply'].includes(e.kind)) { rig.root.position.set(e.x, 0, e.z); if (e.kind === 'supply') rig.root.rotation.y = clock * .2; }
       else art.updateMech(rig, e, state.time, dt);
     }
@@ -160,6 +170,13 @@
     playerRing.setEnabled(state.phase !== 'ready');
     extraction.setEnabled(state.objective.extraction.active);
     extraction.scaling.setAll(1 + Math.sin(clock * 2) * .04);
+    if (useM1A4 && inspectMotion) {
+      const rig = rigs.get(state.player.id);
+      rig.root.getDescendants().forEach(n => n.computeWorldMatrix && n.computeWorldMatrix(true));
+      const muzzle = rig.muzzle.getAbsolutePosition();
+      $('motionStatus').hidden = false;
+      $('motionStatus').textContent = `${rig.clip} · 位置 ${state.player.x.toFixed(2)},${state.player.z.toFixed(2)} · 砲口 ${muzzle.x.toFixed(3)},${muzzle.y.toFixed(3)},${muzzle.z.toFixed(3)} · 跳高 ${state.player.jumpHeight.toFixed(2)} · ${scene.meshes.length} meshes`;
+    }
   }
   function syncShots() {
     const ids = new Set(state.projectiles.map(s => s.id));
@@ -326,7 +343,10 @@
   window.addEventListener('blur', () => setPause(true));
   document.addEventListener('visibilitychange', () => { if (document.hidden) setPause(true); });
   window.addEventListener('resize', () => engine.resize());
-  scene.executeWhenReady(() => { $('deployBtn').disabled = false; $('deployBtn').firstElementChild.textContent = '接通指揮頻道'; });
+  (useM1A4 ? art.loadPlayerMotion() : Promise.resolve()).then(() => {
+    modelReady = true;
+    scene.executeWhenReady(() => { $('deployBtn').disabled = false; $('deployBtn').firstElementChild.textContent = '接通指揮頻道'; });
+  }).catch(error => fail('M1A4 模型未能載入：' + error.message));
   music('prep');
   window.SortieApp = { get state() { return state; }, get scene() { return scene; }, get engine() { return engine; }, get paused() { return pause; }, project(x, z) { const p = B.Vector3.Project(new B.Vector3(x, 0, z), B.Matrix.Identity(), scene.getTransformMatrix(), camera.viewport.toGlobal(engine.getRenderWidth(), engine.getRenderHeight())); const scale = canvas.clientWidth / engine.getRenderWidth(); return { x: p.x * scale, y: p.y * scale }; } };
   engine.runRenderLoop(() => {

@@ -136,6 +136,40 @@ func build():
     camera.look_at(Vector3(-1, 0.8, -2))
     camera.current = true
     root.msaa_3d = Viewport.MSAA_4X
+    if "--material-study" in OS.get_cmdline_user_args():
+        camera.position = Vector3(6, 5, 5)
+        camera.look_at(Vector3(0, 0.8, -2))
+        await take_frame("s54-material-original.png")
+        var tuning = {
+            "BODY": [Color(0.45, 0.57, 0.61), 1.0],
+            "GUN2": [Color(0.28, 0.34, 0.38), 0.9],
+            "material": [Color(0.42, 0.50, 0.54), 0.85]
+        }
+        for mesh in all_meshes(mech):
+            for surface in range(mesh.mesh.get_surface_count()):
+                var material = mesh.mesh.surface_get_material(surface)
+                if tuning.has(material.resource_name):
+                    var values = tuning[material.resource_name]
+                    material.albedo_color = values[0]
+                    material.roughness *= values[1]
+        measurements["material_tuning"] = tuning
+        await take_frame("s54-material-separated.png")
+        camera.position = Vector3(7,10,12)
+        camera.look_at(Vector3(-1,0.8,-2))
+        await take_frame("s54-material-wide.png")
+        if "--ruin" in OS.get_cmdline_user_args():
+            var structure = read_gltf(PROBE + "s54-maintenance-bay.glb")
+            world.add_child(structure)
+            structure.position = Vector3(-5,0,-6)
+            camera.position = Vector3(11,16,19)
+            camera.look_at(Vector3(-2,1,-3))
+            await take_frame("s54-structure-wide.png")
+        var result_file = FileAccess.open(PROBE + "s54-material-run.json", FileAccess.WRITE)
+        result_file.store_string(JSON.stringify(measurements, "  "))
+        world.queue_free()
+        await process_frame
+        quit()
+        return
     await take_frame("s53-godot-material-baseline.png")
     environment.ssao_enabled = false
     await take_frame("s53-godot-material-no-ao.png")

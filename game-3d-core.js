@@ -56,7 +56,7 @@
   function create(options) {
     options = options || {};
     var seed = Number(options.seed) || 1;
-    var player = entity('xm2', 'player', 0, 34, 100, 8.4, PLAYER_RADIUS);
+    var player = entity(options.playerModel === 'm1a4' ? 'm1a4' : 'xm2', 'player', 0, 34, 100, 8.4, PLAYER_RADIUS);
     player.jumpCd = 0;
     player.skillCd = 0;
     player.supportCd = 0;
@@ -105,7 +105,7 @@
 
   function resetInto(state) {
     var seed = state._runtime ? state._runtime.seed : (state.stats && state.stats.seed) || 1;
-    var fresh = create({ seed: seed });
+    var fresh = create({ seed: seed, playerModel: state.player.id });
     Object.keys(state).forEach(function (key) { delete state[key]; });
     Object.keys(fresh).forEach(function (key) { state[key] = fresh[key]; });
     attachRuntime(state, seed);
@@ -380,12 +380,19 @@
     state.projectiles.push({
       id: nextId(state, 'shell'), x: muzzle.x, z: muzzle.z,
       dx: dx / d, dz: dz / d, enemy: false, damage: 11,
-      radius: 0.16, speed: 27, life: 1.2, height: 1.72
+      radius: 0.16, speed: 27, life: 1.2, height: player.id === 'm1a4' ? 1.715746 : 1.72
     });
-    state.events.push({ type: 'mainFire', x: muzzle.x, z: muzzle.z, height: 1.72, angle: player.aimAngle });
+    state.events.push({ type: 'mainFire', x: muzzle.x, z: muzzle.z, height: player.id === 'm1a4' ? 1.715746 : 1.72, angle: player.aimAngle });
   }
 
   function muzzlePoint(actor, offset) {
+    if (actor.id === 'm1a4') {
+      var body = actor.angle || 0, aim = actor.aimAngle || 0;
+      return {
+        x: actor.x - .000527 * Math.cos(body) + 1.031374 * Math.sin(body) + .000355 * Math.cos(aim) - 3.972520 * Math.sin(aim),
+        z: actor.z + .000527 * Math.sin(body) + 1.031374 * Math.cos(body) - .000355 * Math.sin(aim) - 3.972520 * Math.cos(aim)
+      };
+    }
     return {
       x: actor.x - Math.sin(actor.aimAngle) * offset,
       z: actor.z - Math.cos(actor.aimAngle) * offset

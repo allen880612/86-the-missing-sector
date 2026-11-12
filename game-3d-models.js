@@ -7,6 +7,7 @@
     const textures = [];
     const sources = new Map();
     const roots = new Set();
+    let playerAsset = null;
     let serial = 0;
     const tau = Math.PI * 2;
     const clamp = (value, min, max) => Math.max(min, Math.min(max, value));
@@ -197,6 +198,7 @@
     }
 
     function updateMech(rig, entity, time, dt) {
+      if (rig.motion) { updateImportedMech(rig, entity, dt); return; }
       const { root, body, turret, barrel, legs, cfg } = rig;
       const x = entity.x || 0, z = entity.z || 0, angle = entity.angle || 0;
       const jump = Math.max(0, entity.jumpHeight || 0);
@@ -361,7 +363,70 @@
       return { root, ground, obstacles: obstacleRigs, dispose() { roots.delete(root); root.dispose(); } };
     }
 
-    return { createMech, createEnvironment, updateMech, dispose() {
+    async function loadPlayerMotion() {
+      const base = 'art-direction/86-reference/probe-assets/';
+      const response = await fetch(base + 's52-juggernaut-motion.json');
+      if (!response.ok) throw new Error('M1A4 動作資料未能載入');
+      const motion = await response.json();
+      const container = await B.SceneLoader.LoadAssetContainerAsync(base, 's52-juggernaut-motion.glb', scene);
+      playerAsset = { container, motion };
+      return motion;
+    }
+
+    function createPlayerMotion(id) {
+      if (!playerAsset) throw new Error('M1A4 尚未載入');
+      const entries = playerAsset.container.instantiateModelsToScene(name => id + '/' + name, false);
+      const root = node(id), facing = node(id + '/facing', root);
+      for (const item of entries.rootNodes) item.parent = facing;
+      const transforms = root.getDescendants().filter(n => n.position && n.rotationQuaternion);
+      const find = name => root.getDescendants().find(n => n.name === id + '/' + name);
+      const turret = find('Turret'), muzzle = find('muzzle_anchor');
+      if (!turret || !muzzle) { entries.dispose(); root.dispose(); throw new Error('M1A4 缺少砲架或砲口節點'); }
+      root.computeWorldMatrix(true); root.getDescendants().forEach(n => n.computeWorldMatrix && n.computeWorldMatrix(true));
+      facing.rotation.y = muzzle.getAbsolutePosition().z > turret.getAbsolutePosition().z ? Math.PI : 0;
+      const groups = {};
+      for (const group of entries.animationGroups) { group.stop(); groups[group.name.slice(id.length + 1)] = group; }
+      root.getChildMeshes().forEach(m => { m.isPickable = false; m.receiveShadows = true; });
+      const rig = { root, turret, muzzle, entries, motion: playerAsset.motion, groups, transforms,
+        turretRest: turret.rotationQuaternion.clone(), lastX: null, lastZ: null, phase: 0, clip: null,
+        blend: 1, fromPose: [], recoilTime: .5, previousRecoil: 0,
+        dispose() { roots.delete(root); entries.dispose(); root.dispose(); } };
+      roots.add(root);
+      return rig;
+    }
+
+    function updateImportedMech(rig, entity, dt) {
+      const distance = rig.lastX === null ? 0 : Math.hypot(entity.x - rig.lastX, entity.z - rig.lastZ);
+      const air = entity.jumpHeight > .001;
+      const clip = air ? 'vault' : entity.moving && distance > .0001 ? 'trot' : 'idle';
+      if (clip !== rig.clip) {
+        rig.fromPose = rig.transforms.map(n => ({ p: n.position.clone(), q: n.rotationQuaternion.clone() }));
+        if (rig.clip) rig.groups[rig.clip].stop();
+        rig.clip = clip; rig.blend = 0;
+        rig.groups[clip].start(true); rig.groups[clip].pause();
+      }
+      if (clip === 'trot') rig.phase = (rig.phase + distance / rig.motion.trot.forwardTravelPerCycle) % 1;
+      const group = rig.groups[clip];
+      const progress = clip === 'vault' ? clamp((entity.leapTime || 0) / .76, 0, 1) : clip === 'trot' ? rig.phase : 0;
+      group.goToFrame(group.from + (group.to - group.from) * progress);
+      rig.blend = Math.min(1, rig.blend + dt / .18);
+      if (rig.blend < 1) rig.transforms.forEach((n, i) => {
+        n.position.copyFrom(B.Vector3.Lerp(rig.fromPose[i].p, n.position, rig.blend));
+        n.rotationQuaternion.copyFrom(B.Quaternion.Slerp(rig.fromPose[i].q, n.rotationQuaternion, rig.blend));
+      });
+      if ((entity.recoil || 0) > rig.previousRecoil + .1) {
+        rig.recoilTime = 0; rig.groups.recoil.start(false); rig.groups.recoil.pause();
+      }
+      rig.recoilTime = Math.min(.5, rig.recoilTime + dt);
+      rig.groups.recoil.goToFrame(rig.groups.recoil.from + (rig.groups.recoil.to - rig.groups.recoil.from) * rig.recoilTime / .5);
+      rig.previousRecoil = entity.recoil || 0;
+      rig.root.position.set(entity.x, entity.jumpHeight || 0, entity.z);
+      rig.root.rotation.y = entity.angle || 0;
+      rig.turret.rotationQuaternion.copyFrom(rig.turretRest.multiply(B.Quaternion.RotationAxis(B.Axis.Y, (entity.aimAngle || 0) - (entity.angle || 0))));
+      rig.lastX = entity.x; rig.lastZ = entity.z;
+    }
+
+    return { createMech, createEnvironment, updateMech, loadPlayerMotion, createPlayerMotion, dispose() {
       for (const root of roots) root.dispose();
       roots.clear();
       for (const mesh of sources.values()) mesh.dispose();
@@ -369,6 +434,7 @@
       for (const texture of textures) texture.dispose();
       textures.length = 0;
       sources.clear();
+      if (playerAsset) { playerAsset.container.dispose(); playerAsset = null; }
     } };
   }
 
