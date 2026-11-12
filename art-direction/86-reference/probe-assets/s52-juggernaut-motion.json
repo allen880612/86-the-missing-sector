@@ -1,0 +1,222 @@
+{
+  "status": "local research motion increment; not final production animation",
+  "rights": "Original Project86 asset; local research only; do not publish",
+  "coordinateSystem": "glTF right-handed +Y up, +Z forward; Blender source -Y forward",
+  "dimensions": {
+    "widthX": 4.799999952316284,
+    "heightY": 2.1864336851867847,
+    "lengthZ": 5.882291078567505
+  },
+  "muzzleLocal": [
+    0.000172,
+    1.715746,
+    2.941146
+  ],
+  "turretYawAxisLocal": [
+    0.0,
+    1.0,
+    -3.883666011006426e-08
+  ],
+  "muzzleBoneRestOffset": [
+    -0.0007567618740722537,
+    -4.038275718688965,
+    0.07087253034114838
+  ],
+  "muzzleAnchor": "muzzle_anchor",
+  "pivots": {
+    "Body": [
+      0.000526,
+      0.601714,
+      -0.229797
+    ],
+    "Turret": [
+      0.000527,
+      1.288777,
+      -1.031374
+    ],
+    "Cannon": [
+      0.001047,
+      1.633748,
+      -1.731
+    ]
+  },
+  "trot": {
+    "durationSeconds": 0.8,
+    "strideWorld": 2.0,
+    "forwardTravelPerCycle": 3.3333333333,
+    "nominalSpeedWorldPerSecond": 4.1666666667,
+    "stanceFraction": 0.6,
+    "maxFootLiftWorld": 0.48,
+    "legPhases": {
+      "L.F.Leg": 0,
+      "R.B.Leg": 0,
+      "R.F.Leg": 0.5,
+      "L.B.Leg": 0.5
+    }
+  },
+  "walk": {
+    "durationSeconds": 1.8,
+    "strideWorld": 0.95,
+    "forwardTravelPerCycle": 1.2666666666666666,
+    "nominalSpeedWorldPerSecond": 0.7037037037037036,
+    "stanceFraction": 0.75,
+    "maxFootLiftWorld": 0.34,
+    "legPhases": {
+      "L.F.Leg": 0,
+      "R.B.Leg": 0.5,
+      "R.F.Leg": 0.25,
+      "L.B.Leg": 0.75
+    },
+    "control": "Baked analytical two-link IK, fixed segment lengths, rest-derived knee bend plane; foot world orientation preserved; linear stance and Hermite swing horizontal path; quartic lift; no runtime IK"
+  },
+  "animations": {
+    "idle": {
+      "durationSeconds": 2,
+      "ikEndpointMaxErrorWorld": 2.0688157320591927e-07,
+      "channelMask": [
+        "Body",
+        "L.F.Leg.002",
+        "L.F.Leg.003",
+        "L.F.Leg.004",
+        "R.B.Leg.002",
+        "R.B.Leg.003",
+        "R.B.Leg.004",
+        "R.F.Leg.002",
+        "R.F.Leg.003",
+        "R.F.Leg.004",
+        "L.B.Leg.002",
+        "L.B.Leg.003",
+        "L.B.Leg.004"
+      ],
+      "loop": true
+    },
+    "walk": {
+      "durationSeconds": 1.8,
+      "ikEndpointMaxErrorWorld": 5.079259793261076e-07,
+      "stanceAdjacentFrameWorldDriftMax": 8.12898975431076e-07,
+      "stanceSoleHeightMin": -3.846434992738068e-07,
+      "stanceSoleHeightMax": 0.0009009485365822911,
+      "channelMask": [
+        "Body",
+        "L.F.Leg.002",
+        "L.F.Leg.003",
+        "L.F.Leg.004",
+        "R.B.Leg.002",
+        "R.B.Leg.003",
+        "R.B.Leg.004",
+        "R.F.Leg.002",
+        "R.F.Leg.003",
+        "R.F.Leg.004",
+        "L.B.Leg.002",
+        "L.B.Leg.003",
+        "L.B.Leg.004"
+      ],
+      "loop": true
+    },
+    "trot": {
+      "durationSeconds": 0.8,
+      "ikEndpointMaxErrorWorld": 9.379645389203679e-07,
+      "stanceAdjacentFrameWorldDriftMax": 9.486552502153519e-07,
+      "stanceSoleHeightMin": -4.1654857341200113e-07,
+      "stanceSoleHeightMax": 0.0009009568020701408,
+      "channelMask": [
+        "Body",
+        "L.F.Leg.002",
+        "L.F.Leg.003",
+        "L.F.Leg.004",
+        "R.B.Leg.002",
+        "R.B.Leg.003",
+        "R.B.Leg.004",
+        "R.F.Leg.002",
+        "R.F.Leg.003",
+        "R.F.Leg.004",
+        "L.B.Leg.002",
+        "L.B.Leg.003",
+        "L.B.Leg.004"
+      ],
+      "loop": true
+    },
+    "recoil": {
+      "durationSeconds": 0.5,
+      "ikEndpointMaxErrorWorld": 2.0688157320591927e-07,
+      "channelMask": [
+        "Cannon"
+      ],
+      "loop": false
+    },
+    "vault": {
+      "durationSeconds": 1.2,
+      "ikEndpointMaxErrorWorld": 6.505722860649431e-07,
+      "channelMask": [
+        "Body",
+        "L.F.Leg.002",
+        "L.F.Leg.003",
+        "L.F.Leg.004",
+        "R.B.Leg.002",
+        "R.B.Leg.003",
+        "R.B.Leg.004",
+        "R.F.Leg.002",
+        "R.F.Leg.003",
+        "R.F.Leg.004",
+        "L.B.Leg.002",
+        "L.B.Leg.003",
+        "L.B.Leg.004"
+      ],
+      "loop": false
+    }
+  },
+  "stopControl": "Crossfade walk to idle in 0.16-0.22 s. idle is the exact original rest pose. Stop blend is runtime responsibility.",
+  "vaultControl": "1.2 s, in-place root; Body has only 0.12 launch and 0.10 landing compression; legs fold inward 0.46 and up 0.50. Caller supplies full horizontal and vertical jump trajectory.",
+  "limitations": [
+    "Foot plant measured on straight level travel at nominal speed, not turns or slopes.",
+    "Crawl is first inspectable mechanical motion, not reference-matched final choreography.",
+    "Hip swing uses rest-derived bend plane, no verified hard mechanical limits.",
+    "Whole Cannon rigid mesh recoils, including attached magazine; no segmented barrel rig.",
+    "Idle is a deliberate still mechanical rest pose.",
+    "Runtime blending temporarily relaxes foot plant."
+  ],
+  "glbAudit": {
+    "animationChannels": {
+      "idle": 39,
+      "recoil": 3,
+      "trot": 39,
+      "vault": 39,
+      "walk": 39
+    },
+    "externalUris": []
+  },
+  "exportedGLBVerification": {
+    "walk": {
+      "exportedGLBWorldPlantAdjacentFrameMaxDrift": 1.5753177507389996e-06,
+      "soleHeightMin": -8.701390470378101e-07,
+      "soleHeightMax": 0.3399674594402313,
+      "loopMatrixError": 0.0
+    },
+    "trot": {
+      "exportedGLBWorldPlantAdjacentFrameMaxDrift": 1.1449678368746367e-06,
+      "soleHeightMin": -1.4509496395476162e-06,
+      "soleHeightMax": 0.47923383116722107,
+      "loopMatrixError": 3.5762786865234375e-07
+    },
+    "muzzleRest": [
+      0.00017154290981125087,
+      1.7157447338104248,
+      2.9411449432373047
+    ],
+    "recoilAnchorDisplacement": [
+      0.0,
+      -8.344650268554688e-07,
+      -0.20000052452087402
+    ],
+    "idle": {
+      "loopMatrixError": 0.0
+    },
+    "recoil": {
+      "loopMatrixError": 0.0
+    },
+    "vault": {
+      "loopMatrixError": 0.0
+    }
+  },
+  "removedSourceProp": "Unparented loose Cylinder shell, visibly hovering above turret; removed only in S52."
+}

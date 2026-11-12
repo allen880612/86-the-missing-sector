@@ -1,0 +1,157 @@
+{
+  "inspection": {
+    "id": "s52-sketchfab-leoxx300-juggernaut",
+    "date": "2026-09-13",
+    "mode": "read-only local asset inspection",
+    "source": {
+      "title": "Juggernaut 86 Eighty-Six",
+      "author": "leoxx300",
+      "url": "https://sketchfab.com/3d-models/juggernaut-86-eighty-six-1f4d04b7d1154b63ba27ab21702fcffe",
+      "license": "CC BY 4.0",
+      "licenseEvidence": "GLB asset.extras records author, source URL, and CC-BY-4.0",
+      "generator": "Sketchfab-15.99.0"
+    },
+    "files": {
+      "glb": {
+        "path": "assets/model/juggernaut_86_eighty-six.glb",
+        "bytes": 23994244,
+        "sha256": "f7c4e8c4961244f3d83e4ef57561f958b6753e15be205eb661cd9a4b49c0a19d",
+        "header": { "magic": "glTF", "version": 2, "declaredLength": 23994244 }
+      },
+      "fbx": {
+        "path": "assets/model/juggernaut-86-eighty-six/source/SADASD.fbx",
+        "bytes": 77934620,
+        "sha256": "19104519c8734129ea4c5255d94044edf5bec2ba5945748ff07ba262e77f76ec",
+        "header": { "format": "Kaydara FBX Binary", "version": 7400 }
+      },
+      "zip": {
+        "path": "assets/model/juggernaut-86-eighty-six.zip",
+        "bytes": 151821690,
+        "sha256": "73113b87a38b18b89616ea8e923774b37236ec7622bc9751500e165a41ea13bf"
+      }
+    },
+    "glb": {
+      "counts": {
+        "scenes": 1,
+        "nodes": 18,
+        "meshNodes": 7,
+        "meshes": 7,
+        "primitives": 7,
+        "verticesAfterVertexSplits": 65769,
+        "triangles": 95482,
+        "materials": 7,
+        "textures": 21,
+        "images": 21,
+        "skins": 0,
+        "animations": 0,
+        "cameras": 0
+      },
+      "extensionsUsed": [],
+      "extensionsRequired": [],
+      "primitives": [
+        { "mesh": "ARMOR_ARMOR_0", "vertices": 18760, "indices": 91584, "triangles": 30528, "material": "ARMOR" },
+        { "mesh": "BODY_BODY_0", "vertices": 4642, "indices": 17688, "triangles": 5896, "material": "BODY" },
+        { "mesh": "BODY_Material.001_0", "vertices": 220, "indices": 756, "triangles": 252, "material": "Material.001" },
+        { "mesh": "ARMOR_1_ARMOR 2_0", "vertices": 31003, "indices": 131496, "triangles": 43832, "material": "ARMOR_2" },
+        { "mesh": "GUN_1_GUN2_0", "vertices": 2785, "indices": 9918, "triangles": 3306, "material": "GUN2" },
+        { "mesh": "GUN_GUN_0", "vertices": 1639, "indices": 4980, "triangles": 1660, "material": "material" },
+        { "mesh": "BLADES_BLADES_0", "vertices": 6720, "indices": 30024, "triangles": 10008, "material": "BLADES" }
+      ],
+      "attributesOnEveryPrimitive": ["POSITION", "NORMAL", "TANGENT", "TEXCOORD_0", "TEXCOORD_1", "TEXCOORD_2"],
+      "nodeHierarchy": {
+        "roots": ["Sketchfab_model", "b0dc8c827add43d48b0367381ae697ba.fbx", "RootNode"],
+        "rigidPartTransforms": ["ARMOR", "BODY", "ARMOR_1", "GUN_1", "GUN", "BLADES"],
+        "meshNodes": ["ARMOR_ARMOR_0", "BODY_BODY_0", "BODY_Material.001_0", "ARMOR_1_ARMOR 2_0", "GUN_1_GUN2_0", "GUN_GUN_0", "BLADES_BLADES_0"],
+        "nonRenderableExportResidue": ["Camera", "Object_17"],
+        "assessment": "Six coarse rigid object transforms; BODY becomes two GLB primitives only because it uses two materials. This is not an articulated leg hierarchy."
+      },
+      "materials": ["ARMOR", "BODY", "Material.001", "ARMOR_2", "GUN2", "material", "BLADES"],
+      "materialModel": "Metallic-roughness PBR; each material references base color, packed metallic-roughness, and normal textures; all seven are double-sided.",
+      "embeddedImages": {
+        "count": 21,
+        "format": "PNG",
+        "dimensions": "all 1024x1024",
+        "roles": "7 base color + 7 packed metallic-roughness + 7 normal",
+        "totalCompressedBytes": 18622139,
+        "note": "Sketchfab GLB embeds downscaled/packed derivatives, not the 28 original 2K files verbatim."
+      },
+      "skinning": {
+        "skins": 0,
+        "jointsOrWeightsAttributes": false,
+        "inverseBindMatrices": false
+      },
+      "animation": { "count": 0 }
+    },
+    "fbx": {
+      "objectCounts": {
+        "NodeAttribute": 1,
+        "Geometry": 6,
+        "Model": 7,
+        "Material": 7,
+        "Texture": 28,
+        "Video": 28,
+        "Deformer": 0,
+        "Pose": 0,
+        "AnimationStack": 0,
+        "AnimationLayer": 0,
+        "AnimationCurveNode": 0,
+        "AnimationCurve": 0
+      },
+      "modelNodes": ["ARMOR", "BODY", "ARMOR_1", "GUN_1", "GUN", "BLADES", "Camera"],
+      "geometry": [
+        { "name": "Cube.006", "controlPoints": 15874, "polygons": 15264, "trianglesAfterFanTriangulation": 30528 },
+        { "name": "Cylinder.008", "controlPoints": 3156, "polygons": 3018, "trianglesAfterFanTriangulation": 6276 },
+        { "name": "Cube.018", "controlPoints": 22808, "polygons": 22476, "trianglesAfterFanTriangulation": 45496 },
+        { "name": "Cube.020", "controlPoints": 1676, "polygons": 1593, "trianglesAfterFanTriangulation": 3320 },
+        { "name": "Cylinder.021", "controlPoints": 960, "polygons": 930, "trianglesAfterFanTriangulation": 1916 },
+        { "name": "Cylinder.023", "controlPoints": 5012, "polygons": 4948, "trianglesAfterFanTriangulation": 10008 }
+      ],
+      "totals": {
+        "controlPoints": 49486,
+        "polygons": 48229,
+        "trianglesAfterFanTriangulation": 97544
+      },
+      "topologyNote": "Source FBX contains quads and some n-gons. Sketchfab's GLB has 95,482 indexed triangles, 2,062 fewer than naive fan triangulation of every FBX polygon; use the GLB's indexed count for the actual downloaded GLB runtime cost.",
+      "riggingEvidence": "No FBX Deformer, Pose, limb Model, skin cluster, or animation objects were found."
+    },
+    "externalTextures": {
+      "count": 28,
+      "dimensions": "all 2048x2048",
+      "format": "PNG",
+      "totalCompressedBytes": 73882858,
+      "sets": ["ARMOR", "BODY", "Material.001", "ARMOR 2", "GUN2", "GUN", "BLADES"],
+      "channelsPerSet": ["BaseColor", "Metallic", "Normal", "Roughness"]
+    },
+    "comparisonToCurrentProject86M1A4": {
+      "baseline": { "triangles": 152384, "bones": 39, "animations": 0, "structure": "rigid 39-bone hierarchy" },
+      "sketchfabGlb": { "triangles": 95482, "bones": 0, "animations": 0, "coarseRigidParts": 6 },
+      "triangleDelta": -56902,
+      "triangleReductionPercent": 37.34,
+      "interpretation": "The Sketchfab GLB is materially lighter and has complete PBR texture coverage, but it discards the articulated hierarchy available in the current Project-86 asset."
+    },
+    "decision": {
+      "dropInReplacement": false,
+      "visualReplacementCandidate": true,
+      "needsCustomRigForGameplayArticulation": true,
+      "recommendedPath": "Use the source FBX plus 2K textures as the authoring source. Build a rigid mechanical rig by separating or assigning leg joints, blade arms, gun mount/barrel, and body pivots; then export a runtime GLB. The current six-part hierarchy is only enough for whole armor/body/gun/blade transforms, not a four-leg walk or joint test.",
+      "minimumBeforeRuntimeUse": [
+        "verify scale, forward/up axes, origin, and ground contact after import",
+        "create articulated mechanical hierarchy and bind rigid vertex groups or split parts",
+        "author idle/walk/dash/recoil clips or drive the new joints procedurally",
+        "remove Camera/Object_17 residue",
+        "decide whether seven double-sided materials and 21 1K textures meet the runtime draw-call/memory budget",
+        "preserve CC BY 4.0 author/title/source/license attribution"
+      ]
+    },
+    "methodAndLimits": {
+      "methods": [
+        "parsed GLB v2 JSON and binary buffer views directly",
+        "counted indexed triangle primitives from GLB accessors",
+        "read PNG IHDR dimensions for embedded and external textures",
+        "parsed FBX 7400 binary node records and compressed geometry arrays directly"
+      ],
+      "blenderAttempt": "Blender 4.5.13 was invoked with --background --factory-startup --disable-autoexec for both FBX and GLB, but this supplied build exited 139 during startup before import (Arch cache-line assertion). Conclusions therefore rely on direct container-format evidence, not a successful Blender scene evaluation.",
+      "notVerified": ["visual shading fidelity", "normal-map handedness", "UV overlap quality", "actual in-engine scale/orientation", "joint pivot suitability after manual separation"]
+    }
+  }
+}

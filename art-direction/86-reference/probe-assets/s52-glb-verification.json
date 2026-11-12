@@ -1,0 +1,33 @@
+{
+  "walk": {
+    "exportedGLBWorldPlantAdjacentFrameMaxDrift": 1.5753177507389996e-06,
+    "soleHeightMin": -8.701390470378101e-07,
+    "soleHeightMax": 0.3399674594402313,
+    "loopMatrixError": 0.0
+  },
+  "trot": {
+    "exportedGLBWorldPlantAdjacentFrameMaxDrift": 1.1449678368746367e-06,
+    "soleHeightMin": -1.4509496395476162e-06,
+    "soleHeightMax": 0.47923383116722107,
+    "loopMatrixError": 3.5762786865234375e-07
+  },
+  "muzzleRest": [
+    0.00017154290981125087,
+    1.7157447338104248,
+    2.9411449432373047
+  ],
+  "recoilAnchorDisplacement": [
+    0.0,
+    -8.344650268554688e-07,
+    -0.20000052452087402
+  ],
+  "idle": {
+    "loopMatrixError": 0.0
+  },
+  "recoil": {
+    "loopMatrixError": 0.0
+  },
+  "vault": {
+    "loopMatrixError": 0.0
+  }
+}

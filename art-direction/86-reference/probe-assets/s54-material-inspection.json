@@ -1,0 +1,149 @@
+[
+  {
+    "albedo": "(1.0, 1.0, 1.0, 1.0)",
+    "albedo_texture": {
+      "sample_mean_rgb": "(0.509265, 0.502476, 0.478018)",
+      "size": "(1024, 1024)"
+    },
+    "material": "ARMOR",
+    "mesh": "ARMOR_ARMOR_0",
+    "metallic": 1.0,
+    "metallic_channel": 2,
+    "metallic_texture": {
+      "sample_mean_rgb": "(1.0, 0.774086, 0.0)",
+      "size": "(1024, 1024)"
+    },
+    "roughness": 1.0,
+    "roughness_channel": 1,
+    "roughness_texture": {
+      "sample_mean_rgb": "(1.0, 0.774086, 0.0)",
+      "size": "(1024, 1024)"
+    }
+  },
+  {
+    "albedo": "(1.0, 1.0, 1.0, 1.0)",
+    "albedo_texture": {
+      "sample_mean_rgb": "(0.338341, 0.290793, 0.248752)",
+      "size": "(1024, 1024)"
+    },
+    "material": "BODY",
+    "mesh": "BODY_BODY_0",
+    "metallic": 1.0,
+    "metallic_channel": 2,
+    "metallic_texture": {
+      "sample_mean_rgb": "(1.0, 0.535488, 0.0)",
+      "size": "(1024, 1024)"
+    },
+    "roughness": 1.0,
+    "roughness_channel": 1,
+    "roughness_texture": {
+      "sample_mean_rgb": "(1.0, 0.535488, 0.0)",
+      "size": "(1024, 1024)"
+    }
+  },
+  {
+    "albedo": "(1.0, 1.0, 1.0, 1.0)",
+    "albedo_texture": {
+      "sample_mean_rgb": "(0.194776, 0.175439, 0.165778)",
+      "size": "(1024, 1024)"
+    },
+    "material": "Material.001",
+    "mesh": "BODY_Material_001_0",
+    "metallic": 1.0,
+    "metallic_channel": 2,
+    "metallic_texture": {
+      "sample_mean_rgb": "(1.0, 0.654801, 0.181426)",
+      "size": "(1024, 1024)"
+    },
+    "roughness": 1.0,
+    "roughness_channel": 1,
+    "roughness_texture": {
+      "sample_mean_rgb": "(1.0, 0.654801, 0.181426)",
+      "size": "(1024, 1024)"
+    }
+  },
+  {
+    "albedo": "(1.0, 1.0, 1.0, 1.0)",
+    "albedo_texture": {
+      "sample_mean_rgb": "(0.335733, 0.31242, 0.259462)",
+      "size": "(1024, 1024)"
+    },
+    "material": "ARMOR_2",
+    "mesh": "ARMOR_1_ARMOR 2_0",
+    "metallic": 1.0,
+    "metallic_channel": 2,
+    "metallic_texture": {
+      "sample_mean_rgb": "(1.0, 0.548402, 0.0)",
+      "size": "(1024, 1024)"
+    },
+    "roughness": 1.0,
+    "roughness_channel": 1,
+    "roughness_texture": {
+      "sample_mean_rgb": "(1.0, 0.548402, 0.0)",
+      "size": "(1024, 1024)"
+    }
+  },
+  {
+    "albedo": "(1.0, 1.0, 1.0, 1.0)",
+    "albedo_texture": {
+      "sample_mean_rgb": "(0.340885, 0.311348, 0.265459)",
+      "size": "(1024, 1024)"
+    },
+    "material": "GUN2",
+    "mesh": "GUN_1_GUN2_0",
+    "metallic": 1.0,
+    "metallic_channel": 2,
+    "metallic_texture": {
+      "sample_mean_rgb": "(1.0, 0.533209, 0.000002)",
+      "size": "(1024, 1024)"
+    },
+    "roughness": 1.0,
+    "roughness_channel": 1,
+    "roughness_texture": {
+      "sample_mean_rgb": "(1.0, 0.533209, 0.000002)",
+      "size": "(1024, 1024)"
+    }
+  },
+  {
+    "albedo": "(1.0, 1.0, 1.0, 1.0)",
+    "albedo_texture": {
+      "sample_mean_rgb": "(0.427502, 0.405485, 0.369288)",
+      "size": "(1024, 1024)"
+    },
+    "material": "material",
+    "mesh": "GUN_GUN_0",
+    "metallic": 1.0,
+    "metallic_channel": 2,
+    "metallic_texture": {
+      "sample_mean_rgb": "(1.0, 0.562529, 0.0)",
+      "size": "(1024, 1024)"
+    },
+    "roughness": 1.0,
+    "roughness_channel": 1,
+    "roughness_texture": {
+      "sample_mean_rgb": "(1.0, 0.562529, 0.0)",
+      "size": "(1024, 1024)"
+    }
+  },
+  {
+    "albedo": "(1.0, 1.0, 1.0, 1.0)",
+    "albedo_texture": {
+      "sample_mean_rgb": "(0.497389, 0.497389, 0.497389)",
+      "size": "(1024, 1024)"
+    },
+    "material": "BLADES",
+    "mesh": "BLADES_BLADES_0",
+    "metallic": 1.0,
+    "metallic_channel": 2,
+    "metallic_texture": {
+      "sample_mean_rgb": "(1.0, 0.392928, 0.674519)",
+      "size": "(1024, 1024)"
+    },
+    "roughness": 1.0,
+    "roughness_channel": 1,
+    "roughness_texture": {
+      "sample_mean_rgb": "(1.0, 0.392928, 0.674519)",
+      "size": "(1024, 1024)"
+    }
+  }
+]

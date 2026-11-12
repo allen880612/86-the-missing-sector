@@ -1,0 +1,38 @@
+[
+  {
+    "size": 1042065,
+    "url": "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/1k/rough_concrete/rough_concrete_diff_1k.jpg",
+    "md5": "82909f2db1e0453500703ae54e806f5c",
+    "file": "rough_concrete_diff_1k.jpg"
+  },
+  {
+    "size": 900369,
+    "url": "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/1k/rough_concrete/rough_concrete_arm_1k.jpg",
+    "md5": "298b19b5c072a077f4a951cd59874962",
+    "file": "rough_concrete_arm_1k.jpg"
+  },
+  {
+    "size": 1447537,
+    "url": "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/1k/rough_concrete/rough_concrete_nor_gl_1k.jpg",
+    "md5": "61f785d44cdbf0b9f3bc68e471177358",
+    "file": "rough_concrete_nor_gl_1k.jpg"
+  },
+  {
+    "size": 577389,
+    "md5": "ba829f953270d3ad87d8e86d840f71d6",
+    "url": "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/1k/rusty_metal/rusty_metal_diff_1k.jpg",
+    "file": "rusty_metal_diff_1k.jpg"
+  },
+  {
+    "size": 130505,
+    "md5": "b7ffa07b5d83989a3fd418cae59b46f2",
+    "url": "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/1k/rusty_metal/rusty_metal_arm_1k.jpg",
+    "file": "rusty_metal_arm_1k.jpg"
+  },
+  {
+    "size": 420984,
+    "md5": "6133cf0df6fd63d0c484ca1669f90935",
+    "url": "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/1k/rusty_metal/rusty_metal_nor_gl_1k.jpg",
+    "file": "rusty_metal_nor_gl_1k.jpg"
+  }
+]

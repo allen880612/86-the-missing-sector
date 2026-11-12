@@ -1,0 +1,171 @@
+{
+  "effects": 0,
+  "elapsed": 62.9999999999977,
+  "enemies_alive": 6,
+  "events": [
+    {
+      "at_ms": 9677,
+      "event": "start"
+    },
+    {
+      "elapsed": 6.98333333333331,
+      "event": "designation_start"
+    },
+    {
+      "elapsed": 8.68333333333334,
+      "event": "designation_cancelled"
+    },
+    {
+      "at": "(-11.32343, 0.05, -0.602136)",
+      "elapsed": 14.0000000000003,
+      "event": "heavy_target_locked",
+      "from_scout": false
+    },
+    {
+      "elapsed": 19.1833333333335,
+      "event": "designation_start"
+    },
+    {
+      "elapsed": 19.3000000000002,
+      "event": "designation_cancelled"
+    },
+    {
+      "elapsed": 23.3166666666666,
+      "event": "designation_start"
+    },
+    {
+      "at": "(-0.593625, -0.04, -9.226018)",
+      "elapsed": 24.8999999999999,
+      "event": "hunter_charge_locked"
+    },
+    {
+      "elapsed": 25.1333333333332,
+      "event": "designation_confirmed"
+    },
+    {
+      "at": "(-0.794881, -0.04, -9.349759)",
+      "elapsed": 25.7499999999998,
+      "event": "hunter_charge_locked"
+    },
+    {
+      "at": "(-0.294881, 0.05, -9.349759)",
+      "elapsed": 25.9166666666665,
+      "event": "heavy_target_locked",
+      "from_scout": true
+    },
+    {
+      "at": "(-0.974906, -0.04, -1.678017)",
+      "elapsed": 29.1166666666663,
+      "event": "hunter_charge_locked"
+    },
+    {
+      "at": "(0.065779, -0.04, -1.112331)",
+      "elapsed": 29.9666666666662,
+      "event": "hunter_charge_locked"
+    },
+    {
+      "elapsed": 36.6999999999992,
+      "event": "designation_start"
+    },
+    {
+      "elapsed": 38.5166666666658,
+      "event": "designation_confirmed"
+    },
+    {
+      "at": "(0.831465, 0.05, -10.58871)",
+      "elapsed": 39.2999999999991,
+      "event": "heavy_target_locked",
+      "from_scout": true
+    },
+    {
+      "at": "(2.581558, -0.04, -12.33877)",
+      "elapsed": 40.1666666666657,
+      "event": "hunter_charge_locked"
+    },
+    {
+      "at": "(0.79611, -0.04, -18.01362)",
+      "elapsed": 45.1166666666654,
+      "event": "hunter_charge_locked"
+    },
+    {
+      "elapsed": 48.5166666666652,
+      "event": "designation_start"
+    },
+    {
+      "at": "(-0.953979, -0.04, -23.61362)",
+      "elapsed": 49.3333333333318,
+      "event": "hunter_charge_locked"
+    },
+    {
+      "elapsed": 50.3333333333318,
+      "event": "designation_confirmed"
+    },
+    {
+      "at": "(-2.014639, 0.05, -24.67426)",
+      "elapsed": 51.116666666665,
+      "event": "heavy_target_locked",
+      "from_scout": true
+    },
+    {
+      "at": "(-8.48887, -0.04, -29.32349)",
+      "elapsed": 53.5499999999982,
+      "event": "hunter_charge_locked"
+    },
+    {
+      "elapsed": 54.9666666666648,
+      "event": "hunter_hit"
+    },
+    {
+      "at": "(-5.448357, -0.04, -28.08398)",
+      "elapsed": 57.7666666666647,
+      "event": "hunter_charge_locked"
+    },
+    {
+      "elapsed": 58.9666666666646,
+      "event": "hunter_hit"
+    },
+    {
+      "elapsed": 60.3333333333312,
+      "event": "designation_start"
+    },
+    {
+      "at": "(-7.34334, -0.04, -30.07419)",
+      "elapsed": 61.9833333333311,
+      "event": "hunter_charge_locked"
+    },
+    {
+      "elapsed": 62.1499999999978,
+      "event": "designation_confirmed"
+    },
+    {
+      "at": "(-7.166563, 0.05, -29.89742)",
+      "elapsed": 62.933333333331,
+      "event": "heavy_target_locked",
+      "from_scout": true
+    },
+    {
+      "elapsed": 62.9999999999977,
+      "event": "loss",
+      "kills": 12
+    },
+    {
+      "elapsed": 62.9999999999977,
+      "event": "hunter_hit"
+    }
+  ],
+  "hp": 0.0,
+  "kills": 12,
+  "movement_frames": 3722,
+  "phase": "prep",
+  "position": [
+    -7.41227436065674,
+    -0.0399999991059303,
+    -29.8181304931641
+  ],
+  "seconds_left": 117.000000000002,
+  "shots": 291,
+  "support_cd": 0.0,
+  "supports": 1,
+  "vault_remaining": 0.0,
+  "vaults": 4
+}
